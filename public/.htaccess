@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Serve real files and directories as-is — this covers every static
+  # asset and every api/*.php endpoint, so the API is never rewritten.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else is an Angular route (e.g. /login, /admin, /todo,
+  # /diary) — fall back to index.html so the client-side router can
+  # take over instead of Apache 404ing on a path with no matching file.
+  RewriteRule ^ index.html [L]
+</IfModule>
