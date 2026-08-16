@@ -2,29 +2,40 @@
   display: block;
 }
 
-.scene {
+.photo {
+  position: relative;
+  margin: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 32px 64px -28px rgb(0 0 0 / 0.35);
+  aspect-ratio: 4 / 5;
+}
+
+.photo img {
+  display: block;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 
-.branch {
-  stroke: var(--line-strong);
-  fill: none;
+// A soft warm wash over the photo's cooler tones, so it reads as part of
+// this palette rather than a literal stock photo dropped on top of it.
+.photo__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--ember) 18%, transparent) 0%,
+    transparent 45%,
+    color-mix(in srgb, var(--surface-sunken) 55%, transparent) 100%
+  );
+  mix-blend-mode: multiply;
 }
 
-.petal {
-  fill: var(--ice);
-}
-
-.bud {
-  fill: color-mix(in srgb, var(--ice) 70%, var(--danger) 30%);
-}
-
-.stamen {
-  fill: var(--ember);
-}
-
-.drift {
-  opacity: 0.75;
+@media (min-width: 900px) {
+  .photo {
+    aspect-ratio: 3 / 4;
+  }
 }
