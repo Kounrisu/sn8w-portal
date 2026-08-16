@@ -1,0 +1,71 @@
+<div class="container hero__inner">
+  <div class="hero__copy">
+    <p class="kicker">{{ i18n.dict().hero.kicker }}</p>
+    <h1 class="hero__headline">
+      {{ i18n.dict().hero.headlineMain }}
+      <span class="accent">{{ i18n.dict().hero.headlineAccent }}</span>
+    </h1>
+    <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" routerLink="/" fragment="products">{{ i18n.dict().hero.ctaPrimary }}</a>
+      <a class="btn btn--secondary" href="https://github.com/Kounrisu" target="_blank" rel="noopener noreferrer">
+        {{ i18n.dict().hero.ctaSecondary }}
+      </a>
+    </div>
+  </div>
+
+  <div class="hero__composition" aria-hidden="true">
+    <div class="panel panel--inspector">
+      <div class="panel__chrome">
+        <span class="panel__dot"></span>
+        <span class="panel__title">scan.rgaa</span>
+      </div>
+      <ul class="panel__list">
+        <li class="panel__row panel__row--warn">
+          <span class="panel__marker"></span>
+          Contrast 2.1:1 on .btn-ghost
+        </li>
+        <li class="panel__row panel__row--error">
+          <span class="panel__marker"></span>
+          Missing alt text — 3 images
+        </li>
+        <li class="panel__row panel__row--ok">
+          <span class="panel__marker"></span>
+          Focus order verified
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel--dashboard">
+      <div class="panel__chrome">
+        <span class="panel__dot"></span>
+        <span class="panel__title">portfolio.kpi</span>
+      </div>
+      <div class="panel__kpi">
+        <span class="panel__kpi-value">+12.4%</span>
+        <span class="panel__kpi-label">YTD</span>
+      </div>
+      <svg class="panel__spark" viewBox="0 0 120 36" preserveAspectRatio="none">
+        <polyline
+          points="0,28 15,24 30,26 45,18 60,20 75,10 90,14 105,6 120,8"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+
+    <div class="panel panel--mobile">
+      <div class="panel__notch"></div>
+      <div class="panel__mobile-header">Today</div>
+      <div class="panel__mobile-row">
+        <span class="panel__mobile-dot"></span>
+        Style transferred
+      </div>
+      <div class="panel__mobile-row">
+        <span class="panel__mobile-dot"></span>
+        3 draws logged
+      </div>
+    </div>
+  </div>
+</div>

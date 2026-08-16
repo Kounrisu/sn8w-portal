@@ -1,0 +1,19 @@
+<section class="lab-section" aria-labelledby="lab-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">{{ i18n.dict().labSection.kicker }}</p>
+      <h2 id="lab-heading" class="section-title">{{ i18n.dict().labSection.title }}</h2>
+      <p class="section-lede">{{ i18n.dict().labSection.lede }}</p>
+    </div>
+  </div>
+
+  <ul class="lab-shelf container" aria-label="{{ i18n.dict().labSection.title }}" tabindex="0">
+    @for (product of projects.lab(); track product.id) {
+      <li class="lab-card">
+        <span class="lab-card__tag">{{ i18n.dict().labSection.tag }}</span>
+        <h3 class="lab-card__name">{{ product.name }}</h3>
+        <p class="lab-card__tagline">{{ product.tagline }}</p>
+      </li>
+    }
+  </ul>
+</section>

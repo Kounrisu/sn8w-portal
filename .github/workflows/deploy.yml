@@ -1,0 +1,87 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Inject version, commit and deploy timestamp
+        run: |
+          APP_VERSION=$(node -p "require('./package.json').version")
+          sed -i "s|__APP_VERSION__|${APP_VERSION}|" src/environments/environment.prod.ts
+          sed -i "s|__COMMIT_SHA__|${GITHUB_SHA::7}|" src/environments/environment.prod.ts
+          sed -i "s|__DEPLOYED_AT__|$(date -u +%Y-%m-%dT%H:%M:%SZ)|" src/environments/environment.prod.ts
+
+      - name: Build
+        run: npx ng build --configuration production
+
+      - name: Verify secrets are set
+        run: |
+          missing=0
+          for var in OVH_SFTP_HOST OVH_SFTP_USER OVH_SFTP_PASSWORD OVH_DB_HOST OVH_DB_NAME OVH_DB_USER OVH_DB_PASSWORD; do
+            if [ -z "${!var}" ]; then
+              echo "::error::Required secret $var is empty or missing"
+              missing=1
+            fi
+          done
+          if [ "$missing" -eq 1 ]; then
+            exit 1
+          fi
+        env:
+          OVH_SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
+          OVH_SFTP_USER: ${{ secrets.OVH_SFTP_USER }}
+          OVH_SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
+          OVH_DB_HOST: ${{ secrets.OVH_DB_HOST }}
+          OVH_DB_NAME: ${{ secrets.OVH_DB_NAME }}
+          OVH_DB_USER: ${{ secrets.OVH_DB_USER }}
+          OVH_DB_PASSWORD: ${{ secrets.OVH_DB_PASSWORD }}
+
+      - name: Generate PHP database config
+        # Never committed — written straight into the deploy output from
+        # GitHub secrets, the same pattern as the version placeholder above.
+        run: |
+          cat > api/lib/config.local.php <<PHP
+          <?php
+          define('SN8W_DB_HOST', '${OVH_DB_HOST}');
+          define('SN8W_DB_NAME', '${OVH_DB_NAME}');
+          define('SN8W_DB_USER', '${OVH_DB_USER}');
+          define('SN8W_DB_PASSWORD', '${OVH_DB_PASSWORD}');
+          PHP
+        env:
+          OVH_DB_HOST: ${{ secrets.OVH_DB_HOST }}
+          OVH_DB_NAME: ${{ secrets.OVH_DB_NAME }}
+          OVH_DB_USER: ${{ secrets.OVH_DB_USER }}
+          OVH_DB_PASSWORD: ${{ secrets.OVH_DB_PASSWORD }}
+
+      - name: Assemble deploy folder
+        run: |
+          mkdir -p deploy
+          rsync -av --exclude='.git' --exclude='node_modules' --exclude='.env*' \
+            dist/sn8w-portal/browser/ deploy/
+          mkdir -p deploy/api
+          rsync -av --exclude='config.local.php.example' api/ deploy/api/
+
+      - name: Deploy via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1
+        with:
+          server: ${{ secrets.OVH_SFTP_HOST }}
+          username: ${{ secrets.OVH_SFTP_USER }}
+          password: ${{ secrets.OVH_SFTP_PASSWORD }}
+          local_path: deploy/*
+          remote_path: www
+          sftp_only: true

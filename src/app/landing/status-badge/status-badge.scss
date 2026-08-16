@@ -1,0 +1,34 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25em 0.65em;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  line-height: 1.4;
+}
+
+.badge::before {
+  content: '';
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge--live {
+  color: var(--ice);
+}
+
+.badge--in-development {
+  color: var(--ember);
+}
+
+.badge--concept,
+.badge--prototype {
+  color: var(--mist);
+}
