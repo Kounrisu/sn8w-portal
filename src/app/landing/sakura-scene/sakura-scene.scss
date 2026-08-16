@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+.scene {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.branch {
+  stroke: var(--line-strong);
+  fill: none;
+}
+
+.petal {
+  fill: var(--ice);
+}
+
+.bud {
+  fill: color-mix(in srgb, var(--ice) 70%, var(--danger) 30%);
+}
+
+.stamen {
+  fill: var(--ember);
+}
+
+.drift {
+  opacity: 0.75;
+}
