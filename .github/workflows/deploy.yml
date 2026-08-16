@@ -77,7 +77,7 @@ jobs:
           rsync -av --exclude='config.local.php.example' api/ deploy/api/
 
       - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           server: ${{ secrets.OVH_SFTP_HOST }}
           username: ${{ secrets.OVH_SFTP_USER }}
