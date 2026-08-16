@@ -85,3 +85,24 @@ jobs:
           local_path: deploy/*
           remote_path: www
           sftp_only: true
+
+      - name: Upload dotfiles
+        # local_path above is a shell/SFTP glob ("deploy/*"), which never
+        # matches dotfiles like .htaccess — SFTP-Deploy-Action's `put -r`
+        # silently drops them. Upload them explicitly by exact name instead.
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
+          batch_file="$(mktemp)"
+          find deploy -maxdepth 1 -name '.*' -type f -printf 'put %p www/%f\n' > "$batch_file"
+          echo "--- batch file ---"
+          cat "$batch_file"
+          if [ -s "$batch_file" ]; then
+            sshpass -p "${OVH_SFTP_PASSWORD}" sftp -o StrictHostKeyChecking=no \
+              -b "$batch_file" "${OVH_SFTP_USER}@${OVH_SFTP_HOST}"
+          else
+            echo "No dotfiles to upload"
+          fi
+        env:
+          OVH_SFTP_HOST: ${{ secrets.OVH_SFTP_HOST }}
+          OVH_SFTP_USER: ${{ secrets.OVH_SFTP_USER }}
+          OVH_SFTP_PASSWORD: ${{ secrets.OVH_SFTP_PASSWORD }}
