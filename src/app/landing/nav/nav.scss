@@ -71,6 +71,12 @@
   gap: var(--space-sm);
 }
 
+.nav__prefs {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .nav__lang select {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -200,7 +206,7 @@
   border-top: 1px solid var(--line);
 }
 
-.nav__menu a {
+.nav__menu a:not(.btn) {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   letter-spacing: 0.05em;

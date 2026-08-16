@@ -9,6 +9,9 @@ export const ja: Dict = {
     cancel: 'キャンセル',
     delete: '削除',
     edit: '編集',
+    theme: 'テーマ',
+    themeFrost: '夜空',
+    themeSquirrel: 'ラッキーリス',
   },
   nav: {
     products: 'プロダクト',

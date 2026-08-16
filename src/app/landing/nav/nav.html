@@ -31,18 +31,33 @@
         }
       </nav>
       <div class="nav__actions">
-        <label class="nav__lang">
-          <span class="visually-hidden">{{ i18n.dict().common.language }}</span>
-          <select
-            [ngModel]="i18n.lang()"
-            (ngModelChange)="setLang($event)"
-            name="lang"
-          >
-            @for (lang of i18n.supportedLangs; track lang) {
-              <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
-            }
-          </select>
-        </label>
+        <div class="nav__prefs">
+          <label class="nav__lang">
+            <span class="visually-hidden">{{ i18n.dict().common.language }}</span>
+            <select
+              [ngModel]="i18n.lang()"
+              (ngModelChange)="setLang($event)"
+              name="lang"
+            >
+              @for (lang of i18n.supportedLangs; track lang) {
+                <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
+              }
+            </select>
+          </label>
+
+          <label class="nav__lang">
+            <span class="visually-hidden">{{ i18n.dict().common.theme }}</span>
+            <select
+              [ngModel]="theme.theme()"
+              (ngModelChange)="setTheme($event)"
+              name="theme"
+            >
+              @for (t of theme.supportedThemes; track t) {
+                <option [value]="t">{{ themeLabel()[t] }}</option>
+              }
+            </select>
+          </label>
+        </div>
 
         <span
           class="nav__version"
@@ -94,6 +109,19 @@
         >
           @for (lang of i18n.supportedLangs; track lang) {
             <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="nav__lang nav__lang--menu">
+        <span class="visually-hidden">{{ i18n.dict().common.theme }}</span>
+        <select
+          [ngModel]="theme.theme()"
+          (ngModelChange)="setTheme($event)"
+          name="themeMenu"
+        >
+          @for (t of theme.supportedThemes; track t) {
+            <option [value]="t">{{ themeLabel()[t] }}</option>
           }
         </select>
       </label>

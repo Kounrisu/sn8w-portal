@@ -7,6 +7,9 @@ export interface Dict {
     cancel: string;
     delete: string;
     edit: string;
+    theme: string;
+    themeFrost: string;
+    themeSquirrel: string;
   };
   nav: {
     products: string;
@@ -152,6 +155,9 @@ export const en: Dict = {
     cancel: 'Cancel',
     delete: 'Delete',
     edit: 'Edit',
+    theme: 'Theme',
+    themeFrost: 'Night Sky',
+    themeSquirrel: 'Lucky Squirrel',
   },
   nav: {
     products: 'Products',

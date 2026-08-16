@@ -16,6 +16,7 @@ import { map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../core/auth.service';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { ThemeService, type Theme } from '../../core/theme.service';
 import type { Lang } from '../../core/i18n/dictionary';
 
 interface NavLink {
@@ -37,7 +38,13 @@ export class Nav {
 
   protected readonly i18n = inject(I18nService);
   protected readonly auth = inject(AuthService);
+  protected readonly theme = inject(ThemeService);
   private readonly router = inject(Router);
+
+  protected readonly themeLabel = computed(() => {
+    const dict = this.i18n.dict().common;
+    return { frost: dict.themeFrost, squirrel: dict.themeSquirrel } as const;
+  });
 
   protected readonly version = environment.version;
   protected readonly commit = environment.commit;
@@ -89,6 +96,10 @@ export class Nav {
 
   protected setLang(lang: Lang): void {
     this.i18n.setLang(lang);
+  }
+
+  protected setTheme(theme: Theme): void {
+    this.theme.setTheme(theme);
   }
 
   protected async logout(): Promise<void> {

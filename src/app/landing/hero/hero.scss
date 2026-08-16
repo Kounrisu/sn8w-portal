@@ -113,7 +113,7 @@
 }
 
 .panel__row--error .panel__marker {
-  background: #d9748f;
+  background: var(--danger);
 }
 
 .panel__row--ok .panel__marker {
