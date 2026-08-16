@@ -1,0 +1,3 @@
+# These files are meant to be `require`d by the endpoint scripts one level
+# up, never requested directly — config.local.php holds database credentials.
+Require all denied

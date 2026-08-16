@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  padding-block: var(--space-2xl);
+  min-height: 60vh;
+}
+
+.login-card {
+  max-width: 26rem;
+  margin-inline: auto;
+}
+
+.login-title {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-2xl);
+  color: var(--ink);
+}
+
+.login-lede {
+  margin: 0 0 var(--space-lg);
+  color: var(--mist);
+  font-size: var(--text-base);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.login-error {
+  margin: 0;
+  color: #d9748f;
+  font-size: var(--text-sm);
+}

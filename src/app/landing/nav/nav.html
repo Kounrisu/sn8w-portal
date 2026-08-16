@@ -1,0 +1,122 @@
+<header class="nav" [class.nav--scrolled]="scrolled()">
+  <div class="container nav__inner">
+    <a class="nav__logo" href="#top">
+      sn<span class="accent">8</span>w
+      <span class="visually-hidden">— home</span>
+    </a>
+
+    @if (isCompact()) {
+      <button
+        type="button"
+        class="menu-toggle"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="nav-menu"
+        (click)="toggleMenu()"
+      >
+        <span class="visually-hidden">{{ menuOpen() ? i18n.dict().nav.closeMenu : i18n.dict().nav.openMenu }}</span>
+        <span class="menu-toggle__bars" [class.menu-toggle__bars--open]="menuOpen()" aria-hidden="true">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    } @else {
+      <nav class="nav__links" aria-label="Primary">
+        @for (link of links(); track link.fragment) {
+          <a routerLink="/" [fragment]="link.fragment">{{ link.label }}</a>
+        }
+        @if (auth.isAuthenticated()) {
+          <a routerLink="/todo">{{ i18n.dict().nav.todo }}</a>
+          <a routerLink="/diary">{{ i18n.dict().nav.diary }}</a>
+          <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
+        }
+      </nav>
+      <div class="nav__actions">
+        <label class="nav__lang">
+          <span class="visually-hidden">{{ i18n.dict().common.language }}</span>
+          <select
+            [ngModel]="i18n.lang()"
+            (ngModelChange)="setLang($event)"
+            name="lang"
+          >
+            @for (lang of i18n.supportedLangs; track lang) {
+              <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
+            }
+          </select>
+        </label>
+
+        <span
+          class="nav__version"
+          [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' · ' + deployedAt"
+          matTooltipPosition="below"
+        >
+          v{{ version }}
+        </span>
+
+        @if (auth.isAuthenticated()) {
+          <button type="button" class="nav__logout" (click)="logout()">
+            {{ i18n.dict().nav.logout }}
+          </button>
+        }
+
+        <a
+          class="nav__github"
+          href="https://github.com/Kounrisu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ i18n.dict().nav.github }}
+        </a>
+        <a class="btn btn--primary" routerLink="/" fragment="products">{{ i18n.dict().nav.explore }}</a>
+      </div>
+    }
+  </div>
+
+  @if (isCompact() && menuOpen()) {
+    <nav id="nav-menu" class="nav__menu" aria-label="Primary" (keydown.escape)="onEscape()">
+      @for (link of links(); track link.fragment) {
+        <a routerLink="/" [fragment]="link.fragment" (click)="closeMenu()">{{ link.label }}</a>
+      }
+      @if (auth.isAuthenticated()) {
+        <a routerLink="/todo" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
+        <a routerLink="/diary" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
+        <a routerLink="/admin" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
+        <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
+          {{ i18n.dict().nav.logout }}
+        </button>
+      }
+
+      <label class="nav__lang nav__lang--menu">
+        <span class="visually-hidden">{{ i18n.dict().common.language }}</span>
+        <select
+          [ngModel]="i18n.lang()"
+          (ngModelChange)="setLang($event)"
+          name="langMenu"
+        >
+          @for (lang of i18n.supportedLangs; track lang) {
+            <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
+          }
+        </select>
+      </label>
+
+      <span
+        class="nav__version"
+        [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' · ' + deployedAt"
+        matTooltipPosition="below"
+      >
+        v{{ version }}
+      </span>
+
+      <a
+        href="https://github.com/Kounrisu"
+        target="_blank"
+        rel="noopener noreferrer"
+        (click)="closeMenu()"
+      >
+        {{ i18n.dict().nav.github }}
+      </a>
+      <a class="btn btn--primary" routerLink="/" fragment="products" (click)="closeMenu()">
+        {{ i18n.dict().nav.explore }}
+      </a>
+    </nav>
+  }
+</header>

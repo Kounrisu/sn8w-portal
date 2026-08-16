@@ -1,0 +1,40 @@
+<section id="developer-tools" class="ecosystem-section" aria-labelledby="ecosystem-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">{{ i18n.dict().ecosystemSection.kicker }}</p>
+      <h2 id="ecosystem-heading" class="section-title">{{ i18n.dict().ecosystemSection.title }}</h2>
+      <p class="section-lede">{{ i18n.dict().ecosystemSection.lede }}</p>
+    </div>
+
+    <div class="ecosystem-grid">
+      @for (group of projects.ecosystemGroups(); track group.title) {
+        <div class="ecosystem-group">
+          <h3 class="ecosystem-group__title">{{ i18n.groupLabel(group.title) }}</h3>
+          <ul class="ecosystem-group__list">
+            @for (product of group.projects; track product.id) {
+              <li class="ecosystem-item">
+                @if (product.url) {
+                  <a
+                    class="ecosystem-item__link"
+                    [href]="product.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span class="ecosystem-item__name">{{ product.name }}</span>
+                    <sn8w-status-badge [status]="product.status" />
+                  </a>
+                } @else {
+                  <div class="ecosystem-item__inert">
+                    <span class="ecosystem-item__name">{{ product.name }}</span>
+                    <sn8w-status-badge [status]="product.status" />
+                  </div>
+                }
+                <p class="ecosystem-item__tagline">{{ product.tagline }}</p>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<section id="studio" class="principles-section" aria-labelledby="principles-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">{{ i18n.dict().principlesSection.kicker }}</p>
+      <h2 id="principles-heading" class="section-title">{{ i18n.dict().principlesSection.title }}</h2>
+      <p class="section-lede">{{ i18n.dict().principlesSection.lede }}</p>
+    </div>
+
+    <ul class="principles-grid">
+      @for (principle of principles(); track principle.title) {
+        <li class="principle">
+          <mat-icon class="principle__icon" aria-hidden="true">{{ principle.icon }}</mat-icon>
+          <h3 class="principle__title">{{ principle.title }}</h3>
+          <p class="principle__description">{{ principle.description }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

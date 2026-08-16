@@ -1,0 +1,71 @@
+<section class="todo-section container">
+  <div class="section-head">
+    <p class="kicker">{{ i18n.dict().nav.todo }}</p>
+    <h1 class="section-title">{{ i18n.dict().todoPage.title }}</h1>
+    <p class="section-lede">{{ i18n.dict().todoPage.lede }}</p>
+  </div>
+
+  <form class="todo-add" (ngSubmit)="addTodo()">
+    <label class="field todo-add__field">
+      <span class="visually-hidden">{{ i18n.dict().todoPage.addPlaceholder }}</span>
+      <input
+        type="text"
+        name="newTodo"
+        [placeholder]="i18n.dict().todoPage.addPlaceholder"
+        [ngModel]="newTitle()"
+        (ngModelChange)="newTitle.set($event)"
+      />
+    </label>
+    <button type="submit" class="btn btn--primary">{{ i18n.dict().todoPage.add }}</button>
+  </form>
+
+  <div class="todo-board">
+    @for (status of columns; track status) {
+      <div class="todo-column">
+        <h2 class="todo-column__title">{{ columnLabel(status) }}</h2>
+
+        @if (byStatus()[status].length === 0) {
+          <p class="todo-empty">{{ i18n.dict().todoPage.empty }}</p>
+        }
+
+        <ul class="todo-list">
+          @for (todo of byStatus()[status]; track todo.id) {
+            <li class="todo-card">
+              <span class="todo-card__title">{{ todo.title }}</span>
+              <div class="todo-card__actions">
+                @if (previousStatus(status); as prev) {
+                  <button
+                    type="button"
+                    class="todo-card__move"
+                    (click)="move(todo.id, prev)"
+                    [attr.aria-label]="columnLabel(prev)"
+                  >
+                    ←
+                  </button>
+                }
+                @if (nextStatus(status); as next) {
+                  <button
+                    type="button"
+                    class="todo-card__move"
+                    (click)="move(todo.id, next)"
+                    [attr.aria-label]="columnLabel(next)"
+                  >
+                    →
+                  </button>
+                }
+                <button
+                  type="button"
+                  class="todo-card__delete"
+                  (click)="remove(todo.id)"
+                  [attr.aria-label]="i18n.dict().common.delete"
+                >
+                  ×
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,156 @@
+<section class="admin-section container">
+  <div class="section-head admin-head">
+    <div>
+      <p class="kicker">{{ i18n.dict().nav.admin }}</p>
+      <h1 class="section-title">{{ i18n.dict().admin.title }}</h1>
+      <p class="section-lede">{{ i18n.dict().admin.lede }}</p>
+    </div>
+    <button type="button" class="btn btn--primary" (click)="openCreate()">
+      {{ i18n.dict().admin.newProject }}
+    </button>
+  </div>
+
+  @if (formOpen()) {
+    <form class="admin-form" (ngSubmit)="submit()">
+      <div class="admin-form__grid">
+        <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.tier }}</span>
+          <select
+            [ngModel]="form().tier"
+            (ngModelChange)="updateField('tier', $event)"
+            name="tier"
+          >
+            @for (tier of tiers; track tier) {
+              <option [value]="tier">{{ tierLabel(tier) }}</option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.name }}</span>
+          <input
+            type="text"
+            required
+            [ngModel]="form().name"
+            (ngModelChange)="updateField('name', $event)"
+            name="name"
+          />
+        </label>
+
+        <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.category }}</span>
+          <input
+            type="text"
+            [ngModel]="form().category"
+            (ngModelChange)="updateField('category', $event)"
+            name="category"
+          />
+        </label>
+
+        <label class="field admin-form__wide">
+          <span class="field-label">{{ i18n.dict().admin.tagline }}</span>
+          <input
+            type="text"
+            [ngModel]="form().tagline"
+            (ngModelChange)="updateField('tagline', $event)"
+            name="tagline"
+          />
+        </label>
+
+        <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.status }}</span>
+          <select
+            [ngModel]="form().status"
+            (ngModelChange)="updateField('status', $event)"
+            name="status"
+          >
+            @for (status of statuses; track status) {
+              <option [value]="status">{{ i18n.statusLabel(status) }}</option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.url }}</span>
+          <input
+            type="url"
+            [ngModel]="form().url"
+            (ngModelChange)="updateField('url', $event)"
+            name="url"
+          />
+        </label>
+
+        @if (form().tier === 'ecosystem') {
+          <label class="field">
+            <span class="field-label">{{ i18n.dict().admin.group }}</span>
+            <input
+              type="text"
+              [ngModel]="form().groupTitle"
+              (ngModelChange)="updateField('groupTitle', $event)"
+              name="groupTitle"
+            />
+          </label>
+        }
+
+        @if (form().tier === 'flagship') {
+          <label class="field">
+            <span class="field-label">{{ i18n.dict().admin.mockup }}</span>
+            <select
+              [ngModel]="form().mockup"
+              (ngModelChange)="updateField('mockup', $event)"
+              name="mockup"
+            >
+              @for (mockup of mockups; track mockup) {
+                <option [value]="mockup">{{ mockup }}</option>
+              }
+            </select>
+          </label>
+        }
+      </div>
+
+      <div class="admin-form__actions">
+        <button type="submit" class="btn btn--primary" [disabled]="saving()">
+          {{ i18n.dict().common.save }}
+        </button>
+        <button type="button" class="btn btn--secondary" (click)="closeForm()">
+          {{ i18n.dict().common.cancel }}
+        </button>
+      </div>
+    </form>
+  }
+
+  @if (projects.list().length === 0) {
+    <p class="admin-empty">{{ i18n.dict().admin.empty }}</p>
+  }
+
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th scope="col">{{ i18n.dict().admin.name }}</th>
+        <th scope="col">{{ i18n.dict().admin.tier }}</th>
+        <th scope="col">{{ i18n.dict().admin.status }}</th>
+        <th scope="col"><span class="visually-hidden">{{ i18n.dict().common.edit }}</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (project of projects.list(); track project.id) {
+        <tr>
+          <td>
+            <span class="admin-table__name">{{ project.name }}</span>
+            <span class="admin-table__tagline">{{ project.tagline }}</span>
+          </td>
+          <td>{{ tierLabel(project.tier) }}</td>
+          <td>{{ i18n.statusLabel(project.status) }}</td>
+          <td class="admin-table__actions">
+            <button type="button" class="btn btn--secondary" (click)="openEdit(project)">
+              {{ i18n.dict().common.edit }}
+            </button>
+            <button type="button" class="admin-table__delete" (click)="remove(project)">
+              {{ i18n.dict().common.delete }}
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

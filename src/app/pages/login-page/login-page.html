@@ -1,0 +1,41 @@
+<section class="login-section container">
+  <div class="login-card">
+    <p class="kicker">{{ i18n.dict().nav.admin }}</p>
+    <h1 class="login-title">{{ i18n.dict().auth.title }}</h1>
+    <p class="login-lede">{{ i18n.dict().auth.lede }}</p>
+
+    <form class="login-form" (ngSubmit)="submit()">
+      <label class="field">
+        <span class="field-label">{{ i18n.dict().auth.username }}</span>
+        <input
+          type="text"
+          name="username"
+          autocomplete="username"
+          required
+          [ngModel]="username()"
+          (ngModelChange)="username.set($event)"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ i18n.dict().auth.password }}</span>
+        <input
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          required
+          [ngModel]="password()"
+          (ngModelChange)="password.set($event)"
+        />
+      </label>
+
+      @if (error()) {
+        <p class="login-error" role="alert">{{ i18n.dict().auth.error }}</p>
+      }
+
+      <button type="submit" class="btn btn--primary" [disabled]="submitting()">
+        {{ i18n.dict().auth.submit }}
+      </button>
+    </form>
+  </div>
+</section>

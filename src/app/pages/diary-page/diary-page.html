@@ -1,0 +1,97 @@
+<section class="diary-section container">
+  <div class="section-head">
+    <p class="kicker">{{ i18n.dict().nav.diary }}</p>
+    <h1 class="section-title">{{ i18n.dict().diaryPage.title }}</h1>
+    <p class="section-lede">{{ i18n.dict().diaryPage.lede }}</p>
+  </div>
+
+  <div class="diary-layout">
+    <aside class="diary-days" aria-label="{{ i18n.dict().diaryPage.title }}">
+      <button
+        type="button"
+        class="diary-day"
+        [class.diary-day--active]="selectedDate() === today"
+        (click)="loadDay(today)"
+      >
+        {{ i18n.dict().diaryPage.today }}
+      </button>
+
+      @if (dates().length === 0) {
+        <p class="diary-empty">{{ i18n.dict().diaryPage.noDays }}</p>
+      }
+
+      @for (date of dates(); track date) {
+        @if (date !== today) {
+          <button
+            type="button"
+            class="diary-day"
+            [class.diary-day--active]="selectedDate() === date"
+            (click)="loadDay(date)"
+          >
+            {{ date }}
+          </button>
+        }
+      }
+    </aside>
+
+    <div class="diary-content">
+      <label class="field diary-notes-field">
+        <span class="field-label">{{ selectedDate() }}</span>
+        <textarea
+          rows="8"
+          [placeholder]="i18n.dict().diaryPage.notesPlaceholder"
+          [ngModel]="notes()"
+          (ngModelChange)="notes.set($event)"
+        ></textarea>
+      </label>
+
+      <div class="diary-save-row">
+        <button type="button" class="btn btn--primary" (click)="save()">
+          {{ i18n.dict().diaryPage.save }}
+        </button>
+        @if (saved()) {
+          <span class="diary-saved" role="status">{{ i18n.dict().diaryPage.saved }}</span>
+        }
+      </div>
+
+      <h2 class="diary-todos-title">{{ i18n.dict().diaryPage.todosForDay }}</h2>
+
+      <form class="diary-todo-add" (ngSubmit)="addTodo()">
+        <label class="field diary-todo-add__field">
+          <span class="visually-hidden">{{ i18n.dict().diaryPage.addTodoPlaceholder }}</span>
+          <input
+            type="text"
+            [placeholder]="i18n.dict().diaryPage.addTodoPlaceholder"
+            [ngModel]="newTodoTitle()"
+            (ngModelChange)="newTodoTitle.set($event)"
+            name="newDiaryTodo"
+          />
+        </label>
+        <button type="submit" class="btn btn--secondary">{{ i18n.dict().todoPage.add }}</button>
+      </form>
+
+      <ul class="diary-todo-list">
+        @for (todo of dayTodos(); track todo.id) {
+          <li class="diary-todo">
+            <label class="diary-todo__check">
+              <input
+                type="checkbox"
+                [checked]="todo.status === 'done'"
+                (change)="toggleDone(todo)"
+              />
+              <span [class.diary-todo__title--done]="todo.status === 'done'">{{ todo.title }}</span>
+            </label>
+            <button
+              type="button"
+              class="diary-todo__delete"
+              (click)="removeTodo(todo.id)"
+              [attr.aria-label]="i18n.dict().common.delete"
+            >
+              ×
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

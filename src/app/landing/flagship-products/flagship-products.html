@@ -1,0 +1,117 @@
+<section id="products" class="flagship-section" aria-labelledby="products-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">{{ i18n.dict().flagshipSection.kicker }}</p>
+      <h2 id="products-heading" class="section-title">{{ i18n.dict().flagshipSection.title }}</h2>
+      <p class="section-lede">{{ i18n.dict().flagshipSection.lede }}</p>
+    </div>
+
+    <div class="flagship-list">
+      @for (product of projects.flagship(); track product.id; let i = $index) {
+        <article class="flagship" [class.flagship--reverse]="i % 2 === 1">
+          <div class="flagship__copy">
+            <p class="flagship__category">{{ product.category }}</p>
+            <h3 class="flagship__name">{{ product.name }}</h3>
+            <p class="flagship__tagline">{{ product.tagline }}</p>
+            <div class="flagship__meta">
+              <sn8w-status-badge [status]="product.status" />
+              <a
+                class="flagship__cta"
+                href="https://github.com/Kounrisu"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ i18n.dict().flagshipSection.followBuild }}
+                <span class="visually-hidden">— {{ product.name }}</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="flagship__mockup" aria-hidden="true">
+            @switch (product.mockup) {
+              @case ('inspector') {
+                <div class="mock mock--inspector">
+                  <div class="mock__chrome">
+                    <span class="mock__dot"></span>
+                    <span class="mock__title">rgaa-dev-assistant · scanning app.component.html</span>
+                  </div>
+                  <div class="mock__body">
+                    <div class="mock__issue mock__issue--error">
+                      <span class="mock__badge">Error</span>
+                      <span>&lt;img&gt; missing alt attribute — line 42</span>
+                    </div>
+                    <div class="mock__issue mock__issue--warn">
+                      <span class="mock__badge">Warning</span>
+                      <span>Contrast 2.4:1 on .btn-ghost — needs 4.5:1</span>
+                    </div>
+                    <div class="mock__issue mock__issue--ok">
+                      <span class="mock__badge">Pass</span>
+                      <span>Landmark structure verified</span>
+                    </div>
+                    <div class="mock__fix">
+                      <span class="mock__fix-label">Suggested fix</span>
+                      <code>alt="Portfolio performance chart, year to date"</code>
+                    </div>
+                  </div>
+                </div>
+              }
+              @case ('dashboard') {
+                <div class="mock mock--dashboard">
+                  <div class="mock__chrome">
+                    <span class="mock__dot"></span>
+                    <span class="mock__title">stocktracker · PEA + PER + CTO</span>
+                  </div>
+                  <div class="mock__kpis">
+                    <div class="mock__kpi">
+                      <span class="mock__kpi-label">Total value</span>
+                      <span class="mock__kpi-value">€84,210</span>
+                    </div>
+                    <div class="mock__kpi">
+                      <span class="mock__kpi-label">YTD</span>
+                      <span class="mock__kpi-value mock__kpi-value--accent">+12.4%</span>
+                    </div>
+                  </div>
+                  <svg class="mock__chart" viewBox="0 0 320 96" preserveAspectRatio="none">
+                    <polyline
+                      points="0,72 40,64 80,68 120,44 160,50 200,24 240,32 280,12 320,18"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                  </svg>
+                  <div class="mock__accounts">
+                    <span>PEA</span>
+                    <span>PER</span>
+                    <span>CTO</span>
+                    <span>+2 brokers</span>
+                  </div>
+                </div>
+              }
+              @case ('creative') {
+                <div class="mock mock--creative">
+                  <div class="mock__chrome">
+                    <span class="mock__dot"></span>
+                    <span class="mock__title">solis · style transfer</span>
+                  </div>
+                  <div class="mock__split">
+                    <div class="mock__pane mock__pane--before">
+                      <span class="mock__pane-label">Original</span>
+                    </div>
+                    <div class="mock__pane mock__pane--after">
+                      <span class="mock__pane-label">Ember wash</span>
+                    </div>
+                  </div>
+                  <div class="mock__styles">
+                    <span class="mock__style-chip mock__style-chip--active">Ember wash</span>
+                    <span class="mock__style-chip">Frost etch</span>
+                    <span class="mock__style-chip">Night sky</span>
+                  </div>
+                </div>
+              }
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

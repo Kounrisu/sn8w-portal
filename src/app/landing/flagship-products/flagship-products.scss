@@ -1,0 +1,298 @@
+:host {
+  display: block;
+  padding-block: var(--space-2xl);
+  border-top: 1px solid var(--line);
+}
+
+.flagship-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.flagship {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.flagship__copy {
+  max-width: 34rem;
+}
+
+.flagship__category {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.flagship__name {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-xl);
+  color: var(--ink);
+}
+
+.flagship__tagline {
+  margin: 0 0 var(--space-md);
+  font-size: var(--text-md);
+  line-height: 1.55;
+  color: var(--mist);
+  max-width: 42ch;
+}
+
+.flagship__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.flagship__cta {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--ice);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--ice) 40%, transparent);
+}
+
+.flagship__cta:hover {
+  border-bottom-color: var(--ice);
+}
+
+.flagship__cta:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+
+// Shared mockup chrome ------------------------------------------------------
+
+.mock {
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--surface-raised);
+  padding: var(--space-md);
+  box-shadow: 0 32px 64px -32px rgb(0 0 0 / 0.55);
+}
+
+.mock__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--line);
+}
+
+.mock__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--line-strong);
+  flex-shrink: 0;
+}
+
+.mock__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Inspector mockup ------------------------------------------------------
+
+.mock__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mock__issue {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+.mock__badge {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 0.15em 0.5em;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+}
+
+.mock__issue--error .mock__badge {
+  color: #d9748f;
+}
+
+.mock__issue--warn .mock__badge {
+  color: var(--ember);
+}
+
+.mock__issue--ok .mock__badge {
+  color: var(--ice);
+}
+
+.mock__fix {
+  margin-top: 0.4rem;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.mock__fix-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mock__fix code {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ice);
+  overflow-wrap: break-word;
+}
+
+// Dashboard mockup ------------------------------------------------------
+
+.mock__kpis {
+  display: flex;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.mock__kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.mock__kpi-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mock__kpi-value {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  color: var(--ink);
+}
+
+.mock__kpi-value--accent {
+  color: var(--ice);
+}
+
+.mock__chart {
+  width: 100%;
+  height: 6rem;
+  color: var(--ice);
+  margin-bottom: var(--space-sm);
+}
+
+.mock__accounts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mock__accounts span {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.2em 0.55em;
+}
+
+// Creative mockup ------------------------------------------------------
+
+.mock__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.mock__pane {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-xs);
+}
+
+.mock__pane--before {
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--ink) 12%, transparent), transparent 60%),
+    var(--surface-sunken);
+}
+
+.mock__pane--after {
+  background:
+    radial-gradient(circle at 65% 35%, color-mix(in srgb, var(--ember) 55%, transparent), transparent 65%),
+    linear-gradient(160deg, var(--surface-sunken), color-mix(in srgb, var(--ember) 18%, var(--surface-sunken)));
+}
+
+.mock__pane-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+}
+
+.mock__styles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.mock__style-chip {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.25em 0.6em;
+}
+
+.mock__style-chip--active {
+  color: var(--ember);
+  border-color: color-mix(in srgb, var(--ember) 55%, var(--line));
+}
+
+@media (min-width: 900px) {
+  .flagship {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-2xl);
+  }
+
+  .flagship--reverse {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .flagship--reverse .flagship__copy {
+    order: 2;
+  }
+
+  .flagship--reverse .flagship__mockup {
+    order: 1;
+  }
+}

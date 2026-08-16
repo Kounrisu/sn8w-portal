@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "sn8w-portal",
+      "runtimeExecutable": "/Users/diabolo/.nvm/versions/node/v24.19.0/bin/node",
+      "runtimeArgs": ["node_modules/@angular/cli/bin/ng.js", "serve", "--proxy-config", "proxy.conf.json"],
+      "port": 4200
+    }
+  ]
+}

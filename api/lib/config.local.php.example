@@ -1,0 +1,8 @@
+<?php
+// Copy this file to config.local.php (gitignored) for local development
+// against a MySQL instance of your own. Never commit config.local.php.
+
+define('SN8W_DB_HOST', '127.0.0.1');
+define('SN8W_DB_NAME', 'sn8w_portal');
+define('SN8W_DB_USER', 'root');
+define('SN8W_DB_PASSWORD', '');

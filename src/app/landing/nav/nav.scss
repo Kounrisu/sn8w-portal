@@ -1,0 +1,231 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.nav--scrolled {
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: 1.1rem;
+}
+
+.nav__logo {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+.nav__logo .accent {
+  color: var(--ice);
+}
+
+.nav__logo:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 4px;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.nav__links a {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+}
+
+.nav__links a:hover {
+  color: var(--ink);
+}
+
+.nav__links a:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.nav__lang select {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 0.3em 0.4em;
+  cursor: pointer;
+}
+
+.nav__lang select:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.nav__version {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  cursor: default;
+  white-space: nowrap;
+}
+
+.nav__logout {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mist);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav__logout:hover {
+  color: var(--ember);
+}
+
+.nav__logout:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.nav__logout--menu {
+  text-align: left;
+  padding-block: 0.35rem;
+  font-size: var(--text-sm);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.nav__github {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mist);
+  text-decoration: none;
+}
+
+.nav__github:hover {
+  color: var(--ice);
+}
+
+.nav__github:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.menu-toggle:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.menu-toggle__bars {
+  position: relative;
+  width: 1.1rem;
+  height: 0.75rem;
+}
+
+.menu-toggle__bars span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.18s ease;
+}
+
+.menu-toggle__bars span:first-child {
+  top: 0;
+}
+
+.menu-toggle__bars span:last-child {
+  bottom: 0;
+}
+
+.menu-toggle__bars--open span:first-child {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.menu-toggle__bars--open span:last-child {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.nav__menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--section-padding-inline) var(--space-lg);
+  border-top: 1px solid var(--line);
+}
+
+.nav__menu a {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  text-decoration: none;
+  padding-block: 0.35rem;
+}
+
+.nav__menu a:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.nav__lang--menu {
+  margin-top: var(--space-2xs);
+}
+
+.nav__menu .btn {
+  align-self: flex-start;
+  margin-top: var(--space-2xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav,
+  .menu-toggle__bars span {
+    transition: none;
+  }
+}
