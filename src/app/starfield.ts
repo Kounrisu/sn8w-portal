@@ -22,7 +22,7 @@ const CONFIG: Record<
   // Slow-drifting frost dust, twinkling in place — the default "Night Sky" theme.
   frost: { density: 0.00012, maxParticles: 220, color: '#a9d8ea', radiusMin: 0.3, radiusRange: 1.1 },
   // Falling sakura petals — the "Lucky Squirrel" theme's signature.
-  squirrel: { density: 0.00007, maxParticles: 140, color: '#c96b8a', radiusMin: 1.4, radiusRange: 1.6 },
+  squirrel: { density: 0.00006, maxParticles: 110, color: '#c96b8a', radiusMin: 2.4, radiusRange: 2.8 },
 };
 
 export function createParticles(width: number, height: number, mode: StarfieldMode = 'frost'): Particle[] {

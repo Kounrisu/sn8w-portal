@@ -148,6 +148,11 @@
   height: 2.5rem;
 }
 
+.hero__scene {
+  opacity: 0;
+  animation: fade-up 0.7s ease-out 0.2s forwards;
+}
+
 .panel--mobile {
   max-width: 14rem;
   align-self: flex-end;
@@ -229,7 +234,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero__copy,
-  .hero__composition {
+  .hero__composition,
+  .hero__scene {
     animation: none;
     opacity: 1;
   }

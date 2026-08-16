@@ -1,0 +1,59 @@
+:host {
+  display: block;
+}
+
+.scene {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.branch {
+  stroke: var(--line-strong);
+  fill: none;
+}
+
+.petal {
+  fill: var(--ice);
+}
+
+.bud {
+  fill: color-mix(in srgb, var(--ice) 70%, var(--danger) 30%);
+}
+
+.stamen {
+  fill: var(--ember);
+}
+
+.drift {
+  opacity: 0.75;
+}
+
+.squirrel .tail circle,
+.squirrel .body,
+.squirrel .head,
+.squirrel .ear,
+.squirrel .paw,
+.squirrel .nose,
+.squirrel .acorn-cap {
+  fill: var(--ink);
+}
+
+.squirrel .ear-inner,
+.squirrel .eye-white,
+.squirrel .sparkle {
+  fill: var(--surface-raised);
+}
+
+.squirrel .pupil {
+  fill: var(--ink);
+}
+
+.squirrel .cheek {
+  fill: var(--ember);
+  opacity: 0.35;
+}
+
+.squirrel .acorn {
+  fill: var(--ember);
+}

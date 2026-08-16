@@ -14,6 +14,11 @@
     </div>
   </div>
 
+  @if (theme.theme() === 'squirrel') {
+    <div class="hero__scene" aria-hidden="true">
+      <sn8w-squirrel-scene />
+    </div>
+  } @else {
   <div class="hero__composition" aria-hidden="true">
     <div class="panel panel--inspector">
       <div class="panel__chrome">
@@ -68,4 +73,5 @@
       </div>
     </div>
   </div>
+  }
 </div>
