@@ -1,6 +1,25 @@
 <?php
 declare(strict_types=1);
 
+// Never leak stack traces or file paths to the client — log them server-side
+// and always respond with clean JSON instead. This is what every endpoint
+// loads first, so it covers uncaught exceptions from anywhere downstream
+// (e.g. a PDOException from a query against a table that doesn't exist yet).
+ini_set('display_errors', '0');
+error_reporting(E_ALL);
+
+set_exception_handler(static function (Throwable $e): void {
+    error_log($e->__toString());
+    json_response(['error' => 'Internal server error'], 500);
+});
+
+set_error_handler(static function (int $severity, string $message, string $file, int $line): bool {
+    if (!(error_reporting() & $severity)) {
+        return false;
+    }
+    throw new ErrorException($message, 0, $severity, $file, $line);
+});
+
 function json_response(mixed $data, int $status = 200): never
 {
     http_response_code($status);
