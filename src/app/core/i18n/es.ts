@@ -9,6 +9,9 @@ export const es: Dict = {
     cancel: 'Cancelar',
     delete: 'Eliminar',
     edit: 'Editar',
+    theme: 'Tema',
+    themeFrost: 'Cielo nocturno',
+    themeSquirrel: 'Ardilla de la suerte',
   },
   nav: {
     products: 'Productos',

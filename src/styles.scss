@@ -1,5 +1,10 @@
 @use '@angular/material' as mat;
 
+// Color tokens below are grouped per theme. The names (--ice, --ember, ...)
+// come from the original "Night Sky" theme and now act as generic semantic
+// slots — primary accent, secondary/warm accent, muted text — reused as-is
+// by every theme rather than renamed, to avoid a repaint-only refactor
+// touching every component stylesheet.
 :root {
   --bg: #0a0d12;
   --ink: #d8dee5;
@@ -10,6 +15,7 @@
   --line-strong: #262d38;
   --surface-raised: #10141b;
   --surface-sunken: #070911;
+  --danger: #d9748f;
 
   --font-serif: ui-serif, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', monospace;
@@ -67,7 +73,7 @@ html {
   --mat-sys-on-secondary: var(--bg);
   --mat-sys-tertiary: var(--ember);
   --mat-sys-on-tertiary: var(--bg);
-  --mat-sys-error: var(--ember);
+  --mat-sys-error: var(--danger);
   --mat-sys-on-error: var(--bg);
   --mat-sys-background: var(--bg);
   --mat-sys-on-background: var(--ink);
@@ -86,6 +92,28 @@ html {
   --mat-sys-inverse-primary: var(--ice);
   --mat-sys-shadow: black;
   --mat-sys-scrim: black;
+}
+
+// "Lucky Squirrel" — a warm, light counterpoint to the default dark "Night
+// Sky" theme: sun-warmed parchment, chestnut ink, a deep sakura-blossom
+// accent, and a toasted-gold "lucky" accent. Selected via the theme
+// switcher in the nav (ThemeService sets this attribute on <html>).
+html[data-theme='squirrel'] {
+  color-scheme: light;
+
+  --bg: #f6ead9;
+  --ink: #3e2a1e;
+  --ice: #9e526d;
+  --ember: #8a6321;
+  --mist: #7a6656;
+  --line: #e8d7bc;
+  --line-strong: #d2b78d;
+  --surface-raised: #fbf3e6;
+  --surface-sunken: #ecdcc0;
+  --danger: #b6415a;
+
+  --mat-sys-shadow: #7a6656;
+  --mat-sys-scrim: #7a6656;
 }
 
 * {

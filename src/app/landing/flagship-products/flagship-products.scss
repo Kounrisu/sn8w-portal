@@ -134,7 +134,7 @@
 }
 
 .mock__issue--error .mock__badge {
-  color: #d9748f;
+  color: var(--danger);
 }
 
 .mock__issue--warn .mock__badge {

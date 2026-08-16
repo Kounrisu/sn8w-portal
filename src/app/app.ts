@@ -5,11 +5,14 @@ import {
   ElementRef,
   OnDestroy,
   ViewChild,
+  effect,
+  inject,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Nav } from './landing/nav/nav';
 import { SiteFooter } from './landing/site-footer/site-footer';
-import { createParticles, drawFrame, type Particle } from './starfield';
+import { ThemeService } from './core/theme.service';
+import { createParticles, drawFrame, type Particle, type StarfieldMode } from './starfield';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +24,8 @@ import { createParticles, drawFrame, type Particle } from './starfield';
 export class App implements AfterViewInit, OnDestroy {
   @ViewChild('starfield') private readonly starfieldRef?: ElementRef<HTMLCanvasElement>;
 
+  private readonly themeService = inject(ThemeService);
+
   private readonly prefersReducedMotion =
     typeof window !== 'undefined' &&
     typeof window.matchMedia === 'function' &&
@@ -28,7 +33,18 @@ export class App implements AfterViewInit, OnDestroy {
 
   private animationFrame = 0;
   private particles: Particle[] = [];
+  private mode: StarfieldMode = 'frost';
   private resizeObserver?: ResizeObserver;
+  private canvas?: HTMLCanvasElement;
+  private ctx?: CanvasRenderingContext2D;
+  private dpr = 1;
+
+  constructor() {
+    effect(() => {
+      this.mode = this.themeService.theme();
+      this.regenerate();
+    });
+  }
 
   ngAfterViewInit(): void {
     const canvas = this.starfieldRef?.nativeElement;
@@ -37,15 +53,14 @@ export class App implements AfterViewInit, OnDestroy {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const dpr = window.devicePixelRatio || 1;
+    this.canvas = canvas;
+    this.ctx = ctx;
+    this.dpr = window.devicePixelRatio || 1;
 
     const resize = () => {
-      canvas.width = canvas.clientWidth * dpr;
-      canvas.height = canvas.clientHeight * dpr;
-      this.particles = createParticles(canvas.clientWidth, canvas.clientHeight);
-      if (this.prefersReducedMotion) {
-        drawFrame(ctx, this.particles, dpr, 0);
-      }
+      canvas.width = canvas.clientWidth * this.dpr;
+      canvas.height = canvas.clientHeight * this.dpr;
+      this.regenerate();
     };
 
     resize();
@@ -54,10 +69,18 @@ export class App implements AfterViewInit, OnDestroy {
 
     if (!this.prefersReducedMotion) {
       const tick = (time: number) => {
-        drawFrame(ctx, this.particles, dpr, time);
+        if (this.ctx) drawFrame(this.ctx, this.particles, this.dpr, time, this.mode);
         this.animationFrame = requestAnimationFrame(tick);
       };
       this.animationFrame = requestAnimationFrame(tick);
+    }
+  }
+
+  private regenerate(): void {
+    if (!this.canvas || !this.ctx) return;
+    this.particles = createParticles(this.canvas.clientWidth, this.canvas.clientHeight, this.mode);
+    if (this.prefersReducedMotion) {
+      drawFrame(this.ctx, this.particles, this.dpr, 0, this.mode);
     }
   }
 

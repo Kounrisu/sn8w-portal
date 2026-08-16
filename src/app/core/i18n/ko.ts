@@ -9,6 +9,9 @@ export const ko: Dict = {
     cancel: '취소',
     delete: '삭제',
     edit: '수정',
+    theme: '테마',
+    themeFrost: '밤하늘',
+    themeSquirrel: '행운의 다람쥐',
   },
   nav: {
     products: '제품',

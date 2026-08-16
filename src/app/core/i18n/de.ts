@@ -9,6 +9,9 @@ export const de: Dict = {
     cancel: 'Abbrechen',
     delete: 'Löschen',
     edit: 'Bearbeiten',
+    theme: 'Motiv',
+    themeFrost: 'Nachthimmel',
+    themeSquirrel: 'Glückseichhörnchen',
   },
   nav: {
     products: 'Produkte',
