@@ -14,7 +14,7 @@
         {{ email }}
       </button>
       @if (!auth.isAuthenticated()) {
-        <a routerLink="/admin" class="footer-links__admin">{{ i18n.dict().nav.admin }}</a>
+        <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
       }
     </nav>
   </div>

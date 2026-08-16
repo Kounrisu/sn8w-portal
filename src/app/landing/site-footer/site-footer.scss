@@ -68,10 +68,6 @@
   height: 1.1rem;
 }
 
-.footer-links__admin {
-  opacity: 0.55;
-}
-
-.footer-links__admin:hover {
-  opacity: 1;
-}
+// var(--mist) alone (inherited from `.footer-links a`) already reads as
+// quieter than the primary content — the previous opacity: 0.55 dimmed it
+// further and dropped contrast below AA on lighter themes (1.89:1).
