@@ -97,8 +97,8 @@ jobs:
           echo "--- batch file ---"
           cat "$batch_file"
           if [ -s "$batch_file" ]; then
-            sshpass -p "${OVH_SFTP_PASSWORD}" sftp -o StrictHostKeyChecking=no \
-              -b "$batch_file" "${OVH_SFTP_USER}@${OVH_SFTP_HOST}"
+            SSHPASS="${OVH_SFTP_PASSWORD}" sshpass -e sftp -oBatchMode=no \
+              -b "$batch_file" -o StrictHostKeyChecking=no "${OVH_SFTP_USER}@${OVH_SFTP_HOST}"
           else
             echo "No dotfiles to upload"
           fi
