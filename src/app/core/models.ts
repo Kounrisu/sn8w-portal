@@ -18,13 +18,29 @@ export interface Project {
 export type ProjectInput = Omit<Project, 'id'>;
 
 export type TodoStatus = 'todo' | 'in_progress' | 'done';
+export type TodoPriority = 'low' | 'medium' | 'high';
 
 export interface Todo {
   readonly id: number;
   readonly title: string;
+  readonly description: string | null;
+  /** Derived server-side from `progress` — never set directly. */
   readonly status: TodoStatus;
+  readonly priority: TodoPriority;
+  readonly progress: number;
   readonly diaryDate: string | null;
   readonly sortOrder: number;
+  readonly createdAt: string;
+  readonly updatedAt: string;
+}
+
+export interface TodoInput {
+  readonly title: string;
+  readonly description?: string | null;
+  readonly priority?: TodoPriority;
+  readonly progress?: number;
+  readonly diaryDate?: string | null;
+  readonly sortOrder?: number;
 }
 
 export interface DiaryEntry {

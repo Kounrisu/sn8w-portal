@@ -61,15 +61,15 @@ export class DiaryPage {
   protected async addTodo(): Promise<void> {
     const title = this.newTodoTitle().trim();
     if (!title) return;
-    const todo = await this.todosApi.create(title, 'todo', this.selectedDate());
+    const todo = await this.todosApi.create({ title, diaryDate: this.selectedDate() });
     this.dayTodos.update((todos) => [...todos, todo]);
     this.newTodoTitle.set('');
     await this.loadDates();
   }
 
   protected async toggleDone(todo: Todo): Promise<void> {
-    const status = todo.status === 'done' ? 'todo' : 'done';
-    const updated = await this.todosApi.setStatus(todo.id, status);
+    const progress = todo.progress === 100 ? 0 : 100;
+    const updated = await this.todosApi.setProgress(todo.id, progress);
     this.dayTodos.update((todos) => todos.map((t) => (t.id === todo.id ? updated : t)));
   }
 

@@ -117,10 +117,28 @@ export interface Dict {
   todoPage: {
     title: string;
     lede: string;
-    addPlaceholder: string;
-    add: string;
+    searchPlaceholder: string;
+    filterAll: string;
+    newTodo: string;
     columns: { todo: string; inProgress: string; done: string };
+    priority: { low: string; medium: string; high: string };
+    completedPrefix: string;
     empty: string;
+    noResults: string;
+  };
+  todoDetailPage: {
+    newHeading: string;
+    editHeading: string;
+    titleLabel: string;
+    titlePlaceholder: string;
+    descriptionLabel: string;
+    descriptionPlaceholder: string;
+    priorityLabel: string;
+    progressLabel: string;
+    back: string;
+    create: string;
+    deleteConfirm: string;
+    titleRequired: string;
   };
   diaryPage: {
     title: string;
@@ -130,6 +148,7 @@ export interface Dict {
     saved: string;
     todosForDay: string;
     addTodoPlaceholder: string;
+    add: string;
     noDays: string;
     today: string;
   };
@@ -285,11 +304,29 @@ export const en: Dict = {
   },
   todoPage: {
     title: 'Todo board',
-    lede: 'Track work across three simple states.',
-    addPlaceholder: 'What needs doing?',
-    add: 'Add',
+    lede: 'Every task, one list — drag to reorder, open one to update it.',
+    searchPlaceholder: 'Search todos',
+    filterAll: 'All statuses',
+    newTodo: 'New',
     columns: { todo: 'Todo', inProgress: 'In progress', done: 'Done' },
-    empty: 'Nothing here.',
+    priority: { low: 'Low', medium: 'Medium', high: 'High' },
+    completedPrefix: 'Completed',
+    empty: 'Nothing here yet.',
+    noResults: 'No todos match.',
+  },
+  todoDetailPage: {
+    newHeading: 'New todo',
+    editHeading: 'Edit todo',
+    titleLabel: 'Title',
+    titlePlaceholder: 'What needs doing?',
+    descriptionLabel: 'Description',
+    descriptionPlaceholder: 'Add more detail (optional)',
+    priorityLabel: 'Priority',
+    progressLabel: 'Progress',
+    back: 'Back to board',
+    create: 'Create',
+    deleteConfirm: 'Delete this todo?',
+    titleRequired: 'Enter a title first.',
   },
   diaryPage: {
     title: 'Diary',
@@ -299,6 +336,7 @@ export const en: Dict = {
     saved: 'Saved',
     todosForDay: "Today's todos",
     addTodoPlaceholder: 'Add a todo for this day',
+    add: 'Add',
     noDays: 'No entries yet.',
     today: 'Today',
   },
