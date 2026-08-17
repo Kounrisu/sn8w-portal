@@ -21,6 +21,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'todo/new',
+    loadComponent: () =>
+      import('./pages/todo-detail-page/todo-detail-page').then((m) => m.TodoDetailPage),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'todo/:id',
+    loadComponent: () =>
+      import('./pages/todo-detail-page/todo-detail-page').then((m) => m.TodoDetailPage),
+    canActivate: [authGuard],
+  },
+  {
     path: 'diary',
     loadComponent: () => import('./pages/diary-page/diary-page').then((m) => m.DiaryPage),
     canActivate: [authGuard],

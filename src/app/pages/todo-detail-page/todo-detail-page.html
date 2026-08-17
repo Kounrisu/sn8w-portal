@@ -1,0 +1,97 @@
+@if (loaded()) {
+  <section class="todo-detail container">
+    <a class="todo-detail__back" routerLink="/todo">← {{ i18n.dict().todoDetailPage.back }}</a>
+
+    <div class="section-head">
+      <p class="kicker">{{ i18n.dict().nav.todo }}{{ id() ? ' · SN-' + id() : '' }}</p>
+      <h1 class="section-title">
+        {{ isNew() ? i18n.dict().todoDetailPage.newHeading : i18n.dict().todoDetailPage.editHeading }}
+      </h1>
+    </div>
+
+    <form class="todo-form" (ngSubmit)="save()">
+      <label class="field">
+        <span class="field-label">{{ i18n.dict().todoDetailPage.titleLabel }}</span>
+        <input
+          type="text"
+          [placeholder]="i18n.dict().todoDetailPage.titlePlaceholder"
+          [ngModel]="title()"
+          (ngModelChange)="title.set($event)"
+          name="title"
+          autofocus
+        />
+        @if (titleError()) {
+          <span class="todo-form__error" role="alert">{{ i18n.dict().todoDetailPage.titleRequired }}</span>
+        }
+      </label>
+
+      <label class="field">
+        <span class="field-label">{{ i18n.dict().todoDetailPage.descriptionLabel }}</span>
+        <textarea
+          rows="4"
+          [placeholder]="i18n.dict().todoDetailPage.descriptionPlaceholder"
+          [ngModel]="description()"
+          (ngModelChange)="description.set($event)"
+          name="description"
+        ></textarea>
+      </label>
+
+      <div class="field">
+        <span class="field-label">{{ i18n.dict().todoDetailPage.priorityLabel }}</span>
+        <div class="todo-form__priority-group" role="radiogroup" [attr.aria-label]="i18n.dict().todoDetailPage.priorityLabel">
+          @for (p of priorities; track p) {
+            <button
+              type="button"
+              class="todo-form__priority-option"
+              [class]="'todo-form__priority-option--' + p"
+              [class.todo-form__priority-option--active]="priority() === p"
+              role="radio"
+              [attr.aria-checked]="priority() === p"
+              (click)="priority.set(p)"
+            >
+              {{ priorityLabel(p) }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="field-label">{{ i18n.dict().todoDetailPage.progressLabel }} — {{ progress() }}%</span>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="5"
+          [ngModel]="progress()"
+          (ngModelChange)="progress.set($event)"
+          name="progress"
+          class="todo-form__slider"
+        />
+        <div class="todo-form__presets">
+          @for (preset of progressPresets; track preset) {
+            <button
+              type="button"
+              class="todo-form__preset"
+              [class.todo-form__preset--active]="progress() === preset"
+              (click)="progress.set(preset)"
+            >
+              {{ preset }}%
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="todo-form__actions">
+        <button type="submit" class="btn btn--primary" [disabled]="saving()">
+          {{ isNew() ? i18n.dict().todoDetailPage.create : i18n.dict().common.save }}
+        </button>
+        <a class="btn btn--secondary" routerLink="/todo">{{ i18n.dict().common.cancel }}</a>
+        @if (!isNew()) {
+          <button type="button" class="todo-form__delete" (click)="remove()">
+            {{ i18n.dict().common.delete }}
+          </button>
+        }
+      </div>
+    </form>
+  </section>
+}

@@ -34,7 +34,10 @@ CREATE TABLE IF NOT EXISTS projects (
 CREATE TABLE IF NOT EXISTS todos (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(200) NOT NULL,
-  status ENUM('todo', 'in_progress', 'done') NOT NULL DEFAULT 'todo',
+  description TEXT NULL,
+  status ENUM('todo', 'in_progress', 'done') NOT NULL DEFAULT 'todo' COMMENT 'Derived from progress — never set directly by clients',
+  priority ENUM('low', 'medium', 'high') NOT NULL DEFAULT 'medium',
+  progress TINYINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '0-100; status is derived from this (0 = todo, 1-99 = in_progress, 100 = done)',
   diary_date DATE NULL COMMENT 'Set when this todo belongs to a diary day',
   sort_order INT NOT NULL DEFAULT 0,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

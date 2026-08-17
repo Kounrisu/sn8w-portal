@@ -1,0 +1,131 @@
+:host {
+  display: block;
+  padding-block: var(--space-2xl);
+}
+
+.todo-detail__back {
+  display: inline-block;
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--mist);
+  text-decoration: none;
+}
+
+.todo-detail__back:hover {
+  color: var(--ice);
+}
+
+.todo-detail__back:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 34rem;
+}
+
+.todo-form__error {
+  font-size: var(--text-sm);
+  color: var(--danger);
+}
+
+.todo-form__priority-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-form__priority-option {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  padding: 0.6em 0.8em;
+  background: var(--surface-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: var(--mist);
+  cursor: pointer;
+}
+
+.todo-form__priority-option--active.todo-form__priority-option--low {
+  border-color: var(--mist);
+  color: var(--ink);
+}
+
+.todo-form__priority-option--active.todo-form__priority-option--medium {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+.todo-form__priority-option--active.todo-form__priority-option--high {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.todo-form__priority-option:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.todo-form__slider {
+  width: 100%;
+  margin: 0.6rem 0;
+  accent-color: var(--ice);
+}
+
+.todo-form__presets {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-form__preset {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 0.5em;
+  background: var(--surface-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: var(--mist);
+  cursor: pointer;
+}
+
+.todo-form__preset--active {
+  border-color: var(--ice);
+  color: var(--ice);
+}
+
+.todo-form__preset:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.todo-form__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.todo-form__delete {
+  margin-left: auto;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--danger);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.7em 1em;
+}
+
+.todo-form__delete:hover {
+  text-decoration: underline;
+}
+
+.todo-form__delete:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}

@@ -23,6 +23,11 @@ function db(): PDO
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES => false,
         ]);
+        // Without this, CURRENT_TIMESTAMP is recorded in whatever timezone
+        // the DB server happens to be configured with — the frontend parses
+        // created_at/updated_at as UTC (relative-time display), so the two
+        // must agree or timestamps drift by the server's UTC offset.
+        $pdo->exec("SET time_zone = '+00:00'");
     } catch (PDOException $e) {
         json_error('Database connection failed', 500);
     }
