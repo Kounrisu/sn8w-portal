@@ -17,7 +17,7 @@ import { AuthService } from '../../core/auth.service';
 export class SiteFooter {
   protected readonly i18n = inject(I18nService);
   protected readonly auth = inject(AuthService);
-  protected readonly email = 'pzkunst22@gmail.com';
+  protected readonly email = 'kounrisu@gmail.com';
 
   private readonly clipboard = inject(Clipboard);
   private readonly liveAnnouncer = inject(LiveAnnouncer);
