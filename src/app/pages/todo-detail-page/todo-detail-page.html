@@ -81,6 +81,17 @@
         </div>
       </div>
 
+      <label class="field">
+        <span class="field-label">{{ i18n.dict().todoDetailPage.diaryDateLabel }}</span>
+        <input
+          type="date"
+          [ngModel]="diaryDate()"
+          (ngModelChange)="diaryDate.set($event)"
+          name="diaryDate"
+          class="todo-form__diary-date"
+        />
+      </label>
+
       <div class="todo-form__actions">
         <button type="submit" class="btn btn--primary" [disabled]="saving()">
           {{ isNew() ? i18n.dict().todoDetailPage.create : i18n.dict().common.save }}

@@ -148,6 +148,7 @@ export const ja: Dict = {
     completedPrefix: '完了',
     empty: 'まだ何もありません。',
     noResults: '該当するToDoがありません。',
+    diaryBadge: '日誌',
   },
   todoDetailPage: {
     newHeading: '新しいToDo',
@@ -158,6 +159,7 @@ export const ja: Dict = {
     descriptionPlaceholder: '詳細を追加（任意）',
     priorityLabel: '優先度',
     progressLabel: '進捗',
+    diaryDateLabel: '日誌の日付（任意）',
     back: 'ボードに戻る',
     create: '作成',
     deleteConfirm: 'このToDoを削除しますか？',

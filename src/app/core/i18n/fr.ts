@@ -148,6 +148,7 @@ export const fr: Dict = {
     completedPrefix: 'Terminée',
     empty: 'Rien pour le moment.',
     noResults: 'Aucune tâche ne correspond.',
+    diaryBadge: 'Journal',
   },
   todoDetailPage: {
     newHeading: 'Nouvelle tâche',
@@ -158,6 +159,7 @@ export const fr: Dict = {
     descriptionPlaceholder: 'Ajouter plus de détails (facultatif)',
     priorityLabel: 'Priorité',
     progressLabel: 'Progression',
+    diaryDateLabel: 'Jour du journal (optionnel)',
     back: 'Retour au tableau',
     create: 'Créer',
     deleteConfirm: 'Supprimer cette tâche ?',
