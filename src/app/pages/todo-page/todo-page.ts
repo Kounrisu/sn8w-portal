@@ -58,6 +58,11 @@ export class TodoPage {
     return `SN-${id}`;
   }
 
+  protected diaryLabel(diaryDate: string): string {
+    const date = new Date(`${diaryDate}T00:00:00`);
+    return new Intl.DateTimeFormat(this.i18n.lang(), { month: 'short', day: 'numeric' }).format(date);
+  }
+
   protected relativeTime(iso: string): string {
     const date = new Date(iso.replace(' ', 'T') + 'Z');
     const diffSeconds = (date.getTime() - Date.now()) / 1000;

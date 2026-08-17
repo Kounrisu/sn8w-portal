@@ -173,6 +173,16 @@
   text-overflow: ellipsis;
 }
 
+.todo-row__diary {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ice);
+  background: color-mix(in srgb, var(--ice) 12%, transparent);
+  padding: 0.15em 0.55em;
+  border-radius: 8px;
+}
+
 .todo-row__progress {
   display: flex;
   align-items: center;

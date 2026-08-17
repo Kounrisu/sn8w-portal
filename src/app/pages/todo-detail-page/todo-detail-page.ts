@@ -30,6 +30,7 @@ export class TodoDetailPage {
   protected readonly description = signal('');
   protected readonly priority = signal<TodoPriority>('medium');
   protected readonly progress = signal(0);
+  protected readonly diaryDate = signal('');
   protected readonly titleError = signal(false);
 
   constructor() {
@@ -53,6 +54,7 @@ export class TodoDetailPage {
     this.description.set(todo.description ?? '');
     this.priority.set(todo.priority);
     this.progress.set(todo.progress);
+    this.diaryDate.set(todo.diaryDate ?? '');
     this.loaded.set(true);
   }
 
@@ -75,6 +77,7 @@ export class TodoDetailPage {
         description: this.description().trim() || null,
         priority: this.priority(),
         progress: this.progress(),
+        diaryDate: this.diaryDate() || null,
       };
 
       if (this.isNew()) {

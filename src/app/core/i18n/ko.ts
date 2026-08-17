@@ -148,6 +148,7 @@ export const ko: Dict = {
     completedPrefix: '완료됨',
     empty: '아직 항목이 없습니다.',
     noResults: '일치하는 할 일이 없습니다.',
+    diaryBadge: '일지',
   },
   todoDetailPage: {
     newHeading: '새 할 일',
@@ -158,6 +159,7 @@ export const ko: Dict = {
     descriptionPlaceholder: '추가 설명 (선택 사항)',
     priorityLabel: '우선순위',
     progressLabel: '진행률',
+    diaryDateLabel: '일지 날짜 (선택 사항)',
     back: '보드로 돌아가기',
     create: '만들기',
     deleteConfirm: '이 할 일을 삭제하시겠습니까?',

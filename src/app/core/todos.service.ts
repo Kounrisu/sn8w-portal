@@ -28,9 +28,7 @@ export class TodosService {
 
   async create(input: TodoInput): Promise<Todo> {
     const todo = await firstValueFrom(this.http.post<Todo>(this.baseUrl, input));
-    if (input.diaryDate == null) {
-      this.board.update((todos) => [...todos, todo]);
-    }
+    this.board.update((todos) => [...todos, todo]);
     return todo;
   }
 

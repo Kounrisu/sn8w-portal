@@ -125,6 +125,7 @@ export interface Dict {
     completedPrefix: string;
     empty: string;
     noResults: string;
+    diaryBadge: string;
   };
   todoDetailPage: {
     newHeading: string;
@@ -135,6 +136,7 @@ export interface Dict {
     descriptionPlaceholder: string;
     priorityLabel: string;
     progressLabel: string;
+    diaryDateLabel: string;
     back: string;
     create: string;
     deleteConfirm: string;
@@ -313,6 +315,7 @@ export const en: Dict = {
     completedPrefix: 'Completed',
     empty: 'Nothing here yet.',
     noResults: 'No todos match.',
+    diaryBadge: 'Diary',
   },
   todoDetailPage: {
     newHeading: 'New todo',
@@ -323,6 +326,7 @@ export const en: Dict = {
     descriptionPlaceholder: 'Add more detail (optional)',
     priorityLabel: 'Priority',
     progressLabel: 'Progress',
+    diaryDateLabel: 'Diary day (optional)',
     back: 'Back to board',
     create: 'Create',
     deleteConfirm: 'Delete this todo?',

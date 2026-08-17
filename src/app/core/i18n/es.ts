@@ -148,6 +148,7 @@ export const es: Dict = {
     completedPrefix: 'Completada',
     empty: 'Nada por aquí todavía.',
     noResults: 'Ninguna tarea coincide.',
+    diaryBadge: 'Diario',
   },
   todoDetailPage: {
     newHeading: 'Nueva tarea',
@@ -158,6 +159,7 @@ export const es: Dict = {
     descriptionPlaceholder: 'Añade más detalles (opcional)',
     priorityLabel: 'Prioridad',
     progressLabel: 'Progreso',
+    diaryDateLabel: 'Día del diario (opcional)',
     back: 'Volver al tablero',
     create: 'Crear',
     deleteConfirm: '¿Eliminar esta tarea?',

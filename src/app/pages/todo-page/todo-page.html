@@ -56,6 +56,9 @@
             @if (todo.description) {
               <span class="todo-row__desc">{{ todo.description }}</span>
             }
+            @if (todo.diaryDate) {
+              <span class="todo-row__diary">{{ i18n.dict().todoPage.diaryBadge }} {{ diaryLabel(todo.diaryDate) }}</span>
+            }
             <span class="todo-row__progress">
               <span class="todo-row__progress-track">
                 <span

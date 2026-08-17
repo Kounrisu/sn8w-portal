@@ -62,7 +62,9 @@ if ($method === 'GET') {
         $stmt = db()->prepare('SELECT * FROM todos WHERE diary_date = :date ORDER BY sort_order, id');
         $stmt->execute(['date' => $date]);
     } else {
-        $stmt = db()->query('SELECT * FROM todos WHERE diary_date IS NULL ORDER BY sort_order, id');
+        // The board shows every todo, including ones linked to a diary day —
+        // the diary is a filtered view onto the same table, not a separate one.
+        $stmt = db()->query('SELECT * FROM todos ORDER BY sort_order, id');
     }
 
     json_response(array_map(todo_row_to_json(...), $stmt->fetchAll()));
@@ -141,6 +143,10 @@ if ($method === 'PUT') {
 
     if (array_key_exists('sortOrder', $body)) {
         $fields['sort_order'] = (int) $body['sortOrder'];
+    }
+
+    if (array_key_exists('diaryDate', $body)) {
+        $fields['diary_date'] = $body['diaryDate'] === null ? null : (string) $body['diaryDate'];
     }
 
     if ($fields === []) {

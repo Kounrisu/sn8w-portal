@@ -103,6 +103,11 @@
   outline-offset: 2px;
 }
 
+.todo-form__diary-date {
+  max-width: 12rem;
+  accent-color: var(--ice);
+}
+
 .todo-form__actions {
   display: flex;
   align-items: center;

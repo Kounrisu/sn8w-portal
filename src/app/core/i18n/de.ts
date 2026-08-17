@@ -148,6 +148,7 @@ export const de: Dict = {
     completedPrefix: 'Erledigt',
     empty: 'Noch nichts hier.',
     noResults: 'Keine passenden Aufgaben.',
+    diaryBadge: 'Tagebuch',
   },
   todoDetailPage: {
     newHeading: 'Neue Aufgabe',
@@ -158,6 +159,7 @@ export const de: Dict = {
     descriptionPlaceholder: 'Weitere Details (optional)',
     priorityLabel: 'Priorität',
     progressLabel: 'Fortschritt',
+    diaryDateLabel: 'Tagebuchtag (optional)',
     back: 'Zurück zur Tafel',
     create: 'Erstellen',
     deleteConfirm: 'Diese Aufgabe löschen?',
