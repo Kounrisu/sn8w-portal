@@ -125,7 +125,7 @@ The workflow fails fast with a named error if any of these are empty, rather tha
 
 4 tables (see [`api/schema.sql`](api/schema.sql) for the full DDL): `admin_users` (your login), `projects` (everything on the landing page — `tier` is `flagship` / `ecosystem` / `lab`), `todos` (`status` is `todo` / `in_progress` / `done`; `diary_date` set when a todo belongs to a diary day instead of the general board), `diary_entries` (one row per day with saved notes).
 
-If the OVH database accumulates unrelated tables over time (from other experiments on the same hosting account), only these four belong to this project — anything else is safe to drop independently, but back up first via phpMyAdmin's Export tab before dropping anything on the live database.
+The `snwxodokmod1` database on OVH held these 4 plus 85 leftover tables from two long-abandoned CMS installs on the same hosting account (a default, contentless Drupal 7 site and a default WordPress install with only its placeholder "Hello world!" post — checked before dropping anything). Cleaned up on 2026-08-17; the database now has exactly these 4 tables. If it accumulates unrelated tables again in the future, back up via phpMyAdmin's Export tab before dropping anything on the live database.
 
 ## Picking this back up later
 
@@ -134,3 +134,4 @@ Everything above reflects the actual shipped state as of the last deploy: Angula
 - `git log --oneline` tells the real story better than any summary — the commit messages describe *why*, not just *what*, for every non-obvious fix (see the gotchas above for the ones worth reading first).
 - Product content (names, taglines, categories) lives in the database, not in code — edit it via `/admin`, not by editing `api/schema.sql`'s seed data (that only runs once, on an empty table).
 - The hero photo (`public/images/sakura-branch.jpg`) is a real photograph (Unsplash License, free, no attribution required, credit: Jelleke Vanooteghem) — the "Lucky Squirrel" theme's earlier hand-drawn SVG attempts didn't hold up visually and were replaced with this.
+- The OVH database is clean — just this project's 4 tables, no CMS leftovers (see Database section above).
