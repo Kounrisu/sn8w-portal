@@ -53,21 +53,25 @@
   gap: var(--space-md);
 }
 
-.flagship__cta {
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--ice);
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--ice) 40%, transparent);
+.flagship__screenshot-link {
+  display: block;
+  height: 100%;
 }
 
-.flagship__cta:hover {
-  border-bottom-color: var(--ice);
-}
-
-.flagship__cta:focus-visible {
+.flagship__screenshot-link:focus-visible {
   outline: 2px solid var(--ice);
   outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.flagship__screenshot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 16rem;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line-strong);
 }
 
 // Shared mockup chrome ------------------------------------------------------

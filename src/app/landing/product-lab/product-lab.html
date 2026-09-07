@@ -10,9 +10,29 @@
   <ul class="lab-shelf container" aria-label="{{ i18n.dict().labSection.title }}" tabindex="0">
     @for (product of projects.lab(); track product.id) {
       <li class="lab-card">
+        @if (product.screenshot) {
+          @if (product.url) {
+            <a
+              [href]="product.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="i18n.dict().projectCard.visit + ' — ' + product.name"
+            >
+              <img class="lab-card__thumb" [src]="product.screenshot" alt="" />
+            </a>
+          } @else {
+            <img class="lab-card__thumb" [src]="product.screenshot" alt="" />
+          }
+        }
         <span class="lab-card__tag">{{ i18n.dict().labSection.tag }}</span>
         <h3 class="lab-card__name">{{ product.name }}</h3>
         <p class="lab-card__tagline">{{ product.tagline }}</p>
+        @if (product.url || product.repoUrl) {
+          <div class="lab-card__links">
+            <sn8w-project-availability [project]="product" />
+            <sn8w-repo-link [project]="product" />
+          </div>
+        }
       </li>
     }
   </ul>

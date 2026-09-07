@@ -108,11 +108,41 @@ export interface Dict {
     none: string;
     status: string;
     url: string;
+    repoUrl: string;
+    repoPrivateLabel: string;
+    sortOrder: string;
+    sortOrderHint: string;
+    availability: string;
+    availabilityActive: string;
+    availabilityInactive: string;
+    screenshotLabel: string;
+    uploadScreenshot: string;
+    removeScreenshot: string;
+    activationRequestedPrefix: string;
+    markActive: string;
+    dismissRequest: string;
+    requestBadge: string;
+    saved: string;
+    created: string;
+    deleted: string;
+    saving: string;
     confirmDelete: string;
     empty: string;
     tierFlagship: string;
     tierEcosystem: string;
     tierLab: string;
+  };
+  projectCard: {
+    visit: string;
+    viewSource: string;
+    viewProfile: string;
+    onlineLabel: string;
+    inactiveLabel: string;
+    requestAccess: string;
+    requestSent: string;
+    requestRepoAccess: string;
+    repoAccessSubject: string;
+    repoAccessBody: string;
   };
   todoPage: {
     title: string;
@@ -298,11 +328,41 @@ export const en: Dict = {
     none: 'None',
     status: 'Status',
     url: 'URL',
+    repoUrl: 'Git repository',
+    repoPrivateLabel: 'Private repository',
+    sortOrder: 'Sort order',
+    sortOrderHint: 'Lower numbers show first, among projects in the same tier/group.',
+    availability: 'Availability',
+    availabilityActive: 'Online',
+    availabilityInactive: 'Offline',
+    screenshotLabel: 'Screenshot',
+    uploadScreenshot: 'Upload screenshot',
+    removeScreenshot: 'Remove screenshot',
+    activationRequestedPrefix: 'A visitor asked for this project to be activated.',
+    markActive: 'Mark active',
+    dismissRequest: 'Dismiss',
+    requestBadge: 'Requested',
+    saved: 'Saved',
+    created: 'Project created',
+    deleted: 'Project deleted',
+    saving: 'Saving…',
     confirmDelete: 'Delete this project?',
     empty: 'No projects yet.',
     tierFlagship: 'Flagship',
     tierEcosystem: 'Ecosystem',
     tierLab: 'Lab',
+  },
+  projectCard: {
+    visit: 'Visit',
+    viewSource: 'View source',
+    viewProfile: 'View GitHub profile',
+    onlineLabel: 'Online',
+    inactiveLabel: 'Offline',
+    requestAccess: 'Request access',
+    requestSent: 'Request sent',
+    requestRepoAccess: 'Request access',
+    repoAccessSubject: 'Repo access request: {name}',
+    repoAccessBody: "Hi, I'd like to see the source for {name}.",
   },
   todoPage: {
     title: 'Todo board',

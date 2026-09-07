@@ -63,6 +63,23 @@
   color: var(--mist);
 }
 
+.lab-card__thumb {
+  width: 100%;
+  height: 7rem;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: var(--space-xs);
+}
+
+.lab-card__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: auto;
+  padding-top: var(--space-xs);
+}
+
+
 @media (min-width: 900px) {
   .lab-shelf {
     flex-wrap: wrap;

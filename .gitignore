@@ -16,6 +16,9 @@ yarn-error.log
 # PHP API — local database credentials, never committed
 api/lib/config.local.php
 
+# PHP API — uploaded screenshots live only on the server, not in the repo
+api/uploads/
+
 # IDEs and editors
 .idea/
 .project

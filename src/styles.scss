@@ -16,6 +16,7 @@
   --surface-raised: #10141b;
   --surface-sunken: #070911;
   --danger: #d9748f;
+  --success: #7fc99a;
 
   --font-serif: ui-serif, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', monospace;
@@ -111,6 +112,7 @@ html[data-theme='squirrel'] {
   --surface-raised: #fbf3e6;
   --surface-sunken: #ecdcc0;
   --danger: #b6415a;
+  --success: #4f7942;
 
   --mat-sys-shadow: #7a6656;
   --mat-sys-scrim: #7a6656;
@@ -239,6 +241,11 @@ body {
   font-size: var(--text-xs);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--mist);
+}
+
+.field-hint {
+  font-size: var(--text-xs);
   color: var(--mist);
 }
 

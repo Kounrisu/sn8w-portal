@@ -1,0 +1,37 @@
+@if (project().url) {
+  @if (project().availability === 'active') {
+    <span class="project-availability__online" role="status">
+      <span class="project-availability__online-dot" aria-hidden="true"></span>
+      {{ i18n.dict().projectCard.onlineLabel }}
+    </span>
+    <a
+      class="project-availability__visit"
+      [href]="project().url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ displayUrl() }}
+      <span class="visually-hidden">— {{ project().name }}</span>
+    </a>
+  } @else {
+    <span class="project-availability__offline" role="status">
+      <span class="project-availability__offline-dot" aria-hidden="true"></span>
+      {{ i18n.dict().projectCard.inactiveLabel }}
+    </span>
+    <span class="project-availability__url">{{ displayUrl() }}</span>
+
+    @if (project().activationRequestedAt) {
+      <span class="project-availability__requested">{{ i18n.dict().projectCard.requestSent }}</span>
+    } @else {
+      <button
+        type="button"
+        class="project-availability__request"
+        [disabled]="requesting()"
+        (click)="request()"
+      >
+        {{ i18n.dict().projectCard.requestAccess }}
+        <span class="visually-hidden">— {{ project().name }}</span>
+      </button>
+    }
+  }
+}
