@@ -108,11 +108,29 @@ export interface Dict {
     none: string;
     status: string;
     url: string;
+    repoUrl: string;
+    availability: string;
+    availabilityActive: string;
+    availabilityInactive: string;
+    screenshotLabel: string;
+    uploadScreenshot: string;
+    removeScreenshot: string;
+    activationRequestedPrefix: string;
+    markActive: string;
+    dismissRequest: string;
+    requestBadge: string;
     confirmDelete: string;
     empty: string;
     tierFlagship: string;
     tierEcosystem: string;
     tierLab: string;
+  };
+  projectCard: {
+    visit: string;
+    viewSource: string;
+    inactiveLabel: string;
+    requestAccess: string;
+    requestSent: string;
   };
   todoPage: {
     title: string;
@@ -298,11 +316,29 @@ export const en: Dict = {
     none: 'None',
     status: 'Status',
     url: 'URL',
+    repoUrl: 'Git repository',
+    availability: 'Availability',
+    availabilityActive: 'Active',
+    availabilityInactive: 'Inactive',
+    screenshotLabel: 'Screenshot',
+    uploadScreenshot: 'Upload screenshot',
+    removeScreenshot: 'Remove screenshot',
+    activationRequestedPrefix: 'A visitor asked for this project to be activated.',
+    markActive: 'Mark active',
+    dismissRequest: 'Dismiss',
+    requestBadge: 'Requested',
     confirmDelete: 'Delete this project?',
     empty: 'No projects yet.',
     tierFlagship: 'Flagship',
     tierEcosystem: 'Ecosystem',
     tierLab: 'Lab',
+  },
+  projectCard: {
+    visit: 'Visit',
+    viewSource: 'View source',
+    inactiveLabel: 'Inactive',
+    requestAccess: 'Request access',
+    requestSent: 'Request sent',
   },
   todoPage: {
     title: 'Todo board',
