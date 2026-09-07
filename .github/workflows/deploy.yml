@@ -21,11 +21,32 @@ jobs:
         run: npm ci
 
       - name: Inject version, commit and deploy timestamp
+        # The commit subject can contain characters that break a raw sed
+        # substitution, or even this file's single-quoted string literals
+        # (an apostrophe in "Don't ..." or "it's ..." is common) — escape for
+        # a single-quoted JS string specifically, not just JSON-escape.
         run: |
-          APP_VERSION=$(node -p "require('./package.json').version")
-          sed -i "s|__APP_VERSION__|${APP_VERSION}|" src/environments/environment.prod.ts
-          sed -i "s|__COMMIT_SHA__|${GITHUB_SHA::7}|" src/environments/environment.prod.ts
-          sed -i "s|__DEPLOYED_AT__|$(date -u +%Y-%m-%dT%H:%M:%SZ)|" src/environments/environment.prod.ts
+          export APP_VERSION="$(node -p "require('./package.json').version")"
+          export BUILD_NUMBER="${{ github.run_number }}"
+          export COMMIT_SHA_SHORT="${GITHUB_SHA::7}"
+          export COMMIT_MESSAGE="$(git log -1 --pretty=%s)"
+          export DEPLOYED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          node -e "
+            const fs = require('fs');
+            const path = 'src/environments/environment.prod.ts';
+            const esc = (s) => String(s)
+              .replace(/\\\\/g, '\\\\\\\\')
+              .replace(/'/g, \"\\\\'\")
+              .replace(/\r?\n/g, '\\\\n');
+            let content = fs.readFileSync(path, 'utf8');
+            content = content
+              .replace('__APP_VERSION__', esc(process.env.APP_VERSION))
+              .replace('__BUILD_NUMBER__', esc(process.env.BUILD_NUMBER))
+              .replace('__COMMIT_SHA__', esc(process.env.COMMIT_SHA_SHORT))
+              .replace('__COMMIT_MESSAGE__', esc(process.env.COMMIT_MESSAGE))
+              .replace('__DEPLOYED_AT__', esc(process.env.DEPLOYED_AT));
+            fs.writeFileSync(path, content);
+          "
 
       - name: Build
         run: npx ng build --configuration production

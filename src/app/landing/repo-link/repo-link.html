@@ -1,0 +1,20 @@
+@if (project().repoUrl) {
+  @if (!project().repoPrivate) {
+    <a
+      class="repo-link__source"
+      [href]="project().repoUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ i18n.dict().projectCard.viewSource }}
+    </a>
+  } @else {
+    <a class="repo-link__profile" [href]="profileUrl" target="_blank" rel="noopener noreferrer">
+      {{ i18n.dict().projectCard.viewProfile }}
+    </a>
+    <a class="repo-link__request" [href]="mailtoHref()">
+      {{ i18n.dict().projectCard.requestRepoAccess }}
+      <span class="visually-hidden">— {{ project().name }}</span>
+    </a>
+  }
+}
