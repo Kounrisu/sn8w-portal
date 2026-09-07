@@ -199,6 +199,7 @@
     <p class="admin-empty">{{ i18n.dict().admin.empty }}</p>
   }
 
+  <div class="admin-table-scroll">
   <table class="admin-table">
     <thead>
       <tr>
@@ -221,7 +222,13 @@
           <td>{{ tierLabel(project.tier) }}</td>
           <td>{{ i18n.statusLabel(project.status) }}</td>
           <td>
-            {{ project.availability === 'active' ? i18n.dict().admin.availabilityActive : i18n.dict().admin.availabilityInactive }}
+            <span
+              class="admin-table__availability"
+              [class.admin-table__availability--active]="project.availability === 'active'"
+              [class.admin-table__availability--inactive]="project.availability === 'inactive'"
+            >
+              {{ project.availability === 'active' ? i18n.dict().admin.availabilityActive : i18n.dict().admin.availabilityInactive }}
+            </span>
             @if (project.activationRequestedAt) {
               <span class="admin-table__request-badge">{{ i18n.dict().admin.requestBadge }}</span>
             }
@@ -256,4 +263,5 @@
       }
     </tbody>
   </table>
+  </div>
 </section>

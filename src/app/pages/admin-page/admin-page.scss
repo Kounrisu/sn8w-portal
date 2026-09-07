@@ -126,9 +126,43 @@
   font-size: var(--text-sm);
 }
 
+.admin-table-scroll {
+  overflow-x: auto;
+}
+
 .admin-table {
   width: 100%;
+  min-width: 50rem;
   border-collapse: collapse;
+}
+
+.admin-table__availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.6em;
+  border-radius: 10px;
+}
+
+.admin-table__availability::before {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.admin-table__availability--active {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 14%, transparent);
+}
+
+.admin-table__availability--inactive {
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 14%, transparent);
 }
 
 .admin-table th {

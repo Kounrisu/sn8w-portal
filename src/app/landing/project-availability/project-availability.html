@@ -18,6 +18,7 @@
       <span class="project-availability__offline-dot" aria-hidden="true"></span>
       {{ i18n.dict().projectCard.inactiveLabel }}
     </span>
+    <span class="project-availability__url">{{ displayUrl() }}</span>
 
     @if (project().activationRequestedAt) {
       <span class="project-availability__requested">{{ i18n.dict().projectCard.requestSent }}</span>
