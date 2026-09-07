@@ -49,12 +49,12 @@
 
         <label class="field admin-form__wide">
           <span class="field-label">{{ i18n.dict().admin.tagline }}</span>
-          <input
-            type="text"
+          <textarea
+            rows="3"
             [ngModel]="form().tagline"
             (ngModelChange)="updateField('tagline', $event)"
             name="tagline"
-          />
+          ></textarea>
         </label>
 
         <label class="field">
@@ -71,12 +71,37 @@
         </label>
 
         <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.availability }}</span>
+          <select
+            [ngModel]="form().availability"
+            (ngModelChange)="updateField('availability', $event)"
+            name="availability"
+          >
+            @for (availability of availabilities; track availability) {
+              <option [value]="availability">
+                {{ availability === 'active' ? i18n.dict().admin.availabilityActive : i18n.dict().admin.availabilityInactive }}
+              </option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
           <span class="field-label">{{ i18n.dict().admin.url }}</span>
           <input
             type="url"
             [ngModel]="form().url"
             (ngModelChange)="updateField('url', $event)"
             name="url"
+          />
+        </label>
+
+        <label class="field">
+          <span class="field-label">{{ i18n.dict().admin.repoUrl }}</span>
+          <input
+            type="url"
+            [ngModel]="form().repoUrl"
+            (ngModelChange)="updateField('repoUrl', $event)"
+            name="repoUrl"
           />
         </label>
 
@@ -108,6 +133,44 @@
         }
       </div>
 
+      @if (editingProject(); as project) {
+        <div class="admin-form__screenshot">
+          <span class="field-label">{{ i18n.dict().admin.screenshotLabel }}</span>
+          @if (project.screenshot) {
+            <img class="admin-form__screenshot-preview" [src]="project.screenshot" [alt]="project.name" />
+          }
+          <div class="admin-form__screenshot-actions">
+            <label class="btn btn--secondary admin-form__upload-btn">
+              {{ uploadingScreenshot() ? i18n.dict().common.loading : i18n.dict().admin.uploadScreenshot }}
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                (change)="onScreenshotSelected($event)"
+                [disabled]="uploadingScreenshot()"
+                class="visually-hidden"
+              />
+            </label>
+            @if (project.screenshot) {
+              <button type="button" class="admin-table__delete" (click)="removeScreenshot()">
+                {{ i18n.dict().admin.removeScreenshot }}
+              </button>
+            }
+          </div>
+        </div>
+
+        @if (project.activationRequestedAt) {
+          <div class="admin-form__request">
+            <span>{{ i18n.dict().admin.activationRequestedPrefix }}</span>
+            <button type="button" class="btn btn--secondary" (click)="markActive()">
+              {{ i18n.dict().admin.markActive }}
+            </button>
+            <button type="button" class="admin-table__delete" (click)="dismissActivationRequest()">
+              {{ i18n.dict().admin.dismissRequest }}
+            </button>
+          </div>
+        }
+      }
+
       <div class="admin-form__actions">
         <button type="submit" class="btn btn--primary" [disabled]="saving()">
           {{ i18n.dict().common.save }}
@@ -129,6 +192,7 @@
         <th scope="col">{{ i18n.dict().admin.name }}</th>
         <th scope="col">{{ i18n.dict().admin.tier }}</th>
         <th scope="col">{{ i18n.dict().admin.status }}</th>
+        <th scope="col">{{ i18n.dict().admin.availability }}</th>
         <th scope="col"><span class="visually-hidden">{{ i18n.dict().common.edit }}</span></th>
       </tr>
     </thead>
@@ -141,6 +205,12 @@
           </td>
           <td>{{ tierLabel(project.tier) }}</td>
           <td>{{ i18n.statusLabel(project.status) }}</td>
+          <td>
+            {{ project.availability === 'active' ? i18n.dict().admin.availabilityActive : i18n.dict().admin.availabilityInactive }}
+            @if (project.activationRequestedAt) {
+              <span class="admin-table__request-badge">{{ i18n.dict().admin.requestBadge }}</span>
+            }
+          </td>
           <td class="admin-table__actions">
             <button type="button" class="btn btn--secondary" (click)="openEdit(project)">
               {{ i18n.dict().common.edit }}

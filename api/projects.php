@@ -4,28 +4,14 @@ declare(strict_types=1);
 require_once __DIR__ . '/lib/http.php';
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/auth.php';
+require_once __DIR__ . '/lib/project_json.php';
 
 require_method('GET', 'POST', 'PUT', 'DELETE');
 
 const VALID_TIERS = ['flagship', 'ecosystem', 'lab'];
 const VALID_STATUSES = ['live', 'in-development', 'concept', 'prototype'];
 const VALID_MOCKUPS = ['inspector', 'dashboard', 'creative'];
-
-function project_row_to_json(array $row): array
-{
-    return [
-        'id' => (int) $row['id'],
-        'tier' => $row['tier'],
-        'groupTitle' => $row['group_title'],
-        'mockup' => $row['mockup'],
-        'name' => $row['name'],
-        'category' => $row['category'],
-        'tagline' => $row['tagline'],
-        'status' => $row['status'],
-        'url' => $row['url'],
-        'sortOrder' => (int) $row['sort_order'],
-    ];
-}
+const VALID_AVAILABILITY = ['active', 'inactive'];
 
 function validate_project_input(array $body, bool $partial = false): array
 {
@@ -82,6 +68,26 @@ function validate_project_input(array $body, bool $partial = false): array
         $fields['url'] = $url === null || $url === '' ? null : (string) $url;
     }
 
+    if (!$partial || array_key_exists('repoUrl', $body)) {
+        $repoUrl = $body['repoUrl'] ?? null;
+        $fields['repo_url'] = $repoUrl === null || $repoUrl === '' ? null : (string) $repoUrl;
+    }
+
+    if (!$partial || array_key_exists('availability', $body)) {
+        $availability = $body['availability'] ?? 'active';
+        if (!in_array($availability, VALID_AVAILABILITY, true)) {
+            $errors[] = 'availability must be one of: ' . implode(', ', VALID_AVAILABILITY);
+        }
+        $fields['availability'] = $availability;
+    }
+
+    // A pending activation request can only be dismissed (set to null) from
+    // here — the request itself is only ever created by the public
+    // project-activate.php endpoint, never by an arbitrary client timestamp.
+    if ($partial && array_key_exists('activationRequestedAt', $body) && $body['activationRequestedAt'] === null) {
+        $fields['activation_requested_at'] = null;
+    }
+
     if (!$partial || array_key_exists('sortOrder', $body)) {
         $fields['sort_order'] = (int) ($body['sortOrder'] ?? 0);
     }
@@ -118,8 +124,8 @@ if ($method === 'POST') {
     $fields = validate_project_input(json_body(), partial: false);
 
     $stmt = db()->prepare(
-        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, sort_order)
-         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :sort_order)'
+        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, availability, sort_order)
+         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :availability, :sort_order)'
     );
     $stmt->execute($fields);
 
@@ -139,6 +145,12 @@ if ($method === 'PUT') {
     $fields = validate_project_input(json_body(), partial: true);
     if ($fields === []) {
         json_error('No fields to update', 400);
+    }
+
+    // Flipping a project back to active resolves whatever activation
+    // request brought it to the admin's attention in the first place.
+    if (($fields['availability'] ?? null) === 'active') {
+        $fields['activation_requested_at'] = null;
     }
 
     $set = implode(', ', array_map(static fn(string $col) => "$col = :$col", array_keys($fields)));

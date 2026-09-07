@@ -15,9 +15,10 @@
             <p class="flagship__tagline">{{ product.tagline }}</p>
             <div class="flagship__meta">
               <sn8w-status-badge [status]="product.status" />
+              <sn8w-project-availability [project]="product" />
               <a
                 class="flagship__cta"
-                href="https://github.com/Kounrisu"
+                [href]="product.repoUrl || 'https://github.com/Kounrisu'"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -28,6 +29,9 @@
           </div>
 
           <div class="flagship__mockup" aria-hidden="true">
+            @if (product.screenshot) {
+              <img class="flagship__screenshot" [src]="product.screenshot" alt="" />
+            } @else {
             @switch (product.mockup) {
               @case ('inspector') {
                 <div class="mock mock--inspector">
@@ -108,6 +112,7 @@
                   </div>
                 </div>
               }
+            }
             }
           </div>
         </article>

@@ -1,6 +1,8 @@
 export type ProductStatus = 'live' | 'in-development' | 'concept' | 'prototype';
 export type ProductTier = 'flagship' | 'ecosystem' | 'lab';
 export type FlagshipMockup = 'inspector' | 'dashboard' | 'creative';
+/** Whether the project's URL is currently reachable — independent of maturity `status`. */
+export type ProjectAvailability = 'active' | 'inactive';
 
 export interface Project {
   readonly id: number;
@@ -12,10 +14,17 @@ export interface Project {
   readonly tagline: string;
   readonly status: ProductStatus;
   readonly url: string | null;
+  readonly repoUrl: string | null;
+  readonly screenshot: string | null;
+  readonly availability: ProjectAvailability;
+  readonly activationRequestedAt: string | null;
   readonly sortOrder: number;
 }
 
-export type ProjectInput = Omit<Project, 'id'>;
+export type ProjectInput = Omit<
+  Project,
+  'id' | 'screenshot' | 'activationRequestedAt'
+>;
 
 export type TodoStatus = 'todo' | 'in_progress' | 'done';
 export type TodoPriority = 'low' | 'medium' | 'high';

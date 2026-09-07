@@ -2,7 +2,14 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
-import type { FlagshipMockup, Project, ProjectInput, ProductStatus, ProductTier } from './models';
+import type {
+  FlagshipMockup,
+  Project,
+  ProjectAvailability,
+  ProjectInput,
+  ProductStatus,
+  ProductTier,
+} from './models';
 
 export interface ProjectGroup {
   readonly title: string;
@@ -85,6 +92,50 @@ export class ProjectsService {
     await firstValueFrom(this.http.delete(this.baseUrl, { params: { id } }));
     this.all.update((projects) => projects.filter((p) => p.id !== id));
   }
+
+  /** Clears a pending activation request without changing availability. */
+  async dismissActivationRequest(id: number): Promise<Project> {
+    const updated = await firstValueFrom(
+      this.http.put<Project>(
+        this.baseUrl,
+        { activationRequestedAt: null },
+        { params: { id } },
+      ),
+    );
+    this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    return updated;
+  }
+
+  /** Public, unauthenticated — any visitor can ask for an inactive project to be spun back up. */
+  async requestActivation(id: number): Promise<Project> {
+    const updated = await firstValueFrom(
+      this.http.post<Project>(`${environment.apiBaseUrl}/project-activate.php`, { id }),
+    );
+    this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    return updated;
+  }
+
+  async uploadScreenshot(id: number, file: File): Promise<Project> {
+    const form = new FormData();
+    form.append('file', file);
+    const updated = await firstValueFrom(
+      this.http.post<Project>(`${environment.apiBaseUrl}/project-screenshot.php`, form, {
+        params: { id },
+      }),
+    );
+    this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    return updated;
+  }
+
+  async removeScreenshot(id: number): Promise<Project> {
+    const updated = await firstValueFrom(
+      this.http.delete<Project>(`${environment.apiBaseUrl}/project-screenshot.php`, {
+        params: { id },
+      }),
+    );
+    this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    return updated;
+  }
 }
 
 export const PRODUCT_STATUSES: readonly ProductStatus[] = [
@@ -95,3 +146,4 @@ export const PRODUCT_STATUSES: readonly ProductStatus[] = [
 ];
 export const PRODUCT_TIERS: readonly ProductTier[] = ['flagship', 'ecosystem', 'lab'];
 export const FLAGSHIP_MOCKUPS: readonly FlagshipMockup[] = ['inspector', 'dashboard', 'creative'];
+export const PROJECT_AVAILABILITIES: readonly ProjectAvailability[] = ['active', 'inactive'];
