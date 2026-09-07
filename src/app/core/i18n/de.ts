@@ -133,6 +133,8 @@ export const de: Dict = {
     url: 'URL',
     repoUrl: 'Git-Repository',
     repoPrivateLabel: 'Privates Repository',
+    sortOrder: 'Sortierreihenfolge',
+    sortOrderHint: 'Niedrigere Zahlen werden zuerst angezeigt, innerhalb derselben Ebene/Gruppe.',
     availability: 'Verfügbarkeit',
     availabilityActive: 'Online',
     availabilityInactive: 'Offline',

@@ -110,6 +110,8 @@ export interface Dict {
     url: string;
     repoUrl: string;
     repoPrivateLabel: string;
+    sortOrder: string;
+    sortOrderHint: string;
     availability: string;
     availabilityActive: string;
     availabilityInactive: string;
@@ -328,6 +330,8 @@ export const en: Dict = {
     url: 'URL',
     repoUrl: 'Git repository',
     repoPrivateLabel: 'Private repository',
+    sortOrder: 'Sort order',
+    sortOrderHint: 'Lower numbers show first, among projects in the same tier/group.',
     availability: 'Availability',
     availabilityActive: 'Online',
     availabilityInactive: 'Offline',

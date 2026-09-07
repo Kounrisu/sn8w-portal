@@ -133,6 +133,8 @@ export const ko: Dict = {
     url: 'URL',
     repoUrl: 'Git 저장소',
     repoPrivateLabel: '비공개 저장소',
+    sortOrder: '정렬 순서',
+    sortOrderHint: '같은 등급/그룹 내에서 낮은 숫자가 먼저 표시됩니다.',
     availability: '가용성',
     availabilityActive: '온라인',
     availabilityInactive: '오프라인',
