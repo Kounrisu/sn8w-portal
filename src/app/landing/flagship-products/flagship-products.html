@@ -16,22 +16,27 @@
             <div class="flagship__meta">
               <sn8w-status-badge [status]="product.status" />
               <sn8w-project-availability [project]="product" />
-              <a
-                class="flagship__cta"
-                [href]="product.repoUrl || 'https://github.com/Kounrisu'"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {{ i18n.dict().flagshipSection.followBuild }}
-                <span class="visually-hidden">— {{ product.name }}</span>
-              </a>
+              <sn8w-repo-link [project]="product" />
             </div>
           </div>
 
-          <div class="flagship__mockup" aria-hidden="true">
+          <div class="flagship__mockup">
             @if (product.screenshot) {
-              <img class="flagship__screenshot" [src]="product.screenshot" alt="" />
+              @if (product.url) {
+                <a
+                  class="flagship__screenshot-link"
+                  [href]="product.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img class="flagship__screenshot" [src]="product.screenshot" alt="" />
+                  <span class="visually-hidden">{{ i18n.dict().projectCard.visit }} — {{ product.name }}</span>
+                </a>
+              } @else {
+                <img class="flagship__screenshot" [src]="product.screenshot" alt="" />
+              }
             } @else {
+            <div aria-hidden="true">
             @switch (product.mockup) {
               @case ('inspector') {
                 <div class="mock mock--inspector">
@@ -113,6 +118,7 @@
                 </div>
               }
             }
+            </div>
             }
           </div>
         </article>

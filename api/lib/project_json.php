@@ -14,6 +14,7 @@ function project_row_to_json(array $row): array
         'status' => $row['status'],
         'url' => $row['url'],
         'repoUrl' => $row['repo_url'],
+        'repoPrivate' => (bool) $row['repo_private'],
         'screenshot' => $row['screenshot'],
         'availability' => $row['availability'],
         'activationRequestedAt' => $row['activation_requested_at'],

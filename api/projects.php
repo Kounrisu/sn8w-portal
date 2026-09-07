@@ -13,6 +13,14 @@ const VALID_STATUSES = ['live', 'in-development', 'concept', 'prototype'];
 const VALID_MOCKUPS = ['inspector', 'dashboard', 'creative'];
 const VALID_AVAILABILITY = ['active', 'inactive'];
 
+/** A bare host like "example.com" is a valid <a href> but resolves relative
+ * to the current origin — silently prepend a scheme so links actually leave
+ * the site. */
+function normalize_url(string $url): string
+{
+    return preg_match('#^https?://#i', $url) === 1 ? $url : "https://{$url}";
+}
+
 function validate_project_input(array $body, bool $partial = false): array
 {
     $errors = [];
@@ -64,13 +72,17 @@ function validate_project_input(array $body, bool $partial = false): array
     }
 
     if (!$partial || array_key_exists('url', $body)) {
-        $url = $body['url'] ?? null;
-        $fields['url'] = $url === null || $url === '' ? null : (string) $url;
+        $url = trim((string) ($body['url'] ?? ''));
+        $fields['url'] = $url === '' ? null : normalize_url($url);
     }
 
     if (!$partial || array_key_exists('repoUrl', $body)) {
-        $repoUrl = $body['repoUrl'] ?? null;
-        $fields['repo_url'] = $repoUrl === null || $repoUrl === '' ? null : (string) $repoUrl;
+        $repoUrl = trim((string) ($body['repoUrl'] ?? ''));
+        $fields['repo_url'] = $repoUrl === '' ? null : normalize_url($repoUrl);
+    }
+
+    if (!$partial || array_key_exists('repoPrivate', $body)) {
+        $fields['repo_private'] = !empty($body['repoPrivate']) ? 1 : 0;
     }
 
     if (!$partial || array_key_exists('availability', $body)) {
@@ -124,8 +136,8 @@ if ($method === 'POST') {
     $fields = validate_project_input(json_body(), partial: false);
 
     $stmt = db()->prepare(
-        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, availability, sort_order)
-         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :availability, :sort_order)'
+        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order)
+         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order)'
     );
     $stmt->execute($fields);
 

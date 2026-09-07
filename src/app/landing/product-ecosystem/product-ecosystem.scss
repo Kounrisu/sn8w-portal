@@ -83,19 +83,6 @@
   margin-top: 0.4rem;
 }
 
-.ecosystem-item__repo {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--mist);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.ecosystem-item__repo:hover,
-.ecosystem-item__repo:focus-visible {
-  border-bottom-color: currentColor;
-}
-
 @media (min-width: 700px) {
   .ecosystem-grid {
     grid-template-columns: repeat(3, 1fr);
