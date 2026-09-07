@@ -47,8 +47,20 @@ export class Nav {
   });
 
   protected readonly version = environment.version;
+  protected readonly build = environment.build;
   protected readonly commit = environment.commit;
+  protected readonly commitMessage = environment.commitMessage;
   protected readonly deployedAt = environment.deployedAt;
+
+  protected readonly deployedAtLabel = computed(() => {
+    const iso = this.deployedAt;
+    const parsed = new Date(iso);
+    if (Number.isNaN(parsed.getTime())) return iso;
+    return new Intl.DateTimeFormat(this.i18n.lang(), {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+    }).format(parsed);
+  });
 
   protected readonly links = computed<readonly NavLink[]>(() => {
     const dict = this.i18n.dict();

@@ -60,11 +60,12 @@
         </div>
 
         <span
-          class="nav__version"
-          [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' · ' + deployedAt"
+          class="nav__version-block"
+          [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' — ' + commitMessage"
           matTooltipPosition="below"
         >
-          v{{ version }}
+          <span class="nav__version">v{{ version }} · build {{ build }}</span>
+          <span class="nav__timestamp">{{ deployedAtLabel() }}</span>
         </span>
 
         @if (auth.isAuthenticated()) {
@@ -127,11 +128,12 @@
       </label>
 
       <span
-        class="nav__version"
-        [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' · ' + deployedAt"
+        class="nav__version-block"
+        [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' — ' + commitMessage"
         matTooltipPosition="below"
       >
-        v{{ version }}
+        <span class="nav__version">v{{ version }} · build {{ build }}</span>
+        <span class="nav__timestamp">{{ deployedAtLabel() }}</span>
       </span>
 
       <a
