@@ -161,6 +161,24 @@
   margin-top: 0.2rem;
 }
 
+.admin-table__link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ice);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  word-break: break-all;
+}
+
+.admin-table__link:hover,
+.admin-table__link:focus-visible {
+  border-bottom-color: currentColor;
+}
+
+.admin-table__empty {
+  color: var(--mist);
+}
+
 .admin-table__actions {
   display: flex;
   gap: 0.5rem;

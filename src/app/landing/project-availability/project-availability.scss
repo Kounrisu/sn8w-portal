@@ -4,6 +4,27 @@
   gap: 0.5rem;
 }
 
+.project-availability__online {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  color: var(--ice);
+  background: color-mix(in srgb, var(--ice) 14%, transparent);
+  padding: 0.15em 0.6em;
+  border-radius: 10px;
+}
+
+.project-availability__online-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
 .project-availability__offline {
   display: inline-flex;
   align-items: center;

@@ -206,6 +206,8 @@
         <th scope="col">{{ i18n.dict().admin.tier }}</th>
         <th scope="col">{{ i18n.dict().admin.status }}</th>
         <th scope="col">{{ i18n.dict().admin.availability }}</th>
+        <th scope="col">{{ i18n.dict().admin.url }}</th>
+        <th scope="col">{{ i18n.dict().admin.repoUrl }}</th>
         <th scope="col"><span class="visually-hidden">{{ i18n.dict().common.edit }}</span></th>
       </tr>
     </thead>
@@ -222,6 +224,24 @@
             {{ project.availability === 'active' ? i18n.dict().admin.availabilityActive : i18n.dict().admin.availabilityInactive }}
             @if (project.activationRequestedAt) {
               <span class="admin-table__request-badge">{{ i18n.dict().admin.requestBadge }}</span>
+            }
+          </td>
+          <td>
+            @if (project.url) {
+              <a class="admin-table__link" [href]="project.url" target="_blank" rel="noopener noreferrer">
+                {{ displayUrl(project.url) }}
+              </a>
+            } @else {
+              <span class="admin-table__empty">—</span>
+            }
+          </td>
+          <td>
+            @if (project.repoUrl) {
+              <a class="admin-table__link" [href]="project.repoUrl" target="_blank" rel="noopener noreferrer">
+                {{ project.repoPrivate ? i18n.dict().admin.repoPrivateLabel : displayUrl(project.repoUrl) }}
+              </a>
+            } @else {
+              <span class="admin-table__empty">—</span>
             }
           </td>
           <td class="admin-table__actions">
