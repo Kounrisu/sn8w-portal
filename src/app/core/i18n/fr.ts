@@ -133,6 +133,8 @@ export const fr: Dict = {
     url: 'URL',
     repoUrl: 'Dépôt Git',
     repoPrivateLabel: 'Dépôt privé',
+    sortOrder: 'Ordre d\'affichage',
+    sortOrderHint: 'Les nombres les plus bas s\'affichent en premier, parmi les projets du même niveau/groupe.',
     availability: 'Disponibilité',
     availabilityActive: 'En ligne',
     availabilityInactive: 'Hors ligne',

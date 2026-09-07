@@ -133,6 +133,8 @@ export const ja: Dict = {
     url: 'URL',
     repoUrl: 'Gitリポジトリ',
     repoPrivateLabel: '非公開リポジトリ',
+    sortOrder: '表示順',
+    sortOrderHint: '同じ階層・グループ内では、数字が小さいほど先に表示されます。',
     availability: '稼働状況',
     availabilityActive: 'オンライン',
     availabilityInactive: 'オフライン',
