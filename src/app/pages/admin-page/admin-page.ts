@@ -50,6 +50,10 @@ export class AdminPage {
   protected readonly saving = signal(false);
   protected readonly uploadingScreenshot = signal(false);
 
+  protected displayUrl(url: string): string {
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  }
+
   protected tierLabel(tier: ProductTier): string {
     const dict = this.i18n.dict().admin;
     return tier === 'flagship' ? dict.tierFlagship : tier === 'ecosystem' ? dict.tierEcosystem : dict.tierLab;

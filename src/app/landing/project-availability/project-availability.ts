@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { ProjectsService } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { Project } from '../../core/models';
@@ -16,6 +16,13 @@ export class ProjectAvailability {
   private readonly projects = inject(ProjectsService);
 
   protected readonly requesting = signal(false);
+
+  /** The URL without scheme/trailing slash, for display as the link's own text. */
+  protected readonly displayUrl = computed(() => {
+    const url = this.project().url;
+    if (!url) return '';
+    return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  });
 
   protected async request(): Promise<void> {
     const project = this.project();

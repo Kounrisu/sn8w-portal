@@ -134,6 +134,7 @@ export interface Dict {
     visit: string;
     viewSource: string;
     viewProfile: string;
+    onlineLabel: string;
     inactiveLabel: string;
     requestAccess: string;
     requestSent: string;
@@ -328,8 +329,8 @@ export const en: Dict = {
     repoUrl: 'Git repository',
     repoPrivateLabel: 'Private repository',
     availability: 'Availability',
-    availabilityActive: 'Active',
-    availabilityInactive: 'Inactive',
+    availabilityActive: 'Online',
+    availabilityInactive: 'Offline',
     screenshotLabel: 'Screenshot',
     uploadScreenshot: 'Upload screenshot',
     removeScreenshot: 'Remove screenshot',
@@ -350,7 +351,8 @@ export const en: Dict = {
   projectCard: {
     visit: 'Visit',
     viewSource: 'View source',
-    viewProfile: 'View profile',
+    viewProfile: 'View GitHub profile',
+    onlineLabel: 'Online',
     inactiveLabel: 'Offline',
     requestAccess: 'Request access',
     requestSent: 'Request sent',
