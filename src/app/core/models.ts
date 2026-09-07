@@ -15,6 +15,7 @@ export interface Project {
   readonly status: ProductStatus;
   readonly url: string | null;
   readonly repoUrl: string | null;
+  readonly repoPrivate: boolean;
   readonly screenshot: string | null;
   readonly availability: ProjectAvailability;
   readonly activationRequestedAt: string | null;

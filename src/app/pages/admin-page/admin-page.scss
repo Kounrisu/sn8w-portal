@@ -35,6 +35,43 @@
   margin-top: var(--space-lg);
 }
 
+.admin-form__checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-form__checkbox input {
+  width: auto;
+}
+
+.admin-form__save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-form__spinner {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-top-color: currentColor;
+  animation: admin-spin 0.7s linear infinite;
+}
+
+@keyframes admin-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-form__spinner {
+    animation: none;
+  }
+}
+
 .admin-form__screenshot {
   display: flex;
   flex-direction: column;

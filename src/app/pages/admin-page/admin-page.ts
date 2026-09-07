@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   FLAGSHIP_MOCKUPS,
   PRODUCT_STATUSES,
@@ -20,6 +21,7 @@ const EMPTY_FORM: ProjectInput = {
   status: 'concept',
   url: '',
   repoUrl: '',
+  repoPrivate: false,
   availability: 'active',
   sortOrder: 0,
 };
@@ -34,6 +36,7 @@ const EMPTY_FORM: ProjectInput = {
 export class AdminPage {
   protected readonly i18n = inject(I18nService);
   protected readonly projects = inject(ProjectsService);
+  private readonly snackBar = inject(MatSnackBar);
 
   protected readonly tiers = PRODUCT_TIERS;
   protected readonly statuses = PRODUCT_STATUSES;
@@ -72,6 +75,7 @@ export class AdminPage {
       status: project.status,
       url: project.url ?? '',
       repoUrl: project.repoUrl ?? '',
+      repoPrivate: project.repoPrivate,
       availability: project.availability,
       sortOrder: project.sortOrder,
     });
@@ -86,6 +90,10 @@ export class AdminPage {
 
   protected updateField<K extends keyof ProjectInput>(key: K, value: ProjectInput[K]): void {
     this.form.update((f) => ({ ...f, [key]: value }));
+  }
+
+  private notify(message: string): void {
+    this.snackBar.open(message, undefined, { duration: 2500, panelClass: 'sn8w-snackbar' });
   }
 
   protected async submit(): Promise<void> {
@@ -106,12 +114,14 @@ export class AdminPage {
       if (editing !== null) {
         const updated = await this.projects.update(editing, input);
         this.editingProject.set(updated);
+        this.notify(this.i18n.dict().admin.saved);
       } else {
         // Stay in the form after create so a screenshot can be attached
         // right away — uploads need a project id to attach to.
         const created = await this.projects.create(input);
         this.editingId.set(created.id);
         this.editingProject.set(created);
+        this.notify(this.i18n.dict().admin.created);
       }
     } finally {
       this.saving.set(false);
@@ -121,6 +131,7 @@ export class AdminPage {
   protected async remove(project: Project): Promise<void> {
     if (!confirm(this.i18n.dict().admin.confirmDelete)) return;
     await this.projects.remove(project.id);
+    this.notify(this.i18n.dict().admin.deleted);
   }
 
   protected async onScreenshotSelected(event: Event): Promise<void> {
@@ -133,6 +144,7 @@ export class AdminPage {
     try {
       const updated = await this.projects.uploadScreenshot(id, file);
       this.editingProject.set(updated);
+      this.notify(this.i18n.dict().admin.saved);
     } finally {
       this.uploadingScreenshot.set(false);
       input.value = '';
@@ -144,6 +156,7 @@ export class AdminPage {
     if (id === null) return;
     const updated = await this.projects.removeScreenshot(id);
     this.editingProject.set(updated);
+    this.notify(this.i18n.dict().admin.saved);
   }
 
   protected async markActive(): Promise<void> {
@@ -152,6 +165,7 @@ export class AdminPage {
     const updated = await this.projects.update(id, { availability: 'active' });
     this.editingProject.set(updated);
     this.updateField('availability', 'active');
+    this.notify(this.i18n.dict().admin.saved);
   }
 
   protected async dismissActivationRequest(): Promise<void> {
@@ -159,5 +173,6 @@ export class AdminPage {
     if (id === null) return;
     const updated = await this.projects.dismissActivationRequest(id);
     this.editingProject.set(updated);
+    this.notify(this.i18n.dict().admin.saved);
   }
 }

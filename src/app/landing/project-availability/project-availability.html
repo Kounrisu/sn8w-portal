@@ -9,17 +9,24 @@
       {{ i18n.dict().projectCard.visit }}
       <span class="visually-hidden">— {{ project().name }}</span>
     </a>
-  } @else if (project().activationRequestedAt) {
-    <span class="project-availability__requested">{{ i18n.dict().projectCard.requestSent }}</span>
   } @else {
-    <button
-      type="button"
-      class="project-availability__request"
-      [disabled]="requesting()"
-      (click)="request()"
-    >
-      {{ i18n.dict().projectCard.requestAccess }}
-      <span class="visually-hidden">— {{ project().name }}</span>
-    </button>
+    <span class="project-availability__offline" role="status">
+      <span class="project-availability__offline-dot" aria-hidden="true"></span>
+      {{ i18n.dict().projectCard.inactiveLabel }}
+    </span>
+
+    @if (project().activationRequestedAt) {
+      <span class="project-availability__requested">{{ i18n.dict().projectCard.requestSent }}</span>
+    } @else {
+      <button
+        type="button"
+        class="project-availability__request"
+        [disabled]="requesting()"
+        (click)="request()"
+      >
+        {{ i18n.dict().projectCard.requestAccess }}
+        <span class="visually-hidden">— {{ project().name }}</span>
+      </button>
+    }
   }
 }

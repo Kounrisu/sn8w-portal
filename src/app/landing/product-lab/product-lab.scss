@@ -79,18 +79,6 @@
   padding-top: var(--space-xs);
 }
 
-.lab-card__repo {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--mist);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-}
-
-.lab-card__repo:hover,
-.lab-card__repo:focus-visible {
-  border-bottom-color: currentColor;
-}
 
 @media (min-width: 900px) {
   .lab-shelf {

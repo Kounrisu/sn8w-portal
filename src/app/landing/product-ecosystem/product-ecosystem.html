@@ -15,7 +15,18 @@
               <li class="ecosystem-item">
                 <div class="ecosystem-item__head">
                   @if (product.screenshot) {
-                    <img class="ecosystem-item__thumb" [src]="product.screenshot" alt="" />
+                    @if (product.url) {
+                      <a
+                        [href]="product.url"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        [attr.aria-label]="i18n.dict().projectCard.visit + ' — ' + product.name"
+                      >
+                        <img class="ecosystem-item__thumb" [src]="product.screenshot" alt="" />
+                      </a>
+                    } @else {
+                      <img class="ecosystem-item__thumb" [src]="product.screenshot" alt="" />
+                    }
                   }
                   <div class="ecosystem-item__info">
                     <span class="ecosystem-item__name">{{ product.name }}</span>
@@ -25,16 +36,7 @@
                 <p class="ecosystem-item__tagline">{{ product.tagline }}</p>
                 <div class="ecosystem-item__links">
                   <sn8w-project-availability [project]="product" />
-                  @if (product.repoUrl) {
-                    <a
-                      class="ecosystem-item__repo"
-                      [href]="product.repoUrl"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {{ i18n.dict().projectCard.viewSource }}
-                    </a>
-                  }
+                  <sn8w-repo-link [project]="product" />
                 </div>
               </li>
             }

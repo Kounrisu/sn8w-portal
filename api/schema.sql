@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS projects (
   status ENUM('live', 'in-development', 'concept', 'prototype') NOT NULL DEFAULT 'concept',
   url VARCHAR(255) NULL,
   repo_url VARCHAR(255) NULL COMMENT 'Git repository link, shown as "View source"',
+  repo_private TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'When true, link to the GitHub profile + a mailto request instead of the repo itself',
   screenshot VARCHAR(255) NULL COMMENT 'Relative path to an uploaded screenshot, e.g. /api/uploads/screenshots/...',
   availability ENUM('active', 'inactive') NOT NULL DEFAULT 'active' COMMENT 'Whether the URL is currently reachable — independent of the maturity `status`',
   activation_requested_at TIMESTAMP NULL COMMENT 'Set when a visitor asks for an inactive project to be spun back up',

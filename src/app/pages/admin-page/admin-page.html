@@ -105,6 +105,16 @@
           />
         </label>
 
+        <label class="field admin-form__checkbox">
+          <input
+            type="checkbox"
+            [ngModel]="form().repoPrivate"
+            (ngModelChange)="updateField('repoPrivate', $event)"
+            name="repoPrivate"
+          />
+          <span class="field-label">{{ i18n.dict().admin.repoPrivateLabel }}</span>
+        </label>
+
         @if (form().tier === 'ecosystem') {
           <label class="field">
             <span class="field-label">{{ i18n.dict().admin.group }}</span>
@@ -172,8 +182,11 @@
       }
 
       <div class="admin-form__actions">
-        <button type="submit" class="btn btn--primary" [disabled]="saving()">
-          {{ i18n.dict().common.save }}
+        <button type="submit" class="btn btn--primary admin-form__save" [disabled]="saving()">
+          @if (saving()) {
+            <span class="admin-form__spinner" aria-hidden="true"></span>
+          }
+          {{ saving() ? i18n.dict().admin.saving : i18n.dict().common.save }}
         </button>
         <button type="button" class="btn btn--secondary" (click)="closeForm()">
           {{ i18n.dict().common.cancel }}

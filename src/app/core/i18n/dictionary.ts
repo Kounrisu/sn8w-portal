@@ -109,6 +109,7 @@ export interface Dict {
     status: string;
     url: string;
     repoUrl: string;
+    repoPrivateLabel: string;
     availability: string;
     availabilityActive: string;
     availabilityInactive: string;
@@ -119,6 +120,10 @@ export interface Dict {
     markActive: string;
     dismissRequest: string;
     requestBadge: string;
+    saved: string;
+    created: string;
+    deleted: string;
+    saving: string;
     confirmDelete: string;
     empty: string;
     tierFlagship: string;
@@ -128,9 +133,13 @@ export interface Dict {
   projectCard: {
     visit: string;
     viewSource: string;
+    viewProfile: string;
     inactiveLabel: string;
     requestAccess: string;
     requestSent: string;
+    requestRepoAccess: string;
+    repoAccessSubject: string;
+    repoAccessBody: string;
   };
   todoPage: {
     title: string;
@@ -317,6 +326,7 @@ export const en: Dict = {
     status: 'Status',
     url: 'URL',
     repoUrl: 'Git repository',
+    repoPrivateLabel: 'Private repository',
     availability: 'Availability',
     availabilityActive: 'Active',
     availabilityInactive: 'Inactive',
@@ -327,6 +337,10 @@ export const en: Dict = {
     markActive: 'Mark active',
     dismissRequest: 'Dismiss',
     requestBadge: 'Requested',
+    saved: 'Saved',
+    created: 'Project created',
+    deleted: 'Project deleted',
+    saving: 'Saving…',
     confirmDelete: 'Delete this project?',
     empty: 'No projects yet.',
     tierFlagship: 'Flagship',
@@ -336,9 +350,13 @@ export const en: Dict = {
   projectCard: {
     visit: 'Visit',
     viewSource: 'View source',
-    inactiveLabel: 'Inactive',
+    viewProfile: 'View profile',
+    inactiveLabel: 'Offline',
     requestAccess: 'Request access',
     requestSent: 'Request sent',
+    requestRepoAccess: 'Request access',
+    repoAccessSubject: 'Repo access request: {name}',
+    repoAccessBody: "Hi, I'd like to see the source for {name}.",
   },
   todoPage: {
     title: 'Todo board',
