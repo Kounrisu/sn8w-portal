@@ -12,6 +12,8 @@ export const ja: Dict = {
     theme: 'テーマ',
     themeFrost: 'ダーク',
     themeSquirrel: 'ライト',
+    soundOn: '音声をオンにする',
+    soundOff: '音声をオフにする',
   },
   nav: {
     products: 'プロダクト',

@@ -45,8 +45,80 @@
   );
 }
 
+// Sound toggle. Sits in the hero's bottom-right corner, clear of the copy
+// card on the left, and pinned to the pane rather than the fixed backdrop
+// so it scrolls away with the rest of the hero instead of hovering over
+// every section below.
+.hero__sound {
+  // A heavier tint than the content cards: this one has to stay legible
+  // against whatever frame of the video happens to be behind it, including
+  // the bright blossom highlights.
+  @include panel.glass(88%);
+
+  position: absolute;
+  right: var(--section-padding-inline);
+  bottom: var(--space-lg);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border-color: var(--line-strong);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.hero__sound:hover {
+  color: var(--ice);
+  border-color: color-mix(in srgb, var(--ice) 55%, var(--line-strong));
+}
+
+.hero__sound:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+
+.hero__sound mat-icon {
+  font-size: 1.35rem;
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+// On a phone the copy card fills nearly the whole pane: the bottom-right
+// corner the button floats in belongs to the card, and putting the button
+// in normal flow underneath instead pushes it below the fold. The band
+// between the nav and the top of the card is the one piece of free space,
+// so it moves up there.
+@media (max-width: 640px) {
+  .hero__sound {
+    top: var(--space-2xs);
+    bottom: auto;
+    padding: 0.45rem 0.8rem;
+    font-size: var(--text-xs);
+  }
+
+  .hero__sound mat-icon {
+    font-size: 1.15rem;
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__video {
+    display: none;
+  }
+
+  // No video playing means nothing to hear — the control would toggle
+  // silence either way.
+  .hero__sound {
     display: none;
   }
 }

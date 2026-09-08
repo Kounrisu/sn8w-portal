@@ -12,6 +12,8 @@ export const ko: Dict = {
     theme: '테마',
     themeFrost: '다크',
     themeSquirrel: '라이트',
+    soundOn: '소리 켜기',
+    soundOff: '소리 끄기',
   },
   nav: {
     products: '제품',
