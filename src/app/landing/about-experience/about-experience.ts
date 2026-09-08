@@ -21,6 +21,14 @@ export class AboutExperience {
    */
   protected readonly interests = computed(() => {
     const groups = this.i18n.dict().aboutSection.interestsGroups;
-    return [groups.languages, groups.sport, groups.music, groups.watching, groups.history, groups.garage];
+    return [
+      groups.languages,
+      groups.sport,
+      groups.sea,
+      groups.music,
+      groups.watching,
+      groups.history,
+      groups.garage,
+    ];
   });
 }

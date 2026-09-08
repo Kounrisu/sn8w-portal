@@ -59,6 +59,7 @@ export interface Dict {
     interestsGroups: {
       languages: { label: string; value: string };
       sport: { label: string; value: string };
+      sea: { label: string; value: string };
       watching: { label: string; value: string };
       garage: { label: string; value: string };
       history: { label: string; value: string };
@@ -321,7 +322,8 @@ export const en: Dict = {
     interestsLabel: 'Outside the code',
     interestsGroups: {
       languages: { label: 'Languages', value: 'French, fluent English, Japanese in progress — and a little Korean' },
-      sport: { label: 'Sport', value: "Karate, krav maga, kitesurfing, and a lot of walking — Paris daily by Vélib'" },
+      sport: { label: 'Sport', value: "Karate, krav maga, and a lot of walking — Paris daily by Vélib'" },
+      sea: { label: 'At sea', value: 'Kitesurfing and coastal sailing, usually at Le Grau-du-Roi near Montpellier' },
       watching: { label: 'Watching', value: "Korean and Japanese series, which is where this site's mood comes from" },
       garage: { label: 'Garage', value: 'A Buell brought back from the United States' },
       history: { label: 'History', value: 'Second World War reenactment, done in England — and the itch to pick it up again in France, on the US Army side' },
