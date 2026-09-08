@@ -1,0 +1,176 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.bts {
+  padding-block: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.bts__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.bts__title {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-2xl);
+  line-height: 1.15;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.bts__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0 0;
+}
+
+.bts__stat {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.bts__stat dd {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  color: var(--ice);
+}
+
+.bts__stat dt {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--mist);
+}
+
+.bts__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.bts__stack {
+  list-style: none;
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-sm);
+}
+
+.bts__stack-item {
+  @include panel.glass;
+}
+
+.bts__stack-item h3 {
+  margin: 0 0 var(--space-2xs);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-md);
+  color: var(--ink);
+}
+
+.bts__stack-item p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--mist);
+}
+
+.bts__empty {
+  @include panel.glass;
+
+  margin: var(--space-sm) 0 0;
+  font-size: var(--text-sm);
+  color: var(--mist);
+}
+
+.bts__log {
+  list-style: none;
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.bts__day {
+  @include panel.glass;
+}
+
+.bts__day-label {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-base);
+  color: var(--ice);
+}
+
+.bts__day-commits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+// A three-column grid rather than a flex row: the time and sha columns stay
+// aligned down the whole day, so the subjects read as one list instead of a
+// ragged left edge.
+.bts__commit {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: var(--space-2xs) var(--space-sm);
+  align-items: baseline;
+  padding-block: 0.45rem;
+  border-top: 1px solid var(--line);
+}
+
+.bts__commit:first-child {
+  border-top: none;
+}
+
+.bts__commit-time,
+.bts__commit-sha {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+}
+
+.bts__commit-sha {
+  color: var(--ember);
+}
+
+.bts__commit-subject {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.bts__back {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  // The time/sha pair moves above the subject instead of squeezing three
+  // columns into a phone width.
+  .bts__commit {
+    grid-template-columns: auto auto;
+  }
+
+  .bts__commit-subject {
+    grid-column: 1 / -1;
+  }
+}

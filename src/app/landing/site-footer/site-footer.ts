@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +11,7 @@ import { PROFILES } from '../../core/profiles';
 
 @Component({
   selector: 'sn8w-site-footer',
-  imports: [MatIconModule, MatTooltipModule],
+  imports: [RouterLink, MatIconModule, MatTooltipModule],
   templateUrl: './site-footer.html',
   styleUrl: './site-footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,6 +33,7 @@ export class SiteFooter {
    * failed to fill them in. Better a short line than `dev · dev`.
    */
   protected readonly buildLabel = computed(() => {
+    const dict = this.i18n.dict().footer;
     const real = (value: string) => value && value !== 'dev' && !value.startsWith('__');
 
     const parts = [`v${environment.version}`, `build ${environment.build}`];
@@ -40,12 +42,19 @@ export class SiteFooter {
     const iso = environment.deployedAt;
     const parsed = new Date(iso);
     if (real(iso) && !Number.isNaN(parsed.getTime())) {
-      parts.push(
-        new Intl.DateTimeFormat(this.i18n.lang(), {
-          dateStyle: 'medium',
-          timeStyle: 'short',
-        }).format(parsed),
-      );
+      // Labelled, not a bare date: an unlabelled timestamp in a footer could
+      // be anything — a copyright year, a last-edited date. This one is the
+      // moment the deploy ran, in the reader's own timezone (the workflow
+      // stamps it in UTC).
+      const when = new Intl.DateTimeFormat(this.i18n.lang(), {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }).format(parsed);
+      parts.push(`${dict.deployedAt} ${when}`);
+    } else {
+      // A local build has no deploy behind it. Say that, rather than leaving
+      // a gap that reads like the timestamp failed to render.
+      parts.push(dict.localBuild);
     }
     return parts.join(' · ');
   });
