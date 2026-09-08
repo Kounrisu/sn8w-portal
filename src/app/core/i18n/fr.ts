@@ -40,7 +40,7 @@ export const fr: Dict = {
   aboutSection: {
     kicker: 'À propos',
     title: 'Un peu sur mon parcours',
-    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je fais vivre la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'Angular 4 à 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
+    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je conçois et maintiens la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'Angular 4 à 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
     timelineLabel: 'Expérience',
     timeline: [
       {
@@ -65,11 +65,18 @@ export const fr: Dict = {
           "Reconversion professionnelle vers le développement web et le multimédia — des bases HTML5/CSS3/JavaScript jusqu'à un portfolio front-end complet, après dix ans dans l'amélioration continue.",
       },
       {
-        period: '2000 — 2008',
-        role: 'Chef de projet Amélioration Continue',
-        org: 'Ligne de production de verres de lunettes en polycarbonate, États-Unis',
+        period: "Six ans — États-Unis",
+        role: "Chef de projet Amélioration Continue",
+        org: "Industrie optique — verres en polycarbonate",
         description:
-          "Pilotage de projets d'amélioration continue transverses, suivi d'indicateurs de performance (KPI) et coordination des équipes production/qualité/ingénierie, avant la reconversion vers le développement.",
+          "Pilotage de projets d'amélioration continue transverses sur une ligne de production de verres de lunettes en polycarbonate : suivi d'indicateurs de performance (KPI) et coordination des équipes production, qualité et ingénierie.",
+      },
+      {
+        period: "Trois ans — Royaume-Uni",
+        role: "Amélioration continue en environnement industriel",
+        org: "Automobile, puis cosmétique",
+        description:
+          "Premiers postes à l'international, sur des lignes de production automobile puis cosmétique — analyse de postes, réduction des rebuts et accompagnement des équipes sur le terrain, avant six ans aux États-Unis.",
       },
     ],
     skillsLabel: 'Compétences',
@@ -100,8 +107,8 @@ export const fr: Dict = {
   },
   ecosystemSection: {
     kicker: 'Autres projets',
-    title: 'Des outils plus petits, faits pour un besoin précis',
-    lede: "Des projets plus courts, chacun né d'un besoin concret.",
+    title: "J'ai plein d'idées — le sport, c'est de ne pas toutes les suivre",
+    lede: "Créer des choses, c'est ce qui m'amuse. Le plus dur, c'est de choisir lesquelles méritent d'aller au bout.",
     groups: {
       developerTools: 'Outils développeur',
       finance: 'Finance',
