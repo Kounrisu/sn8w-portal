@@ -55,6 +55,15 @@ export interface Dict {
       accessibility: { label: string; value: string };
       tools: { label: string; value: string };
     };
+    interestsLabel: string;
+    interestsGroups: {
+      languages: { label: string; value: string };
+      sport: { label: string; value: string };
+      watching: { label: string; value: string };
+      garage: { label: string; value: string };
+      history: { label: string; value: string };
+      music: { label: string; value: string };
+    };
     certificationsLabel: string;
     certifications: readonly string[];
   };
@@ -309,12 +318,22 @@ export const en: Dict = {
       accessibility: { label: 'Accessibility & UX', value: 'RGAA, WCAG, digital sobriety audits' },
       tools: { label: 'Tools', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
+    interestsLabel: 'Outside the code',
+    interestsGroups: {
+      languages: { label: 'Languages', value: 'French, fluent English, Japanese in progress — and a little Korean' },
+      sport: { label: 'Sport', value: "Karate, krav maga, kitesurfing, and a lot of walking — Paris daily by Vélib'" },
+      watching: { label: 'Watching', value: "Korean and Japanese series, which is where this site's mood comes from" },
+      garage: { label: 'Garage', value: 'A Buell brought back from the United States' },
+      history: { label: 'History', value: 'Second World War reenactment, done in England — and the itch to pick it up again in France, on the US Army side' },
+      music: { label: 'Music', value: 'Learning the guitar. On the listening side: country, some international rap, and Manau' },
+    },
     certificationsLabel: 'Certifications & training',
     certifications: [
       'Plastics engineering degree — ESP, now part of INSA Lyon',
       'Opquast — Digital Quality Reference Framework, 750/1000 (2026)',
       'Access42 — Web Accessibility Training (2020)',
       'TOEFL iBT 105/120 — fluent English (2010)',
+      'Coastal boating licence · driving licence (category B)',
       'CAP Pâtissier and CAP Chocolatier — sat as an independent candidate, for the pleasure of learning',
     ],
   },

@@ -52,6 +52,18 @@
             }
           </ul>
         </div>
+
+        <div class="fact-block">
+          <h3 class="about-subheading">{{ i18n.dict().aboutSection.interestsLabel }}</h3>
+          <dl class="skills-list">
+            @for (group of interests(); track group.label) {
+              <div class="skills-list__row">
+                <dt>{{ group.label }}</dt>
+                <dd>{{ group.value }}</dd>
+              </div>
+            }
+          </dl>
+        </div>
       </aside>
     </div>
   </div>
