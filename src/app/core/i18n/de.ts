@@ -119,8 +119,8 @@ export const de: Dict = {
   },
   ecosystemSection: {
     kicker: 'Weitere Projekte',
-    title: 'Viele Ideen — die Kunst ist, nicht allen zu folgen',
-    lede: 'Dinge zu bauen macht mir schlicht Spaß. Schwierig ist nur, zu entscheiden, welche Idee es bis zum Ende schafft.',
+    title: 'Lernen, indem ich baue; entdecken, indem ich ausprobiere',
+    lede: 'Jedes dieser Projekte beginnt mit Neugier — eine Technik zum Ausprobieren, eine Idee, die ich laufen sehen will. So lerne ich am besten, und vor allem macht es genau so Spaß.',
     groups: {
       developerTools: 'Entwicklertools',
       finance: 'Finanzen',

@@ -119,8 +119,8 @@ export const fr: Dict = {
   },
   ecosystemSection: {
     kicker: 'Autres projets',
-    title: "J'ai plein d'idées — le sport, c'est de ne pas toutes les suivre",
-    lede: "Créer des choses, c'est ce qui m'amuse. Le plus dur, c'est de choisir lesquelles méritent d'aller au bout.",
+    title: 'Apprendre en construisant, découvrir en essayant',
+    lede: "Chacun de ces projets part d'une curiosité — une techno à tester, une idée que j'ai envie de voir tourner. C'est comme ça que j'apprends le mieux, et c'est surtout ce qui rend la chose amusante.",
     groups: {
       developerTools: 'Outils développeur',
       finance: 'Finance',
