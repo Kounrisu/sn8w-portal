@@ -4,8 +4,6 @@ import { AboutExperience } from '../../landing/about-experience/about-experience
 import { FlagshipProducts } from '../../landing/flagship-products/flagship-products';
 import { ProductEcosystem } from '../../landing/product-ecosystem/product-ecosystem';
 import { EngineeringPrinciples } from '../../landing/engineering-principles/engineering-principles';
-import { ProductLab } from '../../landing/product-lab/product-lab';
-import { FinalCta } from '../../landing/final-cta/final-cta';
 
 @Component({
   selector: 'sn8w-landing-page',
@@ -20,8 +18,6 @@ import { FinalCta } from '../../landing/final-cta/final-cta';
     FlagshipProducts,
     ProductEcosystem,
     EngineeringPrinciples,
-    ProductLab,
-    FinalCta,
   ],
   template: `
     <sn8w-hero />
@@ -29,8 +25,6 @@ import { FinalCta } from '../../landing/final-cta/final-cta';
     <sn8w-flagship-products />
     <sn8w-product-ecosystem />
     <sn8w-engineering-principles />
-    <sn8w-product-lab />
-    <sn8w-final-cta />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
