@@ -11,6 +11,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { HeroAudioService } from '../../core/hero-audio.service';
+import { PROFILES } from '../../core/profiles';
 
 @Component({
   selector: 'sn8w-hero',
@@ -22,6 +23,7 @@ import { HeroAudioService } from '../../core/hero-audio.service';
 export class Hero implements AfterViewInit {
   protected readonly i18n = inject(I18nService);
   protected readonly videoFailed = signal(false);
+  protected readonly profiles = PROFILES;
 
   private readonly audio = inject(HeroAudioService);
 

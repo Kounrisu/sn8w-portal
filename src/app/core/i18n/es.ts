@@ -40,7 +40,7 @@ export const es: Dict = {
   aboutSection: {
     kicker: 'Acerca de mí',
     title: 'Un poco sobre mi trayectoria',
-    lede: 'Soy desarrollador front-end, ubicado cerca de París, y trabajo sobre todo con Angular. La mayor parte de mi tiempo lo dedico a una biblioteca de componentes y a la accesibilidad (RGAA/WCAG) en un banco central europeo. Antes de esto, pasé casi una década en mejora continua industrial, de ahí mi gusto por la documentación y el trabajo transversal.',
+    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 mantengo viva la biblioteca de componentes compartida de un banco central europeo: migraciones de Angular 4 a 21, accesibilidad RGAA/WCAG, pipelines CI/CD y el soporte diario a los equipos que la utilizan. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
     timelineLabel: 'Experiencia',
     timeline: [
       {
@@ -89,7 +89,7 @@ export const es: Dict = {
   flagshipSection: {
     kicker: 'Proyectos personales',
     title: 'Algunas cosas en las que estoy trabajando',
-    lede: 'Proyectos personales fuera del trabajo, sobre todo para probar herramientas nuevas y seguir aprendiendo. Nada de esto es un negocio.',
+    lede: 'Proyectos personales fuera del trabajo, sobre todo para probar herramientas nuevas y seguir aprendiendo.',
     followBuild: 'Seguir en GitHub',
   },
   status: {
@@ -100,8 +100,8 @@ export const es: Dict = {
   },
   ecosystemSection: {
     kicker: 'Más proyectos',
-    title: 'Algunos más',
-    lede: 'Experimentos más pequeños, agrupados según su propósito.',
+    title: 'Herramientas más pequeñas, hechas para una tarea',
+    lede: 'Proyectos más breves, cada uno nacido de una necesidad concreta, agrupados por uso.',
     groups: {
       developerTools: 'Herramientas para desarrolladores',
       finance: 'Finanzas',

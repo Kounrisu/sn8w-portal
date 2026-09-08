@@ -40,7 +40,7 @@ export const fr: Dict = {
   aboutSection: {
     kicker: 'À propos',
     title: 'Un peu sur mon parcours',
-    lede: "Développeur Front-End basé près de Paris, je travaille surtout avec Angular. L'essentiel de mon temps est consacré à une bibliothèque de composants et à l'accessibilité RGAA/WCAG dans une banque centrale européenne. Avant cela, j'ai passé près de dix ans dans l'amélioration continue en industrie, d'où vient mon goût pour la documentation et le travail transverse.",
+    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je fais vivre la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'Angular 4 à 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
     timelineLabel: 'Expérience',
     timeline: [
       {
@@ -89,7 +89,7 @@ export const fr: Dict = {
   flagshipSection: {
     kicker: 'Projets personnels',
     title: 'Quelques projets sur lesquels je travaille',
-    lede: "Des projets personnels développés en dehors du travail, surtout pour essayer de nouveaux outils et continuer à apprendre. Rien de tout ça n'est une entreprise.",
+    lede: "Des projets personnels développés en dehors du travail, surtout pour essayer de nouveaux outils et continuer à apprendre.",
     followBuild: 'Suivre sur GitHub',
   },
   status: {
@@ -100,8 +100,8 @@ export const fr: Dict = {
   },
   ecosystemSection: {
     kicker: 'Autres projets',
-    title: 'Quelques autres',
-    lede: 'De plus petites expériences, groupées selon leur usage.',
+    title: 'Des outils plus petits, faits pour un besoin précis',
+    lede: "Des projets plus courts, chacun né d'un besoin concret, regroupés par usage.",
     groups: {
       developerTools: 'Outils développeur',
       finance: 'Finance',
