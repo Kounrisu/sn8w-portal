@@ -272,7 +272,7 @@ export const en: Dict = {
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I have designed and maintained the shared component library of a European central bank: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked in the team that builds and maintains a European central bank's shared component library: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
