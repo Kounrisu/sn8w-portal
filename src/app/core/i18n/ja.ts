@@ -89,7 +89,8 @@ export const ja: Dict = {
     interestsLabel: 'コードの外で',
     interestsGroups: {
       languages: { label: '言語', value: 'フランス語、英語（堪能）、日本語を学習中 — 韓国語も少し' },
-      sport: { label: 'スポーツ', value: "空手、クラヴマガ、カイトサーフィン、そしてよく歩きます — パリは毎日 Vélib' で" },
+      sport: { label: 'スポーツ', value: "空手、クラヴマガ、そしてよく歩きます — パリは毎日 Vélib' で" },
+      sea: { label: '海で', value: 'カイトサーフィンと沿岸航海。よく行くのはモンペリエ近郊のル・グロー・デュ・ロワ' },
       watching: { label: 'ドラマ', value: '韓国ドラマと日本のドラマ。このサイトの雰囲気もそこから来ています' },
       garage: { label: 'ガレージ', value: 'アメリカから持ち帰った Buell が一台' },
       history: { label: '歴史', value: 'イギリスで第二次世界大戦のリエナクトメントに参加。フランスでも米軍側で再開したいと思っています' },

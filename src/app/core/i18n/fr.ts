@@ -89,7 +89,8 @@ export const fr: Dict = {
     interestsLabel: 'Hors du code',
     interestsGroups: {
       languages: { label: 'Langues', value: "Français, anglais courant, japonais en cours — et quelques bases de coréen" },
-      sport: { label: 'Sport', value: "Karaté, krav maga, kitesurf, et beaucoup de marche — Paris au quotidien en Vélib'" },
+      sport: { label: 'Sport', value: "Karaté, krav maga, et beaucoup de marche — Paris au quotidien en Vélib'" },
+      sea: { label: 'La mer', value: 'Kitesurf et navigation côtière, souvent au Grau-du-Roi, près de Montpellier' },
       watching: { label: 'Écrans', value: "Séries coréennes et japonaises, d'où vient l'ambiance de ce site" },
       garage: { label: 'Garage', value: 'Une Buell ramenée des États-Unis' },
       history: { label: 'Histoire', value: "Reconstitution historique de la Seconde Guerre mondiale, pratiquée en Angleterre — avec l'envie de reprendre en France, côté armée américaine" },
