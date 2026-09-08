@@ -10,6 +10,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full history: the version's patch number is the commit count, and
+          # the changelog is built from the log. The default shallow checkout
+          # (depth 1) would make both wrong rather than fail loudly.
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -26,7 +31,11 @@ jobs:
         # (an apostrophe in "Don't ..." or "it's ..." is common) — escape for
         # a single-quoted JS string specifically, not just JSON-escape.
         run: |
-          export APP_VERSION="$(node -p "require('./package.json').version")"
+          # Patch number = commit count, so the version moves on every commit
+          # without a bot committing a bumped package.json back to main (which
+          # would push, which would deploy, which would push...). package.json
+          # still owns major.minor — bump it there when you want 0.2.x.
+          export APP_VERSION="$(node -p "require('./package.json').version.split('.').slice(0,2).join('.')").$(git rev-list --count HEAD)"
           export BUILD_NUMBER="${{ github.run_number }}"
           export COMMIT_SHA_SHORT="${GITHUB_SHA::7}"
           export COMMIT_MESSAGE="$(git log -1 --pretty=%s)"
@@ -47,6 +56,12 @@ jobs:
               .replace('__DEPLOYED_AT__', esc(process.env.DEPLOYED_AT));
             fs.writeFileSync(path, content);
           "
+
+      - name: Generate changelog
+        # Reads the git log into public/changelog.json for the Behind the
+        # Scenes page. Must run before the build, since public/ is copied
+        # into the bundle as an asset.
+        run: npm run changelog
 
       - name: Build
         run: npx ng build --configuration production

@@ -1,0 +1,66 @@
+<div class="bts container">
+  <header class="bts__head">
+    <p class="kicker">{{ i18n.dict().behindTheScenes.kicker }}</p>
+    <h1 class="bts__title">{{ i18n.dict().behindTheScenes.title }}</h1>
+    <p class="section-lede">{{ i18n.dict().behindTheScenes.lede }}</p>
+
+    <dl class="bts__stats">
+      <div class="bts__stat">
+        <dt>{{ i18n.dict().behindTheScenes.statCommits }}</dt>
+        <dd>{{ commitCount() }}</dd>
+      </div>
+      <div class="bts__stat">
+        <dt>{{ i18n.dict().behindTheScenes.statStack }}</dt>
+        <dd>{{ languageCount }}</dd>
+      </div>
+      <div class="bts__stat">
+        <dt>{{ i18n.dict().behindTheScenes.statCoffee }}</dt>
+        <dd>∞</dd>
+      </div>
+    </dl>
+  </header>
+
+  <section class="bts__section" aria-labelledby="bts-stack">
+    <h2 id="bts-stack" class="section-title">{{ i18n.dict().behindTheScenes.stackTitle }}</h2>
+    <p class="section-lede">{{ i18n.dict().behindTheScenes.stackLede }}</p>
+
+    <ul class="bts__stack">
+      @for (item of stack; track item.name) {
+        <li class="bts__stack-item">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.note }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="bts__section" aria-labelledby="bts-changelog">
+    <h2 id="bts-changelog" class="section-title">{{ i18n.dict().behindTheScenes.changelogTitle }}</h2>
+    <p class="section-lede">{{ i18n.dict().behindTheScenes.changelogLede }}</p>
+
+    @if (loaded() && !changelog()) {
+      <p class="bts__empty">{{ i18n.dict().behindTheScenes.empty }}</p>
+    }
+
+    <ol class="bts__log">
+      @for (day of days(); track day.date) {
+        <li class="bts__day">
+          <h3 class="bts__day-label">{{ day.label }}</h3>
+          <ul class="bts__day-commits">
+            @for (commit of day.commits; track commit.sha) {
+              <li class="bts__commit">
+                <span class="bts__commit-time">{{ time(commit.date) }}</span>
+                <code class="bts__commit-sha">{{ commit.sha }}</code>
+                <span class="bts__commit-subject">{{ commit.subject }}</span>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <p class="bts__back">
+    <a class="btn btn--secondary" routerLink="/">{{ i18n.dict().behindTheScenes.backHome }}</a>
+  </p>
+</div>

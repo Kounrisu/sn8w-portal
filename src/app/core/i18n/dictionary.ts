@@ -115,12 +115,29 @@ export interface Dict {
     title: string;
     lede: string;
   };
+  behindTheScenes: {
+    kicker: string;
+    title: string;
+    lede: string;
+    stackTitle: string;
+    stackLede: string;
+    changelogTitle: string;
+    changelogLede: string;
+    statCommits: string;
+    statStack: string;
+    statCoffee: string;
+    empty: string;
+    backHome: string;
+    navLabel: string;
+  };
   footer: {
     github: string;
     copyEmail: string;
     copied: string;
     copyFailed: string;
     deployedCommit: string;
+    deployedAt: string;
+    localBuild: string;
   };
   auth: {
     title: string;
@@ -407,12 +424,29 @@ export const en: Dict = {
     title: 'Want to see more?',
     lede: 'Everything here starts as a repository on GitHub — feel free to look around, or get in touch.',
   },
+  behindTheScenes: {
+    kicker: 'Behind the scenes',
+    title: 'How this site is actually held together',
+    lede: 'Every push to main builds the app, stamps it with a version and a timestamp, and drops it onto a small shared host. No staging, no ceremony. If you are reading this, it worked.',
+    stackTitle: 'What it runs on',
+    stackLede: 'Nothing exotic. Boring technology, chosen so the interesting part can be the interface.',
+    changelogTitle: 'Everything that has happened here',
+    changelogLede: 'Straight from the git log — no editing, no tidying up. The awkward commits stay in.',
+    statCommits: 'commits',
+    statStack: 'languages spoken',
+    statCoffee: 'undocumented coffees',
+    empty: 'The changelog has not been generated for this build. Run npm run changelog.',
+    backHome: 'Back to the site',
+    navLabel: 'Behind the scenes',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'Copy email',
     copied: 'Email address copied',
     copyFailed: 'Could not copy email address',
     deployedCommit: 'Deployed commit',
+    deployedAt: 'deployed',
+    localBuild: 'local build',
   },
   auth: {
     title: 'Sign in',
