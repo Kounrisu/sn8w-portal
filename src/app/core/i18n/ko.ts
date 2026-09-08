@@ -10,13 +10,14 @@ export const ko: Dict = {
     delete: '삭제',
     edit: '수정',
     theme: '테마',
-    themeFrost: '밤하늘',
-    themeSquirrel: '행운의 다람쥐',
+    themeFrost: '다크',
+    themeSquirrel: '라이트',
   },
   nav: {
     products: '제품',
     developerTools: '개발자 도구',
     about: '소개',
+    contact: '문의하기',
     github: 'GitHub',
     explore: '제품 둘러보기',
     openMenu: '메뉴 열기',
@@ -27,18 +28,67 @@ export const ko: Dict = {
     diary: '다이어리',
   },
   hero: {
-    kicker: '소프트웨어 스튜디오',
-    headlineMain: '정성껏 만든, 집중된 소프트웨어',
-    headlineAccent: '— 기본으로 출시하지 않습니다.',
-    lede: 'sn8w는 개발자 도구, 금융 대시보드, 그리고 조금 색다른 것들을 만드는 작은 스튜디오입니다. 각 제품은 실제 사용을 위해 설계되고, 접근성을 검증받으며, 오래 지속되도록 만들어집니다.',
-    ctaPrimary: '제품 둘러보기',
+    kicker: '프랑스 파리',
+    headlineMain: '필립 파르망티에',
+    headlineAccent: '프론트엔드 Angular 개발자',
+    lede: '주로 Angular로 일하고 있고, 현재 파리에 있는 유럽의 한 중앙은행에서 접근성(RGAA)을 중심으로 근무하고 있습니다. 이 사이트는 제 이력서 역할을 하면서, 배우기 위해 만들고 있는 개인 프로젝트 몇 가지도 함께 소개합니다.',
+    ctaPrimary: '경력 보기',
     ctaSecondary: 'GitHub에서 보기',
   },
+  aboutSection: {
+    kicker: '소개',
+    title: '제 경력에 대해 조금',
+    lede: '파리 근교에 거주하는 프론트엔드 개발자로, 주로 Angular로 일합니다. 대부분의 시간을 유럽의 한 중앙은행에서 컴포넌트 라이브러리와 접근성(RGAA/WCAG) 작업에 쏟고 있습니다. 그 이전에는 거의 10년 동안 제조업에서 프로세스 개선 업무를 했는데, 문서화와 부서 간 협업을 중시하는 습관은 그때 생긴 것입니다.',
+    timelineLabel: '경력',
+    timeline: [
+      {
+        period: '2015년 — 현재',
+        role: '프론트엔드 Angular 개발자',
+        org: '유럽 중앙은행 (파리)',
+        description:
+          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. Angular 4에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사와 교육을 진행했으며, UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
+      },
+      {
+        period: '2014년 — 2015년',
+        role: '프리랜서 프론트엔드 퍼블리셔',
+        org: 'Wizzmedia · 3W Agency',
+        description:
+          '10여 건의 짧은 프리랜서 프로젝트 — 이커머스(PrestaShop)를 위한 PSD/Illustrator 기반 반응형 퍼블리싱, 여러 워드프레스 구축, AngularJS 게임 등 호텔, 제조, 이커머스 분야 클라이언트를 대상으로 진행.',
+      },
+      {
+        period: '2012년 — 2014년',
+        role: '웹 개발로의 진로 전환',
+        org: '3WA Web Academy · IESA Multimedia',
+        description:
+          '제조업에서 10년간 프로세스 개선 업무를 수행한 뒤 웹 개발 및 멀티미디어 분야로 전환. HTML5/CSS3/JavaScript 기초부터 완성된 프론트엔드 포트폴리오까지 학습.',
+      },
+      {
+        period: '2000년 — 2008년',
+        role: '지속적 개선 프로젝트 매니저',
+        org: '폴리카보네이트 안경 렌즈 제조업체, 미국',
+        description:
+          '개발자로 전향하기 전, 부서 간 프로세스 개선 프로젝트를 주도하고 성과 지표(KPI)를 추적하며 생산·품질·엔지니어링 팀을 조율.',
+      },
+    ],
+    skillsLabel: '기술',
+    skillsGroups: {
+      languages: { label: '언어', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
+      frameworks: { label: '프레임워크', value: 'Angular (v4 – v21), React' },
+      accessibility: { label: '접근성 & UX', value: 'RGAA, WCAG, 디지털 절제 감사' },
+      tools: { label: '도구', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
+    },
+    certificationsLabel: '자격증 및 교육',
+    certifications: [
+      'Opquast — 디지털 품질 기준, 750/1000점 (2026)',
+      'Access42 — 웹 접근성 교육 (2020)',
+      'TOEFL iBT 105/120점 — 영어 능통 (2010)',
+    ],
+  },
   flagshipSection: {
-    kicker: '대표 제품',
-    title: '신중하게 만들고 있는 세 가지 제품',
-    lede: '나머지 카탈로그는 빠르게 움직입니다. 이 세 가지 제품이 가장 많은 관심을 받는 이유는, 스튜디오의 이름을 걸 만한 것들이기 때문입니다.',
-    followBuild: 'GitHub에서 개발 과정 확인하기',
+    kicker: '개인 프로젝트',
+    title: '요즘 작업하고 있는 것들',
+    lede: '업무 외 시간에 만드는 개인 프로젝트입니다. 새로운 도구를 써보고 계속 배우기 위한 것이지, 사업이 아닙니다.',
+    followBuild: 'GitHub에서 보기',
   },
   status: {
     live: '운영 중',
@@ -47,9 +97,9 @@ export const ko: Dict = {
     prototype: '프로토타입',
   },
   ecosystemSection: {
-    kicker: '에코시스템',
-    title: '나머지 카탈로그',
-    lede: '규모는 작아도 정성은 그대로입니다. 실제 용도에 따라 분류했습니다.',
+    kicker: '다른 프로젝트',
+    title: '몇 가지 더',
+    lede: '작은 실험적인 프로젝트들을 용도별로 모았습니다.',
     groups: {
       developerTools: '개발자 도구',
       finance: '금융',
@@ -58,9 +108,9 @@ export const ko: Dict = {
     },
   },
   principlesSection: {
-    kicker: '작업 방식',
-    title: '방해되지 않는 엔지니어링',
-    lede: '다음 달에 출시되든 프로토타입으로 남든, 모든 제품에는 같은 기준이 적용됩니다.',
+    kicker: '일하는 방식',
+    title: '지키려고 하는 몇 가지 습관',
+    lede: '거창한 건 아니고, 업무든 작은 개인 프로젝트든 이어지는 습관들입니다.',
     items: {
       accessibility: {
         title: '설계 단계부터 접근성 고려',
@@ -93,14 +143,14 @@ export const ko: Dict = {
     },
   },
   labSection: {
-    kicker: '프로덕트 랩',
-    title: '조금 더 특이한 아이디어가 사는 곳',
-    lede: '모든 제품에 사업 계획이 필요한 것은 아닙니다. 이것들은 무언가를 배우기 위한 실험이며, 공개적으로 시도되고, 그럴 가치가 있을 때만 정식 출시됩니다.',
+    kicker: '실험',
+    title: '그냥 재미로',
+    lede: '주로 배우려고 시도해 본 아이디어들입니다. 다 잘 되는 건 아니지만, 그래도 괜찮습니다.',
     tag: '[프로토타입]',
   },
   ctaSection: {
-    title: '다음에 무엇을 만들지 궁금하신가요?',
-    lede: '이 페이지의 모든 제품은 저장소에서 시작됩니다. 지켜봐 주세요.',
+    title: '더 보고 싶으신가요?',
+    lede: '여기 있는 모든 것은 GitHub의 저장소에서 시작됩니다. 편하게 둘러보시거나, 연락해 주세요.',
   },
   footer: {
     github: 'GitHub',

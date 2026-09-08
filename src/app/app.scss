@@ -15,10 +15,12 @@
   position: relative;
   z-index: 1;
   min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
 }
 
+// Plain block flow, not a flex container: each landing section is already
+// a full-viewport "pane", so the flex-to-push-the-footer-down trick this
+// used is no longer needed — and a flex context here would interfere with
+// the hero's fixed video backdrop and the nav's sticky positioning.
 main {
-  flex: 1;
+  display: block;
 }

@@ -22,7 +22,7 @@ function detectInitialLang(): Lang {
     }
   }
 
-  return 'en';
+  return 'fr';
 }
 
 @Injectable({ providedIn: 'root' })

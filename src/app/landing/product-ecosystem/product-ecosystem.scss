@@ -1,21 +1,31 @@
+@use '../../../panel';
+
 :host {
-  display: block;
-  padding-block: var(--space-2xl);
-  border-top: 1px solid var(--line);
+  @include panel.pane;
+}
+
+.section-head {
+  @include panel.glass;
+  @include panel.reveal;
 }
 
 .ecosystem-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-xl);
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.ecosystem-group {
+  @include panel.glass;
+  @include panel.reveal;
 }
 
 .ecosystem-group__title {
   margin: 0 0 var(--space-md);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-md);
   color: var(--ice);
   padding-bottom: var(--space-xs);
   border-bottom: 1px solid var(--line);

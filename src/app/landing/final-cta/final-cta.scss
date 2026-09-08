@@ -1,14 +1,19 @@
+@use '../../../panel';
+
 :host {
-  display: block;
-  padding-block: var(--space-2xl);
-  border-top: 1px solid var(--line);
+  @include panel.pane;
 }
 
 .cta-inner {
+  @include panel.glass;
+  @include panel.reveal;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-md);
+  padding: var(--space-lg);
+  max-width: 46rem;
 }
 
 .cta-title {

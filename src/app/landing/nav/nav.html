@@ -73,16 +73,6 @@
             {{ i18n.dict().nav.logout }}
           </button>
         }
-
-        <a
-          class="nav__github"
-          href="https://github.com/Kounrisu"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {{ i18n.dict().nav.github }}
-        </a>
-        <a class="btn btn--primary" routerLink="/" fragment="products">{{ i18n.dict().nav.explore }}</a>
       </div>
     }
   </div>
@@ -136,17 +126,6 @@
         <span class="nav__timestamp">{{ deployedAtLabel() }}</span>
       </span>
 
-      <a
-        href="https://github.com/Kounrisu"
-        target="_blank"
-        rel="noopener noreferrer"
-        (click)="closeMenu()"
-      >
-        {{ i18n.dict().nav.github }}
-      </a>
-      <a class="btn btn--primary" routerLink="/" fragment="products" (click)="closeMenu()">
-        {{ i18n.dict().nav.explore }}
-      </a>
     </nav>
   }
 </header>
