@@ -59,14 +59,15 @@
           </label>
         </div>
 
-        <span
-          class="nav__version-block"
-          [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' — ' + commitMessage"
-          matTooltipPosition="below"
-        >
-          <span class="nav__version">v{{ version }} · build {{ build }}</span>
-          <span class="nav__timestamp">{{ deployedAtLabel() }}</span>
-        </span>
+        @if (audio.available()) {
+          <button type="button" class="nav__sound" (click)="audio.toggleMuted()">
+            <mat-icon aria-hidden="true">{{ audio.muted() ? 'volume_off' : 'volume_up' }}</mat-icon>
+            <!-- The visible label states the action, so it is the button's
+                 accessible name too — nothing for a screen reader and a
+                 sighted user to disagree about. -->
+            <span>{{ audio.muted() ? i18n.dict().common.soundOn : i18n.dict().common.soundOff }}</span>
+          </button>
+        }
 
         @if (auth.isAuthenticated()) {
           <button type="button" class="nav__logout" (click)="logout()">
@@ -117,15 +118,12 @@
         </select>
       </label>
 
-      <span
-        class="nav__version-block"
-        [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' — ' + commitMessage"
-        matTooltipPosition="below"
-      >
-        <span class="nav__version">v{{ version }} · build {{ build }}</span>
-        <span class="nav__timestamp">{{ deployedAtLabel() }}</span>
-      </span>
-
+      @if (audio.available()) {
+        <button type="button" class="nav__sound nav__sound--menu" (click)="audio.toggleMuted()">
+          <mat-icon aria-hidden="true">{{ audio.muted() ? 'volume_off' : 'volume_up' }}</mat-icon>
+          <span>{{ audio.muted() ? i18n.dict().common.soundOn : i18n.dict().common.soundOff }}</span>
+        </button>
+      }
     </nav>
   }
 </header>

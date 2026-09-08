@@ -32,5 +32,15 @@
         <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
       }
     </nav>
+
+    <!-- Build provenance. Moved down from the nav: it is developer chrome,
+         and the top bar is the first thing a recruiter reads. -->
+    <span
+      class="site-footer__version"
+      [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' — ' + commitMessage"
+      matTooltipPosition="above"
+    >
+      v{{ version }} · build {{ build }} · {{ deployedAtLabel() }}
+    </span>
   </div>
 </footer>

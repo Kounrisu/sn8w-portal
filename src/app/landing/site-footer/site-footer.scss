@@ -86,3 +86,13 @@
 // var(--mist) alone (inherited from `.footer-links a`) already reads as
 // quieter than the primary content — the previous opacity: 0.55 dimmed it
 // further and dropped contrast below AA on lighter themes (1.89:1).
+
+.site-footer__version {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  // var(--mist) and no opacity, for the reason recorded above: dimming this
+  // further is what previously pushed footer text under AA contrast.
+  color: var(--mist);
+  cursor: default;
+  text-align: center;
+}
