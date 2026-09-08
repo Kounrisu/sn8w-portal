@@ -350,3 +350,26 @@ body {
   font-family: var(--font-mono) !important;
   font-size: 0.75rem !important;
 }
+
+// The language menu renders in a CDK overlay, outside the nav component's
+// styles, and Material's own palette is pinned to theme-type: dark — so
+// without this the dropdown stays dark while the rest of the page is in the
+// light theme. Point it at the site's tokens instead, so it follows both.
+.sn8w-lang-menu.mat-mdc-menu-panel {
+  background: var(--surface-raised);
+  border: 1px solid var(--line-strong);
+}
+
+.sn8w-lang-menu .mat-mdc-menu-item {
+  color: var(--ink);
+  min-height: 2.5rem;
+}
+
+.sn8w-lang-menu .mat-mdc-menu-item .mat-mdc-menu-item-text {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+}
+
+.sn8w-lang-menu .mat-mdc-menu-item[aria-current='true'] {
+  color: var(--ice);
+}

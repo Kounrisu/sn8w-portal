@@ -32,31 +32,44 @@
       </nav>
       <div class="nav__actions">
         <div class="nav__prefs">
-          <label class="nav__lang">
-            <span class="visually-hidden">{{ i18n.dict().common.language }}</span>
-            <select
-              [ngModel]="i18n.lang()"
-              (ngModelChange)="setLang($event)"
-              name="lang"
-            >
-              @for (lang of i18n.supportedLangs; track lang) {
-                <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
-              }
-            </select>
-          </label>
+          <button
+            type="button"
+            class="nav__pref-btn nav__lang-btn"
+            [matMenuTriggerFor]="langMenu"
+            [attr.aria-label]="i18n.dict().common.language + ': ' + i18n.langLabels[i18n.lang()]"
+          >
+            <sn8w-flag [lang]="i18n.lang()" />
+            <span class="nav__lang-code">{{ i18n.lang() | uppercase }}</span>
+          </button>
 
-          <label class="nav__lang">
-            <span class="visually-hidden">{{ i18n.dict().common.theme }}</span>
-            <select
-              [ngModel]="theme.theme()"
-              (ngModelChange)="setTheme($event)"
-              name="theme"
-            >
-              @for (t of theme.supportedThemes; track t) {
-                <option [value]="t">{{ themeLabel()[t] }}</option>
-              }
-            </select>
-          </label>
+          <mat-menu #langMenu="matMenu" class="sn8w-lang-menu">
+            @for (lang of i18n.supportedLangs; track lang) {
+              <button
+                type="button"
+                mat-menu-item
+                [attr.aria-current]="lang === i18n.lang() ? 'true' : null"
+                (click)="setLang(lang)"
+              >
+                <span class="nav__lang-option">
+                  <sn8w-flag [lang]="lang" />
+                  {{ i18n.langLabels[lang] }}
+                </span>
+              </button>
+            }
+          </mat-menu>
+
+          <!-- Two themes, so a toggle rather than a picker: the icon shows
+               the theme it switches *to*, which is the convention every
+               dark-mode toggle uses. -->
+          <button
+            type="button"
+            class="nav__pref-btn nav__theme-btn"
+            [attr.aria-label]="i18n.dict().common.theme + ': ' + themeLabel()[nextTheme()]"
+            [matTooltip]="themeLabel()[nextTheme()]"
+            (click)="setTheme(nextTheme())"
+          >
+            <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
+          </button>
         </div>
 
         @if (audio.available()) {
@@ -92,31 +105,32 @@
         </button>
       }
 
-      <label class="nav__lang nav__lang--menu">
-        <span class="visually-hidden">{{ i18n.dict().common.language }}</span>
-        <select
-          [ngModel]="i18n.lang()"
-          (ngModelChange)="setLang($event)"
-          name="langMenu"
-        >
-          @for (lang of i18n.supportedLangs; track lang) {
-            <option [value]="lang">{{ i18n.langLabels[lang] }}</option>
-          }
-        </select>
-      </label>
+      <!-- Enough room in the drawer to lay the languages out flat, rather
+           than opening a menu on top of a menu. -->
+      <div class="nav__lang-row" role="group" [attr.aria-label]="i18n.dict().common.language">
+        @for (lang of i18n.supportedLangs; track lang) {
+          <button
+            type="button"
+            class="nav__lang-chip"
+            [class.nav__lang-chip--active]="lang === i18n.lang()"
+            [attr.aria-current]="lang === i18n.lang() ? 'true' : null"
+            (click)="setLang(lang)"
+          >
+            <sn8w-flag [lang]="lang" />
+            {{ i18n.langLabels[lang] }}
+          </button>
+        }
+      </div>
 
-      <label class="nav__lang nav__lang--menu">
-        <span class="visually-hidden">{{ i18n.dict().common.theme }}</span>
-        <select
-          [ngModel]="theme.theme()"
-          (ngModelChange)="setTheme($event)"
-          name="themeMenu"
-        >
-          @for (t of theme.supportedThemes; track t) {
-            <option [value]="t">{{ themeLabel()[t] }}</option>
-          }
-        </select>
-      </label>
+      <button
+        type="button"
+        class="nav__pref-btn nav__theme-btn nav__theme-btn--menu"
+        (click)="setTheme(nextTheme())"
+      >
+        <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
+        {{ themeLabel()[nextTheme()] }}
+      </button>
+
 
       @if (audio.available()) {
         <button type="button" class="nav__sound nav__sound--menu" (click)="audio.toggleMuted()">
