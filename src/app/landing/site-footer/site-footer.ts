@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { AuthService } from '../../core/auth.service';
 import { environment } from '../../../environments/environment';
+import { PROFILES } from '../../core/profiles';
 
 @Component({
   selector: 'sn8w-site-footer',
@@ -21,27 +22,38 @@ export class SiteFooter {
   protected readonly auth = inject(AuthService);
   protected readonly email = 'kounrisu@gmail.com';
 
-  protected readonly version = environment.version;
-  protected readonly build = environment.build;
+  // Still referenced by the version badge's tooltip.
   protected readonly commit = environment.commit;
   protected readonly commitMessage = environment.commitMessage;
 
-  protected readonly deployedAtLabel = computed(() => {
+  /**
+   * `v0.1.0 · build 25 · a1b2c3d · 8 Sept 2026, 22:48` on a deployed build.
+   *
+   * The commit and timestamp are dropped when they aren't real values: they
+   * are the literal string 'dev' in a local build, and would be the
+   * unsubstituted '__COMMIT_SHA__' placeholders if the deploy workflow ever
+   * failed to fill them in. Better a short line than `dev · dev`.
+   */
+  protected readonly buildLabel = computed(() => {
+    const real = (value: string) => value && value !== 'dev' && !value.startsWith('__');
+
+    const parts = [`v${environment.version}`, `build ${environment.build}`];
+    if (real(environment.commit)) parts.push(environment.commit);
+
     const iso = environment.deployedAt;
     const parsed = new Date(iso);
-    if (Number.isNaN(parsed.getTime())) return iso;
-    return new Intl.DateTimeFormat(this.i18n.lang(), {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-    }).format(parsed);
+    if (real(iso) && !Number.isNaN(parsed.getTime())) {
+      parts.push(
+        new Intl.DateTimeFormat(this.i18n.lang(), {
+          dateStyle: 'medium',
+          timeStyle: 'short',
+        }).format(parsed),
+      );
+    }
+    return parts.join(' · ');
   });
 
-  // Public profiles. Each link renders only when its URL is filled in, so a
-  // profile that doesn't exist yet simply doesn't appear rather than
-  // shipping a dead link. Brand names are not translated, so the labels are
-  // in the template rather than the dictionary.
-  protected readonly linkedInUrl = 'https://www.linkedin.com/in/sn8w22/';
-  protected readonly frontendMastersUrl = 'https://master.dev/u/sn8w/';
+  protected readonly profiles = PROFILES;
 
   private readonly clipboard = inject(Clipboard);
   private readonly liveAnnouncer = inject(LiveAnnouncer);

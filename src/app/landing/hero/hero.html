@@ -25,8 +25,16 @@
     <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
     <div class="hero__actions">
       <a class="btn btn--primary" routerLink="/" fragment="studio">{{ i18n.dict().hero.ctaPrimary }}</a>
-      <a class="btn btn--secondary" href="https://github.com/Kounrisu" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn--secondary" [href]="profiles.github" target="_blank" rel="noopener noreferrer">
         {{ i18n.dict().hero.ctaSecondary }}
+      </a>
+      <!-- Brand names, so the labels stay untranslated. Same URLs as the
+           footer, kept on the component rather than repeated inline. -->
+      <a class="btn btn--secondary" [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+      <a class="btn btn--secondary" [href]="profiles.frontendMasters" target="_blank" rel="noopener noreferrer">
+        Frontend Masters
       </a>
     </div>
   </div>

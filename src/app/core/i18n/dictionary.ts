@@ -263,7 +263,7 @@ export const en: Dict = {
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "I'm a front-end developer based near Paris, working mostly with Angular. Most of my time goes into a component library and accessibility (RGAA/WCAG) at a European central bank. Before that, I spent close to a decade in industrial process improvement, which is where I picked up a habit for documentation and working across teams.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I've kept a European central bank's shared component library alive: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
@@ -312,7 +312,7 @@ export const en: Dict = {
   flagshipSection: {
     kicker: 'Personal projects',
     title: "A few things I'm working on",
-    lede: 'Side projects I build outside of work, mostly to try new tools and keep learning. Nothing here is a business.',
+    lede: 'Side projects I build outside of work, mostly to try new tools and keep learning.',
     followBuild: 'Follow along on GitHub',
   },
   status: {
@@ -323,8 +323,8 @@ export const en: Dict = {
   },
   ecosystemSection: {
     kicker: 'More projects',
-    title: 'A few more',
-    lede: "Smaller experiments, grouped by what they're for.",
+    title: 'Smaller tools, built for one job',
+    lede: 'Shorter projects, each one answering a specific need, grouped by what they do.',
     groups: {
       developerTools: 'Developer Tools',
       finance: 'Finance',

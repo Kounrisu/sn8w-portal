@@ -40,7 +40,7 @@ export const de: Dict = {
   aboutSection: {
     kicker: 'Über mich',
     title: 'Etwas zu meinem Werdegang',
-    lede: 'Ich bin Frontend-Entwickler in der Nähe von Paris und arbeite hauptsächlich mit Angular. Der Großteil meiner Zeit fließt in eine Komponentenbibliothek und Barrierefreiheit (RGAA/WCAG) bei einer europäischen Zentralbank. Davor habe ich fast ein Jahrzehnt in der industriellen Prozessverbesserung gearbeitet — daher meine Vorliebe für Dokumentation und teamübergreifende Zusammenarbeit.',
+    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 halte ich die gemeinsame Komponentenbibliothek einer europäischen Zentralbank am Leben: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
     timelineLabel: 'Erfahrung',
     timeline: [
       {
@@ -89,7 +89,7 @@ export const de: Dict = {
   flagshipSection: {
     kicker: 'Private Projekte',
     title: 'Ein paar Dinge, an denen ich arbeite',
-    lede: 'Private Projekte außerhalb der Arbeit, meist um neue Werkzeuge auszuprobieren und dazuzulernen. Das hier ist kein Geschäft.',
+    lede: 'Private Projekte außerhalb der Arbeit, meist um neue Werkzeuge auszuprobieren und dazuzulernen.',
     followBuild: 'Auf GitHub verfolgen',
   },
   status: {
@@ -100,8 +100,8 @@ export const de: Dict = {
   },
   ecosystemSection: {
     kicker: 'Weitere Projekte',
-    title: 'Noch ein paar mehr',
-    lede: 'Kleinere Experimente, gruppiert nach ihrem eigentlichen Zweck.',
+    title: 'Kleinere Werkzeuge für je eine Aufgabe',
+    lede: 'Kürzere Projekte, jedes aus einem konkreten Bedarf entstanden, nach Einsatzzweck gruppiert.',
     groups: {
       developerTools: 'Entwicklertools',
       finance: 'Finanzen',

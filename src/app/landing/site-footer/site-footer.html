@@ -8,22 +8,18 @@
     </a>
 
     <nav class="footer-links" aria-label="Contact">
-      <a href="https://github.com/Kounrisu" target="_blank" rel="noopener noreferrer">
+      <a [href]="profiles.github" target="_blank" rel="noopener noreferrer">
         <mat-icon aria-hidden="true">code</mat-icon>
         {{ i18n.dict().footer.github }}
       </a>
-      @if (linkedInUrl) {
-        <a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">
-          <mat-icon aria-hidden="true">work_outline</mat-icon>
-          LinkedIn
-        </a>
-      }
-      @if (frontendMastersUrl) {
-        <a [href]="frontendMastersUrl" target="_blank" rel="noopener noreferrer">
-          <mat-icon aria-hidden="true">school</mat-icon>
-          Frontend Masters
-        </a>
-      }
+      <a [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer">
+        <mat-icon aria-hidden="true">work_outline</mat-icon>
+        LinkedIn
+      </a>
+      <a [href]="profiles.frontendMasters" target="_blank" rel="noopener noreferrer">
+        <mat-icon aria-hidden="true">school</mat-icon>
+        Frontend Masters
+      </a>
       <button type="button" class="email-copy" (click)="copyEmail()">
         <mat-icon aria-hidden="true">mail_outline</mat-icon>
         {{ email }}
@@ -40,7 +36,7 @@
       [matTooltip]="i18n.dict().footer.deployedCommit + ': ' + commit + ' — ' + commitMessage"
       matTooltipPosition="above"
     >
-      v{{ version }} · build {{ build }} · {{ deployedAtLabel() }}
+      {{ buildLabel() }}
     </span>
   </div>
 </footer>
