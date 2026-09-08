@@ -88,9 +88,11 @@ export const ko: Dict = {
     },
     certificationsLabel: '자격증 및 교육',
     certifications: [
+      '플라스틱 공학 엔지니어 학위 — ESP(현재 INSA 리옹 소속)',
       'Opquast — 디지털 품질 기준, 750/1000점 (2026)',
       'Access42 — 웹 접근성 교육 (2020)',
       'TOEFL iBT 105/120점 — 영어 능통 (2010)',
+      'CAP Pâtissier · CAP Chocolatier(제과·쇼콜라티에 자격) — 독학으로 응시, 배우는 즐거움으로',
     ],
   },
   flagshipSection: {

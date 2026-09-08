@@ -88,9 +88,11 @@ export const ja: Dict = {
     },
     certificationsLabel: '資格・研修',
     certifications: [
+      'プラスチック工学エンジニア学位 — ESP（現在は INSA リヨンの一部）',
       'Opquast — デジタル品質リファレンス、750/1000点（2026年）',
       'Access42 — ウェブアクセシビリティ研修（2020年）',
       'TOEFL iBT 105/120点 — 英語堪能（2010年）',
+      'CAP Pâtissier・CAP Chocolatier（製菓／ショコラティエ資格） — 独学で受験、学ぶことが好きで',
     ],
   },
   flagshipSection: {

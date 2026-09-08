@@ -88,9 +88,11 @@ export const de: Dict = {
     },
     certificationsLabel: 'Zertifizierungen & Weiterbildungen',
     certifications: [
+      'Diplom-Ingenieur Kunststofftechnik — ESP, heute Teil der INSA Lyon',
       'Opquast — Referenzrahmen für digitale Qualität, 750/1000 (2026)',
       'Access42 — Schulung Barrierefreiheit im Web (2020)',
       'TOEFL iBT 105/120 — verhandlungssicheres Englisch (2010)',
+      'CAP Pâtissier und CAP Chocolatier — als externer Kandidat abgelegt, aus Freude am Lernen',
     ],
   },
   flagshipSection: {

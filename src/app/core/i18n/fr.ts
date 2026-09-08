@@ -88,9 +88,11 @@ export const fr: Dict = {
     },
     certificationsLabel: 'Certifications & formations',
     certifications: [
+      "Diplôme d'ingénieur plasturgiste — ESP, aujourd'hui rattachée à l'INSA Lyon",
       'Opquast — Mobiliser un Référentiel Qualité Numérique, 750/1000 (2026)',
       'Access42 — Formation accessibilité numérique (2020)',
       'TOEFL iBT 105/120 — anglais courant (2010)',
+      "CAP Pâtissier et CAP Chocolatier — passés en candidat libre, par goût d'apprendre",
     ],
   },
   flagshipSection: {

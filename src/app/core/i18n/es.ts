@@ -88,9 +88,11 @@ export const es: Dict = {
     },
     certificationsLabel: 'Certificaciones y formación',
     certifications: [
+      'Ingeniero en plásticos — ESP, hoy integrada en el INSA Lyon',
       'Opquast — Referencial de Calidad Digital, 750/1000 (2026)',
       'Access42 — Formación en accesibilidad web (2020)',
       'TOEFL iBT 105/120 — inglés fluido (2010)',
+      'CAP Pâtissier y CAP Chocolatier — presentados por libre, por el gusto de aprender',
     ],
   },
   flagshipSection: {
