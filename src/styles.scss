@@ -1,27 +1,37 @@
 @use '@angular/material' as mat;
 
 // Color tokens below are grouped per theme. The names (--ice, --ember, ...)
-// come from the original "Night Sky" theme and now act as generic semantic
-// slots — primary accent, secondary/warm accent, muted text — reused as-is
-// by every theme rather than renamed, to avoid a repaint-only refactor
-// touching every component stylesheet.
+// are inherited slot names from an earlier palette and now act as generic
+// semantic slots — primary accent, secondary/warm accent, muted text —
+// reused as-is by every theme rather than renamed, to avoid a repaint-only
+// refactor touching every component stylesheet.
+//
+// Both themes share one "paper & ink" family — a warm neutral ground, an
+// ink-dark text color, a berry/rose primary accent and a muted gold
+// secondary — just inverted for light ("Light" / squirrel, the default)
+// and dark ("Dark" / frost). This is a personal portfolio, not a product
+// marketing site, so the palette favors an editorial, human register over
+// a typical dark-mode dev-tool look.
 :root {
-  --bg: #0a0d12;
-  --ink: #d8dee5;
-  --ice: #a9d8ea;
-  --ember: #e0895a;
-  --mist: #7c8794;
-  --line: #1b2028;
-  --line-strong: #262d38;
-  --surface-raised: #10141b;
-  --surface-sunken: #070911;
+  --bg: #14151b;
+  --ink: #ebe4d4;
+  --ice: #c97b93;
+  --ember: #c99a4a;
+  --mist: #9c9484;
+  --line: #201e19;
+  --line-strong: #342f27;
+  --surface-raised: #1b1811;
+  --surface-sunken: #0f0d09;
   --danger: #d9748f;
   --success: #7fc99a;
 
-  --font-serif: ui-serif, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
-  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', monospace;
-  --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  // "Libre Caslon Text" carries the editorial, personal voice in headlines;
+  // "Public Sans" — the U.S. government's accessible-by-design typeface —
+  // handles body copy and UI text, a deliberate nod to the accessibility
+  // (RGAA) work this site is actually about.
+  --font-serif: 'Libre Caslon Text', ui-serif, 'Iowan Old Style', Georgia, serif;
+  --font-mono: 'Fragment Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+  --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   // Spacing scale — a single ratio driving section rhythm and component gaps.
   --space-2xs: 0.5rem;
@@ -44,10 +54,22 @@
 
   --content-width: 76rem;
   --section-padding-inline: clamp(1.25rem, 4vw + 0.5rem, 4rem);
+
+  // Height of the sticky nav bar. Everything that pins to the top of the
+  // viewport — the hero, and fragment-link scroll targets — offsets by this
+  // so it sits *below* the nav instead of sliding underneath it. Nav writes
+  // the real measured height here at runtime; this is the fallback used
+  // before that first measurement lands.
+  --nav-h: 4.7rem;
 }
 
 html {
   color-scheme: dark;
+
+  // Fragment links (#studio, #products, ...) otherwise scroll their target
+  // to y=0, which is exactly where the sticky nav sits — the heading lands
+  // underneath it.
+  scroll-padding-top: var(--nav-h);
 
   @include mat.theme(
     (
@@ -95,10 +117,11 @@ html {
   --mat-sys-scrim: black;
 }
 
-// "Lucky Squirrel" — a warm, light counterpoint to the default dark "Night
-// Sky" theme: sun-warmed parchment, chestnut ink, a deep sakura-blossom
-// accent, and a toasted-gold "lucky" accent. Selected via the theme
-// switcher in the nav (ThemeService sets this attribute on <html>).
+// "Light" (internal key: squirrel) — sun-warmed parchment, chestnut ink, a
+// deep sakura-blossom accent, and a toasted-gold secondary accent. This is
+// the default theme (see index.html and ThemeService) — the bare :root
+// block above is the "Dark" alternative, selected via the theme switcher
+// in the nav (ThemeService sets this attribute on <html>).
 html[data-theme='squirrel'] {
   color-scheme: light;
 
@@ -145,13 +168,14 @@ body {
 }
 
 // Shared section-heading pattern (kicker / title / lede) — every landing
-// section below the hero uses this instead of redefining it locally.
+// section below the hero uses this instead of redefining it locally. Set
+// as a quiet italic dateline rather than a tracked-out uppercase label —
+// this is a personal portfolio, not a product's marketing chrome.
 .kicker {
   margin: 0 0 var(--space-sm);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-base);
   color: var(--mist);
 }
 

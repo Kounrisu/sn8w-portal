@@ -1,19 +1,27 @@
+@use '../../../panel';
+
 :host {
-  display: block;
-  padding-block: var(--space-2xl);
-  border-top: 1px solid var(--line);
+  @include panel.pane;
+}
+
+.section-head {
+  @include panel.glass;
+  @include panel.reveal;
 }
 
 .principles-grid {
   list-style: none;
-  margin: 0;
+  margin: var(--space-md) 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg) var(--space-md);
+  gap: var(--space-sm);
 }
 
 .principle {
+  @include panel.glass;
+  @include panel.reveal;
+
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);

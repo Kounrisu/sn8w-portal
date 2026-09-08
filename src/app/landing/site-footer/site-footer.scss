@@ -1,6 +1,21 @@
 :host {
   display: block;
-  border-top: 1px solid var(--line);
+  position: relative;
+  z-index: 1;
+
+  // The footer is the one place the page stops floating over the video and
+  // comes to rest. A hard rule + flat bar cut the footage off mid-frame;
+  // instead the video dissolves into the page ground across the footer's
+  // top half, so the bar arrives as a landing rather than a lid. The extra
+  // top padding is the runway that fade needs.
+  padding-top: var(--space-2xl);
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 35%,
+    color-mix(in srgb, var(--bg) 90%, transparent) 65%,
+    var(--bg) 100%
+  );
 }
 
 .site-footer__inner {
@@ -8,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-md);
-  padding-block: var(--space-xl);
+  padding-block: var(--space-lg) var(--space-xl);
   font-family: var(--font-mono);
   text-align: center;
 }

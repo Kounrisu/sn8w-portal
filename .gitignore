@@ -19,6 +19,10 @@ api/lib/config.local.php
 # PHP API — uploaded screenshots live only on the server, not in the repo
 api/uploads/
 
+# Personal CVs / cover letters — never committed (references internal
+# employer application names that must not be publicized)
+/docs/
+
 # IDEs and editors
 .idea/
 .project

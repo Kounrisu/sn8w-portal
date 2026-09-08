@@ -12,7 +12,7 @@ function detectInitialTheme(): Theme {
       return stored as Theme;
     }
   }
-  return 'frost';
+  return 'squirrel';
 }
 
 @Injectable({ providedIn: 'root' })

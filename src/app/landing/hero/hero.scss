@@ -1,197 +1,102 @@
+@use '../../../panel';
+
 :host {
-  display: block;
-  padding-block: var(--space-2xl) var(--space-xl);
+  @include panel.pane;
+
+  display: flex;
+  justify-content: center;
+}
+
+// Fixed, not absolute: the video is the backdrop for the *whole* landing
+// page, not just the first screen. Every section below scrolls over it
+// while it stays put, which is why none of them paint an opaque background
+// of their own — the point is that the video keeps showing through.
+//
+// z-index -1 keeps it behind the sections' content (which sits at z-index
+// 1) while staying inside .shell's stacking context, so it still covers
+// the starfield canvas behind that.
+.hero__bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  // Opaque gradient in the theme's own tones: the real fallback when the
+  // video is blocked, slow to load, or simply hasn't started yet — never a
+  // flash of empty black.
+  background: linear-gradient(160deg, var(--surface-raised) 0%, var(--bg) 55%, var(--surface-sunken) 100%);
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    185deg,
+    color-mix(in srgb, var(--bg) 62%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 18%, transparent) 45%,
+    color-mix(in srgb, var(--bg) 72%, transparent) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    display: none;
+  }
 }
 
 .hero__inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2xl);
+  position: relative;
+  display: flex;
   align-items: center;
 }
 
 .hero__copy {
-  max-width: 42rem;
+  @include panel.glass;
+
+  max-width: 34rem;
+  padding: var(--space-lg);
   opacity: 0;
   animation: fade-up 0.7s ease-out 0.05s forwards;
 }
 
-.hero__headline {
-  margin: 0 0 var(--space-md);
+.hero__name {
+  margin: 0 0 var(--space-2xs);
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: var(--text-3xl);
-  line-height: 1.08;
-  letter-spacing: 0.005em;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
   color: var(--ink);
   text-wrap: balance;
 }
 
-.hero__headline .accent {
-  color: var(--mist);
+.hero__role {
+  margin: 0 0 var(--space-lg);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--ice);
 }
 
 .hero__lede {
   margin: 0 0 var(--space-lg);
-  max-width: 40ch;
-  font-size: var(--text-md);
-  line-height: 1.6;
-  color: var(--mist);
+  max-width: 42ch;
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--ink);
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
-}
-
-.hero__composition {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  opacity: 0;
-  animation: fade-up 0.7s ease-out 0.2s forwards;
-}
-
-.panel {
-  border: 1px solid var(--line-strong);
-  border-radius: 4px;
-  background: var(--surface-raised);
-  padding: var(--space-sm) var(--space-md) var(--space-md);
-  box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.6);
-}
-
-.panel__chrome {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: var(--space-sm);
-}
-
-.panel__dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--line-strong);
-}
-
-.panel__title {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--mist);
-  letter-spacing: 0.04em;
-}
-
-.panel__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.panel__row {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--ink);
-}
-
-.panel__marker {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.panel__row--warn .panel__marker {
-  background: var(--ember);
-}
-
-.panel__row--error .panel__marker {
-  background: var(--danger);
-}
-
-.panel__row--ok .panel__marker {
-  background: var(--ice);
-}
-
-.panel--dashboard {
-  color: var(--ice);
-}
-
-.panel__kpi {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: var(--space-sm);
-}
-
-.panel__kpi-value {
-  font-family: var(--font-serif);
-  font-size: var(--text-lg);
-  color: var(--ice);
-}
-
-.panel__kpi-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--mist);
-}
-
-.panel__spark {
-  width: 100%;
-  height: 2.5rem;
-}
-
-.hero__scene {
-  opacity: 0;
-  animation: fade-up 0.7s ease-out 0.2s forwards;
-}
-
-.panel--mobile {
-  max-width: 14rem;
-  align-self: flex-end;
-}
-
-.panel__notch {
-  width: 2.5rem;
-  height: 0.3rem;
-  border-radius: 4px;
-  background: var(--line-strong);
-  margin: 0 auto var(--space-sm);
-}
-
-.panel__mobile-header {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  color: var(--mist);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: var(--space-xs);
-}
-
-.panel__mobile-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--ink);
-  padding-block: 0.4rem;
-  border-top: 1px solid var(--line);
-}
-
-.panel__mobile-dot {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--ice);
-  flex-shrink: 0;
 }
 
 @keyframes fade-up {
@@ -205,37 +110,8 @@
   }
 }
 
-@media (min-width: 900px) {
-  .hero__inner {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-
-  .hero__composition {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto auto;
-    gap: var(--space-md);
-  }
-
-  .panel--inspector {
-    grid-column: 1 / -1;
-    transform: rotate(-0.6deg);
-  }
-
-  .panel--dashboard {
-    transform: rotate(0.8deg);
-  }
-
-  .panel--mobile {
-    align-self: center;
-    transform: rotate(-0.8deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .hero__copy,
-  .hero__composition,
-  .hero__scene {
+  .hero__copy {
     animation: none;
     opacity: 1;
   }

@@ -3,6 +3,8 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  Injector,
+  afterNextRender,
   computed,
   inject,
   signal,
@@ -35,6 +37,7 @@ export class Nav {
   private readonly breakpointObserver = inject(BreakpointObserver);
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
 
   protected readonly i18n = inject(I18nService);
   protected readonly auth = inject(AuthService);
@@ -68,6 +71,7 @@ export class Nav {
       { fragment: 'products', label: dict.nav.products },
       { fragment: 'developer-tools', label: dict.nav.developerTools },
       { fragment: 'studio', label: dict.nav.about },
+      { fragment: 'contact', label: dict.nav.contact },
     ];
   });
 
@@ -86,6 +90,41 @@ export class Nav {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     this.destroyRef.onDestroy(() => window.removeEventListener('scroll', onScroll));
+
+    this.publishNavHeight();
+  }
+
+  /**
+   * Publishes the nav bar's measured height as `--nav-h` on <html>, so the
+   * hero can pin *below* the nav (`top: var(--nav-h)`) and fill exactly the
+   * space left under it, and so fragment links scroll their target clear of
+   * it. Measured rather than hard-coded because the bar's height moves with
+   * the fluid type scale, the compact breakpoint, and the translated label
+   * lengths.
+   *
+   * Deliberately measures `.nav__inner` (the bar itself) and not the host:
+   * on mobile the expanded menu is part of the host, and letting that count
+   * would resize the hero every time the menu opens.
+   */
+  private publishNavHeight(): void {
+    if (typeof ResizeObserver === 'undefined') return;
+
+    // `afterNextRender`, not the constructor body: the template hasn't been
+    // rendered yet at construction, so .nav__inner doesn't exist to measure.
+    afterNextRender(
+      () => {
+        const bar = this.host.nativeElement.querySelector('.nav__inner');
+        if (!bar) return;
+
+        const observer = new ResizeObserver(([entry]) => {
+          const height = entry.borderBoxSize?.[0]?.blockSize ?? entry.contentRect.height;
+          document.documentElement.style.setProperty('--nav-h', `${Math.round(height)}px`);
+        });
+        observer.observe(bar);
+        this.destroyRef.onDestroy(() => observer.disconnect());
+      },
+      { injector: this.injector },
+    );
   }
 
   protected toggleMenu(): void {

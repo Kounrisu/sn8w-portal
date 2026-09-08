@@ -10,13 +10,14 @@ export const ja: Dict = {
     delete: '削除',
     edit: '編集',
     theme: 'テーマ',
-    themeFrost: '夜空',
-    themeSquirrel: 'ラッキーリス',
+    themeFrost: 'ダーク',
+    themeSquirrel: 'ライト',
   },
   nav: {
     products: 'プロダクト',
     developerTools: '開発者向けツール',
     about: '概要',
+    contact: 'お問い合わせ',
     github: 'GitHub',
     explore: 'プロダクトを見る',
     openMenu: 'メニューを開く',
@@ -27,18 +28,67 @@ export const ja: Dict = {
     diary: '日記',
   },
   hero: {
-    kicker: 'ソフトウェアスタジオ',
-    headlineMain: '丁寧に作られた、focusされたソフトウェア',
-    headlineAccent: '— デフォルトでは出荷しません。',
-    lede: 'sn8wは、開発者向けツール、金融ダッシュボード、そして少し変わったものを作る小さなスタジオです。どれも実用のために設計され、アクセシビリティを検証し、長く使えるように作られています。',
-    ctaPrimary: 'プロダクトを見る',
+    kicker: 'パリ、フランス',
+    headlineMain: 'フィリップ・パルマンティエ',
+    headlineAccent: 'フロントエンドAngular開発者',
+    lede: '主にAngularを使って仕事をしています。現在はパリにあるヨーロッパの中央銀行の一つに勤務しながら、アクセシビリティ(RGAA)を専門にしています。このサイトは履歴書を兼ねていて、学習のために作っている個人プロジェクトもいくつか紹介しています。',
+    ctaPrimary: '経歴を見る',
     ctaSecondary: 'GitHubで見る',
   },
+  aboutSection: {
+    kicker: '自己紹介',
+    title: 'これまでの経歴について',
+    lede: 'パリ近郊在住のフロントエンド開発者で、主にAngularを使っています。時間の大半は、ヨーロッパの中央銀行の一つでのコンポーネントライブラリとアクセシビリティ(RGAA/WCAG)に費やしています。それ以前は約10年間、製造業でプロセス改善の仕事をしており、ドキュメント作成や部門を超えた連携を大切にする姿勢はそこから来ています。',
+    timelineLabel: '職務経歴',
+    timeline: [
+      {
+        period: '2015年 — 現在',
+        role: 'フロントエンドAngular開発者',
+        org: 'ヨーロッパの中央銀行（パリ）',
+        description:
+          '十数の社内アプリケーションで共有されるAngularコンポーネントライブラリを開発・保守。Angular 4からAngular 21へのバージョン移行を主導し、RGAAアクセシビリティ監査と研修を実施。UXワークショップやFigmaの引き継ぎから、見積もり、実装、CI/CD（Jenkins、SonarQube）まで、プロジェクトチームを一貫して支援。',
+      },
+      {
+        period: '2014年 — 2015年',
+        role: 'フリーランス フロントエンドインテグレーター',
+        org: 'Wizzmedia · 3W Agency',
+        description:
+          '十数件の短期フリーランス案件 — ECサイト（PrestaShop）向けのPSD/Illustratorからレスポンシブへの実装、複数のWordPress構築、AngularJS製ゲームなど、ホテル業・製造業・EC業界のクライアントに対応。',
+      },
+      {
+        period: '2012年 — 2014年',
+        role: 'ウェブ開発への転身',
+        org: '3WA Web Academy · IESA Multimedia',
+        description:
+          '製造業でのプロセス改善に10年間従事した後、ウェブ開発・マルチメディア分野へ転身。HTML5/CSS3/JavaScriptの基礎から、フロントエンドのポートフォリオを一通り構築できるまでを学習。',
+      },
+      {
+        period: '2000年 — 2008年',
+        role: '継続的改善プロジェクトマネージャー',
+        org: 'ポリカーボネート製メガネレンズ製造（アメリカ）',
+        description:
+          '部門横断的な改善プロジェクトを主導し、KPIを追跡。開発職への転身前は生産・品質・エンジニアリングチームの調整を担当。',
+      },
+    ],
+    skillsLabel: 'スキル',
+    skillsGroups: {
+      languages: { label: '言語', value: 'HTML5、CSS3、SCSS、JavaScript、TypeScript、SQL、Java、Node.js、PHP' },
+      frameworks: { label: 'フレームワーク', value: 'Angular（v4〜v21）、React' },
+      accessibility: { label: 'アクセシビリティ & UX', value: 'RGAA、WCAG、デジタルソブリエティ監査' },
+      tools: { label: 'ツール', value: 'Git、GitLab、Jenkins、SonarQube、Jira、Figma、CI/CD' },
+    },
+    certificationsLabel: '資格・研修',
+    certifications: [
+      'Opquast — デジタル品質リファレンス、750/1000点（2026年）',
+      'Access42 — ウェブアクセシビリティ研修（2020年）',
+      'TOEFL iBT 105/120点 — 英語堪能（2010年）',
+    ],
+  },
   flagshipSection: {
-    kicker: 'フラッグシップ',
-    title: '意図を持って開発している3つのプロダクト',
-    lede: '他のカタログは速いペースで動きます。この3つが最も注目されているのは、スタジオの名前を賭けられるものだからです。',
-    followBuild: 'GitHubで開発を追う',
+    kicker: '個人プロジェクト',
+    title: '今取り組んでいること',
+    lede: '仕事以外の時間で作っている個人プロジェクトです。新しい技術を試したり、学んだりするためのもので、ビジネスではありません。',
+    followBuild: 'GitHubで見る',
   },
   status: {
     live: '公開中',
@@ -47,9 +97,9 @@ export const ja: Dict = {
     prototype: 'プロトタイプ',
   },
   ecosystemSection: {
-    kicker: 'エコシステム',
-    title: 'その他のカタログ',
-    lede: '規模は小さくても、丁寧さは変わりません。実際の用途ごとにグループ分けしています。',
+    kicker: 'その他のプロジェクト',
+    title: 'もう少しだけ',
+    lede: '小さな実験的プロジェクトを、用途ごとにまとめています。',
     groups: {
       developerTools: '開発者向けツール',
       finance: '金融',
@@ -58,9 +108,9 @@ export const ja: Dict = {
     },
   },
   principlesSection: {
-    kicker: '開発の考え方',
-    title: '邪魔をしないエンジニアリング',
-    lede: '来月リリースされるものでも、プロトタイプのままのものでも、同じ基準がすべてのプロダクトに適用されます。',
+    kicker: '仕事の進め方',
+    title: '大切にしているいくつかの習慣',
+    lede: '特別なものではなく、仕事でも個人の小さなプロジェクトでも変わらず続けている習慣です。',
     items: {
       accessibility: {
         title: '設計段階からのアクセシビリティ',
@@ -93,14 +143,14 @@ export const ja: Dict = {
     },
   },
   labSection: {
-    kicker: 'プロダクトラボ',
-    title: '少し変わったアイデアが生きる場所',
-    lede: 'すべてのプロダクトにビジネスケースが必要なわけではありません。これらは何かを学ぶための実験であり、公開の場で試され、その価値がある場合にのみ正式リリースされます。',
+    kicker: '実験',
+    title: '趣味みたいなものです',
+    lede: '主に学ぶために試したアイデアです。うまくいかないものもありますが、それでいいと思っています。',
     tag: '[プロトタイプ]',
   },
   ctaSection: {
-    title: '次に何を作るか気になりますか？',
-    lede: 'このページのすべてのプロダクトはリポジトリから始まります。ぜひ見に来てください。',
+    title: 'もっと見てみますか？',
+    lede: 'ここにあるものはすべてGitHub上のリポジトリから始まっています。気軽に覗いてみてください — もしくはご連絡ください。',
   },
   footer: {
     github: 'GitHub',

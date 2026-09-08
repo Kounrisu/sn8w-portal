@@ -1,0 +1,135 @@
+@use '../../../panel';
+
+:host {
+  @include panel.pane;
+}
+
+.section-head {
+  @include panel.glass;
+  @include panel.reveal;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.about-subheading {
+  margin: 0 0 var(--space-md);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--mist);
+}
+
+// Timeline ------------------------------------------------------------
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+// Each entry is its own small card rather than a run of text down one
+// shared rule — keeps the blocks small enough that the video reads between
+// and around them.
+.timeline__item {
+  @include panel.glass;
+  @include panel.reveal;
+
+  border-left: 2px solid var(--line-strong);
+}
+
+.timeline__period {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-sm);
+  color: var(--ice);
+}
+
+.timeline__role {
+  margin: 0 0 0.15rem;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--text-lg);
+  color: var(--ink);
+}
+
+.timeline__org {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--mist);
+}
+
+.timeline__description {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 62ch;
+}
+
+// Facts sidebar (skills + certifications) ------------------------------
+
+.about-facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.fact-block {
+  @include panel.glass;
+  @include panel.reveal;
+}
+
+.skills-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skills-list__row dt {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--mist);
+  margin-bottom: 0.2rem;
+}
+
+.skills-list__row dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.certifications-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.certifications-list li {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink);
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--line-strong);
+}
+
+@media (min-width: 1000px) {
+  .about-layout {
+    grid-template-columns: 1.5fr 1fr;
+    align-items: start;
+  }
+}

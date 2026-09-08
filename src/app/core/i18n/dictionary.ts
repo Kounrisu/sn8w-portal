@@ -1,3 +1,10 @@
+export interface AboutTimelineEntry {
+  readonly period: string;
+  readonly role: string;
+  readonly org: string;
+  readonly description: string;
+}
+
 export interface Dict {
   common: {
     loading: string;
@@ -15,6 +22,7 @@ export interface Dict {
     products: string;
     developerTools: string;
     about: string;
+    contact: string;
     github: string;
     explore: string;
     openMenu: string;
@@ -31,6 +39,22 @@ export interface Dict {
     lede: string;
     ctaPrimary: string;
     ctaSecondary: string;
+  };
+  aboutSection: {
+    kicker: string;
+    title: string;
+    lede: string;
+    timelineLabel: string;
+    timeline: readonly AboutTimelineEntry[];
+    skillsLabel: string;
+    skillsGroups: {
+      languages: { label: string; value: string };
+      frameworks: { label: string; value: string };
+      accessibility: { label: string; value: string };
+      tools: { label: string; value: string };
+    };
+    certificationsLabel: string;
+    certifications: readonly string[];
   };
   flagshipSection: {
     kicker: string;
@@ -207,13 +231,14 @@ export const en: Dict = {
     delete: 'Delete',
     edit: 'Edit',
     theme: 'Theme',
-    themeFrost: 'Night Sky',
-    themeSquirrel: 'Lucky Squirrel',
+    themeFrost: 'Dark',
+    themeSquirrel: 'Light',
   },
   nav: {
     products: 'Products',
     developerTools: 'Developer Tools',
     about: 'About',
+    contact: 'Contact',
     github: 'GitHub',
     explore: 'Explore products',
     openMenu: 'Open menu',
@@ -224,18 +249,67 @@ export const en: Dict = {
     diary: 'Diary',
   },
   hero: {
-    kicker: 'Software studio',
-    headlineMain: 'Focused software, built with care',
-    headlineAccent: '— not shipped by default.',
-    lede: "sn8w is a small studio building developer tools, finance dashboards and a few stranger things — each one designed for real use, tested for accessibility, and engineered like it has to last.",
-    ctaPrimary: 'Explore products',
+    kicker: 'Paris, France',
+    headlineMain: 'Philippe Parmentier',
+    headlineAccent: 'Front-End Angular Developer',
+    lede: "I work mainly with Angular, currently at a European central bank in Paris, with a focus on accessibility (RGAA). This site doubles as my CV, and a place to share a few personal projects I'm building to learn.",
+    ctaPrimary: 'See my experience',
     ctaSecondary: 'View on GitHub',
   },
+  aboutSection: {
+    kicker: 'About',
+    title: 'A bit about my background',
+    lede: "I'm a front-end developer based near Paris, working mostly with Angular. Most of my time goes into a component library and accessibility (RGAA/WCAG) at a European central bank. Before that, I spent close to a decade in industrial process improvement, which is where I picked up a habit for documentation and working across teams.",
+    timelineLabel: 'Experience',
+    timeline: [
+      {
+        period: '2015 — Present',
+        role: 'Front-End Angular Developer',
+        org: 'European central bank, Paris',
+        description:
+          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from Angular 4 to Angular 21, running RGAA accessibility audits and training, and supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
+      },
+      {
+        period: '2014 — 2015',
+        role: 'Freelance Front-End Integrator',
+        org: 'Wizzmedia · 3W Agency',
+        description:
+          'A dozen short freelance missions: PSD/Illustrator-to-responsive integration for e-commerce (PrestaShop), several WordPress builds, and an AngularJS game — across hospitality, industry and e-commerce clients.',
+      },
+      {
+        period: '2012 — 2014',
+        role: 'Career switch into web development',
+        org: '3WA Web Academy · IESA Multimedia',
+        description:
+          'Retrained in web development and multimedia — HTML5/CSS3/JavaScript foundations through to a full front-end portfolio, after a decade in industrial process improvement.',
+      },
+      {
+        period: '2000 — 2008',
+        role: 'Continuous Improvement Project Manager',
+        org: 'Polycarbonate lens manufacturing, United States',
+        description:
+          'Led cross-functional process-improvement projects, tracked performance indicators, and coordinated production, quality and engineering teams before retraining as a developer.',
+      },
+    ],
+    skillsLabel: 'Skills',
+    skillsGroups: {
+      languages: { label: 'Languages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
+      frameworks: { label: 'Frameworks', value: 'Angular (v4 – v21), React' },
+      accessibility: { label: 'Accessibility & UX', value: 'RGAA, WCAG, digital sobriety audits' },
+      tools: { label: 'Tools', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
+    },
+    certificationsLabel: 'Certifications & training',
+    certifications: [
+      'Opquast — Digital Quality Reference Framework, 750/1000 (2026)',
+      'Access42 — Web Accessibility Training (2020)',
+      'TOEFL iBT 105/120 — fluent English (2010)',
+    ],
+  },
   flagshipSection: {
-    kicker: 'Flagship',
-    title: "Three products we're building deliberately",
-    lede: "The rest of the catalog moves fast. These three get the most attention — because they're the ones we'd stake the studio's name on.",
-    followBuild: 'Follow the build on GitHub',
+    kicker: 'Personal projects',
+    title: "A few things I'm working on",
+    lede: 'Side projects I build outside of work, mostly to try new tools and keep learning. Nothing here is a business.',
+    followBuild: 'Follow along on GitHub',
   },
   status: {
     live: 'Live',
@@ -244,9 +318,9 @@ export const en: Dict = {
     prototype: 'Prototype',
   },
   ecosystemSection: {
-    kicker: 'Ecosystem',
-    title: 'The rest of the catalog',
-    lede: "Smaller in scope, not in care. Grouped by what they're actually for.",
+    kicker: 'More projects',
+    title: 'A few more',
+    lede: "Smaller experiments, grouped by what they're for.",
     groups: {
       developerTools: 'Developer Tools',
       finance: 'Finance',
@@ -255,9 +329,9 @@ export const en: Dict = {
     },
   },
   principlesSection: {
-    kicker: 'How we build',
-    title: 'Engineering that stays out of the way',
-    lede: 'The same handful of standards apply to every product, whether it ships next month or stays a prototype.',
+    kicker: 'How I work',
+    title: 'A few habits I try to keep',
+    lede: "Nothing formal — just habits that carry over whether it's a work project or something small on the side.",
     items: {
       accessibility: {
         title: 'Accessibility by design',
@@ -290,14 +364,14 @@ export const en: Dict = {
     },
   },
   labSection: {
-    kicker: 'Product Lab',
-    title: 'Where the stranger ideas live',
-    lede: 'Not every product needs a business case. These are experiments — built to learn something, played with in the open, and shipped only if they earn it.',
+    kicker: 'Experiments',
+    title: 'Just for fun',
+    lede: "Ideas I tried out mostly for the learning — not every one goes anywhere, and that's fine.",
     tag: '[prototype]',
   },
   ctaSection: {
-    title: "Curious what we're building next?",
-    lede: 'Every product on this page starts as a repository. Come watch.',
+    title: 'Want to see more?',
+    lede: 'Everything here starts as a repository on GitHub — feel free to look around, or get in touch.',
   },
   footer: {
     github: 'GitHub',

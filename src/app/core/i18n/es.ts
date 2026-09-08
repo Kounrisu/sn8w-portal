@@ -10,13 +10,14 @@ export const es: Dict = {
     delete: 'Eliminar',
     edit: 'Editar',
     theme: 'Tema',
-    themeFrost: 'Cielo nocturno',
-    themeSquirrel: 'Ardilla de la suerte',
+    themeFrost: 'Oscuro',
+    themeSquirrel: 'Claro',
   },
   nav: {
     products: 'Productos',
     developerTools: 'Herramientas para desarrolladores',
     about: 'Acerca de',
+    contact: 'Contacto',
     github: 'GitHub',
     explore: 'Explorar productos',
     openMenu: 'Abrir menú',
@@ -27,18 +28,67 @@ export const es: Dict = {
     diary: 'Diario',
   },
   hero: {
-    kicker: 'Estudio de software',
-    headlineMain: 'Software enfocado, construido con cuidado',
-    headlineAccent: '— nunca lanzado por defecto.',
-    lede: 'sn8w es un pequeño estudio que construye herramientas para desarrolladores, paneles financieros y algunas cosas más extrañas — cada una pensada para un uso real, probada en accesibilidad y diseñada para durar.',
-    ctaPrimary: 'Explorar productos',
+    kicker: 'París, Francia',
+    headlineMain: 'Philippe Parmentier',
+    headlineAccent: 'Desarrollador Front-End Angular',
+    lede: 'Trabajo sobre todo con Angular, actualmente en un banco central europeo en París, con un enfoque en la accesibilidad (RGAA). Esta web es mi CV, y muestra algunos proyectos personales que desarrollo para aprender.',
+    ctaPrimary: 'Ver mi experiencia',
     ctaSecondary: 'Ver en GitHub',
   },
+  aboutSection: {
+    kicker: 'Acerca de mí',
+    title: 'Un poco sobre mi trayectoria',
+    lede: 'Soy desarrollador front-end, ubicado cerca de París, y trabajo sobre todo con Angular. La mayor parte de mi tiempo lo dedico a una biblioteca de componentes y a la accesibilidad (RGAA/WCAG) en un banco central europeo. Antes de esto, pasé casi una década en mejora continua industrial, de ahí mi gusto por la documentación y el trabajo transversal.',
+    timelineLabel: 'Experiencia',
+    timeline: [
+      {
+        period: '2015 — Actualidad',
+        role: 'Desarrollador Front-End Angular',
+        org: 'Banco central europeo, París',
+        description:
+          'Desarrollo y mantenimiento de una biblioteca de componentes Angular compartida, utilizada en una decena de aplicaciones internas. Liderazgo de las migraciones de Angular 4 a Angular 21, auditorías y formación en accesibilidad RGAA, y acompañamiento de los equipos de proyecto de principio a fin — desde talleres UX y maquetas en Figma hasta la estimación, integración y pipelines CI/CD (Jenkins, SonarQube).',
+      },
+      {
+        period: '2014 — 2015',
+        role: 'Integrador Front-End freelance',
+        org: 'Wizzmedia · 3W Agency',
+        description:
+          'Una decena de misiones freelance breves: integración responsive a partir de PSD/Illustrator para e-commerce (PrestaShop), varios sitios WordPress y un juego en AngularJS — para clientes de hostelería, industria y comercio electrónico.',
+      },
+      {
+        period: '2012 — 2014',
+        role: 'Cambio de carrera hacia el desarrollo web',
+        org: '3WA Web Academy · IESA Multimedia',
+        description:
+          'Reconversión profesional hacia el desarrollo web y el multimedia — desde las bases de HTML5/CSS3/JavaScript hasta un portafolio front-end completo, tras una década en la mejora continua industrial.',
+      },
+      {
+        period: '2000 — 2008',
+        role: 'Jefe de proyecto de Mejora Continua',
+        org: 'Fabricación de cristales de gafas de policarbonato, Estados Unidos',
+        description:
+          'Dirección de proyectos transversales de mejora continua, seguimiento de indicadores de rendimiento (KPI) y coordinación de los equipos de producción, calidad e ingeniería, antes de reconvertirme como desarrollador.',
+      },
+    ],
+    skillsLabel: 'Habilidades',
+    skillsGroups: {
+      languages: { label: 'Lenguajes', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
+      frameworks: { label: 'Frameworks', value: 'Angular (v4 a v21), React' },
+      accessibility: { label: 'Accesibilidad y UX', value: 'RGAA, WCAG, auditorías de sobriedad digital' },
+      tools: { label: 'Herramientas', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
+    },
+    certificationsLabel: 'Certificaciones y formación',
+    certifications: [
+      'Opquast — Referencial de Calidad Digital, 750/1000 (2026)',
+      'Access42 — Formación en accesibilidad web (2020)',
+      'TOEFL iBT 105/120 — inglés fluido (2010)',
+    ],
+  },
   flagshipSection: {
-    kicker: 'Insignia',
-    title: 'Tres productos que construimos con intención',
-    lede: 'El resto del catálogo avanza rápido. Estos tres reciben la mayor atención — son aquellos por los que apostaríamos el nombre del estudio.',
-    followBuild: 'Seguir el desarrollo en GitHub',
+    kicker: 'Proyectos personales',
+    title: 'Algunas cosas en las que estoy trabajando',
+    lede: 'Proyectos personales fuera del trabajo, sobre todo para probar herramientas nuevas y seguir aprendiendo. Nada de esto es un negocio.',
+    followBuild: 'Seguir en GitHub',
   },
   status: {
     live: 'En vivo',
@@ -47,9 +97,9 @@ export const es: Dict = {
     prototype: 'Prototipo',
   },
   ecosystemSection: {
-    kicker: 'Ecosistema',
-    title: 'El resto del catálogo',
-    lede: 'Más modesto en alcance, no en cuidado. Agrupado según su verdadero propósito.',
+    kicker: 'Más proyectos',
+    title: 'Algunos más',
+    lede: 'Experimentos más pequeños, agrupados según su propósito.',
     groups: {
       developerTools: 'Herramientas para desarrolladores',
       finance: 'Finanzas',
@@ -58,9 +108,9 @@ export const es: Dict = {
     },
   },
   principlesSection: {
-    kicker: 'Cómo construimos',
-    title: 'Ingeniería que no estorba',
-    lede: 'El mismo puñado de estándares se aplica a cada producto, ya salga el mes que viene o siga siendo un prototipo.',
+    kicker: 'Cómo trabajo',
+    title: 'Algunos hábitos que intento mantener',
+    lede: 'Nada formal — simplemente hábitos que se repiten, sea un proyecto de trabajo o algo pequeño personal.',
     items: {
       accessibility: {
         title: 'Accesibilidad desde el diseño',
@@ -93,14 +143,14 @@ export const es: Dict = {
     },
   },
   labSection: {
-    kicker: 'Laboratorio de productos',
-    title: 'Donde viven las ideas más extrañas',
-    lede: 'No todos los productos necesitan un caso de negocio. Estos son experimentos — construidos para aprender algo, probados abiertamente y lanzados solo si se lo ganan.',
+    kicker: 'Experimentos',
+    title: 'Solo por diversión',
+    lede: 'Ideas que probé sobre todo para aprender — no todas llegan a algo, y está bien así.',
     tag: '[prototipo]',
   },
   ctaSection: {
-    title: '¿Curioso por saber qué construimos después?',
-    lede: 'Cada producto de esta página empieza como un repositorio. Ven a verlo.',
+    title: '¿Quieres ver más?',
+    lede: 'Todo aquí empieza como un repositorio en GitHub — siéntete libre de mirar, o escríbeme.',
   },
   footer: {
     github: 'GitHub',

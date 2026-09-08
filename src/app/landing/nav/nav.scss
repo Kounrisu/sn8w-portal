@@ -1,7 +1,17 @@
-.nav {
+:host {
+  // The sticky positioning lives here, not on .nav below: a sticky
+  // element's containing block is its own parent, and .nav's parent is
+  // this host — which, unstyled, would be sized to fit .nav exactly,
+  // leaving it no room to actually stick. Putting position:sticky on the
+  // host instead means its containing block is <main>'s sibling in the
+  // page shell, which is tall enough for the offset to do anything.
+  display: block;
   position: sticky;
   top: 0;
   z-index: 40;
+}
+
+.nav {
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
@@ -47,10 +57,9 @@
 }
 
 .nav__links a {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
   color: var(--mist);
   text-decoration: none;
 }
@@ -117,10 +126,9 @@
 }
 
 .nav__logout {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
   color: var(--mist);
   background: transparent;
   border: none;
@@ -147,10 +155,9 @@
 }
 
 .nav__github {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
   color: var(--mist);
   text-decoration: none;
 }
@@ -222,9 +229,8 @@
 }
 
 .nav__menu a:not(.btn) {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  letter-spacing: 0.05em;
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
   color: var(--ink);
   text-decoration: none;
   padding-block: 0.35rem;

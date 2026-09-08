@@ -10,13 +10,14 @@ export const de: Dict = {
     delete: 'Löschen',
     edit: 'Bearbeiten',
     theme: 'Motiv',
-    themeFrost: 'Nachthimmel',
-    themeSquirrel: 'Glückseichhörnchen',
+    themeFrost: 'Dunkel',
+    themeSquirrel: 'Hell',
   },
   nav: {
     products: 'Produkte',
     developerTools: 'Entwicklertools',
     about: 'Über uns',
+    contact: 'Kontakt',
     github: 'GitHub',
     explore: 'Produkte entdecken',
     openMenu: 'Menü öffnen',
@@ -27,18 +28,67 @@ export const de: Dict = {
     diary: 'Tagebuch',
   },
   hero: {
-    kicker: 'Software-Studio',
-    headlineMain: 'Fokussierte Software, mit Sorgfalt gebaut',
-    headlineAccent: '— nicht standardmäßig ausgeliefert.',
-    lede: 'sn8w ist ein kleines Studio, das Entwicklertools, Finanz-Dashboards und ein paar ungewöhnlichere Dinge baut — jedes für den echten Einsatz konzipiert, auf Barrierefreiheit geprüft und darauf ausgelegt, lange zu halten.',
-    ctaPrimary: 'Produkte entdecken',
+    kicker: 'Paris, Frankreich',
+    headlineMain: 'Philippe Parmentier',
+    headlineAccent: 'Frontend-Angular-Entwickler',
+    lede: 'Ich arbeite hauptsächlich mit Angular, derzeit bei einer europäischen Zentralbank in Paris, mit Schwerpunkt auf Barrierefreiheit (RGAA). Diese Seite dient als Lebenslauf und zeigt ein paar private Projekte, an denen ich zum Lernen arbeite.',
+    ctaPrimary: 'Meine Erfahrung ansehen',
     ctaSecondary: 'Auf GitHub ansehen',
   },
+  aboutSection: {
+    kicker: 'Über mich',
+    title: 'Etwas zu meinem Werdegang',
+    lede: 'Ich bin Frontend-Entwickler in der Nähe von Paris und arbeite hauptsächlich mit Angular. Der Großteil meiner Zeit fließt in eine Komponentenbibliothek und Barrierefreiheit (RGAA/WCAG) bei einer europäischen Zentralbank. Davor habe ich fast ein Jahrzehnt in der industriellen Prozessverbesserung gearbeitet — daher meine Vorliebe für Dokumentation und teamübergreifende Zusammenarbeit.',
+    timelineLabel: 'Erfahrung',
+    timeline: [
+      {
+        period: '2015 — Heute',
+        role: 'Frontend-Angular-Entwickler',
+        org: 'Europäische Zentralbank, Paris',
+        description:
+          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von Angular 4 auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen und -schulungen sowie durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
+      },
+      {
+        period: '2014 — 2015',
+        role: 'Freiberuflicher Frontend-Integrator',
+        org: 'Wizzmedia · 3W Agency',
+        description:
+          'Ein Dutzend kurzer freiberuflicher Projekte: responsive Umsetzung von PSD/Illustrator-Vorlagen für E-Commerce (PrestaShop), mehrere WordPress-Seiten und ein AngularJS-Spiel — für Kunden aus Hotellerie, Industrie und E-Commerce.',
+      },
+      {
+        period: '2012 — 2014',
+        role: 'Quereinstieg in die Webentwicklung',
+        org: '3WA Web Academy · IESA Multimedia',
+        description:
+          'Umschulung in Webentwicklung und Multimedia — von HTML5/CSS3/JavaScript-Grundlagen bis zu einem vollständigen Frontend-Portfolio, nach einem Jahrzehnt im industriellen Prozessmanagement.',
+      },
+      {
+        period: '2000 — 2008',
+        role: 'Projektleiter Kontinuierliche Verbesserung',
+        org: 'Fertigung von Polycarbonat-Brillengläsern, USA',
+        description:
+          'Leitung bereichsübergreifender Verbesserungsprojekte, Verfolgung von Leistungskennzahlen und Koordination von Produktions-, Qualitäts- und Engineering-Teams vor der Umschulung zum Entwickler.',
+      },
+    ],
+    skillsLabel: 'Fähigkeiten',
+    skillsGroups: {
+      languages: { label: 'Sprachen', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
+      frameworks: { label: 'Frameworks', value: 'Angular (v4 – v21), React' },
+      accessibility: { label: 'Barrierefreiheit & UX', value: 'RGAA, WCAG, Prüfungen zur digitalen Nachhaltigkeit' },
+      tools: { label: 'Werkzeuge', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
+    },
+    certificationsLabel: 'Zertifizierungen & Weiterbildungen',
+    certifications: [
+      'Opquast — Referenzrahmen für digitale Qualität, 750/1000 (2026)',
+      'Access42 — Schulung Barrierefreiheit im Web (2020)',
+      'TOEFL iBT 105/120 — verhandlungssicheres Englisch (2010)',
+    ],
+  },
   flagshipSection: {
-    kicker: 'Flaggschiffe',
-    title: 'Drei Produkte, die wir gezielt bauen',
-    lede: 'Der Rest des Katalogs bewegt sich schnell. Diese drei bekommen die meiste Aufmerksamkeit — für sie würden wir den Namen des Studios verbürgen.',
-    followBuild: 'Entwicklung auf GitHub verfolgen',
+    kicker: 'Private Projekte',
+    title: 'Ein paar Dinge, an denen ich arbeite',
+    lede: 'Private Projekte außerhalb der Arbeit, meist um neue Werkzeuge auszuprobieren und dazuzulernen. Das hier ist kein Geschäft.',
+    followBuild: 'Auf GitHub verfolgen',
   },
   status: {
     live: 'Live',
@@ -47,9 +97,9 @@ export const de: Dict = {
     prototype: 'Prototyp',
   },
   ecosystemSection: {
-    kicker: 'Ökosystem',
-    title: 'Der Rest des Katalogs',
-    lede: 'Kleiner im Umfang, nicht in der Sorgfalt. Gruppiert nach ihrem eigentlichen Zweck.',
+    kicker: 'Weitere Projekte',
+    title: 'Noch ein paar mehr',
+    lede: 'Kleinere Experimente, gruppiert nach ihrem eigentlichen Zweck.',
     groups: {
       developerTools: 'Entwicklertools',
       finance: 'Finanzen',
@@ -58,9 +108,9 @@ export const de: Dict = {
     },
   },
   principlesSection: {
-    kicker: 'Wie wir bauen',
-    title: 'Technik, die sich nicht in den Weg stellt',
-    lede: 'Dieselbe Handvoll Standards gilt für jedes Produkt — ob es nächsten Monat startet oder ein Prototyp bleibt.',
+    kicker: 'Wie ich arbeite',
+    title: 'Ein paar Gewohnheiten, an denen ich festhalte',
+    lede: 'Nichts Formelles — einfach Gewohnheiten, egal ob es ein berufliches oder ein kleines privates Projekt ist.',
     items: {
       accessibility: {
         title: 'Barrierefreiheit von Anfang an',
@@ -93,14 +143,14 @@ export const de: Dict = {
     },
   },
   labSection: {
-    kicker: 'Produktlabor',
-    title: 'Wo die ausgefalleneren Ideen leben',
-    lede: 'Nicht jedes Produkt braucht einen Business-Case. Das hier sind Experimente — gebaut, um etwas zu lernen, offen erprobt und nur ausgeliefert, wenn sie es verdienen.',
+    kicker: 'Experimente',
+    title: 'Nur zum Spaß',
+    lede: 'Ideen, die ich vor allem zum Lernen ausprobiert habe — nicht jede führt irgendwohin, und das ist in Ordnung.',
     tag: '[Prototyp]',
   },
   ctaSection: {
-    title: 'Neugierig, was als Nächstes kommt?',
-    lede: 'Jedes Produkt auf dieser Seite beginnt als Repository. Schau vorbei.',
+    title: 'Möchtest du mehr sehen?',
+    lede: 'Alles hier beginnt als Repository auf GitHub — schau gerne vorbei, oder melde dich.',
   },
   footer: {
     github: 'GitHub',

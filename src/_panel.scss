@@ -1,0 +1,68 @@
+// The landing page is one continuous video backdrop with content floating
+// over it. Every block of copy therefore sits on its own translucent
+// "glass" card — the treatment the hero's intro card established — rather
+// than on an opaque full-width slab, so the video stays visible around and
+// through the content instead of being covered by it.
+//
+// Used via `@use '../../../panel'` + `@include panel.glass;` from the
+// landing sections' component stylesheets.
+
+@mixin glass($tint: 74%) {
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--bg) $tint, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--line-strong) 70%, transparent);
+  padding: var(--space-md);
+}
+
+// A full-viewport "pane" below the sticky nav: the unit one landing block
+// occupies before the next one scrolls up and replaces it. Transparent on
+// purpose — the fixed hero video shows through — and `position: relative`
+// so it paints above that video (which sits at z-index -1).
+@mixin pane {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  min-height: calc(100dvh - var(--nav-h));
+  padding-block: var(--space-xl);
+}
+
+// Entrance for a pane's content: starts slightly smaller and softer, then
+// settles to full size once StackRevealDirective marks the section active
+// (i.e. once it has scrolled into view and become the block on screen).
+//
+// Note the direction of the logic: the hidden start state is applied ONLY
+// under `.reveal-ready`, which the directive sets on the host once it has
+// actually taken charge of revealing. Written the other way round — hidden
+// by default, shown by a class — any failure to add that class leaves the
+// whole page invisible, which is exactly what happened when this was keyed
+// off `.is-active` alone. Content visible is the safe default; the
+// animation is the enhancement.
+@mixin reveal {
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease;
+
+  :host(.reveal-ready) & {
+    transform: scale(0.97);
+    opacity: 0;
+  }
+
+  :host(.reveal-ready.is-active) & {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    :host(.reveal-ready) &,
+    :host(.reveal-ready.is-active) & {
+      transform: none;
+      opacity: 1;
+    }
+  }
+}

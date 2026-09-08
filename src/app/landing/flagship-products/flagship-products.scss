@@ -1,16 +1,25 @@
+@use '../../../panel';
+
 :host {
-  display: block;
-  padding-block: var(--space-2xl);
-  border-top: 1px solid var(--line);
+  @include panel.pane;
+}
+
+.section-head {
+  @include panel.glass;
+  @include panel.reveal;
 }
 
 .flagship-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
 }
 
 .flagship {
+  @include panel.glass;
+  @include panel.reveal;
+
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-lg);
@@ -23,10 +32,9 @@
 
 .flagship__category {
   margin: 0 0 var(--space-xs);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
   color: var(--mist);
 }
 

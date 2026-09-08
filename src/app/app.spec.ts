@@ -47,6 +47,6 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const headings = compiled.querySelectorAll('h1');
     expect(headings.length).toBe(1);
-    expect(headings[0].textContent).toContain('Focused software');
+    expect(headings[0].textContent).toContain('Philippe Parmentier');
   });
 });
