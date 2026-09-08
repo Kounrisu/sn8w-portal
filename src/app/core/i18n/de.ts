@@ -40,7 +40,7 @@ export const de: Dict = {
   aboutSection: {
     kicker: 'Über mich',
     title: 'Etwas zu meinem Werdegang',
-    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 entwickle und pflege ich die gemeinsame Komponentenbibliothek einer europäischen Zentralbank: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
+    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 entwickle und pflege ich die gemeinsame Komponentenbibliothek einer europäischen Zentralbank: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet — von der Automobil- über die Kosmetikindustrie bis zu ophthalmischen Polycarbonat-Brillengläsern. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
     timelineLabel: 'Erfahrung',
     timeline: [
       {
@@ -67,7 +67,7 @@ export const de: Dict = {
       {
         period: "Sechs Jahre — USA",
         role: "Projektleiter Kontinuierliche Verbesserung",
-        org: "Optische Industrie — Polycarbonat-Brillengläser",
+        org: "Ophthalmische Polycarbonat-Brillengläser",
         description:
           "Leitung bereichsübergreifender Verbesserungsprojekte an einer Produktionslinie für Polycarbonat-Brillengläser: Leistungskennzahlen (KPIs) und Koordination von Produktions-, Qualitäts- und Engineering-Teams.",
       },

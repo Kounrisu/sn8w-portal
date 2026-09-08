@@ -40,7 +40,7 @@ export const es: Dict = {
   aboutSection: {
     kicker: 'Acerca de mí',
     title: 'Un poco sobre mi trayectoria',
-    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 diseño y mantengo la biblioteca de componentes compartida de un banco central europeo: migraciones de Angular 4 a 21, accesibilidad RGAA/WCAG, pipelines CI/CD y el soporte diario a los equipos que la utilizan. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
+    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 diseño y mantengo la biblioteca de componentes compartida de un banco central europeo: migraciones de Angular 4 a 21, accesibilidad RGAA/WCAG, pipelines CI/CD y el soporte diario a los equipos que la utilizan. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales: de la automoción a la cosmética y después a los cristales oftálmicos de policarbonato. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
     timelineLabel: 'Experiencia',
     timeline: [
       {
@@ -67,7 +67,7 @@ export const es: Dict = {
       {
         period: "Seis años — Estados Unidos",
         role: "Jefe de proyecto de Mejora Continua",
-        org: "Industria óptica — cristales de policarbonato",
+        org: "Cristales oftálmicos de policarbonato",
         description:
           "Dirección de proyectos transversales de mejora continua en una línea de producción de cristales de policarbonato: indicadores de rendimiento (KPI) y coordinación de los equipos de producción, calidad e ingeniería.",
       },
