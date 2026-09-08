@@ -19,6 +19,13 @@ export class SiteFooter {
   protected readonly auth = inject(AuthService);
   protected readonly email = 'kounrisu@gmail.com';
 
+  // Public profiles. Each link renders only when its URL is filled in, so a
+  // profile that doesn't exist yet simply doesn't appear rather than
+  // shipping a dead link. Brand names are not translated, so the labels are
+  // in the template rather than the dictionary.
+  protected readonly linkedInUrl = 'https://www.linkedin.com/in/sn8w22/';
+  protected readonly frontendMastersUrl = 'https://master.dev/u/sn8w/';
+
   private readonly clipboard = inject(Clipboard);
   private readonly liveAnnouncer = inject(LiveAnnouncer);
   private readonly snackBar = inject(MatSnackBar);

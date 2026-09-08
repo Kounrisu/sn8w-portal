@@ -1,4 +1,7 @@
-<footer class="site-footer">
+<!-- `id="contact"` lives here now that the final CTA section is gone: the
+     nav's Contact link needs a target, and the footer is where the email
+     and profile links actually are. -->
+<footer id="contact" class="site-footer">
   <div class="container site-footer__inner">
     <a class="site-footer__logo" href="#top">
       sn<span class="accent">8</span>w
@@ -9,6 +12,18 @@
         <mat-icon aria-hidden="true">code</mat-icon>
         {{ i18n.dict().footer.github }}
       </a>
+      @if (linkedInUrl) {
+        <a [href]="linkedInUrl" target="_blank" rel="noopener noreferrer">
+          <mat-icon aria-hidden="true">work_outline</mat-icon>
+          LinkedIn
+        </a>
+      }
+      @if (frontendMastersUrl) {
+        <a [href]="frontendMastersUrl" target="_blank" rel="noopener noreferrer">
+          <mat-icon aria-hidden="true">school</mat-icon>
+          Frontend Masters
+        </a>
+      }
       <button type="button" class="email-copy" (click)="copyEmail()">
         <mat-icon aria-hidden="true">mail_outline</mat-icon>
         {{ email }}
