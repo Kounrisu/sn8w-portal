@@ -8,11 +8,12 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { I18nService } from '../../core/i18n/i18n.service';
 
 @Component({
   selector: 'sn8w-hero',
-  imports: [RouterLink],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +21,15 @@ import { I18nService } from '../../core/i18n/i18n.service';
 export class Hero implements AfterViewInit {
   protected readonly i18n = inject(I18nService);
   protected readonly videoFailed = signal(false);
+
+  /**
+   * The video starts muted because every browser refuses to autoplay audio
+   * without a user gesture — unmuted autoplay would simply not play at all.
+   * The control below lets the visitor turn sound on; it deliberately does
+   * not persist across loads, so nobody lands on the page and is
+   * unexpectedly played audio.
+   */
+  protected readonly muted = signal(true);
 
   @ViewChild('videoEl') private readonly videoEl?: ElementRef<HTMLVideoElement>;
 
@@ -65,6 +75,20 @@ export class Hero implements AfterViewInit {
     if (playResult && typeof playResult.catch === 'function') {
       playResult.catch(() => undefined);
     }
+  }
+
+  protected toggleMute(): void {
+    const video = this.videoEl?.nativeElement;
+    if (!video) return;
+
+    const nextMuted = !this.muted();
+    video.muted = nextMuted;
+    this.muted.set(nextMuted);
+
+    // Unmuting is itself a user gesture, so this is also the moment a
+    // browser that refused the initial autoplay will finally allow
+    // playback — start it rather than leaving a silent frozen frame.
+    if (!nextMuted) this.tryPlay(video);
   }
 
   protected onVideoError(): void {

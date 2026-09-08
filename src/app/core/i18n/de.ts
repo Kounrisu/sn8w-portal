@@ -12,6 +12,8 @@ export const de: Dict = {
     theme: 'Motiv',
     themeFrost: 'Dunkel',
     themeSquirrel: 'Hell',
+    soundOn: 'Ton einschalten',
+    soundOff: 'Ton ausschalten',
   },
   nav: {
     products: 'Produkte',
