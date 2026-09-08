@@ -351,8 +351,8 @@ export const en: Dict = {
   },
   ecosystemSection: {
     kicker: 'More projects',
-    title: 'Plenty of ideas — the trick is not chasing all of them',
-    lede: 'Building things is the fun part. The hard part is picking which ideas deserve to be finished.',
+    title: 'Learning by building, discovering by trying',
+    lede: 'Every one of these starts from curiosity — a technology I want to try, an idea I want to see running. It is how I learn best, and mostly it is what makes the whole thing fun.',
     groups: {
       developerTools: 'Developer Tools',
       finance: 'Finance',

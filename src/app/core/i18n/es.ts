@@ -119,8 +119,8 @@ export const es: Dict = {
   },
   ecosystemSection: {
     kicker: 'Más proyectos',
-    title: 'Muchas ideas: lo difícil es no perseguirlas todas',
-    lede: 'Crear cosas es lo que me divierte. Lo complicado es elegir cuáles merecen llegar hasta el final.',
+    title: 'Aprender construyendo, descubrir probando',
+    lede: 'Cada uno de estos proyectos nace de una curiosidad: una tecnología que quiero probar, una idea que quiero ver funcionando. Es como mejor aprendo y, sobre todo, es lo que lo hace divertido.',
     groups: {
       developerTools: 'Herramientas para desarrolladores',
       finance: 'Finanzas',
