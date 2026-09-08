@@ -10,9 +10,12 @@ import {
   signal,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { UpperCasePipe } from '@angular/common';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
+import { Flag } from '../flag/flag';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
@@ -28,7 +31,7 @@ interface NavLink {
 
 @Component({
   selector: 'sn8w-nav',
-  imports: [RouterLink, FormsModule, MatIconModule],
+  imports: [RouterLink, UpperCasePipe, MatIconModule, MatMenuModule, MatTooltipModule, Flag],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,6 +53,15 @@ export class Nav {
     return { frost: dict.themeFrost, squirrel: dict.themeSquirrel } as const;
   });
 
+
+  /**
+   * The theme the toggle switches to — 'frost' is the dark one. Both the
+   * icon and the label describe this, not the current theme: a toggle that
+   * shows where you are gives you no way to know where the click leads.
+   */
+  protected readonly nextTheme = computed<Theme>(() =>
+    this.theme.theme() === 'frost' ? 'squirrel' : 'frost',
+  );
 
   protected readonly links = computed<readonly NavLink[]>(() => {
     const dict = this.i18n.dict();
