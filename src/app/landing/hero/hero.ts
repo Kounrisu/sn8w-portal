@@ -4,16 +4,17 @@ import {
   Component,
   ElementRef,
   ViewChild,
+  effect,
   inject,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { HeroAudioService } from '../../core/hero-audio.service';
 
 @Component({
   selector: 'sn8w-hero',
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,16 +23,25 @@ export class Hero implements AfterViewInit {
   protected readonly i18n = inject(I18nService);
   protected readonly videoFailed = signal(false);
 
-  /**
-   * The video starts muted because every browser refuses to autoplay audio
-   * without a user gesture — unmuted autoplay would simply not play at all.
-   * The control below lets the visitor turn sound on; it deliberately does
-   * not persist across loads, so nobody lands on the page and is
-   * unexpectedly played audio.
-   */
-  protected readonly muted = signal(true);
+  private readonly audio = inject(HeroAudioService);
 
   @ViewChild('videoEl') private readonly videoEl?: ElementRef<HTMLVideoElement>;
+
+  constructor() {
+    // The sound control lives in the nav; this is the other half of it.
+    effect(() => {
+      const muted = this.audio.muted();
+      const video = this.videoEl?.nativeElement;
+      if (!video) return;
+
+      video.muted = muted;
+      // Unmuting happens on a click in the nav, so user activation is still
+      // live here — the moment a browser that refused the initial autoplay
+      // will finally allow playback. Start it rather than leaving a silent
+      // frozen frame.
+      if (!muted) this.tryPlay(video);
+    });
+  }
 
   ngAfterViewInit(): void {
     // Belt-and-suspenders for autoplay: the `muted`/`autoplay` attributes
@@ -42,6 +52,7 @@ export class Hero implements AfterViewInit {
     const video = this.videoEl?.nativeElement;
     if (!video) return;
     video.muted = true;
+    this.audio.available.set(true);
 
     this.tryPlay(video);
 
@@ -77,21 +88,9 @@ export class Hero implements AfterViewInit {
     }
   }
 
-  protected toggleMute(): void {
-    const video = this.videoEl?.nativeElement;
-    if (!video) return;
-
-    const nextMuted = !this.muted();
-    video.muted = nextMuted;
-    this.muted.set(nextMuted);
-
-    // Unmuting is itself a user gesture, so this is also the moment a
-    // browser that refused the initial autoplay will finally allow
-    // playback — start it rather than leaving a silent frozen frame.
-    if (!nextMuted) this.tryPlay(video);
-  }
-
   protected onVideoError(): void {
     this.videoFailed.set(true);
+    // Nothing left to unmute — take the nav's control away with it.
+    this.audio.available.set(false);
   }
 }

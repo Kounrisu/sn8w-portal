@@ -12,13 +12,13 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatIconModule } from '@angular/material/icon';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { environment } from '../../../environments/environment';
 import { AuthService } from '../../core/auth.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ThemeService, type Theme } from '../../core/theme.service';
+import { HeroAudioService } from '../../core/hero-audio.service';
 import type { Lang } from '../../core/i18n/dictionary';
 
 interface NavLink {
@@ -28,7 +28,7 @@ interface NavLink {
 
 @Component({
   selector: 'sn8w-nav',
-  imports: [RouterLink, FormsModule, MatTooltipModule],
+  imports: [RouterLink, FormsModule, MatIconModule],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,6 +42,7 @@ export class Nav {
   protected readonly i18n = inject(I18nService);
   protected readonly auth = inject(AuthService);
   protected readonly theme = inject(ThemeService);
+  protected readonly audio = inject(HeroAudioService);
   private readonly router = inject(Router);
 
   protected readonly themeLabel = computed(() => {
@@ -49,21 +50,6 @@ export class Nav {
     return { frost: dict.themeFrost, squirrel: dict.themeSquirrel } as const;
   });
 
-  protected readonly version = environment.version;
-  protected readonly build = environment.build;
-  protected readonly commit = environment.commit;
-  protected readonly commitMessage = environment.commitMessage;
-  protected readonly deployedAt = environment.deployedAt;
-
-  protected readonly deployedAtLabel = computed(() => {
-    const iso = this.deployedAt;
-    const parsed = new Date(iso);
-    if (Number.isNaN(parsed.getTime())) return iso;
-    return new Intl.DateTimeFormat(this.i18n.lang(), {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-    }).format(parsed);
-  });
 
   protected readonly links = computed<readonly NavLink[]>(() => {
     const dict = this.i18n.dict();
