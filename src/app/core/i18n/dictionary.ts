@@ -311,9 +311,11 @@ export const en: Dict = {
     },
     certificationsLabel: 'Certifications & training',
     certifications: [
+      'Plastics engineering degree — ESP, now part of INSA Lyon',
       'Opquast — Digital Quality Reference Framework, 750/1000 (2026)',
       'Access42 — Web Accessibility Training (2020)',
       'TOEFL iBT 105/120 — fluent English (2010)',
+      'CAP Pâtissier and CAP Chocolatier — sat as an independent candidate, for the pleasure of learning',
     ],
   },
   flagshipSection: {
