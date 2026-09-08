@@ -24,9 +24,6 @@
         <mat-icon aria-hidden="true">mail_outline</mat-icon>
         {{ email }}
       </button>
-      @if (!auth.isAuthenticated()) {
-        <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
-      }
     </nav>
 
     <!-- Build provenance. Moved down from the nav: it is developer chrome,

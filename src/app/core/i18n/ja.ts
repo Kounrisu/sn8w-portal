@@ -101,7 +101,7 @@ export const ja: Dict = {
   ecosystemSection: {
     kicker: 'その他のプロジェクト',
     title: 'ひとつの用途のために作った小さなツール',
-    lede: '具体的な必要から生まれた小さめのプロジェクトを、用途ごとにまとめています。',
+    lede: '具体的な必要から生まれた、小さめのプロジェクトたちです。',
     groups: {
       developerTools: '開発者向けツール',
       finance: '金融',

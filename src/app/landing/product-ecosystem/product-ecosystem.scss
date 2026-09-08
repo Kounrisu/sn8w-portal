@@ -9,43 +9,24 @@
   @include panel.reveal;
 }
 
+// Each project is its own card on one flat shelf now, rather than a row
+// inside a category card.
 .ecosystem-grid {
+  list-style: none;
+  padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
   gap: var(--space-sm);
   margin-top: var(--space-md);
 }
 
-.ecosystem-group {
+.ecosystem-item {
   @include panel.glass;
   @include panel.reveal;
-}
 
-.ecosystem-group__title {
-  margin: 0 0 var(--space-md);
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--text-md);
-  color: var(--ice);
-  padding-bottom: var(--space-xs);
-  border-bottom: 1px solid var(--line);
-}
-
-.ecosystem-group__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-}
-
-.ecosystem-item {
-  padding-block: var(--space-sm);
-  border-bottom: 1px solid var(--line);
-}
-
-.ecosystem-item:last-child {
-  border-bottom: none;
+  gap: var(--space-2xs);
 }
 
 .ecosystem-item__head {

@@ -101,7 +101,7 @@ export const ko: Dict = {
   ecosystemSection: {
     kicker: '다른 프로젝트',
     title: '하나의 용도를 위해 만든 작은 도구들',
-    lede: '구체적인 필요에서 출발한 짧은 프로젝트들을 용도별로 모았습니다.',
+    lede: '구체적인 필요에서 출발한 짧은 프로젝트들입니다.',
     groups: {
       developerTools: '개발자 도구',
       finance: '금융',
