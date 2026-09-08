@@ -40,7 +40,7 @@ export const fr: Dict = {
   aboutSection: {
     kicker: 'À propos',
     title: 'Un peu sur mon parcours',
-    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je conçois et maintiens la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'Angular 4 à 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
+    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je conçois et maintiens la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'Angular 4 à 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel, de l'automobile au cosmétique puis aux verres ophtalmiques en polycarbonate. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
     timelineLabel: 'Expérience',
     timeline: [
       {
@@ -67,7 +67,7 @@ export const fr: Dict = {
       {
         period: "Six ans — États-Unis",
         role: "Chef de projet Amélioration Continue",
-        org: "Industrie optique — verres en polycarbonate",
+        org: "Verres ophtalmiques en polycarbonate",
         description:
           "Pilotage de projets d'amélioration continue transverses sur une ligne de production de verres de lunettes en polycarbonate : suivi d'indicateurs de performance (KPI) et coordination des équipes production, qualité et ingénierie.",
       },

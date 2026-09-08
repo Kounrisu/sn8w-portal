@@ -263,7 +263,7 @@ export const en: Dict = {
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I have designed and maintained the shared component library of a European central bank: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites. That is where the habit of method, documentation and cross-team work comes from.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I have designed and maintained the shared component library of a European central bank: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
@@ -290,7 +290,7 @@ export const en: Dict = {
       {
         period: "Six years — United States",
         role: "Continuous Improvement Project Manager",
-        org: "Optical industry — polycarbonate lenses",
+        org: "Ophthalmic polycarbonate lenses",
         description:
           "Ran cross-functional improvement projects on a polycarbonate spectacle-lens production line: performance indicators (KPIs), and coordination across the production, quality and engineering teams.",
       },
