@@ -40,7 +40,7 @@ export const de: Dict = {
   aboutSection: {
     kicker: 'Über mich',
     title: 'Etwas zu meinem Werdegang',
-    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 halte ich die gemeinsame Komponentenbibliothek einer europäischen Zentralbank am Leben: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
+    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 entwickle und pflege ich die gemeinsame Komponentenbibliothek einer europäischen Zentralbank: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
     timelineLabel: 'Erfahrung',
     timeline: [
       {
@@ -65,11 +65,18 @@ export const de: Dict = {
           'Umschulung in Webentwicklung und Multimedia — von HTML5/CSS3/JavaScript-Grundlagen bis zu einem vollständigen Frontend-Portfolio, nach einem Jahrzehnt im industriellen Prozessmanagement.',
       },
       {
-        period: '2000 — 2008',
-        role: 'Projektleiter Kontinuierliche Verbesserung',
-        org: 'Fertigung von Polycarbonat-Brillengläsern, USA',
+        period: "Sechs Jahre — USA",
+        role: "Projektleiter Kontinuierliche Verbesserung",
+        org: "Optische Industrie — Polycarbonat-Brillengläser",
         description:
-          'Leitung bereichsübergreifender Verbesserungsprojekte, Verfolgung von Leistungskennzahlen und Koordination von Produktions-, Qualitäts- und Engineering-Teams vor der Umschulung zum Entwickler.',
+          "Leitung bereichsübergreifender Verbesserungsprojekte an einer Produktionslinie für Polycarbonat-Brillengläser: Leistungskennzahlen (KPIs) und Koordination von Produktions-, Qualitäts- und Engineering-Teams.",
+      },
+      {
+        period: "Drei Jahre — Großbritannien",
+        role: "Kontinuierliche Verbesserung in der Industrie",
+        org: "Automobil, dann Kosmetik",
+        description:
+          "Erste Stationen im Ausland, an Produktionslinien der Automobil- und später der Kosmetikbranche — Arbeitsplatzanalyse, Ausschussreduzierung und Begleitung der Teams vor Ort, vor sechs Jahren in den USA.",
       },
     ],
     skillsLabel: 'Fähigkeiten',
@@ -100,8 +107,8 @@ export const de: Dict = {
   },
   ecosystemSection: {
     kicker: 'Weitere Projekte',
-    title: 'Kleinere Werkzeuge für je eine Aufgabe',
-    lede: 'Kürzere Projekte, jedes aus einem konkreten Bedarf entstanden.',
+    title: 'Viele Ideen — die Kunst ist, nicht allen zu folgen',
+    lede: 'Dinge zu bauen macht mir schlicht Spaß. Schwierig ist nur, zu entscheiden, welche Idee es bis zum Ende schafft.',
     groups: {
       developerTools: 'Entwicklertools',
       finance: 'Finanzen',

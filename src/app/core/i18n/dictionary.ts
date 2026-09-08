@@ -263,7 +263,7 @@ export const en: Dict = {
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I've kept a European central bank's shared component library alive: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites. That is where the habit of method, documentation and cross-team work comes from.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I have designed and maintained the shared component library of a European central bank: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
@@ -288,11 +288,18 @@ export const en: Dict = {
           'Retrained in web development and multimedia — HTML5/CSS3/JavaScript foundations through to a full front-end portfolio, after a decade in industrial process improvement.',
       },
       {
-        period: '2000 — 2008',
-        role: 'Continuous Improvement Project Manager',
-        org: 'Polycarbonate lens manufacturing, United States',
+        period: "Six years — United States",
+        role: "Continuous Improvement Project Manager",
+        org: "Optical industry — polycarbonate lenses",
         description:
-          'Led cross-functional process-improvement projects, tracked performance indicators, and coordinated production, quality and engineering teams before retraining as a developer.',
+          "Ran cross-functional improvement projects on a polycarbonate spectacle-lens production line: performance indicators (KPIs), and coordination across the production, quality and engineering teams.",
+      },
+      {
+        period: "Three years — United Kingdom",
+        role: "Continuous improvement, industrial sites",
+        org: "Automotive, then cosmetics",
+        description:
+          "First roles abroad, on automotive and later cosmetics production lines — workstation analysis, scrap reduction and hands-on support for shop-floor teams, before six years in the United States.",
       },
     ],
     skillsLabel: 'Skills',
@@ -323,8 +330,8 @@ export const en: Dict = {
   },
   ecosystemSection: {
     kicker: 'More projects',
-    title: 'Smaller tools, built for one job',
-    lede: 'Shorter projects, each one built to answer a specific need.',
+    title: 'Plenty of ideas — the trick is not chasing all of them',
+    lede: 'Building things is the fun part. The hard part is picking which ideas deserve to be finished.',
     groups: {
       developerTools: 'Developer Tools',
       finance: 'Finance',

@@ -40,7 +40,7 @@ export const es: Dict = {
   aboutSection: {
     kicker: 'Acerca de mí',
     title: 'Un poco sobre mi trayectoria',
-    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 mantengo viva la biblioteca de componentes compartida de un banco central europeo: migraciones de Angular 4 a 21, accesibilidad RGAA/WCAG, pipelines CI/CD y el soporte diario a los equipos que la utilizan. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
+    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 diseño y mantengo la biblioteca de componentes compartida de un banco central europeo: migraciones de Angular 4 a 21, accesibilidad RGAA/WCAG, pipelines CI/CD y el soporte diario a los equipos que la utilizan. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
     timelineLabel: 'Experiencia',
     timeline: [
       {
@@ -65,11 +65,18 @@ export const es: Dict = {
           'Reconversión profesional hacia el desarrollo web y el multimedia — desde las bases de HTML5/CSS3/JavaScript hasta un portafolio front-end completo, tras una década en la mejora continua industrial.',
       },
       {
-        period: '2000 — 2008',
-        role: 'Jefe de proyecto de Mejora Continua',
-        org: 'Fabricación de cristales de gafas de policarbonato, Estados Unidos',
+        period: "Seis años — Estados Unidos",
+        role: "Jefe de proyecto de Mejora Continua",
+        org: "Industria óptica — cristales de policarbonato",
         description:
-          'Dirección de proyectos transversales de mejora continua, seguimiento de indicadores de rendimiento (KPI) y coordinación de los equipos de producción, calidad e ingeniería, antes de reconvertirme como desarrollador.',
+          "Dirección de proyectos transversales de mejora continua en una línea de producción de cristales de policarbonato: indicadores de rendimiento (KPI) y coordinación de los equipos de producción, calidad e ingeniería.",
+      },
+      {
+        period: "Tres años — Reino Unido",
+        role: "Mejora continua en entorno industrial",
+        org: "Automoción, después cosmética",
+        description:
+          "Primeros puestos en el extranjero, en líneas de producción de automoción y después de cosmética — análisis de puestos, reducción de desechos y acompañamiento de los equipos a pie de línea, antes de seis años en Estados Unidos.",
       },
     ],
     skillsLabel: 'Habilidades',
@@ -100,8 +107,8 @@ export const es: Dict = {
   },
   ecosystemSection: {
     kicker: 'Más proyectos',
-    title: 'Herramientas más pequeñas, hechas para una tarea',
-    lede: 'Proyectos más breves, cada uno nacido de una necesidad concreta.',
+    title: 'Muchas ideas: lo difícil es no perseguirlas todas',
+    lede: 'Crear cosas es lo que me divierte. Lo complicado es elegir cuáles merecen llegar hasta el final.',
     groups: {
       developerTools: 'Herramientas para desarrolladores',
       finance: 'Finanzas',
