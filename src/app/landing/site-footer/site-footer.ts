@@ -1,25 +1,22 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { I18nService } from '../../core/i18n/i18n.service';
-import { AuthService } from '../../core/auth.service';
 import { environment } from '../../../environments/environment';
 import { PROFILES } from '../../core/profiles';
 
 @Component({
   selector: 'sn8w-site-footer',
-  imports: [RouterLink, MatIconModule, MatTooltipModule],
+  imports: [MatIconModule, MatTooltipModule],
   templateUrl: './site-footer.html',
   styleUrl: './site-footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SiteFooter {
   protected readonly i18n = inject(I18nService);
-  protected readonly auth = inject(AuthService);
   protected readonly email = 'kounrisu@gmail.com';
 
   // Still referenced by the version badge's tooltip.

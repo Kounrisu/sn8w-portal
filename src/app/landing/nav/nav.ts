@@ -55,7 +55,6 @@ export class Nav {
     const dict = this.i18n.dict();
     return [
       { fragment: 'products', label: dict.nav.products },
-      { fragment: 'developer-tools', label: dict.nav.developerTools },
       { fragment: 'studio', label: dict.nav.about },
       { fragment: 'contact', label: dict.nav.contact },
     ];

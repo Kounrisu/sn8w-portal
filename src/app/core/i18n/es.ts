@@ -101,7 +101,7 @@ export const es: Dict = {
   ecosystemSection: {
     kicker: 'Más proyectos',
     title: 'Herramientas más pequeñas, hechas para una tarea',
-    lede: 'Proyectos más breves, cada uno nacido de una necesidad concreta, agrupados por uso.',
+    lede: 'Proyectos más breves, cada uno nacido de una necesidad concreta.',
     groups: {
       developerTools: 'Herramientas para desarrolladores',
       finance: 'Finanzas',

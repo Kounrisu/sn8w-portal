@@ -101,7 +101,7 @@ export const de: Dict = {
   ecosystemSection: {
     kicker: 'Weitere Projekte',
     title: 'Kleinere Werkzeuge für je eine Aufgabe',
-    lede: 'Kürzere Projekte, jedes aus einem konkreten Bedarf entstanden, nach Einsatzzweck gruppiert.',
+    lede: 'Kürzere Projekte, jedes aus einem konkreten Bedarf entstanden.',
     groups: {
       developerTools: 'Entwicklertools',
       finance: 'Finanzen',

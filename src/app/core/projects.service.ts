@@ -31,6 +31,17 @@ export class ProjectsService {
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
+  /**
+   * Every ecosystem project in one flat, ordered list. The section used to
+   * split these by category, which said more about the taxonomy than about
+   * the work — they now read as one shelf of small tools.
+   */
+  readonly ecosystem = computed(() =>
+    this.all()
+      .filter((p) => p.tier === 'ecosystem')
+      .sort((a, b) => a.sortOrder - b.sortOrder),
+  );
+
   readonly ecosystemGroups = computed<ProjectGroup[]>(() => {
     const groups = new Map<string, Project[]>();
     for (const project of this.all()) {

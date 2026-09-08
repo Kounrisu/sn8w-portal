@@ -324,7 +324,7 @@ export const en: Dict = {
   ecosystemSection: {
     kicker: 'More projects',
     title: 'Smaller tools, built for one job',
-    lede: 'Shorter projects, each one answering a specific need, grouped by what they do.',
+    lede: 'Shorter projects, each one built to answer a specific need.',
     groups: {
       developerTools: 'Developer Tools',
       finance: 'Finance',
