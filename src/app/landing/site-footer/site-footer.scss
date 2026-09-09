@@ -65,13 +65,14 @@
   white-space: nowrap;
   text-decoration: none;
   background: none;
-  border: none;
+  border: 1.5px solid transparent;
   border-radius: 999px;
   cursor: pointer;
   padding: 0.4rem 0.7rem;
   transition:
     color 0.15s ease,
-    background-color 0.15s ease;
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 // Same hover treatment as the nav links above — one accent color and the
@@ -99,6 +100,7 @@
   color: var(--ice);
   font-weight: 700;
   background-color: color-mix(in srgb, var(--ice) 16%, transparent);
+  border-color: var(--ice);
 }
 
 .footer-links mat-icon {
