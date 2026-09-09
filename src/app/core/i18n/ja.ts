@@ -14,12 +14,12 @@ export const ja: Dict = {
     themeSquirrel: 'ライト',
   },
   nav: {
-    products: 'プロダクト',
+    products: 'プロジェクト',
     developerTools: '開発者向けツール',
     about: '概要',
     contact: 'お問い合わせ',
     github: 'GitHub',
-    explore: 'プロダクトを見る',
+    explore: 'プロジェクトを見る',
     openMenu: 'メニューを開く',
     closeMenu: 'メニューを閉じる',
     logout: 'ログアウト',
@@ -150,7 +150,7 @@ export const ja: Dict = {
       },
       designSystems: {
         title: '再利用可能なデザインシステム',
-        description: '型付けされたコンポーネントとトークンを、すべてのプロダクトで共有します。',
+        description: '型付けされたコンポーネントとトークンを、すべてのプロジェクトで共有します。',
       },
       testing: {
         title: 'テスト',
@@ -206,8 +206,8 @@ export const ja: Dict = {
     loggedInAs: 'ログイン中',
   },
   admin: {
-    title: 'プロダクトを管理',
-    lede: 'ランディングページに表示するプロダクトの追加・編集・削除を行います。',
+    title: 'プロジェクトを管理',
+    lede: 'ランディングページに表示するプロジェクトの追加・編集・削除を行います。',
     newProject: '新しいプロジェクト',
     name: '名前',
     category: 'カテゴリー',
