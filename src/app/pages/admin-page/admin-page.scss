@@ -209,6 +209,9 @@
 
 .admin-table__tagline {
   display: block;
+  max-width: 22rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: var(--text-sm);
   color: var(--mist);
   margin-top: 0.2rem;

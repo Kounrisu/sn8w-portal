@@ -264,7 +264,7 @@
           </td>
           <td>
             <span class="admin-table__name">{{ project.name }}</span>
-            <span class="admin-table__tagline">{{ project.tagline }}</span>
+            <span class="admin-table__tagline" [title]="project.tagline">{{ project.tagline }}</span>
           </td>
           <td>
             <select
