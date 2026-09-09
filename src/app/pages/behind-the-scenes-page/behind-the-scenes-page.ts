@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ChangelogService, type ChangelogCommit } from '../../core/changelog.service';
 import { environment } from '../../../environments/environment';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 interface CommitDay {
   readonly date: string;
@@ -17,7 +18,7 @@ interface StackItem {
 
 @Component({
   selector: 'sn8w-behind-the-scenes-page',
-  imports: [RouterLink],
+  imports: [RouterLink, SpotlightDirective],
   templateUrl: './behind-the-scenes-page.html',
   styleUrl: './behind-the-scenes-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

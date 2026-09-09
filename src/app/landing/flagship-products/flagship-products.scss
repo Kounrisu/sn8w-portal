@@ -17,7 +17,7 @@
 }
 
 .flagship {
-  @include panel.glass;
+  @include panel.glass($spot-size: 340px);
   @include panel.reveal;
 
   display: grid;

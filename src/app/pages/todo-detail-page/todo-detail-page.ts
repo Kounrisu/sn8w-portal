@@ -4,10 +4,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { TodosService } from '../../core/todos.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { TodoPriority } from '../../core/models';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 @Component({
   selector: 'sn8w-todo-detail-page',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, SpotlightDirective],
   templateUrl: './todo-detail-page.html',
   styleUrl: './todo-detail-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

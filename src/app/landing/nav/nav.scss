@@ -1,3 +1,5 @@
+@use '../../../panel';
+
 :host {
   // The sticky positioning lives here, not on .nav below: a sticky
   // element's containing block is its own parent, and .nav's parent is
@@ -33,12 +35,15 @@
   padding-block: 1.1rem;
 }
 
+// The wordmark, not body copy — full ExtraBold weight and tight tracking so
+// it reads as a brand mark rather than just a heavier heading.
 .nav__logo {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-weight: 800;
+  font-size: 1.4rem;
   color: var(--ink);
   text-decoration: none;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.02em;
 }
 
 .nav__logo .accent {
@@ -87,18 +92,21 @@
 }
 
 .nav__pref-btn {
+  @include panel.spotlight($size: 140px, $peak: 16%);
+
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.6rem;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
-  background: transparent;
+  background-color: transparent;
   color: var(--mist);
   cursor: pointer;
   transition:
     border-color 0.18s ease,
-    color 0.18s ease;
+    color 0.18s ease,
+    box-shadow 0.2s ease;
 }
 
 .nav__pref-btn:hover {

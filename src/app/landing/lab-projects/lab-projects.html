@@ -1,7 +1,7 @@
 @if (projects.explorations().length) {
   <section id="lab" class="lab-section" aria-labelledby="lab-heading">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head" sn8wSpotlight>
         <p class="kicker">{{ i18n.dict().labSection.kicker }}</p>
         <h2 id="lab-heading" class="section-title">{{ i18n.dict().labSection.title }}</h2>
         <p class="section-lede">{{ i18n.dict().labSection.lede }}</p>
@@ -9,7 +9,7 @@
 
       <ul class="lab-grid">
         @for (idea of projects.explorations(); track idea.id) {
-          <li class="lab-item">
+          <li class="lab-item" sn8wSpotlight>
             <div class="lab-item__head">
               @if (idea.screenshot) {
                 <img class="lab-item__thumb" [src]="idea.screenshot" alt="" />

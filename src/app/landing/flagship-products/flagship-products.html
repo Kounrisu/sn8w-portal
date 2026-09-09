@@ -1,6 +1,6 @@
 <section id="products" class="flagship-section" aria-labelledby="products-heading">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" sn8wSpotlight>
       <p class="kicker">{{ i18n.dict().flagshipSection.kicker }}</p>
       <h2 id="products-heading" class="section-title">{{ i18n.dict().flagshipSection.title }}</h2>
       <p class="section-lede">{{ i18n.dict().flagshipSection.lede }}</p>
@@ -8,7 +8,7 @@
 
     <div class="flagship-list">
       @for (product of projects.flagship(); track product.id; let i = $index) {
-        <article class="flagship" [class.flagship--reverse]="i % 2 === 1">
+        <article class="flagship" [class.flagship--reverse]="i % 2 === 1" sn8wSpotlight>
           <div class="flagship__copy">
             <p class="flagship__category">{{ product.category }}</p>
             <h3 class="flagship__name">{{ product.name }}</h3>

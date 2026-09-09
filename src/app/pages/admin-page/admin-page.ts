@@ -10,6 +10,7 @@ import {
 } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { FlagshipMockup, Project, ProjectInput, ProductTier } from '../../core/models';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 const EMPTY_FORM: ProjectInput = {
   tier: 'ecosystem',
@@ -28,7 +29,7 @@ const EMPTY_FORM: ProjectInput = {
 
 @Component({
   selector: 'sn8w-admin-page',
-  imports: [FormsModule],
+  imports: [FormsModule, SpotlightDirective],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

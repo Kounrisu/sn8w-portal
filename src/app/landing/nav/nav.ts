@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { Flag } from '../flag/flag';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
@@ -30,7 +31,7 @@ interface NavLink {
 
 @Component({
   selector: 'sn8w-nav',
-  imports: [RouterLink, UpperCasePipe, MatIconModule, MatMenuModule, MatTooltipModule, Flag],
+  imports: [RouterLink, UpperCasePipe, MatIconModule, MatMenuModule, MatTooltipModule, Flag, SpotlightDirective],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
