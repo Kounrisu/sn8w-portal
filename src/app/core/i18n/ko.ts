@@ -209,6 +209,19 @@ export const ko: Dict = {
     title: '프로젝트 관리',
     lede: '랜딩 페이지에 표시되는 프로젝트를 추가, 수정, 삭제합니다.',
     newProject: '새 프로젝트',
+    exportButton: '번역용으로 내보내기',
+    translationHelpTitle: '프로젝트 콘텐츠 번역하기',
+    translationHelpIntro:
+      '프로젝트 이름, 카테고리, 태그라인은 데이터베이스에 영어로 저장되며 프랑스어, 독일어, 한국어, 일본어, 스페인어로 번역됩니다. 번역을 추가하거나 업데이트하려면:',
+    translationHelpSteps: [
+      '아래에서 프로젝트를 영어로 추가하거나 수정하세요 — 카테고리나 태그라인은 비워 두고 Claude에게 작성을 요청해도 됩니다.',
+      '"번역용으로 내보내기"를 클릭해 현재 프로젝트 목록을 JSON 파일로 다운로드하세요.',
+      '그 파일을 Claude에게 전달하고 새로 추가되거나 변경된 프로젝트의 번역을 요청하세요.',
+      'Claude가 api/migrations/ 아래에 번역이 담긴 번호가 매겨진 SQL 파일을 생성합니다.',
+      'phpMyAdmin을 열고 가져오기 탭에서 문자 세트를 "utf-8"로 선택한 뒤 해당 SQL 파일을 가져오세요.',
+    ],
+    translationHelpNote:
+      '문자 세트 선택이 중요합니다: phpMyAdmin은 기본적으로 UTF-8을 사용하지 않으며, 이를 선택하지 않고 가져오면 악센트 문자와 비라틴 문자가 손상됩니다.',
     name: '이름',
     category: '카테고리',
     tagline: '한 줄 소개',

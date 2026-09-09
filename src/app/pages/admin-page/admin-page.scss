@@ -11,6 +11,12 @@
   flex-wrap: wrap;
 }
 
+.admin-head__actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
 .admin-form {
   border: 1px solid var(--line-strong);
   border-radius: 4px;
@@ -242,4 +248,43 @@
   .admin-form__grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.admin-help {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--surface-raised);
+  max-width: 42rem;
+}
+
+.admin-help__title {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: var(--text-md);
+  color: var(--ink);
+}
+
+.admin-help__intro {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+.admin-help__steps {
+  margin: 0 0 var(--space-sm);
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: var(--text-sm);
+  color: var(--ink);
+}
+
+.admin-help__note {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--mist);
 }

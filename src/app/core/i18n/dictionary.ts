@@ -150,6 +150,11 @@ export interface Dict {
     title: string;
     lede: string;
     newProject: string;
+    exportButton: string;
+    translationHelpTitle: string;
+    translationHelpIntro: string;
+    translationHelpSteps: readonly string[];
+    translationHelpNote: string;
     name: string;
     category: string;
     tagline: string;
@@ -457,6 +462,19 @@ export const en: Dict = {
     title: 'Administer projects',
     lede: 'Add, edit and remove the projects shown on the landing page.',
     newProject: 'New project',
+    exportButton: 'Export for translation',
+    translationHelpTitle: 'Translating project content',
+    translationHelpIntro:
+      'Project names, categories and taglines are stored in the database in English and translated into French, German, Korean, Japanese and Spanish. To add or update translations for a project:',
+    translationHelpSteps: [
+      'Add or edit the project below in English — it is fine to leave the category or tagline empty and ask Claude to write it.',
+      'Click "Export for translation" to download a JSON file of the current project list.',
+      'Give the file to Claude and ask it to translate the new or changed projects.',
+      'Claude will generate a numbered SQL file under api/migrations/ with the translations.',
+      'Open phpMyAdmin, go to the Import tab, select "utf-8" as the character set, and import that SQL file.',
+    ],
+    translationHelpNote:
+      'The character set matters: phpMyAdmin does not default to UTF-8, and importing without it will corrupt accented and non-Latin text.',
     name: 'Name',
     category: 'Category',
     tagline: 'Tagline',

@@ -5,9 +5,14 @@
       <h1 class="section-title">{{ i18n.dict().admin.title }}</h1>
       <p class="section-lede">{{ i18n.dict().admin.lede }}</p>
     </div>
-    <button type="button" class="btn btn--primary" (click)="openCreate()">
-      {{ i18n.dict().admin.newProject }}
-    </button>
+    <div class="admin-head__actions">
+      <button type="button" class="btn btn--secondary" (click)="exportForTranslation()">
+        {{ i18n.dict().admin.exportButton }}
+      </button>
+      <button type="button" class="btn btn--primary" (click)="openCreate()">
+        {{ i18n.dict().admin.newProject }}
+      </button>
+    </div>
   </div>
 
   @if (formOpen()) {
@@ -277,5 +282,16 @@
       }
     </tbody>
   </table>
+  </div>
+
+  <div class="admin-help">
+    <h2 class="admin-help__title">{{ i18n.dict().admin.translationHelpTitle }}</h2>
+    <p class="admin-help__intro">{{ i18n.dict().admin.translationHelpIntro }}</p>
+    <ol class="admin-help__steps">
+      @for (step of i18n.dict().admin.translationHelpSteps; track step) {
+        <li>{{ step }}</li>
+      }
+    </ol>
+    <p class="admin-help__note">{{ i18n.dict().admin.translationHelpNote }}</p>
   </div>
 </section>
