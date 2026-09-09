@@ -151,6 +151,23 @@ translations directly; the workflow is:
 This mirrors the same visible instructions shown on the admin page itself,
 below the projects table.
 
+## Site analytics
+
+Self-hosted, cookie-free visit logging — no third-party service, no
+consent banner needed. `AnalyticsService`
+(`src/app/core/analytics.service.ts`) fires a fire-and-forget ping to
+`api/track.php` on every route change (a random id in `localStorage`
+correlates a visit's page-load and page-leave pings, no cookie, no IP or
+other PII stored) and again when a visitor clicks through to a project's
+live site or repo. `api/analytics.php` (behind the existing admin login)
+aggregates it all into `/analytics` in the app: views, unique visitors,
+average time on page, top pages, top referrers, and which projects get
+clicked. Every tracking call swallows its own errors — a dropped or slow
+analytics request can never be visible to a visitor.
+
+Requires `api/migrations/006_page_views.sql` — same phpMyAdmin import
+flow as the other migrations (utf-8 charset).
+
 ## Picking this back up later
 
 Everything above reflects the actual shipped state as of the last deploy: Angular 22 zoneless app, PHP/MySQL API, 6 languages, 2 themes, working CI/CD to OVH. Nothing is a known-broken stub. If you're resuming work:

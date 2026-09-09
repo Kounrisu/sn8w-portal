@@ -1,0 +1,102 @@
+<div class="analytics container">
+  <header class="analytics__head">
+    <p class="kicker">{{ i18n.dict().analytics.kicker }}</p>
+    <h1 class="section-title">{{ i18n.dict().analytics.title }}</h1>
+    <p class="section-lede">{{ i18n.dict().analytics.lede }}</p>
+  </header>
+
+  @if (loaded() && !summary()) {
+    <p class="analytics__empty">{{ i18n.dict().analytics.noData }}</p>
+  }
+
+  @if (summary(); as data) {
+    <div class="analytics__stats">
+      <div class="stat-card">
+        <span class="stat-card__value">{{ data.totalViews }}</span>
+        <span class="stat-card__label">{{ i18n.dict().analytics.statViews }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__value">{{ data.totalVisitors }}</span>
+        <span class="stat-card__label">{{ i18n.dict().analytics.statVisitors }}</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-card__value">{{ avgDurationLabel() }}</span>
+        <span class="stat-card__label">{{ i18n.dict().analytics.statAvgTime }}</span>
+      </div>
+    </div>
+
+    @if (data.byDay.length) {
+      <section class="analytics__section">
+        <h2 class="analytics__section-title">{{ i18n.dict().analytics.dailyTitle }}</h2>
+        <ul class="bar-list">
+          @for (day of data.byDay; track day.day) {
+            <li class="bar-list__row">
+              <span class="bar-list__label">{{ dayLabel(day.day) }}</span>
+              <span class="bar-list__track">
+                <span class="bar-list__fill" [style.width.%]="(day.views / maxDayViews()) * 100"></span>
+              </span>
+              <span class="bar-list__value">{{ day.views }}</span>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+
+    <div class="analytics__grid">
+      @if (data.byPath.length) {
+        <section class="analytics__section">
+          <h2 class="analytics__section-title">{{ i18n.dict().analytics.topPagesTitle }}</h2>
+          <ul class="bar-list">
+            @for (row of data.byPath; track row.path) {
+              <li class="bar-list__row">
+                <span class="bar-list__label">{{ row.path }}</span>
+                <span class="bar-list__track">
+                  <span class="bar-list__fill" [style.width.%]="(row.views / maxPathViews()) * 100"></span>
+                </span>
+                <span class="bar-list__value">{{ row.views }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (data.byReferrer.length) {
+        <section class="analytics__section">
+          <h2 class="analytics__section-title">{{ i18n.dict().analytics.topReferrersTitle }}</h2>
+          <ul class="bar-list">
+            @for (row of data.byReferrer; track row.referrer ?? '(direct)') {
+              <li class="bar-list__row">
+                <span class="bar-list__label">{{ referrerLabel(row.referrer) }}</span>
+                <span class="bar-list__track">
+                  <span class="bar-list__fill" [style.width.%]="(row.views / maxReferrerViews()) * 100"></span>
+                </span>
+                <span class="bar-list__value">{{ row.views }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (data.clicks.length) {
+        <section class="analytics__section">
+          <h2 class="analytics__section-title">{{ i18n.dict().analytics.topProjectsTitle }}</h2>
+          <ul class="bar-list">
+            @for (row of data.clicks; track row.kind + row.label) {
+              <li class="bar-list__row">
+                <span class="bar-list__label">{{ row.label }} — {{ row.kind }}</span>
+                <span class="bar-list__track">
+                  <span class="bar-list__fill" [style.width.%]="(row.clicks / maxClicks()) * 100"></span>
+                </span>
+                <span class="bar-list__value">{{ row.clicks }}</span>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+  }
+
+  <p class="analytics__back">
+    <a class="btn btn--secondary" routerLink="/">{{ i18n.dict().analytics.backHome }}</a>
+  </p>
+</div>

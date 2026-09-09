@@ -9,6 +9,7 @@
       [href]="project().url"
       target="_blank"
       rel="noopener noreferrer"
+      (click)="trackVisit()"
     >
       {{ displayUrl() }}
       <span class="visually-hidden">— {{ project().name }}</span>

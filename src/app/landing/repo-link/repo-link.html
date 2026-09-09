@@ -5,6 +5,7 @@
       [href]="project().repoUrl"
       target="_blank"
       rel="noopener noreferrer"
+      (click)="trackRepoClick()"
     >
       {{ i18n.dict().projectCard.viewSource }}
     </a>

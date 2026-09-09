@@ -31,6 +31,7 @@ export interface Dict {
     admin: string;
     todo: string;
     diary: string;
+    analytics: string;
   };
   hero: {
     kicker: string;
@@ -127,6 +128,21 @@ export interface Dict {
     empty: string;
     backHome: string;
     navLabel: string;
+  };
+  analytics: {
+    kicker: string;
+    title: string;
+    lede: string;
+    statViews: string;
+    statVisitors: string;
+    statAvgTime: string;
+    topPagesTitle: string;
+    topReferrersTitle: string;
+    topProjectsTitle: string;
+    dailyTitle: string;
+    directReferrer: string;
+    noData: string;
+    backHome: string;
   };
   footer: {
     github: string;
@@ -279,6 +295,7 @@ export const en: Dict = {
     admin: 'Admin',
     todo: 'Todo',
     diary: 'Diary',
+    analytics: 'Analytics',
   },
   hero: {
     kicker: 'Paris, France',
@@ -439,6 +456,21 @@ export const en: Dict = {
     empty: 'The changelog has not been generated for this build. Run npm run changelog.',
     backHome: 'Back to the site',
     navLabel: 'Behind the scenes',
+  },
+  analytics: {
+    kicker: 'Site analytics',
+    title: 'Who is visiting',
+    lede: 'Self-hosted, cookie-free visit logging — no third party, no tracking beyond what is shown here.',
+    statViews: 'Page views',
+    statVisitors: 'Unique visitors',
+    statAvgTime: 'Avg. time on page',
+    topPagesTitle: 'Top pages',
+    topReferrersTitle: 'Top referrers',
+    topProjectsTitle: 'Project clicks',
+    dailyTitle: 'Last 30 days',
+    directReferrer: '(direct)',
+    noData: 'No visits recorded yet.',
+    backHome: 'Back to the site',
   },
   footer: {
     github: 'GitHub',
