@@ -11,11 +11,6 @@ import type {
   ProductTier,
 } from './models';
 
-export interface ProjectGroup {
-  readonly title: string;
-  readonly projects: readonly Project[];
-}
-
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
   private readonly http = inject(HttpClient);
@@ -31,36 +26,22 @@ export class ProjectsService {
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
-  /**
-   * Every ecosystem project in one flat, ordered list. The section used to
-   * split these by category, which said more about the taxonomy than about
-   * the work — they now read as one shelf of small tools.
-   */
-  readonly ecosystem = computed(() =>
-    this.all()
-      .filter((p) => p.tier === 'ecosystem')
-      .sort((a, b) => a.sortOrder - b.sortOrder),
-  );
-
-  readonly ecosystemGroups = computed<ProjectGroup[]>(() => {
-    const groups = new Map<string, Project[]>();
-    for (const project of this.all()) {
-      if (project.tier !== 'ecosystem') continue;
-      const title = project.groupTitle ?? 'Other';
-      if (!groups.has(title)) groups.set(title, []);
-      groups.get(title)!.push(project);
-    }
-    return [...groups.entries()]
-      .map(([title, projects]) => ({
-        title,
-        projects: projects.sort((a, b) => a.sortOrder - b.sortOrder),
-      }))
-      .sort((a, b) => a.title.localeCompare(b.title));
-  });
-
   readonly lab = computed(() =>
     this.all()
       .filter((p) => p.tier === 'lab')
+      .sort((a, b) => a.sortOrder - b.sortOrder),
+  );
+
+  /**
+   * Ecosystem and lab projects that are still just an idea — merged into
+   * one section rather than two, and filtered to `concept` status only.
+   * Anything further along (prototype, in-development, live) either has a
+   * more prominent spot already or isn't ready to show yet; flip its
+   * status forward in admin once it earns a place here.
+   */
+  readonly explorations = computed(() =>
+    this.all()
+      .filter((p) => (p.tier === 'ecosystem' || p.tier === 'lab') && p.status === 'concept')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
