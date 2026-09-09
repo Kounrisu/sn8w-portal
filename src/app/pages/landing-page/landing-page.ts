@@ -4,6 +4,7 @@ import { AboutExperience } from '../../landing/about-experience/about-experience
 import { FlagshipProducts } from '../../landing/flagship-products/flagship-products';
 import { ProductEcosystem } from '../../landing/product-ecosystem/product-ecosystem';
 import { EngineeringPrinciples } from '../../landing/engineering-principles/engineering-principles';
+import { LabProjects } from '../../landing/lab-projects/lab-projects';
 
 @Component({
   selector: 'sn8w-landing-page',
@@ -18,6 +19,7 @@ import { EngineeringPrinciples } from '../../landing/engineering-principles/engi
     FlagshipProducts,
     ProductEcosystem,
     EngineeringPrinciples,
+    LabProjects,
   ],
   template: `
     <sn8w-hero />
@@ -25,6 +27,7 @@ import { EngineeringPrinciples } from '../../landing/engineering-principles/engi
     <sn8w-flagship-products />
     <sn8w-product-ecosystem />
     <sn8w-engineering-principles />
+    <sn8w-lab-projects />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
