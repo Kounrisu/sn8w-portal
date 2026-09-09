@@ -94,8 +94,13 @@
 }
 
 .todo-form__preset--active {
+  // Plain `color: var(--ice)` text on --surface-raised only clears 4.34:1
+  // in the dark theme (needs 4.5) — the same darkened-fill technique
+  // .btn--primary uses (color-mix toward black so white text passes AA)
+  // reads as a proper selected/filled state instead of just a tinted one.
   border-color: var(--ice);
-  color: var(--ice);
+  background-color: color-mix(in srgb, var(--ice) 85%, black);
+  color: #fff;
 }
 
 .todo-form__preset:focus-visible {

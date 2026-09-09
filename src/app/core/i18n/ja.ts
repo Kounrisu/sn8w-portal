@@ -203,6 +203,15 @@ export const ja: Dict = {
     noData: 'まだ訪問が記録されていません。',
     backHome: 'サイトに戻る',
   },
+  sitemap: {
+    kicker: 'サイトマップ',
+    title: 'サイト内のすべてのページ',
+    lede: 'クリックして回遊するより一覧を好む方のために、すべてのページを単純にリストしたものです。',
+    home: 'ホーム',
+    publicSection: '公開ページ',
+    adminSection: '管理者ページ',
+    loginPrompt: '管理者ページを見るにはログインしてください。',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'メールをコピー',
@@ -211,6 +220,8 @@ export const ja: Dict = {
     deployedCommit: 'デプロイされたコミット',
     deployedAt: 'デプロイ',
     localBuild: 'ローカルビルド',
+    accessibility: 'アクセシビリティ',
+    sitemap: 'サイトマップ',
   },
   auth: {
     title: 'サインイン',

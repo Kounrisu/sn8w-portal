@@ -70,16 +70,34 @@
   font-weight: 500;
   color: var(--mist);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.2rem;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .nav__links a:hover {
-  color: var(--ink);
+  color: var(--ice);
+  border-bottom-color: var(--ice);
 }
 
 .nav__links a:focus-visible {
   outline: 2px solid var(--ice);
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+// The current page must not be conveyed by color alone (RGAA 10.14 /
+// WCAG 1.4.1) — a solid underline plus a bolder weight carry the "current
+// page" signal on their own, with the accent color layered on top.
+// `.nav__links a` (element + class) outranks a bare `.nav__link--active`
+// (one class) on specificity regardless of source order, so this has to
+// match at least as specifically.
+.nav__links a.nav__link--active {
+  color: var(--ice);
+  font-weight: 700;
+  border-bottom-color: var(--ice);
 }
 
 .nav__actions {

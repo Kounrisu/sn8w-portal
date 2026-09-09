@@ -203,6 +203,15 @@ export const ko: Dict = {
     noData: '아직 기록된 방문이 없습니다.',
     backHome: '사이트로 돌아가기',
   },
+  sitemap: {
+    kicker: '사이트맵',
+    title: '사이트의 모든 페이지',
+    lede: '클릭하며 둘러보기보다 목록을 선호하는 분들을 위한, 모든 페이지의 단순한 목록입니다.',
+    home: '홈',
+    publicSection: '공개 페이지',
+    adminSection: '관리자 페이지',
+    loginPrompt: '관리자 페이지를 보려면 로그인하세요.',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: '이메일 복사',
@@ -211,6 +220,8 @@ export const ko: Dict = {
     deployedCommit: '배포된 커밋',
     deployedAt: '배포',
     localBuild: '로컬 빌드',
+    accessibility: '접근성',
+    sitemap: '사이트맵',
   },
   auth: {
     title: '로그인',

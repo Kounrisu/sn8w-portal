@@ -25,10 +25,10 @@
           <a routerLink="/" [fragment]="link.fragment">{{ link.label }}</a>
         }
         @if (auth.isAuthenticated()) {
-          <a routerLink="/todo">{{ i18n.dict().nav.todo }}</a>
-          <a routerLink="/diary">{{ i18n.dict().nav.diary }}</a>
-          <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
-          <a routerLink="/analytics">{{ i18n.dict().nav.analytics }}</a>
+          <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
+          <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.diary }}</a>
+          <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.admin }}</a>
+          <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.analytics }}</a>
         }
       </nav>
       <div class="nav__actions">
@@ -90,10 +90,10 @@
         <a routerLink="/" [fragment]="link.fragment" (click)="closeMenu()">{{ link.label }}</a>
       }
       @if (auth.isAuthenticated()) {
-        <a routerLink="/todo" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
-        <a routerLink="/diary" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
-        <a routerLink="/admin" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
-        <a routerLink="/analytics" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
+        <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
+        <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
+        <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
+        <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
         <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
           {{ i18n.dict().nav.logout }}
         </button>

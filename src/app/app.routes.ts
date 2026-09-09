@@ -50,5 +50,14 @@ export const routes: Routes = [
       import('./pages/analytics-page/analytics-page').then((m) => m.AnalyticsPage),
     canActivate: [authGuard],
   },
+  {
+    path: 'accessibilite',
+    loadComponent: () =>
+      import('./pages/accessibility-page/accessibility-page').then((m) => m.AccessibilityPage),
+  },
+  {
+    path: 'plan-du-site',
+    loadComponent: () => import('./pages/sitemap-page/sitemap-page').then((m) => m.SitemapPage),
+  },
   { path: '**', redirectTo: '' },
 ];
