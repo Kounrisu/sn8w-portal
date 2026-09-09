@@ -151,6 +151,18 @@
   letter-spacing: 0.04em;
   padding: 0.15em 0.6em;
   border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.admin-table__availability:hover {
+  filter: brightness(1.15);
+}
+
+.admin-table__availability:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
 }
 
 .admin-table__availability::before {
@@ -185,7 +197,8 @@
 .admin-table td {
   padding: 0.7rem 0.6rem;
   border-bottom: 1px solid var(--line);
-  vertical-align: top;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .admin-table__name {
@@ -199,6 +212,95 @@
   font-size: var(--text-sm);
   color: var(--mist);
   margin-top: 0.2rem;
+}
+
+.admin-table__select {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--ink);
+  background: var(--surface-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  padding: 0.4em 0.5em;
+  cursor: pointer;
+}
+
+.admin-table__select:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.admin-table__reorder {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.admin-table__drag-handle {
+  display: inline-flex;
+  color: var(--mist);
+  cursor: grab;
+  touch-action: none;
+}
+
+.admin-table__drag-handle:active {
+  cursor: grabbing;
+}
+
+.admin-table__reorder-btns {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.admin-table__reorder-btns button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 1.4rem;
+  height: 1.1rem;
+  color: var(--mist);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.admin-table__reorder-btns button:hover:not(:disabled) {
+  color: var(--ice);
+}
+
+.admin-table__reorder-btns button:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 1px;
+}
+
+.admin-table__reorder-btns button:disabled {
+  color: var(--line-strong);
+  cursor: not-allowed;
+}
+
+.admin-table__reorder-btns mat-icon,
+.admin-table__drag-handle mat-icon {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+// CDK's live drag preview and the gap it leaves behind in the list — kept
+// close to the table's own look rather than Material's default card shadow.
+.cdk-drag-preview {
+  background: var(--surface-raised);
+  border: 1px solid var(--ice);
+  border-radius: 4px;
+  box-shadow: 0 12px 24px -8px rgb(0 0 0 / 0.4);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+}
+
+.admin-table tbody.cdk-drop-list-dragging tr:not(.cdk-drag-placeholder) {
+  transition: transform 0.2s ease;
 }
 
 .admin-table__link {
