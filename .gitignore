@@ -19,9 +19,9 @@ api/lib/config.local.php
 # PHP API — uploaded screenshots live only on the server, not in the repo
 api/uploads/
 
-# Personal CVs / cover letters — never committed (references internal
-# employer application names that must not be publicized)
-/docs/
+# Personal CVs, cover letters, and other local-only material — never
+# committed. See docs/README.md for what this is and where it lives.
+/docs_sensitive/
 
 # IDEs and editors
 .idea/
