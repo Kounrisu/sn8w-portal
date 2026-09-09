@@ -262,12 +262,12 @@ export const en: Dict = {
     themeSquirrel: 'Light',
   },
   nav: {
-    products: 'Products',
+    products: 'Projects',
     developerTools: 'Developer Tools',
     about: 'About',
     contact: 'Contact',
     github: 'GitHub',
-    explore: 'Explore products',
+    explore: 'Explore projects',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     logout: 'Log out',
@@ -398,7 +398,7 @@ export const en: Dict = {
       },
       designSystems: {
         title: 'Reusable design systems',
-        description: 'Typed components and tokens, shared across every product.',
+        description: 'Typed components and tokens, shared across every project.',
       },
       testing: {
         title: 'Testing',
@@ -454,8 +454,8 @@ export const en: Dict = {
     loggedInAs: 'Signed in as',
   },
   admin: {
-    title: 'Administer products',
-    lede: 'Add, edit and remove the products shown on the landing page.',
+    title: 'Administer projects',
+    lede: 'Add, edit and remove the projects shown on the landing page.',
     newProject: 'New project',
     name: 'Name',
     category: 'Category',

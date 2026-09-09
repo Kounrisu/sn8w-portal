@@ -14,12 +14,12 @@ export const de: Dict = {
     themeSquirrel: 'Hell',
   },
   nav: {
-    products: 'Produkte',
+    products: 'Projekte',
     developerTools: 'Entwicklertools',
     about: 'Über uns',
     contact: 'Kontakt',
     github: 'GitHub',
-    explore: 'Produkte entdecken',
+    explore: 'Projekte entdecken',
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
     logout: 'Abmelden',
@@ -150,7 +150,7 @@ export const de: Dict = {
       },
       designSystems: {
         title: 'Wiederverwendbare Design-Systeme',
-        description: 'Typisierte Komponenten und Tokens, über alle Produkte hinweg geteilt.',
+        description: 'Typisierte Komponenten und Tokens, über alle Projekte hinweg geteilt.',
       },
       testing: {
         title: 'Tests',
@@ -206,8 +206,8 @@ export const de: Dict = {
     loggedInAs: 'Angemeldet als',
   },
   admin: {
-    title: 'Produkte verwalten',
-    lede: 'Produkte auf der Startseite hinzufügen, bearbeiten und entfernen.',
+    title: 'Projekte verwalten',
+    lede: 'Projekte auf der Startseite hinzufügen, bearbeiten und entfernen.',
     newProject: 'Neues Projekt',
     name: 'Name',
     category: 'Kategorie',

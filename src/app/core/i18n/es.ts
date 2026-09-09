@@ -14,12 +14,12 @@ export const es: Dict = {
     themeSquirrel: 'Claro',
   },
   nav: {
-    products: 'Productos',
+    products: 'Proyectos',
     developerTools: 'Herramientas para desarrolladores',
     about: 'Acerca de',
     contact: 'Contacto',
     github: 'GitHub',
-    explore: 'Explorar productos',
+    explore: 'Explorar proyectos',
     openMenu: 'Abrir menú',
     closeMenu: 'Cerrar menú',
     logout: 'Cerrar sesión',
@@ -150,7 +150,7 @@ export const es: Dict = {
       },
       designSystems: {
         title: 'Sistemas de diseño reutilizables',
-        description: 'Componentes y tokens tipados, compartidos entre todos los productos.',
+        description: 'Componentes y tokens tipados, compartidos entre todos los proyectos.',
       },
       testing: {
         title: 'Pruebas',
@@ -206,8 +206,8 @@ export const es: Dict = {
     loggedInAs: 'Sesión iniciada como',
   },
   admin: {
-    title: 'Administrar productos',
-    lede: 'Añade, edita y elimina los productos que se muestran en la página.',
+    title: 'Administrar proyectos',
+    lede: 'Añade, edita y elimina los proyectos que se muestran en la página.',
     newProject: 'Nuevo proyecto',
     name: 'Nombre',
     category: 'Categoría',
