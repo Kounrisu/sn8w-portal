@@ -7,21 +7,23 @@
 // as-is rather than renamed, to avoid a repaint-only refactor touching
 // every component stylesheet.
 //
-// Dark ("frost", the default every visitor lands on) is a neutral near-black
+// Dark ("frost", the default every visitor lands on) is a dark charcoal-navy
 // ground with a saturated, flat blue primary accent and a teal secondary —
 // chosen for the site's actual reader (a technical hiring manager, often at
 // a bank), deliberately restrained rather than a gradient/glow treatment.
-// --ice at #157dff clears WCAG AA (5.1:1) against --bg and --surface-raised.
+// Lightened slightly from an earlier true-near-black (#0a0b0d) that read as
+// too heavy once seen deployed rather than in a swatch.
+// --ice at #157dff clears WCAG AA (4.6:1) against --bg and --surface-raised.
 :root {
-  --bg: #0a0b0d;
+  --bg: #14171e;
   --ink: #eef0f3;
   --ice: #157dff;
   --ember: #2dd4bf;
   --mist: #8a8f99;
-  --line: #1d2025;
-  --line-strong: #2b2f36;
-  --surface-raised: #131519;
-  --surface-sunken: #060708;
+  --line: #232730;
+  --line-strong: #333944;
+  --surface-raised: #191d26;
+  --surface-sunken: #0d0f14;
   --danger: #e0566d;
   --success: #4fd1a5;
 

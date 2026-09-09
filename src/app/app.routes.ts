@@ -44,5 +44,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/diary-page/diary-page').then((m) => m.DiaryPage),
     canActivate: [authGuard],
   },
+  {
+    path: 'analytics',
+    loadComponent: () =>
+      import('./pages/analytics-page/analytics-page').then((m) => m.AnalyticsPage),
+    canActivate: [authGuard],
+  },
   { path: '**', redirectTo: '' },
 ];

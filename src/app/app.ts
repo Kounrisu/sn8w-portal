@@ -8,10 +8,13 @@ import {
   effect,
   inject,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs';
 import { Nav } from './landing/nav/nav';
 import { SiteFooter } from './landing/site-footer/site-footer';
 import { ThemeService } from './core/theme.service';
+import { AnalyticsService } from './core/analytics.service';
 import { createParticles, drawFrame, type Particle, type StarfieldMode } from './starfield';
 
 @Component({
@@ -25,6 +28,7 @@ export class App implements AfterViewInit, OnDestroy {
   @ViewChild('starfield') private readonly starfieldRef?: ElementRef<HTMLCanvasElement>;
 
   private readonly themeService = inject(ThemeService);
+  private readonly analytics = inject(AnalyticsService);
 
   private readonly prefersReducedMotion =
     typeof window !== 'undefined' &&
@@ -44,6 +48,15 @@ export class App implements AfterViewInit, OnDestroy {
       this.mode = this.themeService.theme();
       this.regenerate();
     });
+
+    const router = inject(Router);
+    this.analytics.trackPageview(router.url);
+    router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
+      .subscribe((event) => this.analytics.trackPageview(event.urlAfterRedirects));
   }
 
   ngAfterViewInit(): void {

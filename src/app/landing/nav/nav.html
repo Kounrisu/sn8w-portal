@@ -28,6 +28,7 @@
           <a routerLink="/todo">{{ i18n.dict().nav.todo }}</a>
           <a routerLink="/diary">{{ i18n.dict().nav.diary }}</a>
           <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
+          <a routerLink="/analytics">{{ i18n.dict().nav.analytics }}</a>
         }
       </nav>
       <div class="nav__actions">
@@ -92,6 +93,7 @@
         <a routerLink="/todo" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
         <a routerLink="/diary" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
         <a routerLink="/admin" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
+        <a routerLink="/analytics" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
         <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
           {{ i18n.dict().nav.logout }}
         </button>

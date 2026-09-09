@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { ProjectsService } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { AnalyticsService } from '../../core/analytics.service';
 import type { Project } from '../../core/models';
 
 @Component({
@@ -14,6 +15,7 @@ export class ProjectAvailability {
 
   protected readonly i18n = inject(I18nService);
   private readonly projects = inject(ProjectsService);
+  private readonly analytics = inject(AnalyticsService);
 
   protected readonly requesting = signal(false);
 
@@ -23,6 +25,10 @@ export class ProjectAvailability {
     if (!url) return '';
     return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   });
+
+  protected trackVisit(): void {
+    this.analytics.trackEvent('project-visit', this.project().name);
+  }
 
   protected async request(): Promise<void> {
     const project = this.project();
