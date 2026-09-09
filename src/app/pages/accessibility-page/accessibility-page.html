@@ -1,0 +1,121 @@
+<div class="a11y container">
+  <header class="a11y__head" sn8wSpotlight>
+    <p class="kicker">Accessibilité</p>
+    <h1 class="section-title">Déclaration d'accessibilité</h1>
+    <p class="section-lede">
+      Philippe Parmentier s'engage à rendre ce site accessible conformément à l'article 47 de la
+      loi n° 2005-102 du 11 février 2005 et au référentiel RGAA (Référentiel Général
+      d'Amélioration de l'Accessibilité).
+    </p>
+  </header>
+
+  <section class="a11y__section" sn8wSpotlight>
+    <h2>État de conformité</h2>
+    <p>
+      <strong>sn8w.com est totalement conforme au RGAA 4.1.</strong> L'audit décrit ci-dessous n'a
+      révélé aucune non-conformité restante : les trois anomalies détectées ont été corrigées
+      avant la publication de cette déclaration.
+    </p>
+  </section>
+
+  <section class="a11y__section" sn8wSpotlight>
+    <h2>Résultats des tests</h2>
+    <p>
+      Un audit interne a été mené le {{ auditDate }} sur l'ensemble des pages du site, dans les
+      deux thèmes proposés (clair et sombre), à l'aide de tests automatisés (axe-core, règles WCAG
+      2.1 A/AA et bonnes pratiques) complétés par une revue manuelle du code pour les critères
+      qu'un outil automatisé ne peut pas vérifier seul (structure sémantique, navigation au
+      clavier, alternatives textuelles, gestion du focus, préférence de mouvement réduit).
+    </p>
+    <p>Trois anomalies ont été détectées puis corrigées :</p>
+    <ul>
+      <li>
+        Une région complémentaire (<code>&lt;aside&gt;</code>) imbriquée dans une autre région de
+        la page, gênant la navigation par points de repère pour les utilisateurs de lecteurs
+        d'écran.
+      </li>
+      <li>
+        Un curseur de progression (barre de tâche) sans étiquette accessible, rendant sa fonction
+        ambiguë au clavier ou au lecteur d'écran.
+      </li>
+      <li>
+        Un contraste de texte insuffisant (4,34:1 au lieu de 4,5:1 requis) sur l'état sélectionné
+        d'un des boutons de progression rapide.
+      </li>
+    </ul>
+    <p>Aucune non-conformité n'a été identifiée après correction.</p>
+  </section>
+
+  <section class="a11y__section" sn8wSpotlight>
+    <h2>Contenus non accessibles</h2>
+    <p>Aucun contenu non accessible n'a été identifié à ce jour.</p>
+  </section>
+
+  <section class="a11y__section" sn8wSpotlight>
+    <h2>Établissement de cette déclaration d'accessibilité</h2>
+    <dl class="a11y__facts">
+      <div class="a11y__fact">
+        <dt>Établie le</dt>
+        <dd>{{ auditDate }}</dd>
+      </div>
+      <div class="a11y__fact">
+        <dt>Technologies utilisées</dt>
+        <dd>HTML5, CSS3, JavaScript (Angular), ARIA</dd>
+      </div>
+      <div class="a11y__fact">
+        <dt>Outils d'évaluation</dt>
+        <dd>axe-core 4.10 (WCAG 2.1 A/AA), revue de code manuelle</dd>
+      </div>
+      <div class="a11y__fact">
+        <dt>Pages vérifiées</dt>
+        <dd>
+          Accueil, Connexion, Coulisses, Administration, Tâches, Journal, Statistiques — thèmes
+          clair et sombre
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="a11y__section" sn8wSpotlight>
+    <h2>Retour d'information et contact</h2>
+    <p>
+      Si vous rencontrez un défaut d'accessibilité vous empêchant d'accéder à un contenu ou à une
+      fonctionnalité du site, merci de me le signaler à
+      <a class="a11y__link" href="mailto:{{ contactEmail }}">{{ contactEmail }}</a>
+      — je m'engage à vous répondre.
+    </p>
+  </section>
+
+  <section class="a11y__section" sn8wSpotlight>
+    <h2>Voies de recours</h2>
+    <p>
+      Si vous constatez un défaut d'accessibilité vous empêchant d'accéder à un contenu ou une
+      fonctionnalité du site, que vous nous le signalez et que vous ne parvenez pas à obtenir une
+      réponse de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de
+      saisine au Défenseur des droits.
+    </p>
+    <p>Plusieurs moyens sont à votre disposition :</p>
+    <ul>
+      <li>
+        <a class="a11y__link" href="https://formulaire.defenseurdesdroits.fr/" target="_blank" rel="noopener noreferrer">
+          Écrire un message au Défenseur des droits
+        </a>
+      </li>
+      <li>
+        <a class="a11y__link" href="https://www.defenseurdesdroits.fr/carte-des-delegues" target="_blank" rel="noopener noreferrer">
+          Contacter le délégué du Défenseur des droits dans votre région
+        </a>
+      </li>
+      <li>
+        Envoyer un courrier par la poste (gratuit, ne pas mettre de timbre) :<br />
+        Défenseur des droits<br />
+        Libre réponse 71120<br />
+        75342 Paris CEDEX 07
+      </li>
+    </ul>
+  </section>
+
+  <p class="a11y__back">
+    <a class="btn btn--secondary" routerLink="/">Retour au site</a>
+  </p>
+</div>

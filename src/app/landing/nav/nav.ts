@@ -9,7 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -31,7 +31,16 @@ interface NavLink {
 
 @Component({
   selector: 'sn8w-nav',
-  imports: [RouterLink, UpperCasePipe, MatIconModule, MatMenuModule, MatTooltipModule, Flag, SpotlightDirective],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    UpperCasePipe,
+    MatIconModule,
+    MatMenuModule,
+    MatTooltipModule,
+    Flag,
+    SpotlightDirective,
+  ],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

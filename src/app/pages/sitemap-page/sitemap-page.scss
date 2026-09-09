@@ -1,0 +1,62 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.sitemap {
+  padding-block: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 40rem;
+}
+
+.sitemap__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.sitemap__section {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.sitemap__section h2 {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--ink);
+}
+
+.sitemap__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sitemap__list a {
+  font-size: var(--text-base);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.sitemap__list a:hover,
+.sitemap__list a:focus-visible {
+  color: var(--ice);
+  border-bottom-color: currentColor;
+}
+
+.sitemap__login-prompt {
+  color: var(--mist);
+  font-size: var(--text-sm);
+}

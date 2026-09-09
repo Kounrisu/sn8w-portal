@@ -56,7 +56,7 @@
       </div>
 
       <div class="field">
-        <span class="field-label">{{ i18n.dict().todoDetailPage.progressLabel }} — {{ progress() }}%</span>
+        <span class="field-label" id="progress-label">{{ i18n.dict().todoDetailPage.progressLabel }} — {{ progress() }}%</span>
         <input
           type="range"
           min="0"
@@ -66,6 +66,7 @@
           (ngModelChange)="progress.set($event)"
           name="progress"
           class="todo-form__slider"
+          aria-labelledby="progress-label"
         />
         <div class="todo-form__presets">
           @for (preset of progressPresets; track preset) {

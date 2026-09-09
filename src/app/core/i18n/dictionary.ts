@@ -144,6 +144,15 @@ export interface Dict {
     noData: string;
     backHome: string;
   };
+  sitemap: {
+    kicker: string;
+    title: string;
+    lede: string;
+    home: string;
+    publicSection: string;
+    adminSection: string;
+    loginPrompt: string;
+  };
   footer: {
     github: string;
     copyEmail: string;
@@ -152,6 +161,8 @@ export interface Dict {
     deployedCommit: string;
     deployedAt: string;
     localBuild: string;
+    accessibility: string;
+    sitemap: string;
   };
   auth: {
     title: string;
@@ -475,6 +486,15 @@ export const en: Dict = {
     noData: 'No visits recorded yet.',
     backHome: 'Back to the site',
   },
+  sitemap: {
+    kicker: 'Sitemap',
+    title: 'Every page on this site',
+    lede: 'A plain list of every page, for readers who prefer it to clicking around.',
+    home: 'Home',
+    publicSection: 'Public pages',
+    adminSection: 'Admin pages',
+    loginPrompt: 'Sign in to see the admin pages.',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'Copy email',
@@ -483,6 +503,8 @@ export const en: Dict = {
     deployedCommit: 'Deployed commit',
     deployedAt: 'deployed',
     localBuild: 'local build',
+    accessibility: 'Accessibility',
+    sitemap: 'Sitemap',
   },
   auth: {
     title: 'Sign in',

@@ -203,6 +203,15 @@ export const de: Dict = {
     noData: 'Noch keine Besuche erfasst.',
     backHome: 'Zurück zur Seite',
   },
+  sitemap: {
+    kicker: 'Sitemap',
+    title: 'Alle Seiten dieser Website',
+    lede: 'Eine einfache Liste aller Seiten, für Leserinnen und Leser, die das dem Herumklicken vorziehen.',
+    home: 'Startseite',
+    publicSection: 'Öffentliche Seiten',
+    adminSection: 'Admin-Seiten',
+    loginPrompt: 'Melden Sie sich an, um die Admin-Seiten zu sehen.',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'E-Mail kopieren',
@@ -211,6 +220,8 @@ export const de: Dict = {
     deployedCommit: 'Bereitgestellter Commit',
     deployedAt: 'bereitgestellt am',
     localBuild: 'lokaler Build',
+    accessibility: 'Barrierefreiheit',
+    sitemap: 'Sitemap',
   },
   auth: {
     title: 'Anmelden',

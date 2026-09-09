@@ -63,13 +63,21 @@
   text-decoration: none;
   background: none;
   border: none;
+  border-bottom: 1px solid transparent;
   cursor: pointer;
   padding: 0.25rem;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
+// Same hover treatment as the nav links above — one accent color, used the
+// same way everywhere it appears, rather than a second one (--ember) doing
+// the identical job differently.
 .footer-links a:hover,
 .email-copy:hover {
-  color: var(--ember);
+  color: var(--ice);
+  border-bottom-color: var(--ice);
 }
 
 .footer-links a:focus-visible,
@@ -77,6 +85,16 @@
   outline: 2px solid var(--ice);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+// Current page: same non-color-only signal as the nav (RGAA 10.14 / WCAG
+// 1.4.1) — underline plus bold, accent color layered on top. Matched at
+// `.footer-links a.footer-links__link--active` — `.footer-links a` (element
+// + class) otherwise outranks a bare one-class selector on specificity.
+.footer-links a.footer-links__link--active {
+  color: var(--ice);
+  font-weight: 700;
+  border-bottom-color: var(--ice);
 }
 
 .footer-links mat-icon {
