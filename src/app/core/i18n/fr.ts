@@ -14,12 +14,12 @@ export const fr: Dict = {
     themeSquirrel: 'Clair',
   },
   nav: {
-    products: 'Produits',
+    products: 'Projets',
     developerTools: 'Outils développeur',
     about: 'À propos',
     contact: 'Me contacter',
     github: 'GitHub',
-    explore: 'Explorer les produits',
+    explore: 'Explorer les projets',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
     logout: 'Déconnexion',
@@ -150,7 +150,7 @@ export const fr: Dict = {
       },
       designSystems: {
         title: 'Systèmes de design réutilisables',
-        description: 'Composants et jetons typés, partagés entre tous les produits.',
+        description: 'Composants et jetons typés, partagés entre tous les projets.',
       },
       testing: {
         title: 'Tests',
@@ -206,8 +206,8 @@ export const fr: Dict = {
     loggedInAs: 'Connecté en tant que',
   },
   admin: {
-    title: 'Administrer les produits',
-    lede: 'Ajouter, modifier et supprimer les produits affichés sur la page.',
+    title: 'Administrer les projets',
+    lede: 'Ajouter, modifier et supprimer les projets affichés sur la page.',
     newProject: 'Nouveau projet',
     name: 'Nom',
     category: 'Catégorie',

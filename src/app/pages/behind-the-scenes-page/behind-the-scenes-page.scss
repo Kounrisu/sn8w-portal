@@ -112,9 +112,10 @@
 
 .bts__day-label {
   margin: 0 0 var(--space-xs);
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--text-base);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ice);
 }
 
