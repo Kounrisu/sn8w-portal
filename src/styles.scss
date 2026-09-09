@@ -118,28 +118,29 @@ html {
   --mat-sys-scrim: black;
 }
 
-// "Light" (internal key: squirrel) — sun-warmed parchment, chestnut ink, a
-// deep sakura-blossom accent, and a toasted-gold secondary accent. This is
-// the default theme (see index.html and ThemeService) — the bare :root
-// block above is the "Dark" alternative, selected via the theme switcher
-// in the nav (ThemeService sets this attribute on <html>).
+// "Light" (internal key: squirrel) — the same navy-and-blue identity as the
+// dark theme above, inverted: a cool off-white ground, navy ink, the same
+// blue family for the primary accent, and a muted gold secondary. Every
+// token here is contrast-checked at ≥4.5:1 against both --bg and
+// --surface-raised. Selected via the theme switcher in the nav (frost is
+// the actual default — see index.html and ThemeService).
 html[data-theme='squirrel'] {
   color-scheme: light;
 
-  --bg: #f6ead9;
-  --ink: #3e2a1e;
-  --ice: #9e526d;
-  --ember: #8a6321;
-  --mist: #7a6656;
-  --line: #e8d7bc;
-  --line-strong: #d2b78d;
-  --surface-raised: #fbf3e6;
-  --surface-sunken: #ecdcc0;
-  --danger: #b6415a;
-  --success: #4f7942;
+  --bg: #f7f9fc;
+  --ink: #0f172a;
+  --ice: #1d4ed8;
+  --ember: #92650a;
+  --mist: #55627a;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --surface-raised: #ffffff;
+  --surface-sunken: #edf1f7;
+  --danger: #b42318;
+  --success: #157a57;
 
-  --mat-sys-shadow: #7a6656;
-  --mat-sys-scrim: #7a6656;
+  --mat-sys-shadow: #55627a;
+  --mat-sys-scrim: #55627a;
 }
 
 * {

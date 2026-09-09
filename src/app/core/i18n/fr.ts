@@ -164,8 +164,8 @@ export const fr: Dict = {
   },
   labSection: {
     kicker: 'Expérimentations',
-    title: 'Juste pour le plaisir',
-    lede: "Des idées testées surtout pour apprendre — elles ne mènent pas toutes quelque part, et ce n'est pas grave.",
+    title: 'Curiosité et créativité',
+    lede: "Des idées explorées par curiosité ou par envie de créer, sans autre objectif. Certaines n'aboutissent pas, et c'est très bien ainsi.",
     tag: '[prototype]',
   },
   ctaSection: {
