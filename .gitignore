@@ -19,8 +19,9 @@ api/lib/config.local.php
 # PHP API — uploaded screenshots live only on the server, not in the repo
 api/uploads/
 
-# Personal CVs, cover letters, and other local-only material — never
-# committed. See docs/README.md for what this is and where it lives.
+# Local-only material — secrets/personal (CVs, cover letters) as well as
+# mood boards, design references, or heavy/draft assets that don't need
+# to bloat the repo's history. See docs/README.md.
 /docs_sensitive/
 
 # IDEs and editors

@@ -1,8 +1,10 @@
 # docs/
 
-Public documentation for this repo — committed to GitHub. Anything that
-shouldn't be public (CVs, cover letters, application-specific material,
-local infra notes) lives in `docs_sensitive/` at the project root instead.
+Public documentation for this repo — committed to GitHub. `docs_sensitive/`
+at the project root holds anything that shouldn't go there: actual
+secrets/personal material (CVs, cover letters, application-specific
+material, local infra notes), but also mood boards, design references, or
+other heavy/draft assets not worth bloating the repo's history with.
 
 > **`docs_sensitive/` exists locally on this machine but is not in this
 > repo** (it's gitignored — see `.gitignore`). If you're reading this on a
