@@ -209,6 +209,19 @@ export const de: Dict = {
     title: 'Projekte verwalten',
     lede: 'Projekte auf der Startseite hinzufügen, bearbeiten und entfernen.',
     newProject: 'Neues Projekt',
+    exportButton: 'Für Übersetzung exportieren',
+    translationHelpTitle: 'Projektinhalte übersetzen',
+    translationHelpIntro:
+      'Projektnamen, Kategorien und Taglines werden auf Englisch in der Datenbank gespeichert und ins Französische, Deutsche, Koreanische, Japanische und Spanische übersetzt. So fügen Sie Übersetzungen hinzu oder aktualisieren sie:',
+    translationHelpSteps: [
+      'Fügen Sie das Projekt unten auf Englisch hinzu oder bearbeiten Sie es — Kategorie oder Tagline können leer bleiben, Claude kann sie formulieren.',
+      'Klicken Sie auf "Für Übersetzung exportieren", um eine JSON-Datei der aktuellen Projektliste herunterzuladen.',
+      'Geben Sie die Datei an Claude und bitten Sie um eine Übersetzung der neuen oder geänderten Projekte.',
+      'Claude erstellt eine nummerierte SQL-Datei unter api/migrations/ mit den Übersetzungen.',
+      'Öffnen Sie phpMyAdmin, gehen Sie zum Tab Importieren, wählen Sie den Zeichensatz "utf-8" und importieren Sie diese SQL-Datei.',
+    ],
+    translationHelpNote:
+      'Der Zeichensatz ist wichtig: phpMyAdmin verwendet nicht standardmäßig UTF-8, und ein Import ohne diese Auswahl beschädigt akzentuierte und nicht-lateinische Zeichen.',
     name: 'Name',
     category: 'Kategorie',
     tagline: 'Slogan',

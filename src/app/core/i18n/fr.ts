@@ -209,6 +209,19 @@ export const fr: Dict = {
     title: 'Administrer les projets',
     lede: 'Ajouter, modifier et supprimer les projets affichés sur la page.',
     newProject: 'Nouveau projet',
+    exportButton: 'Exporter pour traduction',
+    translationHelpTitle: 'Traduire le contenu des projets',
+    translationHelpIntro:
+      "Les noms, catégories et accroches des projets sont stockés en anglais dans la base de données, puis traduits en français, allemand, coréen, japonais et espagnol. Pour ajouter ou mettre à jour des traductions :",
+    translationHelpSteps: [
+      "Ajoutez ou modifiez le projet ci-dessous en anglais — la catégorie ou l'accroche peuvent rester vides, demandez à Claude de les rédiger.",
+      "Cliquez sur « Exporter pour traduction » pour télécharger un fichier JSON de la liste actuelle des projets.",
+      "Donnez ce fichier à Claude et demandez-lui de traduire les projets nouveaux ou modifiés.",
+      "Claude génère un fichier SQL numéroté dans api/migrations/ contenant les traductions.",
+      "Ouvrez phpMyAdmin, allez dans l'onglet Importer, sélectionnez le jeu de caractères « utf-8 », puis importez ce fichier SQL.",
+    ],
+    translationHelpNote:
+      "Le jeu de caractères est important : phpMyAdmin n'utilise pas UTF-8 par défaut, et importer sans le sélectionner corrompt les caractères accentués et non latins.",
     name: 'Nom',
     category: 'Catégorie',
     tagline: 'Accroche',

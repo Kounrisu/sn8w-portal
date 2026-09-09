@@ -54,6 +54,28 @@ export class AdminPage {
     return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   }
 
+  /**
+   * Downloads the current project list (name, category, tagline — the
+   * fields that actually get translated) as JSON, for handing to Claude
+   * when asking for a translation pass. Not the full row: screenshots,
+   * repo links etc. aren't relevant to that task.
+   */
+  protected exportForTranslation(): void {
+    const rows = this.projects.list().map((p) => ({
+      id: p.id,
+      name: p.name,
+      category: p.category,
+      tagline: p.tagline,
+    }));
+    const blob = new Blob([JSON.stringify(rows, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `sn8w-projects-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
   protected tierLabel(tier: ProductTier): string {
     const dict = this.i18n.dict().admin;
     return tier === 'flagship' ? dict.tierFlagship : tier === 'ecosystem' ? dict.tierEcosystem : dict.tierLab;
