@@ -1,0 +1,87 @@
+@use '../../../panel';
+
+:host {
+  @include panel.pane;
+}
+
+.section-head {
+  @include panel.glass;
+  @include panel.reveal;
+}
+
+// Same flat-shelf pattern as the ecosystem grid — a taxonomy heading per
+// idea would outweigh the idea itself at this stage.
+.lab-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.lab-item {
+  @include panel.glass;
+  @include panel.reveal;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.lab-item__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.lab-item__thumb {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+}
+
+.lab-item__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.lab-item__tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  letter-spacing: 0.02em;
+}
+
+.lab-item__name {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.lab-item__tagline {
+  margin: 0.35rem 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--mist);
+}
+
+.lab-item__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: 0.4rem;
+}
+
+@media (min-width: 700px) {
+  .lab-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl) var(--space-lg);
+  }
+}

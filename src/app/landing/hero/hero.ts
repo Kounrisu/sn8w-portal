@@ -12,10 +12,11 @@ import { RouterLink } from '@angular/router';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { HeroAudioService } from '../../core/hero-audio.service';
 import { PROFILES } from '../../core/profiles';
+import { LocalStatus } from '../local-status/local-status';
 
 @Component({
   selector: 'sn8w-hero',
-  imports: [RouterLink],
+  imports: [RouterLink, LocalStatus],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
