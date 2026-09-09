@@ -47,7 +47,7 @@ export const es: Dict = {
         role: 'Desarrollador Front-End Angular',
         org: 'Banco central europeo, París',
         description:
-          'Desarrollo y mantenimiento de una biblioteca de componentes Angular compartida, utilizada en una decena de aplicaciones internas. Liderazgo de las migraciones desde AngularJS hasta Angular 21, auditorías y formación en accesibilidad RGAA, y acompañamiento de los equipos de proyecto de principio a fin — desde talleres UX y maquetas en Figma hasta la estimación, integración y pipelines CI/CD (Jenkins, SonarQube).',
+          'Desarrollo y mantenimiento de una biblioteca de componentes Angular compartida, utilizada en una decena de aplicaciones internas. Liderazgo de las migraciones desde AngularJS hasta Angular 21, auditorías de accesibilidad RGAA, y diseño e impartición de la formación en accesibilidad que reciben los desarrolladores — elaboro yo mismo los materiales y compruebo que los conceptos realmente se entienden, no solo que se presentan. Acompañamiento de los equipos de proyecto de principio a fin — desde talleres UX y maquetas en Figma hasta la estimación, integración y pipelines CI/CD (Jenkins, SonarQube).',
       },
       {
         period: '2014 — 2015',
@@ -83,6 +83,10 @@ export const es: Dict = {
       languages: { label: 'Lenguajes', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
       frameworks: { label: 'Frameworks', value: 'Angular (AngularJS a v21), React' },
       accessibility: { label: 'Accesibilidad y UX', value: 'RGAA, WCAG, auditorías de sobriedad digital' },
+      training: {
+        label: 'Formación y pedagogía',
+        value: 'Diseño de materiales, impartición de talleres, comprobación de la comprensión en lugar de una simple exposición',
+      },
       tools: { label: 'Herramientas', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: 'Fuera del código',

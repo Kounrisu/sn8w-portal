@@ -52,6 +52,7 @@ export interface Dict {
       languages: { label: string; value: string };
       frameworks: { label: string; value: string };
       accessibility: { label: string; value: string };
+      training: { label: string; value: string };
       tools: { label: string; value: string };
     };
     interestsLabel: string;
@@ -330,7 +331,7 @@ export const en: Dict = {
         role: 'Front-End Angular Developer',
         org: 'European central bank, Paris',
         description:
-          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits and training, and supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
+          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits, and designing and delivering the accessibility training developers take — building the materials myself and checking the ideas actually land, not just handing off a slide deck. Supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
       },
       {
         period: '2014 — 2015',
@@ -366,6 +367,10 @@ export const en: Dict = {
       languages: { label: 'Languages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
       frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: 'Accessibility & UX', value: 'RGAA, WCAG, digital sobriety audits' },
+      training: {
+        label: 'Training & mentoring',
+        value: 'Designing training materials, running workshops, checking understanding rather than just presenting',
+      },
       tools: { label: 'Tools', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: 'Outside the code',

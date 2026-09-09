@@ -47,7 +47,7 @@ export const fr: Dict = {
         role: 'Développeur Front-End Angular confirmé',
         org: 'Banque centrale européenne, Paris',
         description:
-          "Développement et maintenance d'une bibliothèque de composants Angular partagée, utilisée sur une dizaine d'applications internes. Pilotage des migrations depuis AngularJS jusqu'à la version 21 d'Angular, audits et formations à l'accessibilité RGAA, et accompagnement des équipes projets de bout en bout — des ateliers UX et maquettes Figma jusqu'au chiffrage, à l'intégration et aux pipelines CI/CD (Jenkins, SonarQube).",
+          "Développement et maintenance d'une bibliothèque de composants Angular partagée, utilisée sur une dizaine d'applications internes. Pilotage des migrations depuis AngularJS jusqu'à la version 21 d'Angular, audits d'accessibilité RGAA, et conception et animation des formations à l'accessibilité que suivent les développeurs — je construis moi-même les supports et je vérifie que les notions passent vraiment, pas seulement qu'elles sont présentées. Accompagnement des équipes projets de bout en bout — des ateliers UX et maquettes Figma jusqu'au chiffrage, à l'intégration et aux pipelines CI/CD (Jenkins, SonarQube).",
       },
       {
         period: '2014 — 2015',
@@ -83,6 +83,10 @@ export const fr: Dict = {
       languages: { label: 'Langages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
       frameworks: { label: 'Frameworks', value: 'Angular (AngularJS à v21), React' },
       accessibility: { label: 'Accessibilité & UX', value: 'RGAA, WCAG, audits de sobriété numérique' },
+      training: {
+        label: 'Formation & pédagogie',
+        value: "Conception de supports, animation d'ateliers, vérification de la compréhension plutôt qu'un simple exposé",
+      },
       tools: { label: 'Outils', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: 'Hors du code',

@@ -47,7 +47,7 @@ export const de: Dict = {
         role: 'Frontend-Angular-Entwickler',
         org: 'Europäische Zentralbank, Paris',
         description:
-          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen und -schulungen sowie durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
+          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen sowie Konzeption und Durchführung der Barrierefreiheits-Schulungen für Entwickler — ich erstelle die Materialien selbst und prüfe, ob die Inhalte wirklich verstanden werden, statt sie nur zu präsentieren. Durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
       },
       {
         period: '2014 — 2015',
@@ -83,6 +83,10 @@ export const de: Dict = {
       languages: { label: 'Sprachen', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
       frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: 'Barrierefreiheit & UX', value: 'RGAA, WCAG, Prüfungen zur digitalen Nachhaltigkeit' },
+      training: {
+        label: 'Schulung & Vermittlung',
+        value: 'Erstellung von Schulungsunterlagen, Durchführung von Workshops, Verständnisprüfung statt reiner Präsentation',
+      },
       tools: { label: 'Werkzeuge', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: 'Außerhalb des Codes',
