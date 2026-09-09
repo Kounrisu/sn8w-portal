@@ -74,10 +74,12 @@
   color: var(--mist);
   text-decoration: none;
   padding: 0.45em 0.85em;
+  border: 1.5px solid transparent;
   border-radius: 999px;
   transition:
     color 0.15s ease,
-    background-color 0.15s ease;
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .nav__links a:hover {
@@ -100,6 +102,7 @@
   color: var(--ice);
   font-weight: 700;
   background-color: color-mix(in srgb, var(--ice) 16%, transparent);
+  border-color: var(--ice);
 }
 
 .nav__links a.nav__link--active::before {
