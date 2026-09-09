@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { MatIconModule } from '@angular/material/icon';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { StackRevealDirective } from '../../core/stack-reveal.directive';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 interface Principle {
   readonly icon: string;
@@ -11,7 +12,7 @@ interface Principle {
 
 @Component({
   selector: 'sn8w-engineering-principles',
-  imports: [MatIconModule],
+  imports: [MatIconModule, SpotlightDirective],
   hostDirectives: [StackRevealDirective],
   templateUrl: './engineering-principles.html',
   styleUrl: './engineering-principles.scss',

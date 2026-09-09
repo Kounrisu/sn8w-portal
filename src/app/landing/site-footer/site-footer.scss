@@ -30,9 +30,11 @@
 
 .site-footer__logo {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 1.15rem;
   color: var(--mist);
   text-decoration: none;
+  letter-spacing: -0.02em;
 }
 
 .site-footer__logo .accent {

@@ -282,7 +282,7 @@ export const en: Dict = {
   },
   hero: {
     kicker: 'Paris, France',
-    headlineMain: 'Philippe Parmentier',
+    headlineMain: 'Philippe PARMENTIER',
     headlineAccent: 'Front-End Angular Developer',
     lede: "I work mainly with Angular, currently at a European central bank in Paris, with a focus on accessibility (RGAA). This site doubles as my CV, and a place to share a few personal projects I'm building to learn.",
     ctaPrimary: 'See my experience',

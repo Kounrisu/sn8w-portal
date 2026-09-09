@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { StackRevealDirective } from '../../core/stack-reveal.directive';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 @Component({
   selector: 'sn8w-about-experience',
-  imports: [],
+  imports: [SpotlightDirective],
   hostDirectives: [StackRevealDirective],
   templateUrl: './about-experience.html',
   styleUrl: './about-experience.scss',
