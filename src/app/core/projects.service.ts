@@ -1,7 +1,9 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { I18nService } from './i18n/i18n.service';
+import type { Lang } from './i18n/dictionary';
 import type {
   FlagshipMockup,
   Project,
@@ -14,20 +16,31 @@ import type {
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
   private readonly http = inject(HttpClient);
+  private readonly i18n = inject(I18nService);
   private readonly baseUrl = `${environment.apiBaseUrl}/projects.php`;
 
+  /** English/base content — what admin edits, never affected by the UI language. */
   private readonly all = signal<Project[]>([]);
   readonly loaded = signal(false);
   readonly loadError = signal(false);
 
+  /**
+   * The same projects, in whatever language the UI is currently in — the
+   * public landing page reads from here, admin never does. Kept as a
+   * separate signal (not derived from `all`) specifically so that switching
+   * the site language can't accidentally feed translated text back into the
+   * admin form and have it saved over the English original.
+   */
+  private readonly localized = signal<Project[]>([]);
+
   readonly flagship = computed(() =>
-    this.all()
+    this.localized()
       .filter((p) => p.tier === 'flagship')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
   readonly lab = computed(() =>
-    this.all()
+    this.localized()
       .filter((p) => p.tier === 'lab')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
@@ -40,13 +53,20 @@ export class ProjectsService {
    * status forward in admin once it earns a place here.
    */
   readonly explorations = computed(() =>
-    this.all()
+    this.localized()
       .filter((p) => (p.tier === 'ecosystem' || p.tier === 'lab') && p.status === 'concept')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
   constructor() {
     void this.load();
+
+    // Re-fetch the localized copy whenever the UI language changes —
+    // English never hits the network twice (?lang= is omitted for it,
+    // matching the base fetch above).
+    effect(() => {
+      void this.loadLocalized(this.i18n.lang());
+    });
   }
 
   async load(): Promise<void> {
@@ -61,7 +81,18 @@ export class ProjectsService {
     }
   }
 
-  /** All projects, for the admin table. */
+  private async loadLocalized(lang: Lang): Promise<void> {
+    try {
+      const params: Record<string, string> = lang === 'en' ? {} : { lang };
+      const projects = await firstValueFrom(this.http.get<Project[]>(this.baseUrl, { params }));
+      this.localized.set(projects);
+    } catch {
+      // Leave the previous localized list in place on a transient failure —
+      // better a stale-but-correct list than an empty landing page.
+    }
+  }
+
+  /** All projects in English, for the admin table. */
   list(): readonly Project[] {
     return this.all();
   }

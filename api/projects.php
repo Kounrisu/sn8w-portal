@@ -9,6 +9,7 @@ require_once __DIR__ . '/lib/project_json.php';
 require_method('GET', 'POST', 'PUT', 'DELETE');
 
 const VALID_TIERS = ['flagship', 'ecosystem', 'lab'];
+const VALID_TRANSLATION_LANGS = ['fr', 'de', 'ko', 'ja', 'es'];
 const VALID_STATUSES = ['live', 'in-development', 'concept', 'prototype'];
 const VALID_MOCKUPS = ['inspector', 'dashboard', 'creative'];
 const VALID_AVAILABILITY = ['active', 'inactive'];
@@ -119,12 +120,33 @@ if ($method === 'GET') {
         json_error('Invalid tier filter', 400);
     }
 
-    if ($tier !== null) {
-        $stmt = db()->prepare('SELECT * FROM projects WHERE tier = :tier ORDER BY group_title <=> NULL, group_title, sort_order, id');
-        $stmt->execute(['tier' => $tier]);
-    } else {
-        $stmt = db()->query('SELECT * FROM projects ORDER BY FIELD(tier, "flagship", "ecosystem", "lab"), group_title <=> NULL, group_title, sort_order, id');
+    // English (the default/base language) reads straight from `projects`.
+    // Any other supported language left-joins its translation row and
+    // falls back to the base column when no translation exists yet for
+    // that project — a project with no translations is just shown in
+    // English rather than omitted or erroring.
+    $lang = $_GET['lang'] ?? null;
+    if ($lang !== null && !in_array($lang, VALID_TRANSLATION_LANGS, true)) {
+        json_error('Invalid lang', 400);
     }
+
+    $select = $lang === null
+        ? 'p.*'
+        : 'p.*, COALESCE(t.category, p.category) AS category, COALESCE(t.tagline, p.tagline) AS tagline';
+    $join = $lang === null ? '' : 'LEFT JOIN project_translations t ON t.project_id = p.id AND t.lang = :lang';
+
+    $where = $tier !== null ? 'WHERE p.tier = :tier' : '';
+    $order = 'ORDER BY FIELD(p.tier, "flagship", "ecosystem", "lab"), p.group_title <=> NULL, p.group_title, p.sort_order, p.id';
+
+    $stmt = db()->prepare("SELECT $select FROM projects p $join $where $order");
+    $params = [];
+    if ($lang !== null) {
+        $params['lang'] = $lang;
+    }
+    if ($tier !== null) {
+        $params['tier'] = $tier;
+    }
+    $stmt->execute($params);
 
     json_response(array_map(project_row_to_json(...), $stmt->fetchAll()));
 }

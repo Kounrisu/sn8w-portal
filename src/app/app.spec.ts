@@ -39,7 +39,12 @@ describe('App', () => {
     await fixture.whenStable();
 
     httpMock.expectOne('/api/session.php').flush({ authenticated: false });
-    httpMock.expectOne('/api/projects.php').flush([]);
+    // ProjectsService fires two requests on init: the English/base `all`
+    // load, and the language-aware `localized` load — identical URL when
+    // the detected UI language is English, so `match` (not `expectOne`).
+    for (const req of httpMock.match('/api/projects.php')) {
+      req.flush([]);
+    }
 
     fixture.detectChanges();
     await fixture.whenStable();
