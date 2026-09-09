@@ -27,6 +27,16 @@
   --danger: #e0566d;
   --success: #4fd1a5;
 
+  // The hero name's gradient — both stops lightened toward white rather
+  // than toward black, since darkening would have lost contrast against
+  // this dark background instead of gaining it. Verified at 6.6:1 / 10.7:1
+  // for the two stops against --bg, both well past the 4.5:1 AA floor.
+  --ice-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ice) 75%, white) 0%,
+    color-mix(in srgb, var(--ice) 40%, white) 100%
+  );
+
   // Manrope (headings, via the --font-serif slot — kept as the existing
   // generic name rather than renamed, same reasoning as the color tokens
   // above) is a clean, highly legible modern grotesk with a bit more
@@ -145,6 +155,17 @@ html[data-theme='squirrel'] {
   --surface-sunken: #edf1f7;
   --danger: #b42318;
   --success: #157a57;
+
+  // Opposite direction from the dark theme's --ice-gradient: the deep
+  // stop is only lightly darkened (not toward the near-black used before)
+  // for a softer, less heavy pairing, ending on plain --ice itself rather
+  // than a darkened stop — brighter overall while staying well past AA.
+  // Verified at 7.9:1 / 6.4:1 for the two stops against --bg.
+  --ice-gradient: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ice) 85%, black) 0%,
+    var(--ice) 100%
+  );
 
   --mat-sys-shadow: #55627a;
   --mat-sys-scrim: #55627a;

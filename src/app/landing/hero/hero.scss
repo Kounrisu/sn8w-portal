@@ -47,23 +47,44 @@
   animation: fade-up 0.7s ease-out 0.05s forwards;
 }
 
+// The one signature moment on the page (per the design brief: the hero is
+// a thesis) — its own display face, heavier and more geometric than the
+// Manrope used for every other heading, so the name itself reads as a
+// deliberate mark rather than just the biggest instance of body type.
 .hero__name {
   margin: 0 0 var(--space-2xs);
-  font-family: var(--font-serif);
-  font-weight: 700;
+  font-family: 'Bricolage Grotesque', var(--font-serif);
+  font-weight: 800;
   font-size: var(--text-3xl);
   line-height: 1.04;
   letter-spacing: -0.02em;
-  color: var(--ink);
   text-wrap: balance;
+  background: var(--ice-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .hero__role {
   margin: 0 0 var(--space-lg);
   font-family: var(--font-sans);
   font-size: var(--text-md);
-  font-weight: 500;
-  color: var(--ice);
+  font-weight: 600;
+  background: var(--ice-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+// Windows High Contrast Mode strips background images, which would make
+// gradient-clipped text invisible (transparent color, no fallback paint) —
+// fall back to a solid system color instead of disappearing.
+@media (forced-colors: active) {
+  .hero__name,
+  .hero__role {
+    background: none;
+    color: CanvasText;
+  }
 }
 
 .hero__lede {

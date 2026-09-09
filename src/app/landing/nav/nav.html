@@ -22,7 +22,12 @@
     } @else {
       <nav class="nav__links" aria-label="Primary">
         @for (link of links(); track link.fragment) {
-          <a routerLink="/" [fragment]="link.fragment">{{ link.label }}</a>
+          <a
+            routerLink="/"
+            [fragment]="link.fragment"
+            [class.nav__link--active]="activeFragment() === link.fragment"
+            [attr.aria-current]="activeFragment() === link.fragment ? 'true' : null"
+          >{{ link.label }}</a>
         }
         @if (auth.isAuthenticated()) {
           <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
@@ -87,7 +92,13 @@
   @if (isCompact() && menuOpen()) {
     <nav id="nav-menu" class="nav__menu" aria-label="Primary" (keydown.escape)="onEscape()">
       @for (link of links(); track link.fragment) {
-        <a routerLink="/" [fragment]="link.fragment" (click)="closeMenu()">{{ link.label }}</a>
+        <a
+          routerLink="/"
+          [fragment]="link.fragment"
+          [class.nav__link--active]="activeFragment() === link.fragment"
+          [attr.aria-current]="activeFragment() === link.fragment ? 'true' : null"
+          (click)="closeMenu()"
+        >{{ link.label }}</a>
       }
       @if (auth.isAuthenticated()) {
         <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
