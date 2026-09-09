@@ -92,6 +92,18 @@ export class ProjectsService {
     }
   }
 
+  /**
+   * `localized` is otherwise only fetched once at startup and on language
+   * change — without this, an admin edit updates `all` (so the admin table
+   * reflects it immediately) but the public landing page keeps showing
+   * whatever was current when the app first loaded, until a full reload.
+   * Called after every write below so the same session's public view never
+   * goes stale.
+   */
+  private refreshLocalized(): void {
+    void this.loadLocalized(this.i18n.lang());
+  }
+
   /** All projects in English, for the admin table. */
   list(): readonly Project[] {
     return this.all();
@@ -100,6 +112,7 @@ export class ProjectsService {
   async create(input: ProjectInput): Promise<Project> {
     const created = await firstValueFrom(this.http.post<Project>(this.baseUrl, input));
     this.all.update((projects) => [...projects, created]);
+    this.refreshLocalized();
     return created;
   }
 
@@ -108,6 +121,7 @@ export class ProjectsService {
       this.http.put<Project>(this.baseUrl, input, { params: { id } }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 
@@ -129,11 +143,13 @@ export class ProjectsService {
             ),
       ),
     );
+    this.refreshLocalized();
   }
 
   async remove(id: number): Promise<void> {
     await firstValueFrom(this.http.delete(this.baseUrl, { params: { id } }));
     this.all.update((projects) => projects.filter((p) => p.id !== id));
+    this.refreshLocalized();
   }
 
   /** Clears a pending activation request without changing availability. */
@@ -146,6 +162,7 @@ export class ProjectsService {
       ),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 
@@ -167,6 +184,7 @@ export class ProjectsService {
       }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 
@@ -177,6 +195,7 @@ export class ProjectsService {
       }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 }
