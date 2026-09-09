@@ -39,7 +39,7 @@ export const de: Dict = {
   aboutSection: {
     kicker: 'Über mich',
     title: 'Etwas zu meinem Werdegang',
-    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 arbeite ich in dem Team, das die gemeinsame Komponentenbibliothek einer europäischen Zentralbank entwickelt und pflegt: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet — von der Automobil- über die Kosmetikindustrie bis zu ophthalmischen Polycarbonat-Brillengläsern. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
+    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 arbeite ich in dem Team, das die gemeinsame Komponentenbibliothek einer europäischen Zentralbank entwickelt und pflegt: Migrationen von AngularJS auf Angular 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet — von der Automobil- über die Kosmetikindustrie bis zu ophthalmischen Polycarbonat-Brillengläsern. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
     timelineLabel: 'Erfahrung',
     timeline: [
       {
@@ -47,7 +47,7 @@ export const de: Dict = {
         role: 'Frontend-Angular-Entwickler',
         org: 'Europäische Zentralbank, Paris',
         description:
-          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von Angular 4 auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen und -schulungen sowie durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
+          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen und -schulungen sowie durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
       },
       {
         period: '2014 — 2015',
@@ -81,7 +81,7 @@ export const de: Dict = {
     skillsLabel: 'Fähigkeiten',
     skillsGroups: {
       languages: { label: 'Sprachen', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (v4 – v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: 'Barrierefreiheit & UX', value: 'RGAA, WCAG, Prüfungen zur digitalen Nachhaltigkeit' },
       tools: { label: 'Werkzeuge', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
@@ -166,7 +166,7 @@ export const de: Dict = {
   labSection: {
     kicker: 'Experimente',
     title: 'Nur zum Spaß',
-    lede: 'Ideen, die ich vor allem zum Lernen ausprobiert habe — nicht jede führt irgendwohin, und das ist in Ordnung.',
+    lede: 'Ideen, die ich aus Neugier ausprobiert habe, um neue Technologien und Ansätze kennenzulernen.',
     tag: '[Prototyp]',
   },
   ctaSection: {
@@ -270,6 +270,9 @@ export const de: Dict = {
     tierFlagship: 'Flaggschiff',
     tierEcosystem: 'Ökosystem',
     tierLab: 'Labor',
+    reorderColumn: 'Neu anordnen',
+    moveUp: 'Nach oben',
+    moveDown: 'Nach unten',
   },
   projectCard: {
     visit: 'Besuchen',

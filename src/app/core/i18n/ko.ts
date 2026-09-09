@@ -39,7 +39,7 @@ export const ko: Dict = {
   aboutSection: {
     kicker: '소개',
     title: '제 경력에 대해 조금',
-    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 유럽 중앙은행의 공용 컴포넌트 라이브러리를 개발·유지보수하는 팀에서 일해 왔습니다 — Angular 4에서 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 산업 현장 — 자동차에서 화장품, 그리고 안경용 폴리카보네이트 렌즈까지 — 의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
+    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 유럽 중앙은행의 공용 컴포넌트 라이브러리를 개발·유지보수하는 팀에서 일해 왔습니다 — AngularJS에서 Angular 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 산업 현장 — 자동차에서 화장품, 그리고 안경용 폴리카보네이트 렌즈까지 — 의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
     timelineLabel: '경력',
     timeline: [
       {
@@ -47,7 +47,7 @@ export const ko: Dict = {
         role: '프론트엔드 Angular 개발자',
         org: '유럽 중앙은행 (파리)',
         description:
-          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. Angular 4에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사와 교육을 진행했으며, UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
+          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. AngularJS에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사와 교육을 진행했으며, UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
       },
       {
         period: '2014년 — 2015년',
@@ -81,7 +81,7 @@ export const ko: Dict = {
     skillsLabel: '기술',
     skillsGroups: {
       languages: { label: '언어', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: '프레임워크', value: 'Angular (v4 – v21), React' },
+      frameworks: { label: '프레임워크', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: '접근성 & UX', value: 'RGAA, WCAG, 디지털 절제 감사' },
       tools: { label: '도구', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
@@ -166,7 +166,7 @@ export const ko: Dict = {
   labSection: {
     kicker: '실험',
     title: '그냥 재미로',
-    lede: '주로 배우려고 시도해 본 아이디어들입니다. 다 잘 되는 건 아니지만, 그래도 괜찮습니다.',
+    lede: '새로운 기술과 접근 방식을 배우기 위해 호기심으로 시도해 본 아이디어들입니다.',
     tag: '[프로토타입]',
   },
   ctaSection: {
@@ -270,6 +270,9 @@ export const ko: Dict = {
     tierFlagship: '대표 프로젝트',
     tierEcosystem: '에코시스템',
     tierLab: '랩',
+    reorderColumn: '순서 변경',
+    moveUp: '위로 이동',
+    moveDown: '아래로 이동',
   },
   projectCard: {
     visit: '방문하기',

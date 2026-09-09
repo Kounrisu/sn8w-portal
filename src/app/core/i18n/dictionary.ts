@@ -203,6 +203,9 @@ export interface Dict {
     tierFlagship: string;
     tierEcosystem: string;
     tierLab: string;
+    reorderColumn: string;
+    moveUp: string;
+    moveDown: string;
   };
   projectCard: {
     visit: string;
@@ -308,7 +311,7 @@ export const en: Dict = {
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked in the team that builds and maintains a European central bank's shared component library: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked in the team that builds and maintains a European central bank's shared component library: AngularJS to Angular 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
@@ -316,7 +319,7 @@ export const en: Dict = {
         role: 'Front-End Angular Developer',
         org: 'European central bank, Paris',
         description:
-          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from Angular 4 to Angular 21, running RGAA accessibility audits and training, and supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
+          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits and training, and supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
       },
       {
         period: '2014 — 2015',
@@ -350,7 +353,7 @@ export const en: Dict = {
     skillsLabel: 'Skills',
     skillsGroups: {
       languages: { label: 'Languages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (v4 – v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: 'Accessibility & UX', value: 'RGAA, WCAG, digital sobriety audits' },
       tools: { label: 'Tools', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
@@ -435,7 +438,7 @@ export const en: Dict = {
   labSection: {
     kicker: 'Experiments',
     title: 'Just for fun',
-    lede: "Ideas I tried out mostly for the learning — not every one goes anywhere, and that's fine.",
+    lede: 'Ideas explored out of curiosity, to learn new technologies and approaches.',
     tag: '[prototype]',
   },
   ctaSection: {
@@ -539,6 +542,9 @@ export const en: Dict = {
     tierFlagship: 'Flagship',
     tierEcosystem: 'Ecosystem',
     tierLab: 'Lab',
+    reorderColumn: 'Reorder',
+    moveUp: 'Move up',
+    moveDown: 'Move down',
   },
   projectCard: {
     visit: 'Visit',

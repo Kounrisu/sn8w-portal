@@ -39,7 +39,7 @@ export const ja: Dict = {
   aboutSection: {
     kicker: '自己紹介',
     title: 'これまでの経歴について',
-    lede: 'パリ近郊を拠点とするフロントエンド Angular 開発者です。2015年から、ヨーロッパの中央銀行の共有コンポーネントライブラリを開発・保守するチームで働いています — Angular 4 から 21 への移行、RGAA/WCAG アクセシビリティ、CI/CD パイプライン、そしてそれを使う各チームへの日々のサポート。開発に移る前は、イギリス、そしてアメリカで10年間、製造業の現場 — 自動車から化粧品、そして眼鏡用ポリカーボネートレンズまで — で継続的改善を推進していました。手法・ドキュメント・部門を超えた仕事へのこだわりは、その頃に身についたものです。',
+    lede: 'パリ近郊を拠点とするフロントエンド Angular 開発者です。2015年から、ヨーロッパの中央銀行の共有コンポーネントライブラリを開発・保守するチームで働いています — AngularJS から Angular 21 への移行、RGAA/WCAG アクセシビリティ、CI/CD パイプライン、そしてそれを使う各チームへの日々のサポート。開発に移る前は、イギリス、そしてアメリカで10年間、製造業の現場 — 自動車から化粧品、そして眼鏡用ポリカーボネートレンズまで — で継続的改善を推進していました。手法・ドキュメント・部門を超えた仕事へのこだわりは、その頃に身についたものです。',
     timelineLabel: '職務経歴',
     timeline: [
       {
@@ -47,7 +47,7 @@ export const ja: Dict = {
         role: 'フロントエンドAngular開発者',
         org: 'ヨーロッパの中央銀行（パリ）',
         description:
-          '十数の社内アプリケーションで共有されるAngularコンポーネントライブラリを開発・保守。Angular 4からAngular 21へのバージョン移行を主導し、RGAAアクセシビリティ監査と研修を実施。UXワークショップやFigmaの引き継ぎから、見積もり、実装、CI/CD（Jenkins、SonarQube）まで、プロジェクトチームを一貫して支援。',
+          '十数の社内アプリケーションで共有されるAngularコンポーネントライブラリを開発・保守。AngularJSからAngular 21へのバージョン移行を主導し、RGAAアクセシビリティ監査と研修を実施。UXワークショップやFigmaの引き継ぎから、見積もり、実装、CI/CD（Jenkins、SonarQube）まで、プロジェクトチームを一貫して支援。',
       },
       {
         period: '2014年 — 2015年',
@@ -81,7 +81,7 @@ export const ja: Dict = {
     skillsLabel: 'スキル',
     skillsGroups: {
       languages: { label: '言語', value: 'HTML5、CSS3、SCSS、JavaScript、TypeScript、SQL、Java、Node.js、PHP' },
-      frameworks: { label: 'フレームワーク', value: 'Angular（v4〜v21）、React' },
+      frameworks: { label: 'フレームワーク', value: 'Angular（AngularJS〜v21）、React' },
       accessibility: { label: 'アクセシビリティ & UX', value: 'RGAA、WCAG、デジタルソブリエティ監査' },
       tools: { label: 'ツール', value: 'Git、GitLab、Jenkins、SonarQube、Jira、Figma、CI/CD' },
     },
@@ -166,7 +166,7 @@ export const ja: Dict = {
   labSection: {
     kicker: '実験',
     title: '趣味みたいなものです',
-    lede: '主に学ぶために試したアイデアです。うまくいかないものもありますが、それでいいと思っています。',
+    lede: '新しい技術やアプローチを学ぶために、興味から試したアイデアです。',
     tag: '[プロトタイプ]',
   },
   ctaSection: {
@@ -270,6 +270,9 @@ export const ja: Dict = {
     tierFlagship: 'フラッグシップ',
     tierEcosystem: 'エコシステム',
     tierLab: 'ラボ',
+    reorderColumn: '並び替え',
+    moveUp: '上に移動',
+    moveDown: '下に移動',
   },
   projectCard: {
     visit: '見に行く',

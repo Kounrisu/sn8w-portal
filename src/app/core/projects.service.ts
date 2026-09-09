@@ -111,6 +111,26 @@ export class ProjectsService {
     return updated;
   }
 
+  /**
+   * Persists a new admin-table row order — mirrors TodosService.reorderBoard.
+   * Callers are expected to only reorder within one tier/group at a time
+   * (see AdminPage's sortPredicate); reindexing the whole list 0..n-1
+   * regardless is harmless since the API always sorts by tier/group first.
+   */
+  async reorderList(newOrder: readonly Project[]): Promise<void> {
+    const withOrders = newOrder.map((p, index) => ({ ...p, sortOrder: index }));
+    this.all.set(withOrders);
+    await Promise.all(
+      newOrder.map((project, index) =>
+        project.sortOrder === index
+          ? Promise.resolve()
+          : firstValueFrom(
+              this.http.put<Project>(this.baseUrl, { sortOrder: index }, { params: { id: project.id } }),
+            ),
+      ),
+    );
+  }
+
   async remove(id: number): Promise<void> {
     await firstValueFrom(this.http.delete(this.baseUrl, { params: { id } }));
     this.all.update((projects) => projects.filter((p) => p.id !== id));

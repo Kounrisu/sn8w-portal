@@ -39,7 +39,7 @@ export const fr: Dict = {
   aboutSection: {
     kicker: 'À propos',
     title: 'Un peu sur mon parcours',
-    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je travaille au sein de l'équipe qui développe et maintient la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'Angular 4 à 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel, de l'automobile au cosmétique puis aux verres ophtalmiques en polycarbonate. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
+    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je travaille au sein de l'équipe qui développe et maintient la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'AngularJS à Angular 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel, de l'automobile au cosmétique puis aux verres ophtalmiques en polycarbonate. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
     timelineLabel: 'Expérience',
     timeline: [
       {
@@ -47,7 +47,7 @@ export const fr: Dict = {
         role: 'Développeur Front-End Angular confirmé',
         org: 'Banque centrale européenne, Paris',
         description:
-          "Développement et maintenance d'une bibliothèque de composants Angular partagée, utilisée sur une dizaine d'applications internes. Pilotage des migrations Angular de la version 4 à la version 21, audits et formations à l'accessibilité RGAA, et accompagnement des équipes projets de bout en bout — des ateliers UX et maquettes Figma jusqu'au chiffrage, à l'intégration et aux pipelines CI/CD (Jenkins, SonarQube).",
+          "Développement et maintenance d'une bibliothèque de composants Angular partagée, utilisée sur une dizaine d'applications internes. Pilotage des migrations depuis AngularJS jusqu'à la version 21 d'Angular, audits et formations à l'accessibilité RGAA, et accompagnement des équipes projets de bout en bout — des ateliers UX et maquettes Figma jusqu'au chiffrage, à l'intégration et aux pipelines CI/CD (Jenkins, SonarQube).",
       },
       {
         period: '2014 — 2015',
@@ -81,7 +81,7 @@ export const fr: Dict = {
     skillsLabel: 'Compétences',
     skillsGroups: {
       languages: { label: 'Langages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (v4 à v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS à v21), React' },
       accessibility: { label: 'Accessibilité & UX', value: 'RGAA, WCAG, audits de sobriété numérique' },
       tools: { label: 'Outils', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
@@ -166,7 +166,7 @@ export const fr: Dict = {
   labSection: {
     kicker: 'Expérimentations',
     title: 'Curiosité et créativité',
-    lede: "Des idées explorées par curiosité ou par envie de créer, sans autre objectif. Certaines n'aboutissent pas, et c'est très bien ainsi.",
+    lede: 'Des idées explorées par curiosité, pour apprendre de nouvelles technologies et approches.',
     tag: '[prototype]',
   },
   ctaSection: {
@@ -270,6 +270,9 @@ export const fr: Dict = {
     tierFlagship: 'Vaisseau amiral',
     tierEcosystem: 'Écosystème',
     tierLab: 'Laboratoire',
+    reorderColumn: 'Réordonner',
+    moveUp: 'Monter',
+    moveDown: 'Descendre',
   },
   projectCard: {
     visit: 'Visiter',
