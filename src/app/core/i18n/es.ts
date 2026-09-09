@@ -12,8 +12,6 @@ export const es: Dict = {
     theme: 'Tema',
     themeFrost: 'Oscuro',
     themeSquirrel: 'Claro',
-    soundOn: 'Activar el sonido',
-    soundOff: 'Silenciar',
   },
   nav: {
     products: 'Productos',

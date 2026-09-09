@@ -17,8 +17,6 @@ export interface Dict {
     theme: string;
     themeFrost: string;
     themeSquirrel: string;
-    soundOn: string;
-    soundOff: string;
   };
   nav: {
     products: string;
@@ -262,8 +260,6 @@ export const en: Dict = {
     theme: 'Theme',
     themeFrost: 'Dark',
     themeSquirrel: 'Light',
-    soundOn: 'Turn sound on',
-    soundOff: 'Turn sound off',
   },
   nav: {
     products: 'Products',

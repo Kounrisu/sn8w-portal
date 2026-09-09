@@ -7,10 +7,9 @@
   justify-content: center;
 }
 
-// Fixed, not absolute: the video is the backdrop for the *whole* landing
-// page, not just the first screen. Every section below scrolls over it
-// while it stays put, which is why none of them paint an opaque background
-// of their own — the point is that the video keeps showing through.
+// Fixed, not absolute: the backdrop covers the *whole* landing page, not
+// just the first screen. Every section below scrolls over it while it stays
+// put, which is why none of them paint an opaque background of their own.
 //
 // z-index -1 keeps it behind the sections' content (which sits at z-index
 // 1) while staying inside .shell's stacking context, so it still covers
@@ -19,19 +18,7 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  // Opaque gradient in the theme's own tones: the real fallback when the
-  // video is blocked, slow to load, or simply hasn't started yet — never a
-  // flash of empty black.
   background: linear-gradient(160deg, var(--surface-raised) 0%, var(--bg) 55%, var(--surface-sunken) 100%);
-}
-
-.hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
 }
 
 .hero__scrim {
@@ -43,12 +30,6 @@
     color-mix(in srgb, var(--bg) 18%, transparent) 45%,
     color-mix(in srgb, var(--bg) 72%, transparent) 100%
   );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__video {
-    display: none;
-  }
 }
 
 .hero__inner {

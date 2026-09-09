@@ -1,26 +1,10 @@
 <div class="hero__bg" aria-hidden="true">
-  @if (!videoFailed()) {
-    <video
-      #videoEl
-      class="hero__video"
-      autoplay
-      [muted]="true"
-      [defaultMuted]="true"
-      loop
-      playsinline
-      preload="auto"
-      (error)="onVideoError()"
-    >
-      <source src="videos/hero-intro.mp4" type="video/mp4" />
-    </video>
-  }
   <div class="hero__scrim"></div>
 </div>
 
 <div class="container hero__inner">
   <div class="hero__copy">
     <p class="kicker">{{ i18n.dict().hero.kicker }}</p>
-    <sn8w-local-status />
     <h1 class="hero__name">{{ i18n.dict().hero.headlineMain }}</h1>
     <p class="hero__role">{{ i18n.dict().hero.headlineAccent }}</p>
     <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
