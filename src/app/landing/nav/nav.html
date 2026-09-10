@@ -103,17 +103,17 @@
         @if (auth.isAuthenticated()) {
           <button
             type="button"
-            class="nav__pref-btn nav__theme-btn"
+            class="nav__pref-btn nav__theme-btn nav__session-btn--logged-in"
             sn8wSpotlight
             [attr.aria-label]="i18n.dict().nav.logout"
             [matTooltip]="i18n.dict().nav.logout"
             (click)="logout()"
           >
-            <mat-icon aria-hidden="true">toggle_on</mat-icon>
+            <mat-icon aria-hidden="true">logout</mat-icon>
           </button>
         } @else {
           <a
-            class="nav__pref-btn nav__theme-btn"
+            class="nav__pref-btn nav__theme-btn nav__session-btn--logged-out"
             sn8wSpotlight
             routerLink="/login"
             [queryParams]="{ returnUrl: currentUrl() }"
@@ -122,7 +122,7 @@
             [attr.aria-label]="i18n.dict().nav.login"
             [matTooltip]="i18n.dict().nav.login"
           >
-            <mat-icon aria-hidden="true">toggle_off</mat-icon>
+            <mat-icon aria-hidden="true">login</mat-icon>
           </a>
         }
       </div>
@@ -143,19 +143,19 @@
           <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
           <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
           <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
-          <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
-            <mat-icon aria-hidden="true">toggle_on</mat-icon>
+          <button type="button" class="nav__logout nav__logout--menu nav__session-btn--logged-in" (click)="logout()">
+            <mat-icon aria-hidden="true">logout</mat-icon>
             {{ i18n.dict().nav.logout }}
           </button>
         </div>
       } @else {
         <a
-          class="nav__login nav__login--menu"
+          class="nav__login nav__login--menu nav__session-btn--logged-out"
           routerLink="/login"
           [queryParams]="{ returnUrl: currentUrl() }"
           (click)="closeMenu()"
         >
-          <mat-icon aria-hidden="true">toggle_off</mat-icon>
+          <mat-icon aria-hidden="true">login</mat-icon>
           {{ i18n.dict().nav.login }}
         </a>
       }

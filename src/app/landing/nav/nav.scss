@@ -177,6 +177,18 @@
   outline-offset: 3px;
 }
 
+// An icon-only nav button (settings, sign-in) is still a real link and
+// still needs the same "you are here" treatment as the text links above —
+// routerLinkActive already adds this class, it just had no matching
+// selector outside .nav__links/.nav__tools before. Filled background, not
+// just the dot below, so it reads distinctly from "customized" even when
+// both apply at once (on the settings page *with* custom preferences set).
+.nav__pref-btn.nav__link--active {
+  color: var(--ice);
+  background-color: color-mix(in srgb, var(--ice) 16%, transparent);
+  border-color: var(--ice);
+}
+
 // Shows accessibility settings differ from default — a border change plus a
 // dot (shape, not color alone: RGAA 10.14 / WCAG 1.4.1), same reasoning as
 // the current-page indicators elsewhere in this file. The real, readable
@@ -304,6 +316,43 @@
   outline: 2px solid var(--ice);
   outline-offset: 4px;
   border-radius: 2px;
+}
+
+// Session state, colored on top of the login/logout icon shape (never
+// color alone): red on the sign-in control while logged out, green on
+// sign-out once logged in. Declared after every other login/logout color
+// rule above so it wins on equal specificity regardless of which of those
+// base classes a given instance also carries.
+.nav__session-btn--logged-out {
+  color: var(--danger);
+}
+
+.nav__pref-btn.nav__session-btn--logged-out {
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--line-strong));
+}
+
+.nav__session-btn--logged-out:hover {
+  color: var(--danger);
+}
+
+.nav__pref-btn.nav__session-btn--logged-out:hover {
+  border-color: var(--danger);
+}
+
+.nav__session-btn--logged-in {
+  color: var(--success);
+}
+
+.nav__pref-btn.nav__session-btn--logged-in {
+  border-color: color-mix(in srgb, var(--success) 55%, var(--line-strong));
+}
+
+.nav__session-btn--logged-in:hover {
+  color: var(--success);
+}
+
+.nav__pref-btn.nav__session-btn--logged-in:hover {
+  border-color: var(--success);
 }
 
 .menu-toggle {
