@@ -1,0 +1,139 @@
+@use '../../../panel';
+
+// Needs real margin clear of the centered --content-width column to float
+// without overlapping it — narrower viewports use nav's mobile drawer
+// instead (see side-toc.ts's doc comment).
+$visible-from: 1280px;
+
+:host {
+  display: none;
+}
+
+@media (min-width: $visible-from) {
+  :host {
+    display: block;
+    position: fixed;
+    right: clamp(1rem, 2.5vw, 2.5rem);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+  }
+}
+
+.side-toc {
+  @include panel.glass($tint: 70%, $spot-size: 160px, $spot-peak: 18%);
+
+  border-radius: 999px;
+  padding: 0.9rem 0.5rem;
+}
+
+.side-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  position: relative;
+}
+
+// A thin spine linking the dots together, so the row reads as one
+// progression rather than three unrelated marks.
+.side-toc__list::before {
+  content: '';
+  position: absolute;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  left: 50%;
+  width: 1px;
+  background: var(--line-strong);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.side-toc__item {
+  position: relative;
+  z-index: 1;
+}
+
+.side-toc__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.15rem;
+}
+
+.side-toc__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--line-strong);
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.side-toc__link:hover .side-toc__dot,
+.side-toc__link:focus-visible .side-toc__dot {
+  border-color: var(--ice);
+}
+
+.side-toc__link--active .side-toc__dot {
+  background: var(--ice);
+  border-color: var(--ice);
+  transform: scale(1.3);
+}
+
+// Resting state: dots only, so the rail stays out of the way at a glance —
+// a label flies out toward the content on hover/focus/active instead of
+// permanently eating horizontal space.
+.side-toc__label {
+  position: absolute;
+  right: calc(100% + 0.7rem);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+  white-space: nowrap;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 0.3rem 0.65rem;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+.side-toc__link:hover .side-toc__label,
+.side-toc__link:focus-visible .side-toc__label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.side-toc__link--active .side-toc__label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  color: var(--ice);
+  font-weight: 700;
+  border-color: var(--ice);
+}
+
+.side-toc__link:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-toc__dot,
+  .side-toc__label {
+    transition: none;
+  }
+}

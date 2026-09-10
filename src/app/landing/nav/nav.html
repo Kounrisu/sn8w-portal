@@ -20,23 +20,23 @@
         </span>
       </button>
     } @else {
-      <nav class="nav__links" aria-label="Primary">
-        @for (link of links(); track link.fragment) {
-          <a
-            routerLink="/"
-            [fragment]="link.fragment"
-            [class.nav__link--active]="activeFragment() === link.fragment"
-            [attr.aria-current]="activeFragment() === link.fragment ? 'true' : null"
-          >{{ link.label }}</a>
-        }
-        @if (auth.isAuthenticated()) {
-          <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
-          <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.diary }}</a>
-          <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.admin }}</a>
-          <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.analytics }}</a>
-        }
-      </nav>
       <div class="nav__actions">
+        <nav class="nav__links" aria-label="Primary">
+          <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
+            {{ i18n.dict().workshop.navLabel }}
+          </a>
+        </nav>
+
+        @if (auth.isAuthenticated()) {
+          <!-- Real routes, kept apart from the page's own anchor TOC. -->
+          <nav class="nav__tools" aria-label="Workspace">
+            <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
+            <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.diary }}</a>
+            <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.admin }}</a>
+            <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.analytics }}</a>
+          </nav>
+        }
+
         <div class="nav__prefs">
           <button
             type="button"
@@ -95,23 +95,26 @@
 
   @if (isCompact() && menuOpen()) {
     <nav id="nav-menu" class="nav__menu" aria-label="Primary" (keydown.escape)="onEscape()">
-      @for (link of links(); track link.fragment) {
-        <a
-          routerLink="/"
-          [fragment]="link.fragment"
-          [class.nav__link--active]="activeFragment() === link.fragment"
-          [attr.aria-current]="activeFragment() === link.fragment ? 'true' : null"
-          (click)="closeMenu()"
-        >{{ link.label }}</a>
-      }
+      <!-- Not enough room at this width for the floating side-toc (see
+           side-toc.ts) to clear the content column, so these anchors —
+           otherwise only reachable there — live here too as a fallback. -->
+      <a routerLink="/" fragment="products" (click)="closeMenu()">{{ i18n.dict().nav.products }}</a>
+      <a routerLink="/" fragment="studio" (click)="closeMenu()">{{ i18n.dict().nav.about }}</a>
+      <a routerLink="/" fragment="contact" (click)="closeMenu()">{{ i18n.dict().nav.contact }}</a>
+      <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">
+        {{ i18n.dict().workshop.navLabel }}
+      </a>
+
       @if (auth.isAuthenticated()) {
-        <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
-        <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
-        <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
-        <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
-        <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
-          {{ i18n.dict().nav.logout }}
-        </button>
+        <div class="nav__tools nav__tools--menu">
+          <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
+          <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
+          <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
+          <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
+          <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
+            {{ i18n.dict().nav.logout }}
+          </button>
+        </div>
       } @else {
         <a class="nav__login nav__login--menu" routerLink="/login" (click)="closeMenu()">
           {{ i18n.dict().nav.login }}
