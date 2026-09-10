@@ -39,10 +39,12 @@ describe('App', () => {
     await fixture.whenStable();
 
     httpMock.expectOne('/api/session.php').flush({ authenticated: false });
-    httpMock.expectOne('/api/projects.php').flush([]);
-    httpMock
-      .expectOne((req) => req.url.includes('api.open-meteo.com'))
-      .flush({ current: { temperature_2m: 18, weather_code: 0 } });
+    // ProjectsService fires two requests on init: the English/base `all`
+    // load, and the language-aware `localized` load — identical URL when
+    // the detected UI language is English, so `match` (not `expectOne`).
+    for (const req of httpMock.match('/api/projects.php')) {
+      req.flush([]);
+    }
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -50,6 +52,6 @@ describe('App', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const headings = compiled.querySelectorAll('h1');
     expect(headings.length).toBe(1);
-    expect(headings[0].textContent).toContain('Philippe Parmentier');
+    expect(headings[0].textContent).toContain('Philippe PARMENTIER');
   });
 });

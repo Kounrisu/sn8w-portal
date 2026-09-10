@@ -127,6 +127,47 @@ The workflow fails fast with a named error if any of these are empty, rather tha
 
 The `snwxodokmod1` database on OVH held these 4 plus 85 leftover tables from two long-abandoned CMS installs on the same hosting account (a default, contentless Drupal 7 site and a default WordPress install with only its placeholder "Hello world!" post — checked before dropping anything). Cleaned up on 2026-08-17; the database now has exactly these 4 tables. If it accumulates unrelated tables again in the future, back up via phpMyAdmin's Export tab before dropping anything on the live database.
 
+## Translating project content
+
+Project names, categories and taglines live in the `projects` table in
+English, with per-language overrides in `project_translations` (fr / de / ko
+/ ja / es, left-joined with a fallback to the English base — see
+`api/projects.php`'s `?lang=` handling). There's no UI for editing
+translations directly; the workflow is:
+
+1. Add or edit the project via `/admin`, in English. It's fine to leave the
+   category or tagline empty and ask Claude to write it.
+2. Click **Export for translation** on the admin page — downloads a JSON
+   file of the current project list (id / name / category / tagline).
+3. Hand that file to Claude and ask it to translate the new or changed
+   projects into the other 5 languages.
+4. Claude generates a new numbered file under `api/migrations/`
+   (`00X_*.sql`) with the translation `INSERT ... ON DUPLICATE KEY UPDATE`
+   statements — same pattern as the other migrations in that folder.
+5. Import that file yourself via phpMyAdmin's **Import** tab, with the
+   character set explicitly set to **utf-8** (phpMyAdmin does not default to
+   it, and importing without it corrupts accented and non-Latin text).
+
+This mirrors the same visible instructions shown on the admin page itself,
+below the projects table.
+
+## Site analytics
+
+Self-hosted, cookie-free visit logging — no third-party service, no
+consent banner needed. `AnalyticsService`
+(`src/app/core/analytics.service.ts`) fires a fire-and-forget ping to
+`api/track.php` on every route change (a random id in `localStorage`
+correlates a visit's page-load and page-leave pings, no cookie, no IP or
+other PII stored) and again when a visitor clicks through to a project's
+live site or repo. `api/analytics.php` (behind the existing admin login)
+aggregates it all into `/analytics` in the app: views, unique visitors,
+average time on page, top pages, top referrers, and which projects get
+clicked. Every tracking call swallows its own errors — a dropped or slow
+analytics request can never be visible to a visitor.
+
+Requires `api/migrations/006_page_views.sql` — same phpMyAdmin import
+flow as the other migrations (utf-8 charset).
+
 ## Picking this back up later
 
 Everything above reflects the actual shipped state as of the last deploy: Angular 22 zoneless app, PHP/MySQL API, 6 languages, 2 themes, working CI/CD to OVH. Nothing is a known-broken stub. If you're resuming work:

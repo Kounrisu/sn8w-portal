@@ -12,26 +12,25 @@ export const de: Dict = {
     theme: 'Motiv',
     themeFrost: 'Dunkel',
     themeSquirrel: 'Hell',
-    soundOn: 'Ton einschalten',
-    soundOff: 'Ton ausschalten',
   },
   nav: {
-    products: 'Produkte',
+    products: 'Projekte',
     developerTools: 'Entwicklertools',
     about: 'Über uns',
     contact: 'Kontakt',
     github: 'GitHub',
-    explore: 'Produkte entdecken',
+    explore: 'Projekte entdecken',
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
     logout: 'Abmelden',
     admin: 'Admin',
     todo: 'Aufgaben',
     diary: 'Tagebuch',
+    analytics: 'Statistiken',
   },
   hero: {
     kicker: 'Paris, Frankreich',
-    headlineMain: 'Philippe Parmentier',
+    headlineMain: 'Philippe PARMENTIER',
     headlineAccent: 'Frontend-Angular-Entwickler',
     lede: 'Ich arbeite hauptsächlich mit Angular, derzeit bei einer europäischen Zentralbank in Paris, mit Schwerpunkt auf Barrierefreiheit (RGAA). Diese Seite dient als Lebenslauf und zeigt ein paar private Projekte, an denen ich zum Lernen arbeite.',
     ctaPrimary: 'Meine Erfahrung ansehen',
@@ -40,7 +39,7 @@ export const de: Dict = {
   aboutSection: {
     kicker: 'Über mich',
     title: 'Etwas zu meinem Werdegang',
-    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 arbeite ich in dem Team, das die gemeinsame Komponentenbibliothek einer europäischen Zentralbank entwickelt und pflegt: Migrationen von Angular 4 auf 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet — von der Automobil- über die Kosmetikindustrie bis zu ophthalmischen Polycarbonat-Brillengläsern. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
+    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 arbeite ich in dem Team, das die gemeinsame Komponentenbibliothek einer europäischen Zentralbank entwickelt und pflegt: Migrationen von AngularJS auf Angular 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet — von der Automobil- über die Kosmetikindustrie bis zu ophthalmischen Polycarbonat-Brillengläsern. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
     timelineLabel: 'Erfahrung',
     timeline: [
       {
@@ -48,7 +47,7 @@ export const de: Dict = {
         role: 'Frontend-Angular-Entwickler',
         org: 'Europäische Zentralbank, Paris',
         description:
-          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von Angular 4 auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen und -schulungen sowie durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
+          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen sowie Konzeption und Durchführung der Barrierefreiheits-Schulungen für Entwickler — ich erstelle die Materialien selbst und prüfe, ob die Inhalte wirklich verstanden werden, statt sie nur zu präsentieren. Durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
       },
       {
         period: '2014 — 2015',
@@ -82,8 +81,12 @@ export const de: Dict = {
     skillsLabel: 'Fähigkeiten',
     skillsGroups: {
       languages: { label: 'Sprachen', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (v4 – v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: 'Barrierefreiheit & UX', value: 'RGAA, WCAG, Prüfungen zur digitalen Nachhaltigkeit' },
+      training: {
+        label: 'Schulung & Vermittlung',
+        value: 'Erstellung von Schulungsunterlagen, Durchführung von Workshops, Verständnisprüfung statt reiner Präsentation',
+      },
       tools: { label: 'Werkzeuge', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: 'Außerhalb des Codes',
@@ -152,7 +155,7 @@ export const de: Dict = {
       },
       designSystems: {
         title: 'Wiederverwendbare Design-Systeme',
-        description: 'Typisierte Komponenten und Tokens, über alle Produkte hinweg geteilt.',
+        description: 'Typisierte Komponenten und Tokens, über alle Projekte hinweg geteilt.',
       },
       testing: {
         title: 'Tests',
@@ -167,7 +170,7 @@ export const de: Dict = {
   labSection: {
     kicker: 'Experimente',
     title: 'Nur zum Spaß',
-    lede: 'Ideen, die ich vor allem zum Lernen ausprobiert habe — nicht jede führt irgendwohin, und das ist in Ordnung.',
+    lede: 'Ideen, die ich aus Neugier ausprobiert habe, um neue Technologien und Ansätze kennenzulernen.',
     tag: '[Prototyp]',
   },
   ctaSection: {
@@ -189,6 +192,30 @@ export const de: Dict = {
     backHome: 'Zurück zur Seite',
     navLabel: 'Kulissen',
   },
+  analytics: {
+    kicker: 'Website-Statistiken',
+    title: 'Wer besucht die Seite',
+    lede: 'Selbst gehostete, cookiefreie Besuchserfassung — kein Drittanbieter, nichts über das hier Gezeigte hinaus.',
+    statViews: 'Seitenaufrufe',
+    statVisitors: 'Eindeutige Besucher',
+    statAvgTime: 'Durchschnittliche Verweildauer',
+    topPagesTitle: 'Meistbesuchte Seiten',
+    topReferrersTitle: 'Top-Quellen',
+    topProjectsTitle: 'Projekt-Klicks',
+    dailyTitle: 'Letzte 30 Tage',
+    directReferrer: '(direkt)',
+    noData: 'Noch keine Besuche erfasst.',
+    backHome: 'Zurück zur Seite',
+  },
+  sitemap: {
+    kicker: 'Sitemap',
+    title: 'Alle Seiten dieser Website',
+    lede: 'Eine einfache Liste aller Seiten, für Leserinnen und Leser, die das dem Herumklicken vorziehen.',
+    home: 'Startseite',
+    publicSection: 'Öffentliche Seiten',
+    adminSection: 'Admin-Seiten',
+    loginPrompt: 'Melden Sie sich an, um die Admin-Seiten zu sehen.',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'E-Mail kopieren',
@@ -197,6 +224,8 @@ export const de: Dict = {
     deployedCommit: 'Bereitgestellter Commit',
     deployedAt: 'bereitgestellt am',
     localBuild: 'lokaler Build',
+    accessibility: 'Barrierefreiheit',
+    sitemap: 'Sitemap',
   },
   auth: {
     title: 'Anmelden',
@@ -208,9 +237,22 @@ export const de: Dict = {
     loggedInAs: 'Angemeldet als',
   },
   admin: {
-    title: 'Produkte verwalten',
-    lede: 'Produkte auf der Startseite hinzufügen, bearbeiten und entfernen.',
+    title: 'Projekte verwalten',
+    lede: 'Projekte auf der Startseite hinzufügen, bearbeiten und entfernen.',
     newProject: 'Neues Projekt',
+    exportButton: 'Für Übersetzung exportieren',
+    translationHelpTitle: 'Projektinhalte übersetzen',
+    translationHelpIntro:
+      'Projektnamen, Kategorien und Taglines werden auf Englisch in der Datenbank gespeichert und ins Französische, Deutsche, Koreanische, Japanische und Spanische übersetzt. So fügen Sie Übersetzungen hinzu oder aktualisieren sie:',
+    translationHelpSteps: [
+      'Fügen Sie das Projekt unten auf Englisch hinzu oder bearbeiten Sie es — Kategorie oder Tagline können leer bleiben, Claude kann sie formulieren.',
+      'Klicken Sie auf "Für Übersetzung exportieren", um eine JSON-Datei der aktuellen Projektliste herunterzuladen.',
+      'Geben Sie die Datei an Claude und bitten Sie um eine Übersetzung der neuen oder geänderten Projekte.',
+      'Claude erstellt eine nummerierte SQL-Datei unter api/migrations/ mit den Übersetzungen.',
+      'Öffnen Sie phpMyAdmin, gehen Sie zum Tab Importieren, wählen Sie den Zeichensatz "utf-8" und importieren Sie diese SQL-Datei.',
+    ],
+    translationHelpNote:
+      'Der Zeichensatz ist wichtig: phpMyAdmin verwendet nicht standardmäßig UTF-8, und ein Import ohne diese Auswahl beschädigt akzentuierte und nicht-lateinische Zeichen.',
     name: 'Name',
     category: 'Kategorie',
     tagline: 'Slogan',
@@ -243,6 +285,9 @@ export const de: Dict = {
     tierFlagship: 'Flaggschiff',
     tierEcosystem: 'Ökosystem',
     tierLab: 'Labor',
+    reorderColumn: 'Neu anordnen',
+    moveUp: 'Nach oben',
+    moveDown: 'Nach unten',
   },
   projectCard: {
     visit: 'Besuchen',

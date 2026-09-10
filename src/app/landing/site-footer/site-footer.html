@@ -4,7 +4,7 @@
 <footer id="contact" class="site-footer">
   <div class="container site-footer__inner">
     <a class="site-footer__logo" href="#top">
-      sn<span class="accent">8</span>w
+      Sn<span class="accent">8</span>w
     </a>
 
     <nav class="footer-links" aria-label="Contact">
@@ -20,9 +20,17 @@
         <mat-icon aria-hidden="true">school</mat-icon>
         Frontend Masters
       </a>
-      <a routerLink="/behind-the-scenes">
+      <a routerLink="/behind-the-scenes" routerLinkActive="footer-links__link--active" ariaCurrentWhenActive="page">
         <mat-icon aria-hidden="true">construction</mat-icon>
         {{ i18n.dict().behindTheScenes.navLabel }}
+      </a>
+      <a routerLink="/accessibilite" routerLinkActive="footer-links__link--active" ariaCurrentWhenActive="page">
+        <mat-icon aria-hidden="true">accessibility_new</mat-icon>
+        Accessibilité : totalement conforme
+      </a>
+      <a routerLink="/plan-du-site" routerLinkActive="footer-links__link--active" ariaCurrentWhenActive="page">
+        <mat-icon aria-hidden="true">sitemap</mat-icon>
+        {{ i18n.dict().footer.sitemap }}
       </a>
       <button type="button" class="email-copy" (click)="copyEmail()">
         <mat-icon aria-hidden="true">mail_outline</mat-icon>

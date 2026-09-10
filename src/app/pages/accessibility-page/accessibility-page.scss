@@ -1,0 +1,99 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.a11y {
+  padding-block: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 46rem;
+}
+
+.a11y__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.a11y__section {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.a11y__section h2 {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  color: var(--ink);
+}
+
+.a11y__section p {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.a11y__section p:last-child {
+  margin-bottom: 0;
+}
+
+.a11y__section ul {
+  margin: 0 0 var(--space-sm);
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.a11y__section code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--mist);
+}
+
+.a11y__link {
+  color: var(--ice);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.a11y__link:hover,
+.a11y__link:focus-visible {
+  color: var(--ink);
+}
+
+.a11y__facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.a11y__fact dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.a11y__fact dd {
+  margin: 0.15rem 0 0;
+  font-size: var(--text-base);
+  color: var(--ink);
+}
+
+.a11y__back {
+  margin-top: var(--space-sm);
+}

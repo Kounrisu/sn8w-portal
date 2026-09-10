@@ -47,9 +47,10 @@
 
 .timeline__period {
   margin: 0 0 0.35rem;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--ice);
 }
 

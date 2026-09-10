@@ -17,8 +17,6 @@ export interface Dict {
     theme: string;
     themeFrost: string;
     themeSquirrel: string;
-    soundOn: string;
-    soundOff: string;
   };
   nav: {
     products: string;
@@ -33,6 +31,7 @@ export interface Dict {
     admin: string;
     todo: string;
     diary: string;
+    analytics: string;
   };
   hero: {
     kicker: string;
@@ -53,6 +52,7 @@ export interface Dict {
       languages: { label: string; value: string };
       frameworks: { label: string; value: string };
       accessibility: { label: string; value: string };
+      training: { label: string; value: string };
       tools: { label: string; value: string };
     };
     interestsLabel: string;
@@ -130,6 +130,30 @@ export interface Dict {
     backHome: string;
     navLabel: string;
   };
+  analytics: {
+    kicker: string;
+    title: string;
+    lede: string;
+    statViews: string;
+    statVisitors: string;
+    statAvgTime: string;
+    topPagesTitle: string;
+    topReferrersTitle: string;
+    topProjectsTitle: string;
+    dailyTitle: string;
+    directReferrer: string;
+    noData: string;
+    backHome: string;
+  };
+  sitemap: {
+    kicker: string;
+    title: string;
+    lede: string;
+    home: string;
+    publicSection: string;
+    adminSection: string;
+    loginPrompt: string;
+  };
   footer: {
     github: string;
     copyEmail: string;
@@ -138,6 +162,8 @@ export interface Dict {
     deployedCommit: string;
     deployedAt: string;
     localBuild: string;
+    accessibility: string;
+    sitemap: string;
   };
   auth: {
     title: string;
@@ -152,6 +178,11 @@ export interface Dict {
     title: string;
     lede: string;
     newProject: string;
+    exportButton: string;
+    translationHelpTitle: string;
+    translationHelpIntro: string;
+    translationHelpSteps: readonly string[];
+    translationHelpNote: string;
     name: string;
     category: string;
     tagline: string;
@@ -184,6 +215,9 @@ export interface Dict {
     tierFlagship: string;
     tierEcosystem: string;
     tierLab: string;
+    reorderColumn: string;
+    moveUp: string;
+    moveDown: string;
   };
   projectCard: {
     visit: string;
@@ -262,26 +296,25 @@ export const en: Dict = {
     theme: 'Theme',
     themeFrost: 'Dark',
     themeSquirrel: 'Light',
-    soundOn: 'Turn sound on',
-    soundOff: 'Turn sound off',
   },
   nav: {
-    products: 'Products',
+    products: 'Projects',
     developerTools: 'Developer Tools',
     about: 'About',
     contact: 'Contact',
     github: 'GitHub',
-    explore: 'Explore products',
+    explore: 'Explore projects',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
     logout: 'Log out',
     admin: 'Admin',
     todo: 'Todo',
     diary: 'Diary',
+    analytics: 'Analytics',
   },
   hero: {
     kicker: 'Paris, France',
-    headlineMain: 'Philippe Parmentier',
+    headlineMain: 'Philippe PARMENTIER',
     headlineAccent: 'Front-End Angular Developer',
     lede: "I work mainly with Angular, currently at a European central bank in Paris, with a focus on accessibility (RGAA). This site doubles as my CV, and a place to share a few personal projects I'm building to learn.",
     ctaPrimary: 'See my experience',
@@ -290,7 +323,7 @@ export const en: Dict = {
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked in the team that builds and maintains a European central bank's shared component library: Angular 4 to 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked in the team that builds and maintains a European central bank's shared component library: AngularJS to Angular 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
@@ -298,7 +331,7 @@ export const en: Dict = {
         role: 'Front-End Angular Developer',
         org: 'European central bank, Paris',
         description:
-          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from Angular 4 to Angular 21, running RGAA accessibility audits and training, and supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
+          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits, and designing and delivering the accessibility training developers take — building the materials myself and checking the ideas actually land, not just handing off a slide deck. Supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
       },
       {
         period: '2014 — 2015',
@@ -332,8 +365,12 @@ export const en: Dict = {
     skillsLabel: 'Skills',
     skillsGroups: {
       languages: { label: 'Languages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (v4 – v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: 'Accessibility & UX', value: 'RGAA, WCAG, digital sobriety audits' },
+      training: {
+        label: 'Training & mentoring',
+        value: 'Designing training materials, running workshops, checking understanding rather than just presenting',
+      },
       tools: { label: 'Tools', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: 'Outside the code',
@@ -402,7 +439,7 @@ export const en: Dict = {
       },
       designSystems: {
         title: 'Reusable design systems',
-        description: 'Typed components and tokens, shared across every product.',
+        description: 'Typed components and tokens, shared across every project.',
       },
       testing: {
         title: 'Testing',
@@ -417,7 +454,7 @@ export const en: Dict = {
   labSection: {
     kicker: 'Experiments',
     title: 'Just for fun',
-    lede: "Ideas I tried out mostly for the learning — not every one goes anywhere, and that's fine.",
+    lede: 'Ideas explored out of curiosity, to learn new technologies and approaches.',
     tag: '[prototype]',
   },
   ctaSection: {
@@ -439,6 +476,30 @@ export const en: Dict = {
     backHome: 'Back to the site',
     navLabel: 'Behind the scenes',
   },
+  analytics: {
+    kicker: 'Site analytics',
+    title: 'Who is visiting',
+    lede: 'Self-hosted, cookie-free visit logging — no third party, no tracking beyond what is shown here.',
+    statViews: 'Page views',
+    statVisitors: 'Unique visitors',
+    statAvgTime: 'Avg. time on page',
+    topPagesTitle: 'Top pages',
+    topReferrersTitle: 'Top referrers',
+    topProjectsTitle: 'Project clicks',
+    dailyTitle: 'Last 30 days',
+    directReferrer: '(direct)',
+    noData: 'No visits recorded yet.',
+    backHome: 'Back to the site',
+  },
+  sitemap: {
+    kicker: 'Sitemap',
+    title: 'Every page on this site',
+    lede: 'A plain list of every page, for readers who prefer it to clicking around.',
+    home: 'Home',
+    publicSection: 'Public pages',
+    adminSection: 'Admin pages',
+    loginPrompt: 'Sign in to see the admin pages.',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'Copy email',
@@ -447,6 +508,8 @@ export const en: Dict = {
     deployedCommit: 'Deployed commit',
     deployedAt: 'deployed',
     localBuild: 'local build',
+    accessibility: 'Accessibility',
+    sitemap: 'Sitemap',
   },
   auth: {
     title: 'Sign in',
@@ -458,9 +521,22 @@ export const en: Dict = {
     loggedInAs: 'Signed in as',
   },
   admin: {
-    title: 'Administer products',
-    lede: 'Add, edit and remove the products shown on the landing page.',
+    title: 'Administer projects',
+    lede: 'Add, edit and remove the projects shown on the landing page.',
     newProject: 'New project',
+    exportButton: 'Export for translation',
+    translationHelpTitle: 'Translating project content',
+    translationHelpIntro:
+      'Project names, categories and taglines are stored in the database in English and translated into French, German, Korean, Japanese and Spanish. To add or update translations for a project:',
+    translationHelpSteps: [
+      'Add or edit the project below in English — it is fine to leave the category or tagline empty and ask Claude to write it.',
+      'Click "Export for translation" to download a JSON file of the current project list.',
+      'Give the file to Claude and ask it to translate the new or changed projects.',
+      'Claude will generate a numbered SQL file under api/migrations/ with the translations.',
+      'Open phpMyAdmin, go to the Import tab, select "utf-8" as the character set, and import that SQL file.',
+    ],
+    translationHelpNote:
+      'The character set matters: phpMyAdmin does not default to UTF-8, and importing without it will corrupt accented and non-Latin text.',
     name: 'Name',
     category: 'Category',
     tagline: 'Tagline',
@@ -493,6 +569,9 @@ export const en: Dict = {
     tierFlagship: 'Flagship',
     tierEcosystem: 'Ecosystem',
     tierLab: 'Lab',
+    reorderColumn: 'Reorder',
+    moveUp: 'Move up',
+    moveDown: 'Move down',
   },
   projectCard: {
     visit: 'Visit',

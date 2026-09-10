@@ -12,22 +12,21 @@ export const ko: Dict = {
     theme: '테마',
     themeFrost: '다크',
     themeSquirrel: '라이트',
-    soundOn: '소리 켜기',
-    soundOff: '소리 끄기',
   },
   nav: {
-    products: '제품',
+    products: '프로젝트',
     developerTools: '개발자 도구',
     about: '소개',
     contact: '문의하기',
     github: 'GitHub',
-    explore: '제품 둘러보기',
+    explore: '프로젝트 둘러보기',
     openMenu: '메뉴 열기',
     closeMenu: '메뉴 닫기',
     logout: '로그아웃',
     admin: '관리',
     todo: '할 일',
     diary: '다이어리',
+    analytics: '통계',
   },
   hero: {
     kicker: '프랑스 파리',
@@ -40,7 +39,7 @@ export const ko: Dict = {
   aboutSection: {
     kicker: '소개',
     title: '제 경력에 대해 조금',
-    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 유럽 중앙은행의 공용 컴포넌트 라이브러리를 개발·유지보수하는 팀에서 일해 왔습니다 — Angular 4에서 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 산업 현장 — 자동차에서 화장품, 그리고 안경용 폴리카보네이트 렌즈까지 — 의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
+    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 유럽 중앙은행의 공용 컴포넌트 라이브러리를 개발·유지보수하는 팀에서 일해 왔습니다 — AngularJS에서 Angular 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 산업 현장 — 자동차에서 화장품, 그리고 안경용 폴리카보네이트 렌즈까지 — 의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
     timelineLabel: '경력',
     timeline: [
       {
@@ -48,7 +47,7 @@ export const ko: Dict = {
         role: '프론트엔드 Angular 개발자',
         org: '유럽 중앙은행 (파리)',
         description:
-          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. Angular 4에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사와 교육을 진행했으며, UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
+          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. AngularJS에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사를 진행하며, 개발자를 위한 접근성 교육을 직접 설계하고 진행합니다 — 교육 자료를 직접 만들고, 단순히 전달하는 데 그치지 않고 실제로 이해했는지 확인합니다. UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
       },
       {
         period: '2014년 — 2015년',
@@ -82,8 +81,12 @@ export const ko: Dict = {
     skillsLabel: '기술',
     skillsGroups: {
       languages: { label: '언어', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: '프레임워크', value: 'Angular (v4 – v21), React' },
+      frameworks: { label: '프레임워크', value: 'Angular (AngularJS – v21), React' },
       accessibility: { label: '접근성 & UX', value: 'RGAA, WCAG, 디지털 절제 감사' },
+      training: {
+        label: '교육 & 멘토링',
+        value: '교육 자료 설계, 워크숍 진행, 단순 발표가 아닌 실제 이해도 확인',
+      },
       tools: { label: '도구', value: 'Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD' },
     },
     interestsLabel: '코드 밖에서',
@@ -152,7 +155,7 @@ export const ko: Dict = {
       },
       designSystems: {
         title: '재사용 가능한 디자인 시스템',
-        description: '타입이 지정된 컴포넌트와 토큰을 모든 제품에서 공유합니다.',
+        description: '타입이 지정된 컴포넌트와 토큰을 모든 프로젝트에서 공유합니다.',
       },
       testing: {
         title: '테스트',
@@ -167,7 +170,7 @@ export const ko: Dict = {
   labSection: {
     kicker: '실험',
     title: '그냥 재미로',
-    lede: '주로 배우려고 시도해 본 아이디어들입니다. 다 잘 되는 건 아니지만, 그래도 괜찮습니다.',
+    lede: '새로운 기술과 접근 방식을 배우기 위해 호기심으로 시도해 본 아이디어들입니다.',
     tag: '[프로토타입]',
   },
   ctaSection: {
@@ -189,6 +192,30 @@ export const ko: Dict = {
     backHome: '사이트로 돌아가기',
     navLabel: '무대 뒤',
   },
+  analytics: {
+    kicker: '사이트 통계',
+    title: '누가 방문하는지',
+    lede: '자체 호스팅되는 쿠키 없는 방문 기록입니다 — 제3자 없음, 여기 표시된 것 이상은 수집하지 않습니다.',
+    statViews: '페이지 조회수',
+    statVisitors: '순 방문자 수',
+    statAvgTime: '평균 체류 시간',
+    topPagesTitle: '인기 페이지',
+    topReferrersTitle: '주요 유입 경로',
+    topProjectsTitle: '프로젝트 클릭',
+    dailyTitle: '최근 30일',
+    directReferrer: '(직접 방문)',
+    noData: '아직 기록된 방문이 없습니다.',
+    backHome: '사이트로 돌아가기',
+  },
+  sitemap: {
+    kicker: '사이트맵',
+    title: '사이트의 모든 페이지',
+    lede: '클릭하며 둘러보기보다 목록을 선호하는 분들을 위한, 모든 페이지의 단순한 목록입니다.',
+    home: '홈',
+    publicSection: '공개 페이지',
+    adminSection: '관리자 페이지',
+    loginPrompt: '관리자 페이지를 보려면 로그인하세요.',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: '이메일 복사',
@@ -197,6 +224,8 @@ export const ko: Dict = {
     deployedCommit: '배포된 커밋',
     deployedAt: '배포',
     localBuild: '로컬 빌드',
+    accessibility: '접근성',
+    sitemap: '사이트맵',
   },
   auth: {
     title: '로그인',
@@ -208,15 +237,28 @@ export const ko: Dict = {
     loggedInAs: '로그인 계정',
   },
   admin: {
-    title: '제품 관리',
-    lede: '랜딩 페이지에 표시되는 제품을 추가, 수정, 삭제합니다.',
+    title: '프로젝트 관리',
+    lede: '랜딩 페이지에 표시되는 프로젝트를 추가, 수정, 삭제합니다.',
     newProject: '새 프로젝트',
+    exportButton: '번역용으로 내보내기',
+    translationHelpTitle: '프로젝트 콘텐츠 번역하기',
+    translationHelpIntro:
+      '프로젝트 이름, 카테고리, 태그라인은 데이터베이스에 영어로 저장되며 프랑스어, 독일어, 한국어, 일본어, 스페인어로 번역됩니다. 번역을 추가하거나 업데이트하려면:',
+    translationHelpSteps: [
+      '아래에서 프로젝트를 영어로 추가하거나 수정하세요 — 카테고리나 태그라인은 비워 두고 Claude에게 작성을 요청해도 됩니다.',
+      '"번역용으로 내보내기"를 클릭해 현재 프로젝트 목록을 JSON 파일로 다운로드하세요.',
+      '그 파일을 Claude에게 전달하고 새로 추가되거나 변경된 프로젝트의 번역을 요청하세요.',
+      'Claude가 api/migrations/ 아래에 번역이 담긴 번호가 매겨진 SQL 파일을 생성합니다.',
+      'phpMyAdmin을 열고 가져오기 탭에서 문자 세트를 "utf-8"로 선택한 뒤 해당 SQL 파일을 가져오세요.',
+    ],
+    translationHelpNote:
+      '문자 세트 선택이 중요합니다: phpMyAdmin은 기본적으로 UTF-8을 사용하지 않으며, 이를 선택하지 않고 가져오면 악센트 문자와 비라틴 문자가 손상됩니다.',
     name: '이름',
     category: '카테고리',
     tagline: '한 줄 소개',
     tier: '등급',
     group: '에코시스템 그룹',
-    mockup: '대표 제품 목업',
+    mockup: '대표 프로젝트 목업',
     none: '없음',
     status: '상태',
     url: 'URL',
@@ -240,9 +282,12 @@ export const ko: Dict = {
     saving: '저장 중…',
     confirmDelete: '이 프로젝트를 삭제하시겠습니까?',
     empty: '아직 프로젝트가 없습니다.',
-    tierFlagship: '대표 제품',
+    tierFlagship: '대표 프로젝트',
     tierEcosystem: '에코시스템',
     tierLab: '랩',
+    reorderColumn: '순서 변경',
+    moveUp: '위로 이동',
+    moveDown: '아래로 이동',
   },
   projectCard: {
     visit: '방문하기',

@@ -1,6 +1,6 @@
 <section id="studio" class="about-section" aria-labelledby="about-heading">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head" sn8wSpotlight>
       <p class="kicker">{{ i18n.dict().aboutSection.kicker }}</p>
       <h2 id="about-heading" class="section-title">{{ i18n.dict().aboutSection.title }}</h2>
       <p class="section-lede">{{ i18n.dict().aboutSection.lede }}</p>
@@ -11,7 +11,7 @@
         <h3 class="about-subheading">{{ i18n.dict().aboutSection.timelineLabel }}</h3>
         <ol class="timeline">
           @for (entry of i18n.dict().aboutSection.timeline; track entry.role + entry.period) {
-            <li class="timeline__item">
+            <li class="timeline__item" sn8wSpotlight>
               <p class="timeline__period">{{ entry.period }}</p>
               <h4 class="timeline__role">{{ entry.role }}</h4>
               <p class="timeline__org">{{ entry.org }}</p>
@@ -21,8 +21,8 @@
         </ol>
       </div>
 
-      <aside class="about-facts">
-        <div class="fact-block">
+      <div class="about-facts">
+        <div class="fact-block" sn8wSpotlight>
           <h3 class="about-subheading">{{ i18n.dict().aboutSection.skillsLabel }}</h3>
           <dl class="skills-list">
             <div class="skills-list__row">
@@ -38,13 +38,17 @@
               <dd>{{ i18n.dict().aboutSection.skillsGroups.accessibility.value }}</dd>
             </div>
             <div class="skills-list__row">
+              <dt>{{ i18n.dict().aboutSection.skillsGroups.training.label }}</dt>
+              <dd>{{ i18n.dict().aboutSection.skillsGroups.training.value }}</dd>
+            </div>
+            <div class="skills-list__row">
               <dt>{{ i18n.dict().aboutSection.skillsGroups.tools.label }}</dt>
               <dd>{{ i18n.dict().aboutSection.skillsGroups.tools.value }}</dd>
             </div>
           </dl>
         </div>
 
-        <div class="fact-block">
+        <div class="fact-block" sn8wSpotlight>
           <h3 class="about-subheading">{{ i18n.dict().aboutSection.certificationsLabel }}</h3>
           <ul class="certifications-list">
             @for (cert of i18n.dict().aboutSection.certifications; track cert) {
@@ -53,7 +57,7 @@
           </ul>
         </div>
 
-        <div class="fact-block">
+        <div class="fact-block" sn8wSpotlight>
           <h3 class="about-subheading">{{ i18n.dict().aboutSection.interestsLabel }}</h3>
           <dl class="skills-list">
             @for (group of interests(); track group.label) {
@@ -64,7 +68,7 @@
             }
           </dl>
         </div>
-      </aside>
+      </div>
     </div>
   </div>
 </section>

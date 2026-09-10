@@ -1,7 +1,9 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { I18nService } from './i18n/i18n.service';
+import type { Lang } from './i18n/dictionary';
 import type {
   FlagshipMockup,
   Project,
@@ -11,61 +13,60 @@ import type {
   ProductTier,
 } from './models';
 
-export interface ProjectGroup {
-  readonly title: string;
-  readonly projects: readonly Project[];
-}
-
 @Injectable({ providedIn: 'root' })
 export class ProjectsService {
   private readonly http = inject(HttpClient);
+  private readonly i18n = inject(I18nService);
   private readonly baseUrl = `${environment.apiBaseUrl}/projects.php`;
 
+  /** English/base content — what admin edits, never affected by the UI language. */
   private readonly all = signal<Project[]>([]);
   readonly loaded = signal(false);
   readonly loadError = signal(false);
 
+  /**
+   * The same projects, in whatever language the UI is currently in — the
+   * public landing page reads from here, admin never does. Kept as a
+   * separate signal (not derived from `all`) specifically so that switching
+   * the site language can't accidentally feed translated text back into the
+   * admin form and have it saved over the English original.
+   */
+  private readonly localized = signal<Project[]>([]);
+
   readonly flagship = computed(() =>
-    this.all()
+    this.localized()
       .filter((p) => p.tier === 'flagship')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
-  /**
-   * Every ecosystem project in one flat, ordered list. The section used to
-   * split these by category, which said more about the taxonomy than about
-   * the work — they now read as one shelf of small tools.
-   */
-  readonly ecosystem = computed(() =>
-    this.all()
-      .filter((p) => p.tier === 'ecosystem')
+  readonly lab = computed(() =>
+    this.localized()
+      .filter((p) => p.tier === 'lab')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
-  readonly ecosystemGroups = computed<ProjectGroup[]>(() => {
-    const groups = new Map<string, Project[]>();
-    for (const project of this.all()) {
-      if (project.tier !== 'ecosystem') continue;
-      const title = project.groupTitle ?? 'Other';
-      if (!groups.has(title)) groups.set(title, []);
-      groups.get(title)!.push(project);
-    }
-    return [...groups.entries()]
-      .map(([title, projects]) => ({
-        title,
-        projects: projects.sort((a, b) => a.sortOrder - b.sortOrder),
-      }))
-      .sort((a, b) => a.title.localeCompare(b.title));
-  });
-
-  readonly lab = computed(() =>
-    this.all()
-      .filter((p) => p.tier === 'lab')
+  /**
+   * Ecosystem and lab projects that are still just an idea — merged into
+   * one section rather than two, and filtered to `concept` status only.
+   * Anything further along (prototype, in-development, live) either has a
+   * more prominent spot already or isn't ready to show yet; flip its
+   * status forward in admin once it earns a place here.
+   */
+  readonly explorations = computed(() =>
+    this.localized()
+      .filter((p) => (p.tier === 'ecosystem' || p.tier === 'lab') && p.status === 'concept')
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
   constructor() {
     void this.load();
+
+    // Re-fetch the localized copy whenever the UI language changes —
+    // English never hits the network twice (?lang= is omitted for it,
+    // matching the base fetch above).
+    effect(() => {
+      void this.loadLocalized(this.i18n.lang());
+    });
   }
 
   async load(): Promise<void> {
@@ -80,7 +81,30 @@ export class ProjectsService {
     }
   }
 
-  /** All projects, for the admin table. */
+  private async loadLocalized(lang: Lang): Promise<void> {
+    try {
+      const params: Record<string, string> = lang === 'en' ? {} : { lang };
+      const projects = await firstValueFrom(this.http.get<Project[]>(this.baseUrl, { params }));
+      this.localized.set(projects);
+    } catch {
+      // Leave the previous localized list in place on a transient failure —
+      // better a stale-but-correct list than an empty landing page.
+    }
+  }
+
+  /**
+   * `localized` is otherwise only fetched once at startup and on language
+   * change — without this, an admin edit updates `all` (so the admin table
+   * reflects it immediately) but the public landing page keeps showing
+   * whatever was current when the app first loaded, until a full reload.
+   * Called after every write below so the same session's public view never
+   * goes stale.
+   */
+  private refreshLocalized(): void {
+    void this.loadLocalized(this.i18n.lang());
+  }
+
+  /** All projects in English, for the admin table. */
   list(): readonly Project[] {
     return this.all();
   }
@@ -88,6 +112,7 @@ export class ProjectsService {
   async create(input: ProjectInput): Promise<Project> {
     const created = await firstValueFrom(this.http.post<Project>(this.baseUrl, input));
     this.all.update((projects) => [...projects, created]);
+    this.refreshLocalized();
     return created;
   }
 
@@ -96,12 +121,35 @@ export class ProjectsService {
       this.http.put<Project>(this.baseUrl, input, { params: { id } }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
+  }
+
+  /**
+   * Persists a new admin-table row order — mirrors TodosService.reorderBoard.
+   * Callers are expected to only reorder within one tier/group at a time
+   * (see AdminPage's sortPredicate); reindexing the whole list 0..n-1
+   * regardless is harmless since the API always sorts by tier/group first.
+   */
+  async reorderList(newOrder: readonly Project[]): Promise<void> {
+    const withOrders = newOrder.map((p, index) => ({ ...p, sortOrder: index }));
+    this.all.set(withOrders);
+    await Promise.all(
+      newOrder.map((project, index) =>
+        project.sortOrder === index
+          ? Promise.resolve()
+          : firstValueFrom(
+              this.http.put<Project>(this.baseUrl, { sortOrder: index }, { params: { id: project.id } }),
+            ),
+      ),
+    );
+    this.refreshLocalized();
   }
 
   async remove(id: number): Promise<void> {
     await firstValueFrom(this.http.delete(this.baseUrl, { params: { id } }));
     this.all.update((projects) => projects.filter((p) => p.id !== id));
+    this.refreshLocalized();
   }
 
   /** Clears a pending activation request without changing availability. */
@@ -114,6 +162,7 @@ export class ProjectsService {
       ),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 
@@ -135,6 +184,7 @@ export class ProjectsService {
       }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 
@@ -145,6 +195,7 @@ export class ProjectsService {
       }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
+    this.refreshLocalized();
     return updated;
   }
 }

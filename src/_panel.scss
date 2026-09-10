@@ -7,13 +7,70 @@
 // Used via `@use '../../../panel'` + `@include panel.glass;` from the
 // landing sections' component stylesheets.
 
-@mixin glass($tint: 74%) {
+// Cursor-following spotlight highlight for interactive surfaces — a soft
+// radial glow in the accent color that tracks the pointer, plus a discreet
+// glowing ring around the whole element while hovered.
+//
+// The glow lives on ::after and fades via `opacity` alone (a compositor-only
+// property) — SpotlightDirective repositions it with --spot-x/--spot-y on
+// every pointermove (an unavoidable repaint, same as any cursor-tracking
+// effect), but the gradient's own color is a fixed value, never animated.
+// An earlier version instead transitioned the color-mix() percentage itself
+// via a registered custom property, which forced a full gradient repaint on
+// every animation frame of the fade and felt noticeably laggy — this way
+// the fade is just an opacity ramp on an already-painted layer.
+// `.is-spotlit` is toggled by the directive on pointerenter/leave; it skips
+// touch devices and prefers-reduced-motion entirely, so this never
+// activates there.
+@mixin spotlight($size: 240px, $peak: 16%) {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.18s ease-out;
+    background-image: radial-gradient(
+      #{$size} circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      color-mix(in srgb, var(--ice) #{$peak}, transparent),
+      transparent 70%
+    );
+  }
+
+  &.is-spotlit {
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--ice) 40%, transparent),
+      0 0 16px -4px color-mix(in srgb, var(--ice) 50%, transparent);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      transition: none;
+    }
+  }
+}
+
+// $spot-size/$spot-peak forward to `spotlight` — every glass block gets the
+// same discreet hover treatment as buttons and project cards by default,
+// without every call site needing its own `@include panel.spotlight;`.
+@mixin glass($tint: 74%, $spot-size: 280px, $spot-peak: 14%) {
   border-radius: 6px;
   background: color-mix(in srgb, var(--bg) $tint, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid color-mix(in srgb, var(--line-strong) 70%, transparent);
   padding: var(--space-md);
+
+  @include spotlight($spot-size, $spot-peak);
 }
 
 // A full-viewport "pane" below the sticky nav: the unit one landing block
@@ -42,9 +99,16 @@
 // off `.is-active` alone. Content visible is the safe default; the
 // animation is the enhancement.
 @mixin reveal {
+  // box-shadow is only ever changed on elements that also `@include
+  // panel.spotlight` (directly, or via `panel.glass`) — listing it here too
+  // is a no-op everywhere else, and lets both mixins share one `transition`
+  // declaration instead of the second silently overwriting the first (the
+  // shorthand replaces the whole property, it doesn't merge across
+  // multiple `@include`s).
   transition:
     transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.45s ease;
+    opacity 0.45s ease,
+    box-shadow 0.2s ease;
 
   :host(.reveal-ready) & {
     transform: scale(0.97);

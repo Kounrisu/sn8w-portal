@@ -6,12 +6,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { TodosService } from '../../core/todos.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { Todo, TodoPriority, TodoStatus } from '../../core/models';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 type StatusFilter = TodoStatus | 'all';
 
 @Component({
   selector: 'sn8w-todo-page',
-  imports: [FormsModule, RouterLink, DragDropModule],
+  imports: [FormsModule, RouterLink, DragDropModule, SpotlightDirective],
   templateUrl: './todo-page.html',
   styleUrl: './todo-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

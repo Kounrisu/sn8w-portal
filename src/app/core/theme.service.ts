@@ -12,7 +12,10 @@ function detectInitialTheme(): Theme {
       return stored as Theme;
     }
   }
-  return 'squirrel';
+  // First-time visitors — recruiters included — should land on the plain
+  // dark theme, not the playful falling-petals one; squirrel stays a
+  // deliberate opt-in via the toggle.
+  return 'frost';
 }
 
 @Injectable({ providedIn: 'root' })

@@ -49,16 +49,6 @@ export class I18nService {
     this.lang.set(lang);
   }
 
-  /** Translates a known ecosystem group title (stored in English in the DB). */
-  groupLabel(title: string): string {
-    const groups = this.dict().ecosystemSection.groups;
-    const key = title.trim().toLowerCase();
-    if (key === 'developer tools') return groups.developerTools;
-    if (key === 'finance') return groups.finance;
-    if (key === 'consumer') return groups.consumer;
-    return title || groups.other;
-  }
-
   statusLabel(status: ProductStatus): string {
     const s = this.dict().status;
     switch (status) {

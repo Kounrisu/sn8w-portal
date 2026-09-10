@@ -36,6 +36,19 @@ CREATE TABLE IF NOT EXISTS projects (
   INDEX idx_tier (tier, sort_order)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- name is deliberately not translated here — a project's name is a proper
+-- noun (brand name), kept identical across languages. Only the reader-facing
+-- description text (category, tagline) actually needs translation.
+CREATE TABLE IF NOT EXISTS project_translations (
+  project_id INT UNSIGNED NOT NULL,
+  lang ENUM('fr', 'de', 'ko', 'ja', 'es') NOT NULL,
+  category VARCHAR(120) NOT NULL,
+  tagline TEXT NOT NULL,
+  PRIMARY KEY (project_id, lang),
+  CONSTRAINT fk_project_translations_project
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE IF NOT EXISTS todos (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(200) NOT NULL,
@@ -49,6 +62,22 @@ CREATE TABLE IF NOT EXISTS todos (
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   INDEX idx_status (status, sort_order),
   INDEX idx_diary_date (diary_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Lightweight, self-hosted, cookie-free visit logging — see
+-- migrations/006_page_views.sql for the full rationale.
+CREATE TABLE IF NOT EXISTS page_views (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  session_id CHAR(36) NOT NULL COMMENT 'Random client-generated id, not a cookie',
+  kind VARCHAR(32) NOT NULL DEFAULT 'pageview' COMMENT 'pageview, or a click event like project-visit / project-repo',
+  path VARCHAR(255) NULL COMMENT 'Route path — set for pageview events',
+  label VARCHAR(120) NULL COMMENT 'Extra context for click events, e.g. the project name',
+  referrer VARCHAR(255) NULL,
+  lang VARCHAR(5) NULL COMMENT 'Detected UI language at the time of the event',
+  duration_ms INT UNSIGNED NULL COMMENT 'Filled in via sendBeacon when the visitor leaves — null until then',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_kind_created (kind, created_at),
+  INDEX idx_path (path)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS diary_entries (

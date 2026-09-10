@@ -4,6 +4,7 @@ import { DiaryService } from '../../core/diary.service';
 import { TodosService } from '../../core/todos.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { Todo } from '../../core/models';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 function todayIso(): string {
   const now = new Date();
@@ -14,7 +15,7 @@ function todayIso(): string {
 
 @Component({
   selector: 'sn8w-diary-page',
-  imports: [FormsModule],
+  imports: [FormsModule, SpotlightDirective],
   templateUrl: './diary-page.html',
   styleUrl: './diary-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
