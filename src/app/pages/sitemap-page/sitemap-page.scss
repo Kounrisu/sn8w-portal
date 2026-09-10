@@ -56,6 +56,32 @@
   border-bottom-color: currentColor;
 }
 
+// Sections within the home page (Products/About/Contact are anchors, not
+// separate pages) — nested and visually subordinate, rather than listed
+// flat alongside actual routes as if they were pages of their own.
+.sitemap__sublist {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sitemap__sublist a {
+  font-size: var(--text-sm);
+  color: var(--mist);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.sitemap__sublist a:hover,
+.sitemap__sublist a:focus-visible {
+  color: var(--ice);
+  border-bottom-color: currentColor;
+}
+
 .sitemap__login-prompt {
   color: var(--mist);
   font-size: var(--text-sm);

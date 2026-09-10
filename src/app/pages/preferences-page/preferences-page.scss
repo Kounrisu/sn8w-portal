@@ -54,52 +54,32 @@
   max-width: 42ch;
 }
 
-// Text-size stepper — plain "A−" / "A+" glyphs rather than icons, since the
-// glyphs themselves show what the control does at a glance.
-.prefs__stepper {
+// Native range inputs: full keyboard support (arrow keys, Home/End) comes
+// for free, so there's no need to also keep a pair of +/- buttons around
+// it — one control that's already fully accessible beats two redundant
+// ones. Styled to match the site's own accent rather than the browser
+// default track/thumb.
+.prefs__slider-row {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  flex-shrink: 0;
+  gap: var(--space-sm);
 }
 
-.prefs__step-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: var(--text-sm);
+.prefs__slider {
+  flex: 1 1 auto;
+  min-width: 8rem;
+  accent-color: var(--ice);
   cursor: pointer;
-  transition:
-    border-color 0.18s ease,
-    color 0.18s ease;
 }
 
-.prefs__step-btn:hover:not(:disabled) {
-  border-color: color-mix(in srgb, var(--ice) 55%, var(--line-strong));
-}
-
-.prefs__step-btn:focus-visible {
+.prefs__slider:focus-visible {
   outline: 2px solid var(--ice);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
-.prefs__step-btn:disabled {
-  color: var(--mist);
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.prefs__step-value {
-  min-width: 3.2rem;
-  text-align: center;
+.prefs__slider-value {
+  min-width: 3.6rem;
+  text-align: right;
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   color: var(--mist);
@@ -237,6 +217,10 @@
   line-height: 1.6;
   color: var(--ink);
   max-width: 60ch;
+}
+
+.prefs__preview-text + .prefs__preview-text {
+  margin-top: var(--space-sm);
 }
 
 .prefs__actions {

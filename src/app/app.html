@@ -5,7 +5,9 @@
 <div id="top" class="shell">
   <sn8w-nav />
 
-  <main id="main">
+  <div class="visually-hidden" role="status" aria-live="polite">{{ routeAnnouncement() }}</div>
+
+  <main id="main" tabindex="-1">
     <router-outlet />
   </main>
 

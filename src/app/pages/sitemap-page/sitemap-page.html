@@ -8,10 +8,14 @@
   <section class="sitemap__section" sn8wSpotlight>
     <h2>{{ i18n.dict().sitemap.publicSection }}</h2>
     <ul class="sitemap__list">
-      <li><a routerLink="/">{{ i18n.dict().sitemap.home }}</a></li>
-      <li><a routerLink="/" fragment="products">{{ i18n.dict().nav.products }}</a></li>
-      <li><a routerLink="/" fragment="studio">{{ i18n.dict().nav.about }}</a></li>
-      <li><a routerLink="/" fragment="contact">{{ i18n.dict().nav.contact }}</a></li>
+      <li>
+        <a routerLink="/">{{ i18n.dict().sitemap.home }}</a>
+        <ul class="sitemap__sublist">
+          <li><a routerLink="/" fragment="products">{{ i18n.dict().nav.products }}</a></li>
+          <li><a routerLink="/" fragment="studio">{{ i18n.dict().nav.about }}</a></li>
+          <li><a routerLink="/" fragment="contact">{{ i18n.dict().nav.contact }}</a></li>
+        </ul>
+      </li>
       <li><a routerLink="/behind-the-scenes">{{ i18n.dict().behindTheScenes.navLabel }}</a></li>
       <li><a routerLink="/workshop">{{ i18n.dict().workshop.navLabel }}</a></li>
       <li><a routerLink="/accessibilite">{{ i18n.dict().footer.accessibility }}</a></li>

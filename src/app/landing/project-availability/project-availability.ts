@@ -3,9 +3,11 @@ import { ProjectsService } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { AnalyticsService } from '../../core/analytics.service';
 import type { Project } from '../../core/models';
+import { ExternalLinkDirective } from '../../shared/external-link.directive';
 
 @Component({
   selector: 'sn8w-project-availability',
+  imports: [ExternalLinkDirective],
   templateUrl: './project-availability.html',
   styleUrl: './project-availability.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

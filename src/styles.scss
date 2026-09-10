@@ -217,13 +217,23 @@ html[data-theme='contrast'] {
   --mat-sys-scrim: black;
 }
 
-// Accessibility: a dyslexia-friendlier typeface, through the same
+// Accessibility: two research-backed alternate typefaces, through the same
 // --font-sans/--font-serif slots every component already reads — no
 // !important needed here, since these are custom properties, not
 // selectors, and every component's own rule already resolves through them.
+// Lexend has the strongest evidence for reading-speed/fluency gains; Atkinson
+// Hyperlegible (Braille Institute) instead targets character disambiguation
+// for low vision — genuinely different needs, so both are offered rather
+// than picking one "the" dyslexia font (OpenDyslexic's own efficacy
+// evidence is weaker/mixed and it isn't on Google Fonts, so it's skipped).
 html.a11y-dyslexic-font {
   --font-sans: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+html.a11y-atkinson-font {
+  --font-sans: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 // Accessibility: a straightforward "make body text bolder" toggle, not a
@@ -236,18 +246,23 @@ html.a11y-bold-text :is(p, span, li, a, label, td, th, dt, dd, button, input, te
   font-weight: 600 !important;
 }
 
-// Accessibility: WCAG 2.1 SC 1.4.12 (Text Spacing) / RGAA criterion 10.13 —
-// letter/word spacing and paragraph spacing are expressed in em so they
-// scale with --text-scale automatically ("times the font size" is exactly
-// what 1em already means), rather than needing a second multiplier.
-html.a11y-text-spacing :is(p, li, dd, dt, blockquote, td, th, label) {
-  line-height: 1.5 !important;
-  letter-spacing: 0.12em !important;
-  word-spacing: 0.16em !important;
+// Accessibility: WCAG 2.1 SC 1.4.12 (Text Spacing) / RGAA criterion 10.13.
+// Line height and paragraph spacing are one axis (--a11y-line-height,
+// set by PreferencesService); letter/word spacing are the other
+// (--a11y-letter-spacing / --a11y-word-spacing) — kept independent so
+// moving one slider doesn't also override a property the visitor never
+// touched (e.g. a component's own intentional letter-spacing on a label).
+html.a11y-line-height :is(p, li, dd, dt, blockquote, td, th, label) {
+  line-height: var(--a11y-line-height, 1.5) !important;
 }
 
-html.a11y-text-spacing p {
+html.a11y-line-height p {
   margin-bottom: 2em !important;
+}
+
+html.a11y-char-spacing :is(p, li, dd, dt, blockquote, td, th, label) {
+  letter-spacing: var(--a11y-letter-spacing, 0.12em) !important;
+  word-spacing: var(--a11y-word-spacing, 0.16em) !important;
 }
 
 * {
@@ -428,6 +443,18 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+// RGAA 6.2 — a visible cue that a link opens a new tab, for sighted users;
+// the actual announcement for assistive tech is a real DOM node instead
+// (ExternalLinkDirective), since generated content like this isn't a
+// reliable way to expose text to screen readers.
+a[target='_blank']::after {
+  content: '↗';
+  display: inline-block;
+  margin-left: 0.25em;
+  font-size: 0.8em;
+  opacity: 0.7;
 }
 
 .skip-link {

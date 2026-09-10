@@ -58,6 +58,15 @@
   outline-offset: 4px;
 }
 
+// Current-page indication for the logo/home link — a shape (the
+// underline), not color alone, same RGAA 10.14 / WCAG 1.4.1 reasoning as
+// the pill-and-dot treatment on the other nav links below.
+.nav__logo--current {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 2px;
+}
+
 .nav__links {
   display: flex;
   align-items: center;
@@ -168,6 +177,26 @@
   outline-offset: 3px;
 }
 
+// Shows accessibility settings differ from default — a border change plus a
+// dot (shape, not color alone: RGAA 10.14 / WCAG 1.4.1), same reasoning as
+// the current-page indicators elsewhere in this file. The real, readable
+// announcement for assistive tech is the aria-label suffix in the template.
+.nav__pref-btn--customized {
+  border-color: var(--ice);
+}
+
+.nav__pref-btn--customized::before {
+  content: '';
+  position: absolute;
+  top: -0.15rem;
+  right: -0.15rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--ice);
+  border: 1.5px solid var(--bg);
+}
+
 .nav__lang-code {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
@@ -242,22 +271,16 @@
   padding: 0;
 }
 
-.nav__logout:hover {
-  color: var(--ember);
-}
-
-.nav__logout:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
+.nav__login--menu,
 .nav__logout--menu {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  text-align: left;
   padding-block: 0.35rem;
+}
+
+.nav__logout--menu {
+  text-align: left;
   font-size: var(--text-sm);
   text-transform: none;
   letter-spacing: 0;
@@ -271,21 +294,16 @@
   text-decoration: none;
 }
 
-.nav__login:hover {
+.nav__login:hover,
+.nav__logout:hover {
   color: var(--ember);
 }
 
-.nav__login:focus-visible {
+.nav__login:focus-visible,
+.nav__logout:focus-visible {
   outline: 2px solid var(--ice);
   outline-offset: 4px;
   border-radius: 2px;
-}
-
-.nav__login--menu {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-block: 0.35rem;
 }
 
 .menu-toggle {

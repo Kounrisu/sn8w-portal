@@ -5,31 +5,24 @@
     <p class="section-lede">{{ i18n.dict().preferences.lede }}</p>
   </header>
 
-  <section class="prefs__group" sn8wSpotlight>
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
     <div class="prefs__group-text">
       <h2>{{ i18n.dict().preferences.fontSizeLabel }}</h2>
       <p>{{ i18n.dict().preferences.fontSizeHint }}</p>
     </div>
-    <div class="prefs__stepper" role="group" [attr.aria-label]="i18n.dict().preferences.fontSizeLabel">
-      <button
-        type="button"
-        class="prefs__step-btn"
-        [disabled]="!prefs.canDecreaseTextScale()"
-        [attr.aria-label]="i18n.dict().preferences.decrease"
-        (click)="prefs.decreaseTextScale()"
-      >
-        A−
-      </button>
-      <span class="prefs__step-value" aria-hidden="true">{{ prefs.textScale() * 100 | number: '1.0-0' }}%</span>
-      <button
-        type="button"
-        class="prefs__step-btn"
-        [disabled]="!prefs.canIncreaseTextScale()"
-        [attr.aria-label]="i18n.dict().preferences.increase"
-        (click)="prefs.increaseTextScale()"
-      >
-        A+
-      </button>
+    <div class="prefs__slider-row">
+      <input
+        class="prefs__slider"
+        type="range"
+        min="0"
+        [max]="prefs.textScaleSteps.length - 1"
+        step="1"
+        [ngModel]="prefs.textScaleIndex()"
+        (ngModelChange)="onTextScaleInput($event)"
+        [attr.aria-label]="i18n.dict().preferences.fontSizeLabel"
+        [attr.aria-valuetext]="(prefs.textScale() * 100 | number: '1.0-0') + '%'"
+      />
+      <span class="prefs__slider-value" aria-hidden="true">{{ prefs.textScale() * 100 | number: '1.0-0' }}%</span>
     </div>
   </section>
 
@@ -49,42 +42,74 @@
     </button>
   </section>
 
-  <section class="prefs__group" sn8wSpotlight>
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
     <div class="prefs__group-text">
       <h2>{{ i18n.dict().preferences.dyslexicFontLabel }}</h2>
       <p>{{ i18n.dict().preferences.dyslexicFontHint }}</p>
     </div>
-    <button
-      type="button"
-      class="prefs__switch"
-      [class.prefs__switch--on]="prefs.dyslexicFont()"
-      [attr.aria-pressed]="prefs.dyslexicFont()"
-      (click)="prefs.setDyslexicFont(!prefs.dyslexicFont())"
-    >
-      <span class="prefs__switch-track"><span class="prefs__switch-thumb"></span></span>
-    </button>
+    <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.dyslexicFontLabel">
+      @for (choice of fontChoices; track choice) {
+        <button
+          type="button"
+          class="prefs__theme-btn"
+          [class.prefs__theme-btn--active]="prefs.dyslexicFont() === choice"
+          role="radio"
+          [attr.aria-checked]="prefs.dyslexicFont() === choice"
+          (click)="prefs.setDyslexicFont(choice)"
+        >
+          {{ fontChoiceLabel(choice) }}
+        </button>
+      }
+    </div>
   </section>
 
-  <section class="prefs__group" sn8wSpotlight>
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
     <div class="prefs__group-text">
-      <h2>{{ i18n.dict().preferences.spacingLabel }}</h2>
-      <p>{{ i18n.dict().preferences.spacingHint }}</p>
+      <h2>{{ i18n.dict().preferences.lineHeightLabel }}</h2>
+      <p>{{ i18n.dict().preferences.lineHeightHint }}</p>
     </div>
-    <button
-      type="button"
-      class="prefs__switch"
-      [class.prefs__switch--on]="prefs.textSpacing()"
-      [attr.aria-pressed]="prefs.textSpacing()"
-      (click)="prefs.setTextSpacing(!prefs.textSpacing())"
-    >
-      <span class="prefs__switch-track"><span class="prefs__switch-thumb"></span></span>
-    </button>
+    <div class="prefs__slider-row">
+      <input
+        class="prefs__slider"
+        type="range"
+        min="0"
+        [max]="prefs.lineHeightSteps.length - 1"
+        step="1"
+        [ngModel]="prefs.lineHeightIndex()"
+        (ngModelChange)="onLineHeightInput($event)"
+        [attr.aria-label]="i18n.dict().preferences.lineHeightLabel"
+        [attr.aria-valuetext]="lineHeightStepLabel(prefs.lineHeightIndex())"
+      />
+      <span class="prefs__slider-value" aria-hidden="true">{{ lineHeightStepLabel(prefs.lineHeightIndex()) }}</span>
+    </div>
+  </section>
+
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.charSpacingLabel }}</h2>
+      <p>{{ i18n.dict().preferences.charSpacingHint }}</p>
+    </div>
+    <div class="prefs__slider-row">
+      <input
+        class="prefs__slider"
+        type="range"
+        min="0"
+        [max]="prefs.charSpacingSteps.length - 1"
+        step="1"
+        [ngModel]="prefs.charSpacingIndex()"
+        (ngModelChange)="onCharSpacingInput($event)"
+        [attr.aria-label]="i18n.dict().preferences.charSpacingLabel"
+        [attr.aria-valuetext]="charSpacingStepLabel(prefs.charSpacingIndex())"
+      />
+      <span class="prefs__slider-value" aria-hidden="true">{{ charSpacingStepLabel(prefs.charSpacingIndex()) }}</span>
+    </div>
   </section>
 
   <section class="prefs__preview" sn8wSpotlight aria-live="off">
     <p class="kicker">{{ i18n.dict().preferences.previewKicker }}</p>
     <h2 class="prefs__preview-heading">{{ i18n.dict().preferences.previewHeading }}</h2>
     <p class="prefs__preview-text">{{ i18n.dict().preferences.previewParagraph }}</p>
+    <p class="prefs__preview-text">{{ i18n.dict().preferences.previewParagraph2 }}</p>
   </section>
 
   <section class="prefs__group prefs__group--column" sn8wSpotlight>
