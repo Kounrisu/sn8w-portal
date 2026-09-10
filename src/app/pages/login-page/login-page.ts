@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 @Component({
   selector: 'sn8w-login-page',
-  imports: [FormsModule],
+  imports: [FormsModule, SpotlightDirective],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

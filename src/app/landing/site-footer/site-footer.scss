@@ -30,9 +30,11 @@
 
 .site-footer__logo {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-weight: 800;
+  font-size: 1.15rem;
   color: var(--mist);
   text-decoration: none;
+  letter-spacing: -0.02em;
 }
 
 .site-footer__logo .accent {
@@ -47,7 +49,9 @@
 .footer-links {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.3rem var(--space-sm);
 }
 
 .footer-links a,
@@ -58,23 +62,45 @@
   color: var(--mist);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
+  white-space: nowrap;
   text-decoration: none;
   background: none;
-  border: none;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
   cursor: pointer;
-  padding: 0.25rem;
+  padding: 0.4rem 0.7rem;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
+// Same hover treatment as the nav links above — one accent color and the
+// same pill shape, used the same way everywhere it appears, rather than a
+// second accent (--ember) or a different shape (underline) doing the
+// identical job differently.
 .footer-links a:hover,
 .email-copy:hover {
-  color: var(--ember);
+  color: var(--ice);
+  background-color: color-mix(in srgb, var(--ice) 12%, transparent);
 }
 
 .footer-links a:focus-visible,
 .email-copy:focus-visible {
   outline: 2px solid var(--ice);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 999px;
+}
+
+// Current page: same non-color-only signal as the nav (RGAA 10.14 / WCAG
+// 1.4.1) — filled pill plus bold, accent color layered on top. Matched at
+// `.footer-links a.footer-links__link--active` — `.footer-links a` (element
+// + class) otherwise outranks a bare one-class selector on specificity.
+.footer-links a.footer-links__link--active {
+  color: var(--ice);
+  font-weight: 700;
+  background-color: color-mix(in srgb, var(--ice) 16%, transparent);
+  border-color: var(--ice);
 }
 
 .footer-links mat-icon {

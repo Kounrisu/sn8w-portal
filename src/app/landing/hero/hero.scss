@@ -7,10 +7,9 @@
   justify-content: center;
 }
 
-// Fixed, not absolute: the video is the backdrop for the *whole* landing
-// page, not just the first screen. Every section below scrolls over it
-// while it stays put, which is why none of them paint an opaque background
-// of their own — the point is that the video keeps showing through.
+// Fixed, not absolute: the backdrop covers the *whole* landing page, not
+// just the first screen. Every section below scrolls over it while it stays
+// put, which is why none of them paint an opaque background of their own.
 //
 // z-index -1 keeps it behind the sections' content (which sits at z-index
 // 1) while staying inside .shell's stacking context, so it still covers
@@ -19,19 +18,7 @@
   position: fixed;
   inset: 0;
   z-index: -1;
-  // Opaque gradient in the theme's own tones: the real fallback when the
-  // video is blocked, slow to load, or simply hasn't started yet — never a
-  // flash of empty black.
   background: linear-gradient(160deg, var(--surface-raised) 0%, var(--bg) 55%, var(--surface-sunken) 100%);
-}
-
-.hero__video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
 }
 
 .hero__scrim {
@@ -43,12 +30,6 @@
     color-mix(in srgb, var(--bg) 18%, transparent) 45%,
     color-mix(in srgb, var(--bg) 72%, transparent) 100%
   );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero__video {
-    display: none;
-  }
 }
 
 .hero__inner {
@@ -66,23 +47,44 @@
   animation: fade-up 0.7s ease-out 0.05s forwards;
 }
 
+// The one signature moment on the page (per the design brief: the hero is
+// a thesis) — its own display face, heavier and more geometric than the
+// Manrope used for every other heading, so the name itself reads as a
+// deliberate mark rather than just the biggest instance of body type.
 .hero__name {
   margin: 0 0 var(--space-2xs);
-  font-family: var(--font-serif);
-  font-weight: 400;
+  font-family: 'Bricolage Grotesque', var(--font-serif);
+  font-weight: 800;
   font-size: var(--text-3xl);
   line-height: 1.04;
-  letter-spacing: -0.01em;
-  color: var(--ink);
+  letter-spacing: -0.02em;
   text-wrap: balance;
+  background: var(--ice-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .hero__role {
   margin: 0 0 var(--space-lg);
   font-family: var(--font-sans);
   font-size: var(--text-md);
-  font-weight: 500;
-  color: var(--ice);
+  font-weight: 600;
+  background: var(--ice-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+// Windows High Contrast Mode strips background images, which would make
+// gradient-clipped text invisible (transparent color, no fallback paint) —
+// fall back to a solid system color instead of disappearing.
+@media (forced-colors: active) {
+  .hero__name,
+  .hero__role {
+    background: none;
+    color: CanvasText;
+  }
 }
 
 .hero__lede {

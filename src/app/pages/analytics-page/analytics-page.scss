@@ -1,0 +1,128 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.analytics {
+  padding-block: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.analytics__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.analytics__empty {
+  color: var(--mist);
+  font-size: var(--text-sm);
+}
+
+.analytics__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-sm);
+}
+
+.stat-card {
+  @include panel.glass;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: var(--space-md);
+}
+
+.stat-card__value {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: var(--ink);
+}
+
+.stat-card__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.analytics__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+.analytics__section {
+  @include panel.glass;
+
+  padding: var(--space-md);
+}
+
+.analytics__section-title {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.bar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bar-list__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 10rem) 1fr auto;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--text-sm);
+}
+
+.bar-list__label {
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bar-list__track {
+  display: block;
+  height: 0.5rem;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--line-strong) 60%, transparent);
+  overflow: hidden;
+}
+
+.bar-list__fill {
+  display: block;
+  height: 100%;
+  background: var(--ice);
+  border-radius: inherit;
+}
+
+.bar-list__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--mist);
+  min-width: 2ch;
+  text-align: right;
+}
+
+@media (min-width: 900px) {
+  .analytics__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { DragDropModule, moveItemInArray, type CdkDrag, type CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   FLAGSHIP_MOCKUPS,
   PRODUCT_STATUSES,
@@ -9,7 +11,8 @@ import {
   ProjectsService,
 } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
-import type { FlagshipMockup, Project, ProjectInput, ProductTier } from '../../core/models';
+import type { FlagshipMockup, Project, ProjectInput, ProductStatus, ProductTier } from '../../core/models';
+import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 const EMPTY_FORM: ProjectInput = {
   tier: 'ecosystem',
@@ -28,7 +31,7 @@ const EMPTY_FORM: ProjectInput = {
 
 @Component({
   selector: 'sn8w-admin-page',
-  imports: [FormsModule],
+  imports: [FormsModule, MatIconModule, DragDropModule, SpotlightDirective],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,6 +57,28 @@ export class AdminPage {
     return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   }
 
+  /**
+   * Downloads the current project list (name, category, tagline — the
+   * fields that actually get translated) as JSON, for handing to Claude
+   * when asking for a translation pass. Not the full row: screenshots,
+   * repo links etc. aren't relevant to that task.
+   */
+  protected exportForTranslation(): void {
+    const rows = this.projects.list().map((p) => ({
+      id: p.id,
+      name: p.name,
+      category: p.category,
+      tagline: p.tagline,
+    }));
+    const blob = new Blob([JSON.stringify(rows, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `sn8w-projects-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
   protected tierLabel(tier: ProductTier): string {
     const dict = this.i18n.dict().admin;
     switch (tier) {
@@ -64,6 +89,77 @@ export class AdminPage {
       case 'lab':
         return dict.tierLab;
     }
+  }
+
+  /**
+   * Row order only means anything within the same tier (and, for
+   * ecosystem, the same group) — the API always sorts by tier/group first,
+   * so a project dragged or bumped past that boundary would just snap back
+   * to it on the next load. Both the drag sortPredicate and the up/down
+   * buttons gate on this.
+   */
+  private groupKey(project: Project): string {
+    return `${project.tier}:${project.groupTitle ?? ''}`;
+  }
+
+  protected canMoveUp(project: Project): boolean {
+    const list = this.projects.list();
+    const index = list.findIndex((p) => p.id === project.id);
+    return index > 0 && this.groupKey(list[index - 1]) === this.groupKey(project);
+  }
+
+  protected canMoveDown(project: Project): boolean {
+    const list = this.projects.list();
+    const index = list.findIndex((p) => p.id === project.id);
+    return index !== -1 && index < list.length - 1 && this.groupKey(list[index + 1]) === this.groupKey(project);
+  }
+
+  protected async moveUp(project: Project): Promise<void> {
+    if (!this.canMoveUp(project)) return;
+    const list = [...this.projects.list()];
+    const index = list.findIndex((p) => p.id === project.id);
+    moveItemInArray(list, index, index - 1);
+    await this.projects.reorderList(list);
+  }
+
+  protected async moveDown(project: Project): Promise<void> {
+    if (!this.canMoveDown(project)) return;
+    const list = [...this.projects.list()];
+    const index = list.findIndex((p) => p.id === project.id);
+    moveItemInArray(list, index, index + 1);
+    await this.projects.reorderList(list);
+  }
+
+  protected readonly sortPredicate = (index: number, drag: CdkDrag<Project>): boolean => {
+    const target = this.projects.list()[index];
+    return target !== undefined && this.groupKey(target) === this.groupKey(drag.data);
+  };
+
+  protected async drop(event: CdkDragDrop<readonly Project[]>): Promise<void> {
+    if (event.previousIndex === event.currentIndex) return;
+    const list = [...this.projects.list()];
+    moveItemInArray(list, event.previousIndex, event.currentIndex);
+    await this.projects.reorderList(list);
+  }
+
+  protected async setTier(project: Project, tier: ProductTier): Promise<void> {
+    // Mirrors submit()'s cleanup: a field that no longer applies to the new
+    // tier shouldn't linger in the database just because this is the quick
+    // inline edit rather than the full form.
+    await this.projects.update(project.id, {
+      tier,
+      groupTitle: tier === 'ecosystem' ? project.groupTitle : null,
+      mockup: tier === 'flagship' ? project.mockup : null,
+    });
+  }
+
+  protected async setStatus(project: Project, status: ProductStatus): Promise<void> {
+    await this.projects.update(project.id, { status });
+  }
+
+  protected async toggleAvailability(project: Project): Promise<void> {
+    const availability = project.availability === 'active' ? 'inactive' : 'active';
+    await this.projects.update(project.id, { availability });
   }
 
   protected openCreate(): void {

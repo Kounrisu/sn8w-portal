@@ -1,7 +1,7 @@
-<header class="nav" [class.nav--scrolled]="scrolled()">
+<header class="nav" [class.nav--scrolled]="scrolled()" sn8wSpotlight>
   <div class="container nav__inner">
     <a class="nav__logo" href="#top">
-      sn<span class="accent">8</span>w
+      Sn<span class="accent">8</span>w
       <span class="visually-hidden">— home</span>
     </a>
 
@@ -22,12 +22,18 @@
     } @else {
       <nav class="nav__links" aria-label="Primary">
         @for (link of links(); track link.fragment) {
-          <a routerLink="/" [fragment]="link.fragment">{{ link.label }}</a>
+          <a
+            routerLink="/"
+            [fragment]="link.fragment"
+            [class.nav__link--active]="activeFragment() === link.fragment"
+            [attr.aria-current]="activeFragment() === link.fragment ? 'true' : null"
+          >{{ link.label }}</a>
         }
         @if (auth.isAuthenticated()) {
-          <a routerLink="/todo">{{ i18n.dict().nav.todo }}</a>
-          <a routerLink="/diary">{{ i18n.dict().nav.diary }}</a>
-          <a routerLink="/admin">{{ i18n.dict().nav.admin }}</a>
+          <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
+          <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.diary }}</a>
+          <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.admin }}</a>
+          <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.analytics }}</a>
         }
       </nav>
       <div class="nav__actions">
@@ -35,6 +41,7 @@
           <button
             type="button"
             class="nav__pref-btn nav__lang-btn"
+            sn8wSpotlight
             [matMenuTriggerFor]="langMenu"
             [attr.aria-label]="i18n.dict().common.language + ': ' + i18n.langLabels[i18n.lang()]"
           >
@@ -64,6 +71,7 @@
           <button
             type="button"
             class="nav__pref-btn nav__theme-btn"
+            sn8wSpotlight
             [attr.aria-label]="i18n.dict().common.theme + ': ' + themeLabel()[nextTheme()]"
             [matTooltip]="themeLabel()[nextTheme()]"
             (click)="setTheme(nextTheme())"
@@ -71,16 +79,6 @@
             <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
           </button>
         </div>
-
-        @if (audio.available()) {
-          <button type="button" class="nav__sound" (click)="audio.toggleMuted()">
-            <mat-icon aria-hidden="true">{{ audio.muted() ? 'volume_off' : 'volume_up' }}</mat-icon>
-            <!-- The visible label states the action, so it is the button's
-                 accessible name too — nothing for a screen reader and a
-                 sighted user to disagree about. -->
-            <span>{{ audio.muted() ? i18n.dict().common.soundOn : i18n.dict().common.soundOff }}</span>
-          </button>
-        }
 
         @if (auth.isAuthenticated()) {
           <button type="button" class="nav__logout" (click)="logout()">
@@ -94,12 +92,19 @@
   @if (isCompact() && menuOpen()) {
     <nav id="nav-menu" class="nav__menu" aria-label="Primary" (keydown.escape)="onEscape()">
       @for (link of links(); track link.fragment) {
-        <a routerLink="/" [fragment]="link.fragment" (click)="closeMenu()">{{ link.label }}</a>
+        <a
+          routerLink="/"
+          [fragment]="link.fragment"
+          [class.nav__link--active]="activeFragment() === link.fragment"
+          [attr.aria-current]="activeFragment() === link.fragment ? 'true' : null"
+          (click)="closeMenu()"
+        >{{ link.label }}</a>
       }
       @if (auth.isAuthenticated()) {
-        <a routerLink="/todo" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
-        <a routerLink="/diary" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
-        <a routerLink="/admin" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
+        <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
+        <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
+        <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
+        <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
         <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
           {{ i18n.dict().nav.logout }}
         </button>
@@ -125,19 +130,12 @@
       <button
         type="button"
         class="nav__pref-btn nav__theme-btn nav__theme-btn--menu"
+        sn8wSpotlight
         (click)="setTheme(nextTheme())"
       >
         <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
         {{ themeLabel()[nextTheme()] }}
       </button>
-
-
-      @if (audio.available()) {
-        <button type="button" class="nav__sound nav__sound--menu" (click)="audio.toggleMuted()">
-          <mat-icon aria-hidden="true">{{ audio.muted() ? 'volume_off' : 'volume_up' }}</mat-icon>
-          <span>{{ audio.muted() ? i18n.dict().common.soundOn : i18n.dict().common.soundOff }}</span>
-        </button>
-      }
     </nav>
   }
 </header>

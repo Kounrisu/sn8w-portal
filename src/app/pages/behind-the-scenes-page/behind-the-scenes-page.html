@@ -1,5 +1,5 @@
 <div class="bts container">
-  <header class="bts__head">
+  <header class="bts__head" sn8wSpotlight>
     <p class="kicker">{{ i18n.dict().behindTheScenes.kicker }}</p>
     <h1 class="bts__title">{{ i18n.dict().behindTheScenes.title }}</h1>
     <p class="section-lede">{{ i18n.dict().behindTheScenes.lede }}</p>
@@ -26,7 +26,7 @@
 
     <ul class="bts__stack">
       @for (item of stack; track item.name) {
-        <li class="bts__stack-item">
+        <li class="bts__stack-item" sn8wSpotlight>
           <h3>{{ item.name }}</h3>
           <p>{{ item.note }}</p>
         </li>
@@ -39,12 +39,12 @@
     <p class="section-lede">{{ i18n.dict().behindTheScenes.changelogLede }}</p>
 
     @if (loaded() && !changelog()) {
-      <p class="bts__empty">{{ i18n.dict().behindTheScenes.empty }}</p>
+      <p class="bts__empty" sn8wSpotlight>{{ i18n.dict().behindTheScenes.empty }}</p>
     }
 
     <ol class="bts__log">
       @for (day of days(); track day.date) {
-        <li class="bts__day">
+        <li class="bts__day" sn8wSpotlight>
           <h3 class="bts__day-label">{{ day.label }}</h3>
           <ul class="bts__day-commits">
             @for (commit of day.commits; track commit.sha) {
