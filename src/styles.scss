@@ -86,8 +86,13 @@ html {
 
   // Fragment links (#studio, #products, ...) otherwise scroll their target
   // to y=0, which is exactly where the sticky nav sits — the heading lands
-  // underneath it.
-  scroll-padding-top: var(--nav-h);
+  // underneath it. The extra 1rem is breathing room so it doesn't land
+  // flush against the nav's bottom edge either. --nav-h is the *bar's*
+  // real measured height at whatever width you're on (mobile, tablet,
+  // desktop are all the same horizontal bar, just different content
+  // inside it) — this offset needs no separate breakpoint handling.
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  scroll-behavior: smooth;
 
   @include mat.theme(
     (
@@ -292,6 +297,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }
 
