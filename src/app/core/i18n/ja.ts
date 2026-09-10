@@ -247,6 +247,8 @@ export const ja: Dict = {
     title: 'プロジェクトを管理',
     lede: 'ランディングページに表示するプロジェクトの追加・編集・削除を行います。',
     newProject: '新しいプロジェクト',
+    renumberButton: 'すべて振り直す',
+    renumbered: '並び順を整理しました',
     exportButton: '翻訳用にエクスポート',
     translationHelpTitle: 'プロジェクト内容の翻訳',
     translationHelpIntro:

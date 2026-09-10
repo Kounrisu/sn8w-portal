@@ -6,6 +6,9 @@
       <p class="section-lede">{{ i18n.dict().admin.lede }}</p>
     </div>
     <div class="admin-head__actions">
+      <button type="button" class="btn btn--secondary" (click)="renumberAll()">
+        {{ i18n.dict().admin.renumberButton }}
+      </button>
       <button type="button" class="btn btn--secondary" (click)="exportForTranslation()">
         {{ i18n.dict().admin.exportButton }}
       </button>
