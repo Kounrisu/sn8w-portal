@@ -22,6 +22,7 @@ export const ja: Dict = {
     explore: 'プロジェクトを見る',
     openMenu: 'メニューを開く',
     closeMenu: 'メニューを閉じる',
+    login: 'サインイン',
     logout: 'ログアウト',
     admin: '管理',
     todo: 'ToDo',

@@ -22,6 +22,7 @@ export const de: Dict = {
     explore: 'Projekte entdecken',
     openMenu: 'Menü öffnen',
     closeMenu: 'Menü schließen',
+    login: 'Anmelden',
     logout: 'Abmelden',
     admin: 'Admin',
     todo: 'Aufgaben',

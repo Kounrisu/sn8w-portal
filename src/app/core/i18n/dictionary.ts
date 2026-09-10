@@ -27,6 +27,7 @@ export interface Dict {
     explore: string;
     openMenu: string;
     closeMenu: string;
+    login: string;
     logout: string;
     admin: string;
     todo: string;
@@ -306,6 +307,7 @@ export const en: Dict = {
     explore: 'Explore projects',
     openMenu: 'Open menu',
     closeMenu: 'Close menu',
+    login: 'Sign in',
     logout: 'Log out',
     admin: 'Admin',
     todo: 'Todo',

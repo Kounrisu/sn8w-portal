@@ -84,6 +84,10 @@
           <button type="button" class="nav__logout" (click)="logout()">
             {{ i18n.dict().nav.logout }}
           </button>
+        } @else {
+          <a class="nav__login" routerLink="/login" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
+            {{ i18n.dict().nav.login }}
+          </a>
         }
       </div>
     }
@@ -108,6 +112,10 @@
         <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
           {{ i18n.dict().nav.logout }}
         </button>
+      } @else {
+        <a class="nav__login nav__login--menu" routerLink="/login" (click)="closeMenu()">
+          {{ i18n.dict().nav.login }}
+        </a>
       }
 
       <!-- Enough room in the drawer to lay the languages out flat, rather
