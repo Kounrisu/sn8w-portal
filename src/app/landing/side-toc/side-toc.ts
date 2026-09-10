@@ -30,8 +30,8 @@ export class SideToc {
   protected readonly links = computed<readonly TocLink[]>(() => {
     const dict = this.i18n.dict().nav;
     return [
-      { fragment: 'products', label: dict.products },
       { fragment: 'studio', label: dict.about },
+      { fragment: 'products', label: dict.products },
       { fragment: 'contact', label: dict.contact },
     ];
   });
