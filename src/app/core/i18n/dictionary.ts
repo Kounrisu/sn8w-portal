@@ -155,6 +155,12 @@ export interface Dict {
     adminSection: string;
     loginPrompt: string;
   };
+  workshop: {
+    kicker: string;
+    title: string;
+    lede: string;
+    navLabel: string;
+  };
   footer: {
     github: string;
     copyEmail: string;
@@ -501,6 +507,12 @@ export const en: Dict = {
     publicSection: 'Public pages',
     adminSection: 'Admin pages',
     loginPrompt: 'Sign in to see the admin pages.',
+  },
+  workshop: {
+    kicker: 'Workshop',
+    title: 'Welcome to the Workshop',
+    lede: "Work in progress. This is where accessible components get tested and refined, and where I'll keep notes as it comes together.",
+    navLabel: 'Workshop',
   },
   footer: {
     github: 'GitHub',

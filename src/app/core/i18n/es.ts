@@ -217,6 +217,12 @@ export const es: Dict = {
     adminSection: 'Páginas de administración',
     loginPrompt: 'Inicia sesión para ver las páginas de administración.',
   },
+  workshop: {
+    kicker: 'Taller',
+    title: 'Bienvenido al Taller',
+    lede: 'Trabajo en curso. Aquí es donde se prueban y perfeccionan los componentes accesibles, y donde iré dejando notas a medida que avance.',
+    navLabel: 'Taller',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'Copiar correo',
