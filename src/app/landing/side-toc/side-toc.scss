@@ -98,20 +98,22 @@
   padding: 0.3rem 0.65rem;
   opacity: 0;
   pointer-events: none;
+  // Fade-in stays snappy (hover/focus); fade-out is slower since the flash
+  // dismissal (see side-toc.ts) is the one case with nothing else — no
+  // hover-leave, no blur — driving it, so it needs to read as intentional.
   transition:
-    opacity 0.15s ease,
+    opacity 0.4s ease,
     transform 0.15s ease;
 }
 
 .side-toc__link:hover .side-toc__label,
-.side-toc__link:focus-visible .side-toc__label {
+.side-toc__link:focus-visible .side-toc__label,
+.side-toc__link--flash .side-toc__label {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
 }
 
 .side-toc__link--active .side-toc__label {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
   color: var(--ice);
   font-weight: 700;
   border-color: var(--ice);

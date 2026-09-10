@@ -39,8 +39,21 @@ export class SideToc {
   protected readonly active = signal<string | null>(null);
   private observer: IntersectionObserver | null = null;
 
+  // Briefly re-shows a dot's label right after it's clicked/tapped, since
+  // the active section's label doesn't linger on its own (see `active`) —
+  // without this a tap gives no feedback until the scroll settles.
+  protected readonly flashed = signal<string | null>(null);
+  private flashTimeout: ReturnType<typeof setTimeout> | undefined;
+
   constructor() {
     this.observeSections();
+    this.destroyRef.onDestroy(() => clearTimeout(this.flashTimeout));
+  }
+
+  protected flash(fragment: string): void {
+    clearTimeout(this.flashTimeout);
+    this.flashed.set(fragment);
+    this.flashTimeout = setTimeout(() => this.flashed.set(null), 2500);
   }
 
   private observeSections(): void {
@@ -65,6 +78,7 @@ export class SideToc {
             const visible = entries.filter((entry) => entry.isIntersecting);
             if (visible.length === 0) return;
             const top = visible.reduce((a, b) => (b.intersectionRatio > a.intersectionRatio ? b : a));
+            if (top.target.id !== this.active()) this.flash(top.target.id);
             this.active.set(top.target.id);
           },
           { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
