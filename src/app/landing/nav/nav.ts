@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Flag } from '../flag/flag';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
+import { filter, map } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ThemeService, type Theme } from '../../core/theme.service';
@@ -73,6 +73,21 @@ export class Nav {
 
   protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(false);
+
+  /**
+   * So "Sign in" returns here instead of always landing on /admin —
+   * clicking it isn't a request to go manage the site, just to
+   * authenticate wherever you already are. Kept as a signal (not read
+   * directly off `router.url` in the template) so it actually updates on
+   * navigation under OnPush; a plain getter read once wouldn't.
+   */
+  protected readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map(() => this.router.url),
+    ),
+    { initialValue: this.router.url },
+  );
 
   constructor() {
     void this.auth.ensureChecked();
