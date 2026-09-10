@@ -161,39 +161,36 @@
   gap: 0.6rem;
 }
 
-// Session state, colored on top of the login/logout icon shape (never
-// color alone): red on the sign-in control while logged out, green on
-// sign-out once logged in.
-.nav__session-btn--logged-out {
-  color: var(--danger);
+// Bootstrap Icons (person-dash / person-check-fill), inlined rather than
+// pulling in a whole second icon font for two glyphs — sized to match the
+// mat-icon glyphs used everywhere else in this row.
+.nav__session-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentColor;
 }
 
-.nav__pref-btn.nav__session-btn--logged-out {
-  border-color: color-mix(in srgb, var(--danger) 55%, var(--line-strong));
-}
-
-.nav__session-btn--logged-out:hover {
-  color: var(--danger);
-}
-
-.nav__pref-btn.nav__session-btn--logged-out:hover {
-  border-color: var(--danger);
-}
-
-.nav__session-btn--logged-in {
+// The shape itself (dash vs. check) carries the state, so both are the
+// same accent rather than a red/green pair — a soft glow, tuned per theme
+// via --success (a bright mint on the dark theme, a deeper green on the
+// light one, so it stays visible without ever blowing out) so it reads
+// the same "signed-in" way whichever theme is active.
+.nav__session-btn {
   color: var(--success);
 }
 
-.nav__pref-btn.nav__session-btn--logged-in {
+.nav__pref-btn.nav__session-btn {
   border-color: color-mix(in srgb, var(--success) 55%, var(--line-strong));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--success) 35%, transparent);
 }
 
-.nav__session-btn--logged-in:hover {
+.nav__session-btn:hover {
   color: var(--success);
 }
 
-.nav__pref-btn.nav__session-btn--logged-in:hover {
+.nav__pref-btn.nav__session-btn:hover {
   border-color: var(--success);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--success) 55%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
