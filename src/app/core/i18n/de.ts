@@ -217,6 +217,12 @@ export const de: Dict = {
     adminSection: 'Admin-Seiten',
     loginPrompt: 'Melden Sie sich an, um die Admin-Seiten zu sehen.',
   },
+  workshop: {
+    kicker: 'Werkstatt',
+    title: 'Willkommen in der Werkstatt',
+    lede: 'Arbeit in Bearbeitung. Hier werden barrierefreie Komponenten getestet und verfeinert, und ich halte hier meine Notizen fest, während es Gestalt annimmt.',
+    navLabel: 'Werkstatt',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'E-Mail kopieren',

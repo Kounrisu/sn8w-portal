@@ -217,6 +217,12 @@ export const ko: Dict = {
     adminSection: '관리자 페이지',
     loginPrompt: '관리자 페이지를 보려면 로그인하세요.',
   },
+  workshop: {
+    kicker: '워크숍',
+    title: '워크숍에 오신 것을 환영합니다',
+    lede: '진행 중입니다. 여기서는 접근성 있는 컴포넌트를 테스트하고 다듬으며, 진행하면서 메모도 남길 예정입니다.',
+    navLabel: '워크숍',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: '이메일 복사',

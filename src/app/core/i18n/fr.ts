@@ -217,6 +217,12 @@ export const fr: Dict = {
     adminSection: "Pages d'administration",
     loginPrompt: "Connectez-vous pour voir les pages d'administration.",
   },
+  workshop: {
+    kicker: 'Atelier',
+    title: "Bienvenue dans l'Atelier",
+    lede: "Travail en cours. C'est ici que les composants accessibles seront testés et affinés, et où je garderai des notes au fil de l'avancement.",
+    navLabel: 'Atelier',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: "Copier l'e-mail",

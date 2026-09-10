@@ -1,0 +1,25 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.workshop {
+  padding-block: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 40rem;
+}
+
+.workshop__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.workshop__back {
+  margin-top: var(--space-sm);
+}

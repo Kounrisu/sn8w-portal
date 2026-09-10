@@ -217,6 +217,12 @@ export const ja: Dict = {
     adminSection: '管理者ページ',
     loginPrompt: '管理者ページを見るにはログインしてください。',
   },
+  workshop: {
+    kicker: 'ワークショップ',
+    title: 'ワークショップへようこそ',
+    lede: '作業中です。ここではアクセシブルなコンポーネントをテスト・改善し、進めながらメモを残していきます。',
+    navLabel: 'ワークショップ',
+  },
   footer: {
     github: 'GitHub',
     copyEmail: 'メールをコピー',

@@ -59,5 +59,9 @@ export const routes: Routes = [
     path: 'plan-du-site',
     loadComponent: () => import('./pages/sitemap-page/sitemap-page').then((m) => m.SitemapPage),
   },
+  {
+    path: 'workshop',
+    loadComponent: () => import('./pages/workshop-page/workshop-page').then((m) => m.WorkshopPage),
+  },
   { path: '**', redirectTo: '' },
 ];
