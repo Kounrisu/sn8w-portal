@@ -142,6 +142,17 @@ export class AdminPage {
     await this.projects.reorderList(list);
   }
 
+  /**
+   * Forces every tier/group's sortOrder back to a clean 0, 1, 2... sequence
+   * without moving anything — for groups nobody has dragged since data was
+   * seeded (or edited by hand before this reorder logic existed), whose
+   * numbers can otherwise sit duplicated or arbitrary indefinitely.
+   */
+  protected async renumberAll(): Promise<void> {
+    await this.projects.reorderList(this.projects.list());
+    this.notify(this.i18n.dict().admin.renumbered);
+  }
+
   protected async setTier(project: Project, tier: ProductTier): Promise<void> {
     // Mirrors submit()'s cleanup: a field that no longer applies to the new
     // tier shouldn't linger in the database just because this is the quick

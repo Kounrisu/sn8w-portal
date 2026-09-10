@@ -247,6 +247,8 @@ export const ko: Dict = {
     title: '프로젝트 관리',
     lede: '랜딩 페이지에 표시되는 프로젝트를 추가, 수정, 삭제합니다.',
     newProject: '새 프로젝트',
+    renumberButton: '전체 번호 재정렬',
+    renumbered: '정렬 순서가 정리되었습니다',
     exportButton: '번역용으로 내보내기',
     translationHelpTitle: '프로젝트 콘텐츠 번역하기',
     translationHelpIntro:

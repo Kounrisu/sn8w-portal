@@ -185,6 +185,8 @@ export interface Dict {
     title: string;
     lede: string;
     newProject: string;
+    renumberButton: string;
+    renumbered: string;
     exportButton: string;
     translationHelpTitle: string;
     translationHelpIntro: string;
@@ -538,6 +540,8 @@ export const en: Dict = {
     title: 'Administer projects',
     lede: 'Add, edit and remove the projects shown on the landing page.',
     newProject: 'New project',
+    renumberButton: 'Renumber all',
+    renumbered: 'Sort order cleaned up',
     exportButton: 'Export for translation',
     translationHelpTitle: 'Translating project content',
     translationHelpIntro:

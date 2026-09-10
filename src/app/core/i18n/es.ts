@@ -247,6 +247,8 @@ export const es: Dict = {
     title: 'Administrar proyectos',
     lede: 'Añade, edita y elimina los proyectos que se muestran en la página.',
     newProject: 'Nuevo proyecto',
+    renumberButton: 'Renumerar todo',
+    renumbered: 'Orden de clasificación corregido',
     exportButton: 'Exportar para traducción',
     translationHelpTitle: 'Traducir el contenido de los proyectos',
     translationHelpIntro:

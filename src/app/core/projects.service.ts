@@ -127,19 +127,39 @@ export class ProjectsService {
 
   /**
    * Persists a new admin-table row order — mirrors TodosService.reorderBoard.
-   * Callers are expected to only reorder within one tier/group at a time
-   * (see AdminPage's sortPredicate); reindexing the whole list 0..n-1
-   * regardless is harmless since the API always sorts by tier/group first.
+   * `sortOrder` only ever means "position within this tier/group" (the admin
+   * form's own hint says so, and the API always sorts by tier/group first) —
+   * so it's assigned per-group here (0, 1, 2... within each tier+groupTitle),
+   * not as one index across the whole table. Assigning a flat global index
+   * used to leave every group's numbers looking arbitrary (e.g. a lab item
+   * showing sortOrder 14) instead of matching its actual position among its
+   * siblings, and any group nobody had dragged since data was seeded still
+   * carried its original, sometimes-duplicated numbers from manual entry —
+   * this corrects a group's numbers the moment anything in it is reordered.
+   * `newOrder` must already be grouped as the table displays it (it comes
+   * from `list()`, itself sorted tier/group first) for the per-group counter
+   * below to land on the right sequence.
    */
   async reorderList(newOrder: readonly Project[]): Promise<void> {
-    const withOrders = newOrder.map((p, index) => ({ ...p, sortOrder: index }));
+    const groupKey = (p: Project) => `${p.tier}:${p.groupTitle ?? ''}`;
+    const groupCounts = new Map<string, number>();
+    const withOrders = newOrder.map((p) => {
+      const key = groupKey(p);
+      const index = groupCounts.get(key) ?? 0;
+      groupCounts.set(key, index + 1);
+      return { ...p, sortOrder: index };
+    });
     this.all.set(withOrders);
     await Promise.all(
-      newOrder.map((project, index) =>
-        project.sortOrder === index
+      newOrder.map((project, i) =>
+        project.sortOrder === withOrders[i].sortOrder
           ? Promise.resolve()
           : firstValueFrom(
-              this.http.put<Project>(this.baseUrl, { sortOrder: index }, { params: { id: project.id } }),
+              this.http.put<Project>(
+                this.baseUrl,
+                { sortOrder: withOrders[i].sortOrder },
+                { params: { id: project.id } },
+              ),
             ),
       ),
     );
