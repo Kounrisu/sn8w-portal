@@ -85,7 +85,13 @@
             {{ i18n.dict().nav.logout }}
           </button>
         } @else {
-          <a class="nav__login" routerLink="/login" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
+          <a
+            class="nav__login"
+            routerLink="/login"
+            [queryParams]="{ returnUrl: currentUrl() }"
+            routerLinkActive="nav__link--active"
+            ariaCurrentWhenActive="page"
+          >
             {{ i18n.dict().nav.login }}
           </a>
         }
@@ -116,7 +122,12 @@
           </button>
         </div>
       } @else {
-        <a class="nav__login nav__login--menu" routerLink="/login" (click)="closeMenu()">
+        <a
+          class="nav__login nav__login--menu"
+          routerLink="/login"
+          [queryParams]="{ returnUrl: currentUrl() }"
+          (click)="closeMenu()"
+        >
           {{ i18n.dict().nav.login }}
         </a>
       }

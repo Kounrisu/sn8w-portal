@@ -31,7 +31,11 @@ export class LoginPage {
 
     try {
       await this.auth.login(this.username(), this.password());
-      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/admin';
+      // '/' (stay where you already were), not '/admin' — signing in isn't
+      // itself a request to go manage the site. authGuard sets a real
+      // returnUrl when you were actually redirected here from a protected
+      // page, which still takes you back there as before.
+      const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/';
       await this.router.navigateByUrl(returnUrl);
     } catch {
       this.error.set(true);
