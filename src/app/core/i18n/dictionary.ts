@@ -17,6 +17,7 @@ export interface Dict {
     theme: string;
     themeFrost: string;
     themeSquirrel: string;
+    themeContrast: string;
   };
   nav: {
     products: string;
@@ -33,6 +34,7 @@ export interface Dict {
     todo: string;
     diary: string;
     analytics: string;
+    preferences: string;
   };
   hero: {
     kicker: string;
@@ -160,6 +162,31 @@ export interface Dict {
     title: string;
     lede: string;
     navLabel: string;
+  };
+  preferences: {
+    kicker: string;
+    title: string;
+    lede: string;
+    fontSizeLabel: string;
+    fontSizeHint: string;
+    decrease: string;
+    increase: string;
+    boldTextLabel: string;
+    boldTextHint: string;
+    dyslexicFontLabel: string;
+    dyslexicFontHint: string;
+    spacingLabel: string;
+    spacingHint: string;
+    themeLabel: string;
+    motionLabel: string;
+    motionHint: string;
+    motionSystem: string;
+    motionReduced: string;
+    resetButton: string;
+    navLabel: string;
+    previewKicker: string;
+    previewHeading: string;
+    previewParagraph: string;
   };
   footer: {
     github: string;
@@ -305,6 +332,7 @@ export const en: Dict = {
     theme: 'Theme',
     themeFrost: 'Dark',
     themeSquirrel: 'Light',
+    themeContrast: 'High contrast',
   },
   nav: {
     products: 'Projects',
@@ -321,6 +349,7 @@ export const en: Dict = {
     todo: 'Todo',
     diary: 'Diary',
     analytics: 'Analytics',
+    preferences: 'Accessibility settings',
   },
   hero: {
     kicker: 'Paris, France',
@@ -515,6 +544,31 @@ export const en: Dict = {
     title: 'Welcome to the Workshop',
     lede: "Work in progress. This is where accessible components get tested and refined, and where I'll keep notes as it comes together.",
     navLabel: 'Workshop',
+  },
+  preferences: {
+    kicker: 'Accessibility',
+    title: 'Make this site easier to read',
+    lede: 'These settings are saved on this device and apply everywhere on the site, not just here.',
+    fontSizeLabel: 'Text size',
+    fontSizeHint: 'Scales every heading and paragraph on the site, not just this page.',
+    decrease: 'Smaller text',
+    increase: 'Larger text',
+    boldTextLabel: 'Bolder text',
+    boldTextHint: 'Increases the weight of body text for easier reading. Headings are unaffected — they are already bold by design.',
+    dyslexicFontLabel: 'Dyslexia-friendly font',
+    dyslexicFontHint: 'Switches body and heading text to Lexend, a typeface designed to reduce reading errors.',
+    spacingLabel: 'Text spacing',
+    spacingHint: 'Widens line height, letter spacing, word spacing and space between paragraphs to the accessibility guideline minimums (WCAG 1.4.12), without losing any content.',
+    themeLabel: 'Colour theme',
+    motionLabel: 'Motion',
+    motionHint: "Turns off animations and transitions site-wide, beyond what your device's own reduce-motion setting already covers.",
+    motionSystem: 'Match my device',
+    motionReduced: 'Reduce motion',
+    resetButton: 'Reset to defaults',
+    navLabel: 'Accessibility settings',
+    previewKicker: 'Preview',
+    previewHeading: 'A sample heading',
+    previewParagraph: 'This paragraph updates live as you change the settings above, so you can see exactly how text size, weight, spacing and typeface affect real content before leaving this page.',
   },
   footer: {
     github: 'GitHub',

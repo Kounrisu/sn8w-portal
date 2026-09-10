@@ -78,21 +78,43 @@
           >
             <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
           </button>
+
+          <a
+            class="nav__pref-btn nav__theme-btn"
+            sn8wSpotlight
+            routerLink="/parametres-accessibilite"
+            routerLinkActive="nav__link--active"
+            ariaCurrentWhenActive="page"
+            [attr.aria-label]="i18n.dict().preferences.navLabel"
+            [matTooltip]="i18n.dict().preferences.navLabel"
+          >
+            <mat-icon aria-hidden="true">accessibility_new</mat-icon>
+          </a>
         </div>
 
         @if (auth.isAuthenticated()) {
-          <button type="button" class="nav__logout" (click)="logout()">
-            {{ i18n.dict().nav.logout }}
+          <button
+            type="button"
+            class="nav__pref-btn nav__theme-btn"
+            sn8wSpotlight
+            [attr.aria-label]="i18n.dict().nav.logout"
+            [matTooltip]="i18n.dict().nav.logout"
+            (click)="logout()"
+          >
+            <mat-icon aria-hidden="true">logout</mat-icon>
           </button>
         } @else {
           <a
-            class="nav__login"
+            class="nav__pref-btn nav__theme-btn"
+            sn8wSpotlight
             routerLink="/login"
             [queryParams]="{ returnUrl: currentUrl() }"
             routerLinkActive="nav__link--active"
             ariaCurrentWhenActive="page"
+            [attr.aria-label]="i18n.dict().nav.login"
+            [matTooltip]="i18n.dict().nav.login"
           >
-            {{ i18n.dict().nav.login }}
+            <mat-icon aria-hidden="true">login</mat-icon>
           </a>
         }
       </div>
@@ -114,6 +136,7 @@
           <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
           <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
           <button type="button" class="nav__logout nav__logout--menu" (click)="logout()">
+            <mat-icon aria-hidden="true">logout</mat-icon>
             {{ i18n.dict().nav.logout }}
           </button>
         </div>
@@ -124,6 +147,7 @@
           [queryParams]="{ returnUrl: currentUrl() }"
           (click)="closeMenu()"
         >
+          <mat-icon aria-hidden="true">login</mat-icon>
           {{ i18n.dict().nav.login }}
         </a>
       }

@@ -1,9 +1,9 @@
 import { Injectable, effect, signal } from '@angular/core';
 
-export type Theme = 'frost' | 'squirrel';
+export type Theme = 'frost' | 'squirrel' | 'contrast';
 
 const STORAGE_KEY = 'sn8w-theme';
-const SUPPORTED: readonly Theme[] = ['frost', 'squirrel'];
+const SUPPORTED: readonly Theme[] = ['frost', 'squirrel', 'contrast'];
 
 function detectInitialTheme(): Theme {
   if (typeof localStorage !== 'undefined') {

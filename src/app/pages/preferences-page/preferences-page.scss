@@ -1,0 +1,254 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.prefs {
+  padding-block: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 46rem;
+}
+
+.prefs__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.prefs__group {
+  @include panel.glass;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.prefs__group--column {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.prefs__group-text {
+  min-width: 0;
+}
+
+.prefs__group-text h2 {
+  margin: 0 0 0.3rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prefs__group-text p {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--mist);
+  max-width: 42ch;
+}
+
+// Text-size stepper — plain "A−" / "A+" glyphs rather than icons, since the
+// glyphs themselves show what the control does at a glance.
+.prefs__stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex-shrink: 0;
+}
+
+.prefs__step-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.prefs__step-btn:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--ice) 55%, var(--line-strong));
+}
+
+.prefs__step-btn:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.prefs__step-btn:disabled {
+  color: var(--mist);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.prefs__step-value {
+  min-width: 3.2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--mist);
+}
+
+// A hand-rolled switch rather than a native checkbox: this keeps the exact
+// same visual language (pill shape, --ice accent) as the rest of the nav's
+// controls, and `aria-pressed` on a `<button>` is a fully supported
+// accessible toggle pattern on its own — no extra role or hidden input
+// needed.
+.prefs__switch {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.prefs__switch-track {
+  display: block;
+  width: 3rem;
+  height: 1.7rem;
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  border: 1px solid var(--line-strong);
+  position: relative;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.prefs__switch-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0.2rem;
+  transform: translateY(-50%);
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background: var(--mist);
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+
+.prefs__switch--on .prefs__switch-track {
+  background: color-mix(in srgb, var(--ice) 30%, var(--surface-sunken));
+  border-color: var(--ice);
+}
+
+.prefs__switch--on .prefs__switch-thumb {
+  transform: translateY(-50%) translateX(1.3rem);
+  background: var(--ice);
+}
+
+.prefs__switch:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+.prefs__theme-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.prefs__theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mist);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.prefs__theme-btn:hover {
+  color: var(--ink);
+}
+
+.prefs__theme-btn:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.prefs__theme-btn--active {
+  color: var(--ink);
+  border-color: var(--ice);
+}
+
+.prefs__theme-swatch {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--line-strong) 60%, transparent);
+}
+
+.prefs__theme-swatch--frost {
+  background: linear-gradient(135deg, #14171e 50%, #157dff 50%);
+}
+
+.prefs__theme-swatch--squirrel {
+  background: linear-gradient(135deg, #f7f9fc 50%, #1d4ed8 50%);
+}
+
+.prefs__theme-swatch--contrast {
+  background: linear-gradient(135deg, #000000 50%, #ffd500 50%);
+}
+
+// A live sample of real content, styled with the same global tokens
+// (--text-scale, --font-sans, the a11y-* classes) as the rest of the site —
+// no bespoke preview logic needed, since every setting above already
+// applies through those tokens/classes site-wide, this block included.
+.prefs__preview {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.prefs__preview-heading {
+  margin: 0 0 var(--space-xs);
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prefs__preview-text {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 60ch;
+}
+
+.prefs__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+@media (max-width: 640px) {
+  .prefs__group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

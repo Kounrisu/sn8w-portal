@@ -60,15 +60,30 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  // Type scale — fluid between mobile and desktop, one scale for the whole page.
-  --text-xs: clamp(0.7rem, 0.66rem + 0.2vw, 0.78rem);
-  --text-sm: clamp(0.82rem, 0.78rem + 0.2vw, 0.9rem);
-  --text-base: clamp(0.95rem, 0.91rem + 0.2vw, 1.05rem);
-  --text-md: clamp(1.1rem, 1.02rem + 0.4vw, 1.3rem);
-  --text-lg: clamp(1.35rem, 1.2rem + 0.75vw, 1.75rem);
-  --text-xl: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
-  --text-2xl: clamp(2.25rem, 1.8rem + 2.25vw, 3.5rem);
-  --text-3xl: clamp(2.75rem, 2rem + 3.75vw, 5rem);
+  // Type scale — fluid between mobile and desktop, one scale for the whole
+  // page. Kept as separate "-base" values multiplied through --text-scale
+  // (1 = no change) rather than edited directly, so the accessibility
+  // settings page's font-size control affects every one of these at once —
+  // everything else in the app already reads var(--text-xs) etc. and never
+  // needs to know the multiplier exists.
+  --text-scale: 1;
+  --text-xs-base: clamp(0.7rem, 0.66rem + 0.2vw, 0.78rem);
+  --text-sm-base: clamp(0.82rem, 0.78rem + 0.2vw, 0.9rem);
+  --text-base-base: clamp(0.95rem, 0.91rem + 0.2vw, 1.05rem);
+  --text-md-base: clamp(1.1rem, 1.02rem + 0.4vw, 1.3rem);
+  --text-lg-base: clamp(1.35rem, 1.2rem + 0.75vw, 1.75rem);
+  --text-xl-base: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+  --text-2xl-base: clamp(2.25rem, 1.8rem + 2.25vw, 3.5rem);
+  --text-3xl-base: clamp(2.75rem, 2rem + 3.75vw, 5rem);
+
+  --text-xs: calc(var(--text-scale) * var(--text-xs-base));
+  --text-sm: calc(var(--text-scale) * var(--text-sm-base));
+  --text-base: calc(var(--text-scale) * var(--text-base-base));
+  --text-md: calc(var(--text-scale) * var(--text-md-base));
+  --text-lg: calc(var(--text-scale) * var(--text-lg-base));
+  --text-xl: calc(var(--text-scale) * var(--text-xl-base));
+  --text-2xl: calc(var(--text-scale) * var(--text-2xl-base));
+  --text-3xl: calc(var(--text-scale) * var(--text-3xl-base));
 
   --content-width: 76rem;
   --section-padding-inline: clamp(1.25rem, 4vw + 0.5rem, 4rem);
@@ -174,6 +189,65 @@ html[data-theme='squirrel'] {
 
   --mat-sys-shadow: #55627a;
   --mat-sys-scrim: #55627a;
+}
+
+// High contrast — an accessibility option, not a brand variant: pure
+// black/white with a small set of maximally-saturated accents, every pair
+// checked well past WCAG AAA (7:1), not just AA. Chosen from the Settings
+// page (see preferences-page), not the nav's quick frost/squirrel toggle —
+// this isn't a matter of taste the way those two are.
+html[data-theme='contrast'] {
+  color-scheme: dark;
+
+  --bg: #000000;
+  --ink: #ffffff;
+  --ice: #ffd500;
+  --ember: #00e5ff;
+  --mist: #cccccc;
+  --line: #444444;
+  --line-strong: #999999;
+  --surface-raised: #111111;
+  --surface-sunken: #000000;
+  --danger: #ff8080;
+  --success: #4dffa6;
+
+  --ice-gradient: linear-gradient(135deg, var(--ice) 0%, var(--ice) 100%);
+
+  --mat-sys-shadow: black;
+  --mat-sys-scrim: black;
+}
+
+// Accessibility: a dyslexia-friendlier typeface, through the same
+// --font-sans/--font-serif slots every component already reads — no
+// !important needed here, since these are custom properties, not
+// selectors, and every component's own rule already resolves through them.
+html.a11y-dyslexic-font {
+  --font-sans: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+// Accessibility: a straightforward "make body text bolder" toggle, not a
+// fine-grained per-element control. Headings are deliberately excluded —
+// they're already heavily weighted by design and this is for the reading
+// text around them. !important is deliberate: Angular's view encapsulation
+// adds an attribute selector to every component rule, which otherwise
+// outranks a plain global selector like this one — this must always win.
+html.a11y-bold-text :is(p, span, li, a, label, td, th, dt, dd, button, input, textarea) {
+  font-weight: 600 !important;
+}
+
+// Accessibility: WCAG 2.1 SC 1.4.12 (Text Spacing) / RGAA criterion 10.13 —
+// letter/word spacing and paragraph spacing are expressed in em so they
+// scale with --text-scale automatically ("times the font size" is exactly
+// what 1em already means), rather than needing a second multiplier.
+html.a11y-text-spacing :is(p, li, dd, dt, blockquote, td, th, label) {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+
+html.a11y-text-spacing p {
+  margin-bottom: 2em !important;
 }
 
 * {

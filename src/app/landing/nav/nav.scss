@@ -178,7 +178,9 @@
   padding: 0.35rem;
 }
 
-.nav__pref-btn mat-icon {
+.nav__pref-btn mat-icon,
+.nav__logout--menu mat-icon,
+.nav__login--menu mat-icon {
   font-size: 1.15rem;
   width: 1.15rem;
   height: 1.15rem;
@@ -251,6 +253,9 @@
 }
 
 .nav__logout--menu {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   text-align: left;
   padding-block: 0.35rem;
   font-size: var(--text-sm);
@@ -277,7 +282,9 @@
 }
 
 .nav__login--menu {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding-block: 0.35rem;
 }
 
