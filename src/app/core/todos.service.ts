@@ -50,17 +50,33 @@ export class TodosService {
     this.board.update((todos) => todos.filter((t) => t.id !== id));
   }
 
-  /** Persists a new drag-and-drop order for the general board. */
+  /**
+   * Persists a new drag-and-drop order for the general board. Reconciles
+   * `board` with each PUT's confirmed response rather than trusting the
+   * optimistic order — leaving stale `sortOrder` values around let a later
+   * reorder in the same session compare against numbers the server had
+   * already moved past. On any failed PUT, reloads from the server instead
+   * of leaving the optimistic order and the backend permanently diverged.
+   */
   async reorderBoard(newOrder: Todo[]): Promise<void> {
     this.board.set(newOrder);
-    await Promise.all(
-      newOrder.map((todo, index) =>
-        todo.sortOrder === index
-          ? Promise.resolve()
-          : firstValueFrom(
-              this.http.put<Todo>(this.baseUrl, { sortOrder: index }, { params: { id: todo.id } }),
-            ),
-      ),
-    );
+    try {
+      const updates = await Promise.all(
+        newOrder.map((todo, index) =>
+          todo.sortOrder === index
+            ? Promise.resolve(null)
+            : firstValueFrom(
+                this.http.put<Todo>(this.baseUrl, { sortOrder: index }, { params: { id: todo.id } }),
+              ),
+        ),
+      );
+      const byId = new Map(updates.filter((u): u is Todo => u !== null).map((u) => [u.id, u]));
+      if (byId.size > 0) {
+        this.board.update((todos) => todos.map((t) => byId.get(t.id) ?? t));
+      }
+    } catch (e) {
+      await this.loadBoard();
+      throw e;
+    }
   }
 }

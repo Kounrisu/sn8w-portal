@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { DragDropModule, moveItemInArray, type CdkDragDrop } from '@angular/cdk/drag-drop';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TodosService } from '../../core/todos.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { Todo, TodoPriority, TodoStatus } from '../../core/models';
@@ -18,6 +19,7 @@ type StatusFilter = TodoStatus | 'all';
 export class TodoPage {
   protected readonly i18n = inject(I18nService);
   protected readonly todos = inject(TodosService);
+  private readonly snackBar = inject(MatSnackBar);
 
   protected readonly search = signal('');
   protected readonly statusFilter = signal<StatusFilter>('all');
@@ -103,6 +105,10 @@ export class TodoPage {
     if (from === -1 || to === -1) return;
 
     moveItemInArray(board, from, to);
-    await this.todos.reorderBoard(board);
+    try {
+      await this.todos.reorderBoard(board);
+    } catch {
+      this.snackBar.open(this.i18n.dict().common.error, undefined, { duration: 2500 });
+    }
   }
 }

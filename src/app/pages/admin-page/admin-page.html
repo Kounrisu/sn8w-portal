@@ -144,9 +144,10 @@
             <span class="field-label">{{ i18n.dict().admin.mockup }}</span>
             <select
               [ngModel]="form().mockup"
-              (ngModelChange)="updateField('mockup', $event)"
+              (ngModelChange)="updateField('mockup', $event === '' ? null : $event)"
               name="mockup"
             >
+              <option value="">{{ i18n.dict().admin.none }}</option>
               @for (mockup of mockups; track mockup) {
                 <option [value]="mockup">{{ mockup }}</option>
               }

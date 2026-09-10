@@ -40,6 +40,9 @@ describe('App', () => {
 
     httpMock.expectOne('/api/session.php').flush({ authenticated: false });
     httpMock.expectOne('/api/projects.php').flush([]);
+    httpMock
+      .expectOne((req) => req.url.includes('api.open-meteo.com'))
+      .flush({ current: { temperature_2m: 18, weather_code: 0 } });
 
     fixture.detectChanges();
     await fixture.whenStable();

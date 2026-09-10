@@ -4,16 +4,11 @@ declare(strict_types=1);
 require_once __DIR__ . '/lib/http.php';
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/auth.php';
+require_once __DIR__ . '/lib/validation.php';
 
 require_method('GET', 'PUT');
 
 require_auth();
-
-function is_valid_date(string $date): bool
-{
-    $parsed = DateTime::createFromFormat('Y-m-d', $date);
-    return $parsed !== false && $parsed->format('Y-m-d') === $date;
-}
 
 $method = $_SERVER['REQUEST_METHOD'];
 $date = $_GET['date'] ?? null;

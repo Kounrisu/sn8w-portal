@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/lib/http.php';
 require_once __DIR__ . '/lib/db.php';
 require_once __DIR__ . '/lib/auth.php';
+require_once __DIR__ . '/lib/validation.php';
 
 require_method('GET', 'POST', 'PUT', 'DELETE');
 
@@ -85,6 +86,9 @@ if ($method === 'POST') {
     $progress = max(0, min(100, (int) ($body['progress'] ?? 0)));
     $description = isset($body['description']) ? (string) $body['description'] : null;
     $diaryDate = $body['diaryDate'] ?? null;
+    if ($diaryDate !== null && !is_valid_date((string) $diaryDate)) {
+        json_error('diaryDate must be in YYYY-MM-DD format', 422);
+    }
 
     $stmt = db()->prepare(
         'INSERT INTO todos (title, description, status, priority, progress, diary_date, sort_order)
@@ -146,6 +150,9 @@ if ($method === 'PUT') {
     }
 
     if (array_key_exists('diaryDate', $body)) {
+        if ($body['diaryDate'] !== null && !is_valid_date((string) $body['diaryDate'])) {
+            json_error('diaryDate must be in YYYY-MM-DD format', 422);
+        }
         $fields['diary_date'] = $body['diaryDate'] === null ? null : (string) $body['diaryDate'];
     }
 
