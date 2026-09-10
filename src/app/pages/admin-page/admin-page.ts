@@ -56,7 +56,14 @@ export class AdminPage {
 
   protected tierLabel(tier: ProductTier): string {
     const dict = this.i18n.dict().admin;
-    return tier === 'flagship' ? dict.tierFlagship : tier === 'ecosystem' ? dict.tierEcosystem : dict.tierLab;
+    switch (tier) {
+      case 'flagship':
+        return dict.tierFlagship;
+      case 'ecosystem':
+        return dict.tierEcosystem;
+      case 'lab':
+        return dict.tierLab;
+    }
   }
 
   protected openCreate(): void {
@@ -127,6 +134,8 @@ export class AdminPage {
         this.editingProject.set(created);
         this.notify(this.i18n.dict().admin.created);
       }
+    } catch {
+      this.notify(this.i18n.dict().common.error);
     } finally {
       this.saving.set(false);
     }

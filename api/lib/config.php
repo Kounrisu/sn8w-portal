@@ -25,7 +25,11 @@ function db_config(string $key): string
 
     $value = $constants[$key] ?? null;
     if ($value === null) {
-        json_error("Missing database configuration: $key", 500);
+        // Log the specific key server-side, but never hand an internal
+        // config name to the client — same generic message db() falls
+        // back to on a real connection failure.
+        error_log("Missing database configuration: $key");
+        json_error('Database connection failed', 500);
     }
 
     return $value;

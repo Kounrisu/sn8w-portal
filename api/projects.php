@@ -126,7 +126,9 @@ if ($method === 'GET') {
         $stmt = db()->query('SELECT * FROM projects ORDER BY FIELD(tier, "flagship", "ecosystem", "lab"), group_title <=> NULL, group_title, sort_order, id');
     }
 
-    json_response(array_map(project_row_to_json(...), $stmt->fetchAll()));
+    // Public, unauthenticated — never include admin-only fields here.
+    $rows = array_map(static fn(array $row) => project_row_to_json($row), $stmt->fetchAll());
+    json_response($rows);
 }
 
 // Every write operation requires an authenticated admin session.
@@ -145,7 +147,7 @@ if ($method === 'POST') {
     $stmt = db()->prepare('SELECT * FROM projects WHERE id = :id');
     $stmt->execute(['id' => $id]);
 
-    json_response(project_row_to_json($stmt->fetch()), 201);
+    json_response(project_row_to_json($stmt->fetch(), includePrivate: true), 201);
 }
 
 if ($method === 'PUT') {
@@ -179,7 +181,7 @@ if ($method === 'PUT') {
         json_error('Project not found', 404);
     }
 
-    json_response(project_row_to_json($row));
+    json_response(project_row_to_json($row, includePrivate: true));
 }
 
 if ($method === 'DELETE') {

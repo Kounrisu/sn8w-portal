@@ -71,21 +71,27 @@ if ($method === 'POST') {
         json_error('File must be a JPEG, PNG or WebP image', 422);
     }
 
+    // time() alone is only 1-second resolution — two uploads landing in the
+    // same second would collide on the same filename. The random suffix
+    // makes that practically impossible regardless of request timing.
     $ext = ALLOWED_TYPES[$info[2]];
-    $filename = "proj-{$id}-" . time() . ".{$ext}";
+    $filename = "proj-{$id}-" . time() . '-' . bin2hex(random_bytes(4)) . ".{$ext}";
     $dest = screenshot_dir() . '/' . $filename;
 
     if (!move_uploaded_file($file['tmp_name'], $dest)) {
         json_error('Could not save the uploaded file', 500);
     }
 
-    delete_screenshot_file($project['screenshot']);
-
     $publicPath = '/api/uploads/screenshots/' . $filename;
     $stmt = db()->prepare('UPDATE projects SET screenshot = :screenshot WHERE id = :id');
     $stmt->execute(['screenshot' => $publicPath, 'id' => $id]);
 
-    json_response(project_row_to_json(fetch_project($id)));
+    // Only remove the old file once the DB row is safely pointing at the
+    // new one — deleting it first (the old order) risked losing the file
+    // a concurrent request had just written under the same name.
+    delete_screenshot_file($project['screenshot']);
+
+    json_response(project_row_to_json(fetch_project($id), includePrivate: true));
 }
 
 if ($method === 'DELETE') {
@@ -95,5 +101,5 @@ if ($method === 'DELETE') {
     $stmt = db()->prepare('UPDATE projects SET screenshot = NULL WHERE id = :id');
     $stmt->execute(['id' => $id]);
 
-    json_response(project_row_to_json(fetch_project($id)));
+    json_response(project_row_to_json(fetch_project($id), includePrivate: true));
 }

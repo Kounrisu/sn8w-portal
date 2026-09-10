@@ -20,6 +20,7 @@
             </div>
           </div>
 
+          @if (product.screenshot || product.mockup) {
           <div class="flagship__mockup">
             @if (product.screenshot) {
               @if (product.url) {
@@ -121,6 +122,7 @@
             </div>
             }
           </div>
+          }
         </article>
       }
     </div>

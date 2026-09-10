@@ -59,6 +59,16 @@ export class Hero implements AfterViewInit {
 
     this.tryPlay(video);
 
+    // HeroAudioService is a root singleton, so its `muted` signal survives
+    // across a Hero being destroyed and recreated (e.g. navigate away and
+    // back). The sync effect above only reacts to that signal *changing* —
+    // if it was already `false` before this instance existed, forcing
+    // `muted = true` above would otherwise never get corrected, since there
+    // is no further change for the effect to react to.
+    if (!this.audio.muted()) {
+      video.muted = false;
+    }
+
     // A `play()` issued before the source has finished resource selection
     // rejects with AbortError ("interrupted by a new load request"), which
     // is not a failure of the video — just bad timing. Retrying once the
