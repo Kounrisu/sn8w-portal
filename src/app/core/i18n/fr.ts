@@ -22,6 +22,7 @@ export const fr: Dict = {
     explore: 'Explorer les projets',
     openMenu: 'Ouvrir le menu',
     closeMenu: 'Fermer le menu',
+    login: 'Connexion',
     logout: 'Déconnexion',
     admin: 'Admin',
     todo: 'Tâches',

@@ -244,6 +244,29 @@
   letter-spacing: 0;
 }
 
+.nav__login {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--mist);
+  text-decoration: none;
+}
+
+.nav__login:hover {
+  color: var(--ember);
+}
+
+.nav__login:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.nav__login--menu {
+  display: block;
+  padding-block: 0.35rem;
+}
+
 .nav__github {
   font-family: var(--font-sans);
   font-size: var(--text-sm);

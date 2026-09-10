@@ -22,6 +22,7 @@ export const ko: Dict = {
     explore: '프로젝트 둘러보기',
     openMenu: '메뉴 열기',
     closeMenu: '메뉴 닫기',
+    login: '로그인',
     logout: '로그아웃',
     admin: '관리',
     todo: '할 일',
