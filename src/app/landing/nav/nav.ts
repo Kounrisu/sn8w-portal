@@ -57,7 +57,7 @@ export class Nav {
    * icon and the label describe this, not the current theme: a toggle that
    * shows where you are gives you no way to know where the click leads.
    */
-  protected readonly nextTheme = computed<Theme>(() =>
+  protected readonly nextTheme = computed<'frost' | 'squirrel'>(() =>
     this.theme.theme() === 'frost' ? 'squirrel' : 'frost',
   );
 

@@ -39,6 +39,10 @@ export class App implements AfterViewInit, OnDestroy {
   private animationFrame = 0;
   private particles: Particle[] = [];
   private mode: StarfieldMode = 'frost';
+  // The high-contrast theme is an accessibility accommodation, not a visual
+  // identity — it drops the decorative starfield entirely rather than
+  // picking a mode for it, to keep the background maximally quiet.
+  private starfieldEnabled = true;
   private resizeObserver?: ResizeObserver;
   private canvas?: HTMLCanvasElement;
   private ctx?: CanvasRenderingContext2D;
@@ -46,7 +50,9 @@ export class App implements AfterViewInit, OnDestroy {
 
   constructor() {
     effect(() => {
-      this.mode = this.themeService.theme();
+      const theme = this.themeService.theme();
+      this.starfieldEnabled = theme !== 'contrast';
+      this.mode = theme === 'squirrel' ? 'squirrel' : 'frost';
       this.regenerate();
     });
 
@@ -106,8 +112,10 @@ export class App implements AfterViewInit, OnDestroy {
 
   private regenerate(): void {
     if (!this.canvas || !this.ctx) return;
-    this.particles = createParticles(this.canvas.clientWidth, this.canvas.clientHeight, this.mode);
-    if (this.prefersReducedMotion) {
+    this.particles = this.starfieldEnabled
+      ? createParticles(this.canvas.clientWidth, this.canvas.clientHeight, this.mode)
+      : [];
+    if (this.prefersReducedMotion || !this.starfieldEnabled) {
       drawFrame(this.ctx, this.particles, this.dpr, 0, this.mode);
     }
   }

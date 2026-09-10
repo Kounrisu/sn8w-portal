@@ -63,5 +63,10 @@ export const routes: Routes = [
     path: 'workshop',
     loadComponent: () => import('./pages/workshop-page/workshop-page').then((m) => m.WorkshopPage),
   },
+  {
+    path: 'parametres-accessibilite',
+    loadComponent: () =>
+      import('./pages/preferences-page/preferences-page').then((m) => m.PreferencesPage),
+  },
   { path: '**', redirectTo: '' },
 ];

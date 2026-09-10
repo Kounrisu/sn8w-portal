@@ -1,0 +1,146 @@
+<div class="prefs container">
+  <header class="prefs__head" sn8wSpotlight>
+    <p class="kicker">{{ i18n.dict().preferences.kicker }}</p>
+    <h1 class="section-title">{{ i18n.dict().preferences.title }}</h1>
+    <p class="section-lede">{{ i18n.dict().preferences.lede }}</p>
+  </header>
+
+  <section class="prefs__group" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.fontSizeLabel }}</h2>
+      <p>{{ i18n.dict().preferences.fontSizeHint }}</p>
+    </div>
+    <div class="prefs__stepper" role="group" [attr.aria-label]="i18n.dict().preferences.fontSizeLabel">
+      <button
+        type="button"
+        class="prefs__step-btn"
+        [disabled]="!prefs.canDecreaseTextScale()"
+        [attr.aria-label]="i18n.dict().preferences.decrease"
+        (click)="prefs.decreaseTextScale()"
+      >
+        A−
+      </button>
+      <span class="prefs__step-value" aria-hidden="true">{{ prefs.textScale() * 100 | number: '1.0-0' }}%</span>
+      <button
+        type="button"
+        class="prefs__step-btn"
+        [disabled]="!prefs.canIncreaseTextScale()"
+        [attr.aria-label]="i18n.dict().preferences.increase"
+        (click)="prefs.increaseTextScale()"
+      >
+        A+
+      </button>
+    </div>
+  </section>
+
+  <section class="prefs__group" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.boldTextLabel }}</h2>
+      <p>{{ i18n.dict().preferences.boldTextHint }}</p>
+    </div>
+    <button
+      type="button"
+      class="prefs__switch"
+      [class.prefs__switch--on]="prefs.boldText()"
+      [attr.aria-pressed]="prefs.boldText()"
+      (click)="prefs.setBoldText(!prefs.boldText())"
+    >
+      <span class="prefs__switch-track"><span class="prefs__switch-thumb"></span></span>
+    </button>
+  </section>
+
+  <section class="prefs__group" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.dyslexicFontLabel }}</h2>
+      <p>{{ i18n.dict().preferences.dyslexicFontHint }}</p>
+    </div>
+    <button
+      type="button"
+      class="prefs__switch"
+      [class.prefs__switch--on]="prefs.dyslexicFont()"
+      [attr.aria-pressed]="prefs.dyslexicFont()"
+      (click)="prefs.setDyslexicFont(!prefs.dyslexicFont())"
+    >
+      <span class="prefs__switch-track"><span class="prefs__switch-thumb"></span></span>
+    </button>
+  </section>
+
+  <section class="prefs__group" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.spacingLabel }}</h2>
+      <p>{{ i18n.dict().preferences.spacingHint }}</p>
+    </div>
+    <button
+      type="button"
+      class="prefs__switch"
+      [class.prefs__switch--on]="prefs.textSpacing()"
+      [attr.aria-pressed]="prefs.textSpacing()"
+      (click)="prefs.setTextSpacing(!prefs.textSpacing())"
+    >
+      <span class="prefs__switch-track"><span class="prefs__switch-thumb"></span></span>
+    </button>
+  </section>
+
+  <section class="prefs__preview" sn8wSpotlight aria-live="off">
+    <p class="kicker">{{ i18n.dict().preferences.previewKicker }}</p>
+    <h2 class="prefs__preview-heading">{{ i18n.dict().preferences.previewHeading }}</h2>
+    <p class="prefs__preview-text">{{ i18n.dict().preferences.previewParagraph }}</p>
+  </section>
+
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.themeLabel }}</h2>
+    </div>
+    <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.themeLabel">
+      @for (t of themes; track t) {
+        <button
+          type="button"
+          class="prefs__theme-btn"
+          [class.prefs__theme-btn--active]="theme.theme() === t"
+          role="radio"
+          [attr.aria-checked]="theme.theme() === t"
+          (click)="theme.setTheme(t)"
+        >
+          <span class="prefs__theme-swatch" [class]="'prefs__theme-swatch--' + t" aria-hidden="true"></span>
+          {{ themeLabel(t) }}
+        </button>
+      }
+    </div>
+  </section>
+
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
+    <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.motionLabel }}</h2>
+      <p>{{ i18n.dict().preferences.motionHint }}</p>
+    </div>
+    <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.motionLabel">
+      <button
+        type="button"
+        class="prefs__theme-btn"
+        [class.prefs__theme-btn--active]="prefs.motion() === 'system'"
+        role="radio"
+        [attr.aria-checked]="prefs.motion() === 'system'"
+        (click)="prefs.setMotion('system')"
+      >
+        {{ i18n.dict().preferences.motionSystem }}
+      </button>
+      <button
+        type="button"
+        class="prefs__theme-btn"
+        [class.prefs__theme-btn--active]="prefs.motion() === 'reduced'"
+        role="radio"
+        [attr.aria-checked]="prefs.motion() === 'reduced'"
+        (click)="prefs.setMotion('reduced')"
+      >
+        {{ i18n.dict().preferences.motionReduced }}
+      </button>
+    </div>
+  </section>
+
+  <div class="prefs__actions">
+    <button type="button" class="btn btn--secondary" (click)="prefs.resetAll()">
+      {{ i18n.dict().preferences.resetButton }}
+    </button>
+    <a class="btn btn--secondary" routerLink="/">{{ i18n.dict().behindTheScenes.backHome }}</a>
+  </div>
+</div>
