@@ -5,9 +5,11 @@
         <a
           class="side-toc__link"
           [class.side-toc__link--active]="active() === link.fragment"
+          [class.side-toc__link--flash]="flashed() === link.fragment"
           routerLink="/"
           [fragment]="link.fragment"
           [attr.aria-current]="active() === link.fragment ? 'true' : null"
+          (click)="flash(link.fragment)"
         >
           <span class="side-toc__dot" aria-hidden="true"></span>
           <span class="side-toc__label">{{ link.label }}</span>
