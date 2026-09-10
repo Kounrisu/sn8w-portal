@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs';
 import { Nav } from './landing/nav/nav';
 import { SiteFooter } from './landing/site-footer/site-footer';
@@ -57,6 +58,20 @@ export class App implements AfterViewInit, OnDestroy {
         takeUntilDestroyed(),
       )
       .subscribe((event) => this.analytics.trackPageview(event.urlAfterRedirects));
+
+    // Router's built-in anchorScrolling (withInMemoryScrolling) computes the
+    // target's position via getBoundingClientRect() and does a plain
+    // window.scrollTo() — it never consults CSS scroll-padding-top, which
+    // only affects native scrollIntoView()/anchor scrolling. This is
+    // Angular's actual mechanism for compensating a fixed header: a function
+    // (not a static tuple) so it re-reads the nav bar's real current height
+    // on every scroll, not whatever it measured once at startup.
+    const viewportScroller = inject(ViewportScroller);
+    viewportScroller.setOffset(() => {
+      const bar = document.querySelector('.nav__inner');
+      const height = bar?.getBoundingClientRect().height ?? 0;
+      return [0, height + 16];
+    });
   }
 
   ngAfterViewInit(): void {
