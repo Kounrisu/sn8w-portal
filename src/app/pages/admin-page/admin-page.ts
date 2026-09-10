@@ -13,6 +13,7 @@ import {
 import { I18nService } from '../../core/i18n/i18n.service';
 import type { FlagshipMockup, Project, ProjectInput, ProductStatus, ProductTier } from '../../core/models';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
+import { ExternalLinkDirective } from '../../shared/external-link.directive';
 
 const EMPTY_FORM: ProjectInput = {
   tier: 'ecosystem',
@@ -31,7 +32,7 @@ const EMPTY_FORM: ProjectInput = {
 
 @Component({
   selector: 'sn8w-admin-page',
-  imports: [FormsModule, MatIconModule, DragDropModule, SpotlightDirective],
+  imports: [FormsModule, MatIconModule, DragDropModule, SpotlightDirective, ExternalLinkDirective],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

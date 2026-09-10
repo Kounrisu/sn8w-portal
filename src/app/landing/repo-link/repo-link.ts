@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { I18nService } from '../../core/i18n/i18n.service';
 import { AnalyticsService } from '../../core/analytics.service';
 import type { Project } from '../../core/models';
+import { ExternalLinkDirective } from '../../shared/external-link.directive';
 
 const GITHUB_PROFILE_URL = 'https://github.com/Kounrisu';
 const REPO_ACCESS_EMAIL = 'kounrisu@gmail.com';
 
 @Component({
   selector: 'sn8w-repo-link',
+  imports: [ExternalLinkDirective],
   templateUrl: './repo-link.html',
   styleUrl: './repo-link.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,10 +8,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { environment } from '../../../environments/environment';
 import { PROFILES } from '../../core/profiles';
+import { ExternalLinkDirective } from '../../shared/external-link.directive';
 
 @Component({
   selector: 'sn8w-site-footer',
-  imports: [RouterLink, RouterLinkActive, MatIconModule, MatTooltipModule],
+  imports: [RouterLink, RouterLinkActive, MatIconModule, MatTooltipModule, ExternalLinkDirective],
   templateUrl: './site-footer.html',
   styleUrl: './site-footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

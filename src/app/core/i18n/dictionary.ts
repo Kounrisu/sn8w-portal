@@ -18,6 +18,8 @@ export interface Dict {
     themeFrost: string;
     themeSquirrel: string;
     themeContrast: string;
+    opensInNewTab: string;
+    off: string;
   };
   nav: {
     products: string;
@@ -175,8 +177,12 @@ export interface Dict {
     boldTextHint: string;
     dyslexicFontLabel: string;
     dyslexicFontHint: string;
-    spacingLabel: string;
-    spacingHint: string;
+    dyslexicFontLexend: string;
+    dyslexicFontAtkinson: string;
+    lineHeightLabel: string;
+    lineHeightHint: string;
+    charSpacingLabel: string;
+    charSpacingHint: string;
     themeLabel: string;
     motionLabel: string;
     motionHint: string;
@@ -184,9 +190,11 @@ export interface Dict {
     motionReduced: string;
     resetButton: string;
     navLabel: string;
+    customizedBadge: string;
     previewKicker: string;
     previewHeading: string;
     previewParagraph: string;
+    previewParagraph2: string;
   };
   footer: {
     github: string;
@@ -333,6 +341,8 @@ export const en: Dict = {
     themeFrost: 'Dark',
     themeSquirrel: 'Light',
     themeContrast: 'High contrast',
+    opensInNewTab: 'opens in a new tab',
+    off: 'Off',
   },
   nav: {
     products: 'Projects',
@@ -556,9 +566,13 @@ export const en: Dict = {
     boldTextLabel: 'Bolder text',
     boldTextHint: 'Increases the weight of body text for easier reading. Headings are unaffected — they are already bold by design.',
     dyslexicFontLabel: 'Dyslexia-friendly font',
-    dyslexicFontHint: 'Switches body and heading text to Lexend, a typeface designed to reduce reading errors.',
-    spacingLabel: 'Text spacing',
-    spacingHint: 'Widens line height, letter spacing, word spacing and space between paragraphs to the accessibility guideline minimums (WCAG 1.4.12), without losing any content.',
+    dyslexicFontHint: 'Lexend improves reading speed; Atkinson Hyperlegible (from the Braille Institute) is designed to make similar-looking characters easier to tell apart.',
+    dyslexicFontLexend: 'Lexend',
+    dyslexicFontAtkinson: 'Atkinson Hyperlegible',
+    lineHeightLabel: 'Line height',
+    lineHeightHint: 'Increases the spacing between lines, up to the WCAG 1.4.12 minimum and beyond — independent of letter/word spacing.',
+    charSpacingLabel: 'Letter & word spacing',
+    charSpacingHint: 'Widens the spacing between letters and words, up to the WCAG 1.4.12 minimum and beyond.',
     themeLabel: 'Colour theme',
     motionLabel: 'Motion',
     motionHint: "Turns off animations and transitions site-wide, beyond what your device's own reduce-motion setting already covers.",
@@ -566,9 +580,11 @@ export const en: Dict = {
     motionReduced: 'Reduce motion',
     resetButton: 'Reset to defaults',
     navLabel: 'Accessibility settings',
+    customizedBadge: 'customized',
     previewKicker: 'Preview',
     previewHeading: 'A sample heading',
     previewParagraph: 'This paragraph updates live as you change the settings above, so you can see exactly how text size, weight, spacing and typeface affect real content before leaving this page.',
+    previewParagraph2: 'A second paragraph, so you can compare how consistent the effect looks across more than one block of text — spacing, weight and typeface all apply the same way here as everywhere else on the site.',
   },
   footer: {
     github: 'GitHub',

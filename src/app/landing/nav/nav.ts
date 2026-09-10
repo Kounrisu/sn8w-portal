@@ -12,6 +12,7 @@ import { filter, map } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ThemeService, type Theme } from '../../core/theme.service';
+import { PreferencesService } from '../../core/preferences.service';
 import type { Lang } from '../../core/i18n/dictionary';
 
 /**
@@ -45,6 +46,7 @@ export class Nav {
   protected readonly i18n = inject(I18nService);
   protected readonly auth = inject(AuthService);
   protected readonly theme = inject(ThemeService);
+  protected readonly prefs = inject(PreferencesService);
   private readonly router = inject(Router);
 
   protected readonly themeLabel = computed(() => {
