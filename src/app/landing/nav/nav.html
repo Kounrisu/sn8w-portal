@@ -130,17 +130,23 @@
         @if (auth.isAuthenticated()) {
           <button
             type="button"
-            class="nav__pref-btn nav__session-btn--logged-in"
+            class="nav__pref-btn nav__session-btn"
             sn8wSpotlight
             [attr.aria-label]="i18n.dict().nav.logout"
             [matTooltip]="i18n.dict().nav.logout"
             (click)="logout()"
           >
-            <mat-icon aria-hidden="true">logout</mat-icon>
+            <svg class="nav__session-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"
+              />
+              <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            </svg>
           </button>
         } @else {
           <a
-            class="nav__pref-btn nav__session-btn--logged-out"
+            class="nav__pref-btn nav__session-btn"
             sn8wSpotlight
             routerLink="/login"
             [queryParams]="{ returnUrl: currentUrl() }"
@@ -149,7 +155,14 @@
             [attr.aria-label]="i18n.dict().nav.login"
             [matTooltip]="i18n.dict().nav.login"
           >
-            <mat-icon aria-hidden="true">login</mat-icon>
+            <svg class="nav__session-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path
+                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"
+              />
+              <path
+                d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"
+              />
+            </svg>
           </a>
         }
       </nav>
