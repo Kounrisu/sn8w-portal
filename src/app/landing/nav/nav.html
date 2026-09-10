@@ -101,12 +101,8 @@
 
   @if (isCompact() && menuOpen()) {
     <nav id="nav-menu" class="nav__menu" aria-label="Primary" (keydown.escape)="onEscape()">
-      <!-- Not enough room at this width for the floating side-toc (see
-           side-toc.ts) to clear the content column, so these anchors —
-           otherwise only reachable there — live here too as a fallback. -->
-      <a routerLink="/" fragment="products" (click)="closeMenu()">{{ i18n.dict().nav.products }}</a>
-      <a routerLink="/" fragment="studio" (click)="closeMenu()">{{ i18n.dict().nav.about }}</a>
-      <a routerLink="/" fragment="contact" (click)="closeMenu()">{{ i18n.dict().nav.contact }}</a>
+      <!-- Products/About/Contact live in the floating side-toc (see
+           side-toc.ts) at every width now, not duplicated here. -->
       <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">
         {{ i18n.dict().workshop.navLabel }}
       </a>

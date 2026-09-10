@@ -61,13 +61,12 @@ export class Nav {
     this.theme.theme() === 'frost' ? 'squirrel' : 'frost',
   );
 
-  // Matches side-toc.scss's $visible-from (1280px) exactly: below it, the
-  // floating side-toc can't clear the content column, so this bar's
-  // hamburger drawer carries the page anchors as a fallback instead (see
-  // nav.html). Misaligning the two would leave a width range where the
-  // anchors are reachable from neither.
+  // Purely about whether this bar's own content (Workshop, tools,
+  // language, theme, sign-in) fits inline — the page anchors live in
+  // side-toc at every width now, so this no longer needs to line up with
+  // anything there.
   protected readonly isCompact = toSignal(
-    this.breakpointObserver.observe('(max-width: 1279px)').pipe(map((state) => state.matches)),
+    this.breakpointObserver.observe('(max-width: 899px)').pipe(map((state) => state.matches)),
     { initialValue: false },
   );
 
