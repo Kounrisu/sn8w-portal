@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { UpperCasePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { Flag } from '../flag/flag';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
@@ -16,29 +14,20 @@ import { PreferencesService } from '../../core/preferences.service';
 import type { Lang } from '../../core/i18n/dictionary';
 
 /**
- * The top bar: branding, real routes (Workshop, the authenticated tools),
- * and utility controls (language/theme/session). In-page anchors
- * (Products/About/Contact) live in `SideToc` instead, not here — see that
- * component for why they're kept apart from real routes.
+ * The top bar: branding plus one row of icon-only controls (routes,
+ * language/theme/accessibility/session) at every width — no hamburger
+ * fallback, so there's nothing hidden behind a menu on mobile. In-page
+ * anchors (Products/About/Contact) live in `SideToc` instead, not here —
+ * see that component for why they're kept apart from real routes.
  */
 @Component({
   selector: 'sn8w-nav',
-  imports: [
-    RouterLink,
-    RouterLinkActive,
-    UpperCasePipe,
-    MatIconModule,
-    MatMenuModule,
-    MatTooltipModule,
-    Flag,
-    SpotlightDirective,
-  ],
+  imports: [RouterLink, RouterLinkActive, MatIconModule, MatMenuModule, MatTooltipModule, Flag, SpotlightDirective],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Nav {
-  private readonly breakpointObserver = inject(BreakpointObserver);
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly destroyRef = inject(DestroyRef);
   private readonly injector = inject(Injector);
@@ -63,16 +52,6 @@ export class Nav {
     this.theme.theme() === 'frost' ? 'squirrel' : 'frost',
   );
 
-  // Purely about whether this bar's own content (Workshop, tools,
-  // language, theme, sign-in) fits inline — the page anchors live in
-  // side-toc at every width now, so this no longer needs to line up with
-  // anything there.
-  protected readonly isCompact = toSignal(
-    this.breakpointObserver.observe('(max-width: 899px)').pipe(map((state) => state.matches)),
-    { initialValue: false },
-  );
-
-  protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(false);
 
   /**
@@ -106,12 +85,7 @@ export class Nav {
    * hero can pin *below* the nav (`top: var(--nav-h)`) and fill exactly the
    * space left under it, and so fragment links scroll their target clear of
    * it. Measured rather than hard-coded because the bar's height moves with
-   * the fluid type scale, the compact breakpoint, and the translated label
-   * lengths.
-   *
-   * Deliberately measures `.nav__inner` (the bar itself) and not the host:
-   * on mobile the expanded menu is part of the host, and letting that count
-   * would resize the hero every time the menu opens.
+   * the fluid type scale and the translated label lengths.
    */
   private publishNavHeight(): void {
     if (typeof ResizeObserver === 'undefined') return;
@@ -134,24 +108,6 @@ export class Nav {
     );
   }
 
-  protected toggleMenu(): void {
-    this.menuOpen.update((open) => !open);
-  }
-
-  protected closeMenu(): void {
-    if (this.menuOpen()) {
-      this.menuOpen.set(false);
-    }
-  }
-
-  protected onEscape(): void {
-    if (this.menuOpen()) {
-      this.menuOpen.set(false);
-      const toggle = this.host.nativeElement.querySelector('.menu-toggle');
-      (toggle as HTMLButtonElement | null)?.focus();
-    }
-  }
-
   protected setLang(lang: Lang): void {
     this.i18n.setLang(lang);
   }
@@ -162,7 +118,6 @@ export class Nav {
 
   protected async logout(): Promise<void> {
     await this.auth.logout();
-    this.closeMenu();
     await this.router.navigateByUrl('/');
   }
 }

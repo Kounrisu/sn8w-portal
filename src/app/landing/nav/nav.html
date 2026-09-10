@@ -12,98 +12,125 @@
       <span class="visually-hidden">— {{ i18n.dict().sitemap.home }}</span>
     </a>
 
-    @if (isCompact()) {
-      <button
-        type="button"
-        class="menu-toggle"
-        [attr.aria-expanded]="menuOpen()"
-        aria-controls="nav-menu"
-        (click)="toggleMenu()"
-      >
-        <span class="visually-hidden">{{ menuOpen() ? i18n.dict().nav.closeMenu : i18n.dict().nav.openMenu }}</span>
-        <span class="menu-toggle__bars" [class.menu-toggle__bars--open]="menuOpen()" aria-hidden="true">
-          <span></span>
-          <span></span>
-        </span>
-      </button>
-    } @else {
-      <div class="nav__actions">
-        <nav class="nav__links" aria-label="Primary">
-          <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
-            {{ i18n.dict().workshop.navLabel }}
-          </a>
-        </nav>
+    <div class="nav__actions">
+      <nav class="nav__icons" aria-label="Primary">
+        <a
+          class="nav__pref-btn"
+          sn8wSpotlight
+          routerLink="/workshop"
+          routerLinkActive="nav__link--active"
+          ariaCurrentWhenActive="page"
+          [attr.aria-label]="i18n.dict().workshop.navLabel"
+          [matTooltip]="i18n.dict().workshop.navLabel"
+        >
+          <mat-icon aria-hidden="true">build</mat-icon>
+        </a>
 
         @if (auth.isAuthenticated()) {
-          <!-- Real routes, kept apart from the page's own anchor TOC. -->
-          <nav class="nav__tools" aria-label="Workspace">
-            <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
-            <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.diary }}</a>
-            <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.admin }}</a>
-            <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.analytics }}</a>
-          </nav>
-        }
-
-        <div class="nav__prefs">
-          <button
-            type="button"
-            class="nav__pref-btn nav__lang-btn"
-            sn8wSpotlight
-            [matMenuTriggerFor]="langMenu"
-            [attr.aria-label]="i18n.dict().common.language + ': ' + i18n.langLabels[i18n.lang()]"
-          >
-            <sn8w-flag [lang]="i18n.lang()" />
-            <span class="nav__lang-code">{{ i18n.lang() | uppercase }}</span>
-          </button>
-
-          <mat-menu #langMenu="matMenu" class="sn8w-lang-menu">
-            @for (lang of i18n.supportedLangs; track lang) {
-              <button
-                type="button"
-                mat-menu-item
-                [attr.aria-current]="lang === i18n.lang() ? 'true' : null"
-                (click)="setLang(lang)"
-              >
-                <span class="nav__lang-option">
-                  <sn8w-flag [lang]="lang" />
-                  {{ i18n.langLabels[lang] }}
-                </span>
-              </button>
-            }
-          </mat-menu>
-
-          <!-- Two themes, so a toggle rather than a picker: the icon shows
-               the theme it switches *to*, which is the convention every
-               dark-mode toggle uses. -->
-          <button
-            type="button"
-            class="nav__pref-btn nav__theme-btn"
-            sn8wSpotlight
-            [attr.aria-label]="i18n.dict().common.theme + ': ' + themeLabel()[nextTheme()]"
-            [matTooltip]="themeLabel()[nextTheme()]"
-            (click)="setTheme(nextTheme())"
-          >
-            <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
-          </button>
-
           <a
-            class="nav__pref-btn nav__theme-btn"
-            [class.nav__pref-btn--customized]="prefs.hasCustomizations()"
+            class="nav__pref-btn"
             sn8wSpotlight
-            routerLink="/parametres-accessibilite"
+            routerLink="/todo"
             routerLinkActive="nav__link--active"
             ariaCurrentWhenActive="page"
-            [attr.aria-label]="i18n.dict().preferences.navLabel + (prefs.hasCustomizations() ? ' (' + i18n.dict().preferences.customizedBadge + ')' : '')"
-            [matTooltip]="i18n.dict().preferences.navLabel"
+            [attr.aria-label]="i18n.dict().nav.todo"
+            [matTooltip]="i18n.dict().nav.todo"
           >
-            <mat-icon aria-hidden="true">accessible</mat-icon>
+            <mat-icon aria-hidden="true">checklist</mat-icon>
           </a>
-        </div>
+          <a
+            class="nav__pref-btn"
+            sn8wSpotlight
+            routerLink="/diary"
+            routerLinkActive="nav__link--active"
+            ariaCurrentWhenActive="page"
+            [attr.aria-label]="i18n.dict().nav.diary"
+            [matTooltip]="i18n.dict().nav.diary"
+          >
+            <mat-icon aria-hidden="true">menu_book</mat-icon>
+          </a>
+          <a
+            class="nav__pref-btn"
+            sn8wSpotlight
+            routerLink="/admin"
+            routerLinkActive="nav__link--active"
+            ariaCurrentWhenActive="page"
+            [attr.aria-label]="i18n.dict().nav.admin"
+            [matTooltip]="i18n.dict().nav.admin"
+          >
+            <mat-icon aria-hidden="true">admin_panel_settings</mat-icon>
+          </a>
+          <a
+            class="nav__pref-btn"
+            sn8wSpotlight
+            routerLink="/analytics"
+            routerLinkActive="nav__link--active"
+            ariaCurrentWhenActive="page"
+            [attr.aria-label]="i18n.dict().nav.analytics"
+            [matTooltip]="i18n.dict().nav.analytics"
+          >
+            <mat-icon aria-hidden="true">analytics</mat-icon>
+          </a>
+        }
+
+        <button
+          type="button"
+          class="nav__pref-btn"
+          sn8wSpotlight
+          [matMenuTriggerFor]="langMenu"
+          [attr.aria-label]="i18n.dict().common.language + ': ' + i18n.langLabels[i18n.lang()]"
+          [matTooltip]="i18n.langLabels[i18n.lang()]"
+        >
+          <sn8w-flag [lang]="i18n.lang()" />
+        </button>
+
+        <mat-menu #langMenu="matMenu" class="sn8w-lang-menu">
+          @for (lang of i18n.supportedLangs; track lang) {
+            <button
+              type="button"
+              mat-menu-item
+              [attr.aria-current]="lang === i18n.lang() ? 'true' : null"
+              (click)="setLang(lang)"
+            >
+              <span class="nav__lang-option">
+                <sn8w-flag [lang]="lang" />
+                {{ i18n.langLabels[lang] }}
+              </span>
+            </button>
+          }
+        </mat-menu>
+
+        <!-- Two themes, so a toggle rather than a picker: the icon shows
+             the theme it switches *to*, which is the convention every
+             dark-mode toggle uses. -->
+        <button
+          type="button"
+          class="nav__pref-btn"
+          sn8wSpotlight
+          [attr.aria-label]="i18n.dict().common.theme + ': ' + themeLabel()[nextTheme()]"
+          [matTooltip]="themeLabel()[nextTheme()]"
+          (click)="setTheme(nextTheme())"
+        >
+          <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
+        </button>
+
+        <a
+          class="nav__pref-btn"
+          [class.nav__pref-btn--customized]="prefs.hasCustomizations()"
+          sn8wSpotlight
+          routerLink="/parametres-accessibilite"
+          routerLinkActive="nav__link--active"
+          ariaCurrentWhenActive="page"
+          [attr.aria-label]="i18n.dict().preferences.navLabel + (prefs.hasCustomizations() ? ' (' + i18n.dict().preferences.customizedBadge + ')' : '')"
+          [matTooltip]="i18n.dict().preferences.navLabel"
+        >
+          <mat-icon aria-hidden="true">accessible</mat-icon>
+        </a>
 
         @if (auth.isAuthenticated()) {
           <button
             type="button"
-            class="nav__pref-btn nav__theme-btn nav__session-btn--logged-in"
+            class="nav__pref-btn nav__session-btn--logged-in"
             sn8wSpotlight
             [attr.aria-label]="i18n.dict().nav.logout"
             [matTooltip]="i18n.dict().nav.logout"
@@ -113,7 +140,7 @@
           </button>
         } @else {
           <a
-            class="nav__pref-btn nav__theme-btn nav__session-btn--logged-out"
+            class="nav__pref-btn nav__session-btn--logged-out"
             sn8wSpotlight
             routerLink="/login"
             [queryParams]="{ returnUrl: currentUrl() }"
@@ -125,78 +152,7 @@
             <mat-icon aria-hidden="true">login</mat-icon>
           </a>
         }
-      </div>
-    }
+      </nav>
+    </div>
   </div>
-
-  @if (isCompact() && menuOpen()) {
-    <nav id="nav-menu" class="nav__menu" aria-label="Primary" (keydown.escape)="onEscape()">
-      <!-- Products/About/Contact live in the floating side-toc (see
-           side-toc.ts) at every width now, not duplicated here. -->
-      <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">
-        {{ i18n.dict().workshop.navLabel }}
-      </a>
-
-      @if (auth.isAuthenticated()) {
-        <div class="nav__tools nav__tools--menu">
-          <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.todo }}</a>
-          <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.diary }}</a>
-          <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.admin }}</a>
-          <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page" (click)="closeMenu()">{{ i18n.dict().nav.analytics }}</a>
-          <button type="button" class="nav__logout nav__logout--menu nav__session-btn--logged-in" (click)="logout()">
-            <mat-icon aria-hidden="true">logout</mat-icon>
-            {{ i18n.dict().nav.logout }}
-          </button>
-        </div>
-      } @else {
-        <a
-          class="nav__login nav__login--menu nav__session-btn--logged-out"
-          routerLink="/login"
-          [queryParams]="{ returnUrl: currentUrl() }"
-          (click)="closeMenu()"
-        >
-          <mat-icon aria-hidden="true">login</mat-icon>
-          {{ i18n.dict().nav.login }}
-        </a>
-      }
-
-      <!-- Enough room in the drawer to lay the languages out flat, rather
-           than opening a menu on top of a menu. -->
-      <div class="nav__lang-row" role="group" [attr.aria-label]="i18n.dict().common.language">
-        @for (lang of i18n.supportedLangs; track lang) {
-          <button
-            type="button"
-            class="nav__lang-chip"
-            [class.nav__lang-chip--active]="lang === i18n.lang()"
-            [attr.aria-current]="lang === i18n.lang() ? 'true' : null"
-            (click)="setLang(lang)"
-          >
-            <sn8w-flag [lang]="lang" />
-            {{ i18n.langLabels[lang] }}
-          </button>
-        }
-      </div>
-
-      <button
-        type="button"
-        class="nav__pref-btn nav__theme-btn nav__theme-btn--menu"
-        sn8wSpotlight
-        (click)="setTheme(nextTheme())"
-      >
-        <mat-icon aria-hidden="true">{{ nextTheme() === 'frost' ? 'dark_mode' : 'light_mode' }}</mat-icon>
-        {{ i18n.dict().common.theme }}: {{ themeLabel()[nextTheme()] }}
-      </button>
-
-      <a
-        class="nav__pref-btn nav__theme-btn nav__theme-btn--menu"
-        [class.nav__pref-btn--customized]="prefs.hasCustomizations()"
-        sn8wSpotlight
-        routerLink="/parametres-accessibilite"
-        (click)="closeMenu()"
-      >
-        <mat-icon aria-hidden="true">accessible</mat-icon>
-        {{ i18n.dict().preferences.navLabel }}
-      </a>
-    </nav>
-  }
 </header>
