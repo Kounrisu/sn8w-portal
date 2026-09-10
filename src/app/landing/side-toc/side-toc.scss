@@ -1,23 +1,15 @@
 @use '../../../panel';
 
-// Needs real margin clear of the centered --content-width column to float
-// without overlapping it — narrower viewports use nav's mobile drawer
-// instead (see side-toc.ts's doc comment).
-$visible-from: 1280px;
-
+// Small enough (a dot rail, not a labeled sidebar) to float at every width
+// without needing to reserve layout space or fall back to nav's drawer —
+// visible everywhere, just tucked closer to the edge on narrow screens.
 :host {
-  display: none;
-}
-
-@media (min-width: $visible-from) {
-  :host {
-    display: block;
-    position: fixed;
-    right: clamp(1rem, 2.5vw, 2.5rem);
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 30;
-  }
+  display: block;
+  position: fixed;
+  right: clamp(0.4rem, 2.5vw, 2.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
 }
 
 .side-toc {

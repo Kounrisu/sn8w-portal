@@ -12,9 +12,8 @@ interface TocLink {
  * (Products/About/Contact) — deliberately not part of `Nav`. Those are
  * anchors within the one page, not destinations the way /workshop or
  * /admin are; mixing the two in one bar was the actual complaint this
- * replaces (see nav.ts's doc comment). Hidden below the width this needs
- * to float clear of the content column — `nav`'s mobile drawer carries
- * these same links as the reachable fallback at that size.
+ * replaces (see nav.ts's doc comment). Small enough (a dot rail) to float
+ * at every width, including mobile — not gated behind a breakpoint.
  */
 @Component({
   selector: 'sn8w-side-toc',
