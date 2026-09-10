@@ -1,5 +1,12 @@
 :host {
   display: block;
+  // Reported as: the whole page confined to a narrow column on mobile with
+  // unused space beside it — the classic signature of a flex/grid ancestor
+  // refusing to shrink below a wide descendant's content size (here, the
+  // table's `min-width: 50rem`). `min-width: 0` on this and the table's own
+  // scroll wrapper below overrides that default without changing anything
+  // for a plain block ancestor, where it's a no-op.
+  min-width: 0;
   padding-block: var(--space-2xl);
 }
 
@@ -9,6 +16,17 @@
   justify-content: space-between;
   gap: var(--space-md);
   flex-wrap: wrap;
+}
+
+// A flex child otherwise sizes to its own fit-content width even when
+// wrapped alone onto a line with room to spare — on mobile that left the
+// heading (and its kicker/lede) hugging a narrow column with unused space
+// beside it, instead of filling the row. `.section-head`'s own
+// `max-width: 42rem` still caps how wide it's allowed to get on a screen
+// that actually has that much room.
+.admin-head__intro {
+  flex: 1 1 16rem;
+  min-width: 0;
 }
 
 .admin-head__actions {
@@ -133,6 +151,7 @@
 }
 
 .admin-table-scroll {
+  min-width: 0;
   overflow-x: auto;
 }
 
