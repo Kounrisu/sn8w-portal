@@ -1,15 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  DestroyRef,
-  ElementRef,
-  Injector,
-  afterNextRender,
-  computed,
-  inject,
-  signal,
-} from '@angular/core';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, afterNextRender, computed, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -17,18 +7,19 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatIconModule } from '@angular/material/icon';
 import { Flag } from '../flag/flag';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
-import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { filter, map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 import { AuthService } from '../../core/auth.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ThemeService, type Theme } from '../../core/theme.service';
 import type { Lang } from '../../core/i18n/dictionary';
 
-interface NavLink {
-  readonly fragment: string;
-  readonly label: string;
-}
-
+/**
+ * The top bar: branding, real routes (Workshop, the authenticated tools),
+ * and utility controls (language/theme/session). In-page anchors
+ * (Products/About/Contact) live in `SideToc` instead, not here — see that
+ * component for why they're kept apart from real routes.
+ */
 @Component({
   selector: 'sn8w-nav',
   imports: [
@@ -61,7 +52,6 @@ export class Nav {
     return { frost: dict.themeFrost, squirrel: dict.themeSquirrel } as const;
   });
 
-
   /**
    * The theme the toggle switches to — 'frost' is the dark one. Both the
    * icon and the label describe this, not the current theme: a toggle that
@@ -71,32 +61,18 @@ export class Nav {
     this.theme.theme() === 'frost' ? 'squirrel' : 'frost',
   );
 
-  protected readonly links = computed<readonly NavLink[]>(() => {
-    const dict = this.i18n.dict();
-    return [
-      { fragment: 'products', label: dict.nav.products },
-      { fragment: 'studio', label: dict.nav.about },
-      { fragment: 'contact', label: dict.nav.contact },
-    ];
-  });
-
+  // Matches side-toc.scss's $visible-from (1280px) exactly: below it, the
+  // floating side-toc can't clear the content column, so this bar's
+  // hamburger drawer carries the page anchors as a fallback instead (see
+  // nav.html). Misaligning the two would leave a width range where the
+  // anchors are reachable from neither.
   protected readonly isCompact = toSignal(
-    this.breakpointObserver.observe('(max-width: 900px)').pipe(map((state) => state.matches)),
+    this.breakpointObserver.observe('(max-width: 1279px)').pipe(map((state) => state.matches)),
     { initialValue: false },
   );
 
   protected readonly menuOpen = signal(false);
   protected readonly scrolled = signal(false);
-
-  /**
-   * Which in-page section (Projects/About/Contact) is currently in view —
-   * routerLinkActive only tracks the URL, and clicking a fragment link
-   * doesn't change the URL's path, so it can never reflect "which section
-   * am I actually looking at right now" the way it does for a real route
-   * like /todo. Driven by IntersectionObserver instead; see observeSections.
-   */
-  protected readonly activeFragment = signal<string | null>(null);
-  private sectionObserver: IntersectionObserver | null = null;
 
   constructor() {
     void this.auth.ensureChecked();
@@ -107,53 +83,6 @@ export class Nav {
     this.destroyRef.onDestroy(() => window.removeEventListener('scroll', onScroll));
 
     this.publishNavHeight();
-
-    // The sections only exist in the DOM on the home route, and Nav itself
-    // is never destroyed between routes — re-run this on every navigation
-    // rather than once at startup, so leaving and returning to home (or
-    // landing there after a deep link) still finds and observes them.
-    this.observeSections();
-    this.router.events
-      .pipe(
-        filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe(() => this.observeSections());
-    this.destroyRef.onDestroy(() => this.sectionObserver?.disconnect());
-  }
-
-  private observeSections(): void {
-    this.sectionObserver?.disconnect();
-    this.activeFragment.set(null);
-    if (typeof IntersectionObserver === 'undefined') return;
-
-    afterNextRender(
-      () => {
-        const targets = this.links()
-          .map((link) => document.getElementById(link.fragment))
-          .filter((el): el is HTMLElement => el !== null);
-        if (targets.length === 0) return;
-
-        // A band across the middle third of the viewport, rather than the
-        // whole thing: with tall sections, using the full viewport as the
-        // intersection root would mark two adjacent sections "in view" at
-        // once for most of the scroll, with no clear signal of which one
-        // the reader is actually reading.
-        this.sectionObserver = new IntersectionObserver(
-          (entries) => {
-            const visible = entries.filter((entry) => entry.isIntersecting);
-            if (visible.length === 0) return;
-            const top = visible.reduce((a, b) => (b.intersectionRatio > a.intersectionRatio ? b : a));
-            this.activeFragment.set(top.target.id);
-          },
-          { rootMargin: '-40% 0px -40% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
-        );
-        for (const target of targets) {
-          this.sectionObserver.observe(target);
-        }
-      },
-      { injector: this.injector },
-    );
   }
 
   /**

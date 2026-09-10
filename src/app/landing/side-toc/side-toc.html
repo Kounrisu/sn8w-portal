@@ -1,0 +1,18 @@
+<nav class="side-toc" aria-label="Primary">
+  <ul class="side-toc__list">
+    @for (link of links(); track link.fragment) {
+      <li class="side-toc__item">
+        <a
+          class="side-toc__link"
+          [class.side-toc__link--active]="active() === link.fragment"
+          routerLink="/"
+          [fragment]="link.fragment"
+          [attr.aria-current]="active() === link.fragment ? 'true' : null"
+        >
+          <span class="side-toc__dot" aria-hidden="true"></span>
+          <span class="side-toc__label">{{ link.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
