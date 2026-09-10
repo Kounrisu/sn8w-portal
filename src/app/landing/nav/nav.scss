@@ -364,12 +364,21 @@
   outline-offset: 2px;
 }
 
+// A full reset, not just additions: this shares .nav__tools's class for
+// the "real route, not a page anchor" semantic, but .nav__tools itself is
+// styled as a horizontal pill row with a left divider for the desktop bar
+// (align-items: center, padding-left, border-left) — every one of those
+// needs an explicit override here, or it leaks into this stacked drawer
+// list as off-center items sitting in a stray half-drawn box.
 .nav__tools--menu {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: var(--space-sm);
   padding-top: var(--space-sm);
+  padding-left: 0;
   border-top: 1px solid var(--line);
+  border-left: none;
 }
 
 .nav__lang--menu {
