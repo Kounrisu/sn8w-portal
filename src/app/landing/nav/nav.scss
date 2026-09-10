@@ -70,15 +70,84 @@
 
 .nav__actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: var(--space-sm);
   min-width: 0;
 }
 
-// One row of icon-only controls at every width — routes, language, theme,
-// accessibility settings, session — rather than gating any of it behind a
-// hamburger. Wraps onto a second line rather than overflowing if the row
-// ever runs out of room (mainly the authenticated-owner view, which has
-// four extra route icons that a visitor never sees).
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.nav__links a,
+.nav__tools a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--mist);
+  text-decoration: none;
+  padding: 0.45em 0.85em;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  transition:
+    color 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.nav__links a:hover,
+.nav__tools a:hover {
+  color: var(--ice);
+  background-color: color-mix(in srgb, var(--ice) 12%, transparent);
+}
+
+.nav__links a:focus-visible,
+.nav__tools a:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+// Real routes, kept visually distinct from the page's own anchor TOC
+// (floating separately — see side-toc) with a divider rather than
+// blending into the same row.
+.nav__tools {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding-left: var(--space-sm);
+  border-left: 1px solid var(--line-strong);
+}
+
+// The current page must not be conveyed by color alone (RGAA 10.14 / WCAG
+// 1.4.1) — the filled pill and a small dot are both shape-based signals
+// (present/absent), with bold weight and the accent color layered on top
+// rather than doing the job alone.
+.nav__links a.nav__link--active,
+.nav__tools a.nav__link--active {
+  color: var(--ice);
+  font-weight: 700;
+  background-color: color-mix(in srgb, var(--ice) 16%, transparent);
+  border-color: var(--ice);
+}
+
+.nav__links a.nav__link--active::before,
+.nav__tools a.nav__link--active::before {
+  content: '';
+  width: 0.4em;
+  height: 0.4em;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+// The utility controls (language, theme, accessibility settings, session)
+// — icon-only at every width, unlike the text routes above.
 .nav__icons {
   display: flex;
   flex-wrap: wrap;
@@ -170,25 +239,43 @@
   fill: currentColor;
 }
 
-// The shape itself (dash vs. check) carries the state, so both are the
-// same accent rather than a red/green pair — a soft glow, tuned per theme
-// via --success (a bright mint on the dark theme, a deeper green on the
-// light one, so it stays visible without ever blowing out) so it reads
-// the same "signed-in" way whichever theme is active.
-.nav__session-btn {
+// Red while signed out (person-dash), green once signed in
+// (person-check-fill) — colored on top of the icon shape, never as the
+// only signal. Both colors run through theme tokens (--danger/--success),
+// already tuned per theme, so the glow stays visible without blowing out
+// in either the dark or light theme.
+.nav__session-btn--logged-out {
+  color: var(--danger);
+}
+
+.nav__pref-btn.nav__session-btn--logged-out {
+  border-color: color-mix(in srgb, var(--danger) 55%, var(--line-strong));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--danger) 35%, transparent);
+}
+
+.nav__session-btn--logged-out:hover {
+  color: var(--danger);
+}
+
+.nav__pref-btn.nav__session-btn--logged-out:hover {
+  border-color: var(--danger);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--danger) 55%, transparent);
+}
+
+.nav__session-btn--logged-in {
   color: var(--success);
 }
 
-.nav__pref-btn.nav__session-btn {
+.nav__pref-btn.nav__session-btn--logged-in {
   border-color: color-mix(in srgb, var(--success) 55%, var(--line-strong));
   box-shadow: 0 0 8px color-mix(in srgb, var(--success) 35%, transparent);
 }
 
-.nav__session-btn:hover {
+.nav__session-btn--logged-in:hover {
   color: var(--success);
 }
 
-.nav__pref-btn.nav__session-btn:hover {
+.nav__pref-btn.nav__session-btn--logged-in:hover {
   border-color: var(--success);
   box-shadow: 0 0 10px color-mix(in srgb, var(--success) 55%, transparent);
 }

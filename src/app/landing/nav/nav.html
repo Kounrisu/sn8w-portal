@@ -13,66 +13,23 @@
     </a>
 
     <div class="nav__actions">
-      <nav class="nav__icons" aria-label="Primary">
-        <a
-          class="nav__pref-btn"
-          sn8wSpotlight
-          routerLink="/workshop"
-          routerLinkActive="nav__link--active"
-          ariaCurrentWhenActive="page"
-          [attr.aria-label]="i18n.dict().workshop.navLabel"
-          [matTooltip]="i18n.dict().workshop.navLabel"
-        >
-          <mat-icon aria-hidden="true">build</mat-icon>
+      <nav class="nav__links" aria-label="Primary">
+        <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
+          {{ i18n.dict().workshop.navLabel }}
         </a>
+      </nav>
 
-        @if (auth.isAuthenticated()) {
-          <a
-            class="nav__pref-btn"
-            sn8wSpotlight
-            routerLink="/todo"
-            routerLinkActive="nav__link--active"
-            ariaCurrentWhenActive="page"
-            [attr.aria-label]="i18n.dict().nav.todo"
-            [matTooltip]="i18n.dict().nav.todo"
-          >
-            <mat-icon aria-hidden="true">checklist</mat-icon>
-          </a>
-          <a
-            class="nav__pref-btn"
-            sn8wSpotlight
-            routerLink="/diary"
-            routerLinkActive="nav__link--active"
-            ariaCurrentWhenActive="page"
-            [attr.aria-label]="i18n.dict().nav.diary"
-            [matTooltip]="i18n.dict().nav.diary"
-          >
-            <mat-icon aria-hidden="true">menu_book</mat-icon>
-          </a>
-          <a
-            class="nav__pref-btn"
-            sn8wSpotlight
-            routerLink="/admin"
-            routerLinkActive="nav__link--active"
-            ariaCurrentWhenActive="page"
-            [attr.aria-label]="i18n.dict().nav.admin"
-            [matTooltip]="i18n.dict().nav.admin"
-          >
-            <mat-icon aria-hidden="true">admin_panel_settings</mat-icon>
-          </a>
-          <a
-            class="nav__pref-btn"
-            sn8wSpotlight
-            routerLink="/analytics"
-            routerLinkActive="nav__link--active"
-            ariaCurrentWhenActive="page"
-            [attr.aria-label]="i18n.dict().nav.analytics"
-            [matTooltip]="i18n.dict().nav.analytics"
-          >
-            <mat-icon aria-hidden="true">analytics</mat-icon>
-          </a>
-        }
+      @if (auth.isAuthenticated()) {
+        <!-- Real routes, kept apart from the page's own anchor TOC. -->
+        <nav class="nav__tools" aria-label="Workspace">
+          <a routerLink="/todo" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.todo }}</a>
+          <a routerLink="/diary" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.diary }}</a>
+          <a routerLink="/admin" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.admin }}</a>
+          <a routerLink="/analytics" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.analytics }}</a>
+        </nav>
+      }
 
+      <div class="nav__icons">
         <button
           type="button"
           class="nav__pref-btn"
@@ -130,7 +87,7 @@
         @if (auth.isAuthenticated()) {
           <button
             type="button"
-            class="nav__pref-btn nav__session-btn"
+            class="nav__pref-btn nav__session-btn nav__session-btn--logged-in"
             sn8wSpotlight
             [attr.aria-label]="i18n.dict().nav.logout"
             [matTooltip]="i18n.dict().nav.logout"
@@ -146,7 +103,7 @@
           </button>
         } @else {
           <a
-            class="nav__pref-btn nav__session-btn"
+            class="nav__pref-btn nav__session-btn nav__session-btn--logged-out"
             sn8wSpotlight
             routerLink="/login"
             [queryParams]="{ returnUrl: currentUrl() }"
@@ -165,7 +122,7 @@
             </svg>
           </a>
         }
-      </nav>
+      </div>
     </div>
   </div>
 </header>
