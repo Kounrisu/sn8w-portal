@@ -34,7 +34,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-md);
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
   padding-block: 1.1rem;
 }
 
@@ -60,91 +61,27 @@
 
 // Current-page indication for the logo/home link — a shape (the
 // underline), not color alone, same RGAA 10.14 / WCAG 1.4.1 reasoning as
-// the pill-and-dot treatment on the other nav links below.
+// the pill treatment on the icon buttons below.
 .nav__logo--current {
   text-decoration: underline;
   text-underline-offset: 0.25em;
   text-decoration-thickness: 2px;
 }
 
-.nav__links {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-}
-
-.nav__links a,
-.nav__tools a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--mist);
-  text-decoration: none;
-  padding: 0.45em 0.85em;
-  border: 1.5px solid transparent;
-  border-radius: 999px;
-  transition:
-    color 0.15s ease,
-    background-color 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.nav__links a:hover,
-.nav__tools a:hover {
-  color: var(--ice);
-  background-color: color-mix(in srgb, var(--ice) 12%, transparent);
-}
-
-.nav__links a:focus-visible,
-.nav__tools a:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 2px;
-}
-
-// Real routes, kept visually distinct from the page's own anchor TOC
-// (floating separately — see side-toc) with a divider rather than
-// blending into the same row.
-.nav__tools {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-  padding-left: var(--space-sm);
-  border-left: 1px solid var(--line-strong);
-}
-
-// The current page must not be conveyed by color alone (RGAA 10.14 / WCAG
-// 1.4.1) — the filled pill and a small dot are both shape-based signals
-// (present/absent), with bold weight and the accent color layered on top
-// rather than doing the job alone.
-.nav__links a.nav__link--active,
-.nav__tools a.nav__link--active {
-  color: var(--ice);
-  font-weight: 700;
-  background-color: color-mix(in srgb, var(--ice) 16%, transparent);
-  border-color: var(--ice);
-}
-
-.nav__links a.nav__link--active::before,
-.nav__tools a.nav__link--active::before {
-  content: '';
-  width: 0.4em;
-  height: 0.4em;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: currentColor;
-}
-
 .nav__actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  min-width: 0;
 }
 
-.nav__prefs {
+// One row of icon-only controls at every width — routes, language, theme,
+// accessibility settings, session — rather than gating any of it behind a
+// hamburger. Wraps onto a second line rather than overflowing if the row
+// ever runs out of room (mainly the authenticated-owner view, which has
+// four extra route icons that a visitor never sees).
+.nav__icons {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
 }
@@ -154,8 +91,10 @@
 
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.6rem;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  padding: 0;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background-color: transparent;
@@ -177,12 +116,10 @@
   outline-offset: 3px;
 }
 
-// An icon-only nav button (settings, sign-in) is still a real link and
-// still needs the same "you are here" treatment as the text links above —
-// routerLinkActive already adds this class, it just had no matching
-// selector outside .nav__links/.nav__tools before. Filled background, not
-// just the dot below, so it reads distinctly from "customized" even when
-// both apply at once (on the settings page *with* custom preferences set).
+// Current-page indication for an icon nav link — routerLinkActive adds
+// this class; a filled background (not just the dot below) so it reads
+// distinctly from "customized" even when both apply at once (on the
+// settings page *with* custom preferences already set).
 .nav__pref-btn.nav__link--active {
   color: var(--ice);
   background-color: color-mix(in srgb, var(--ice) 16%, transparent);
@@ -190,8 +127,7 @@
 }
 
 // Shows accessibility settings differ from default — a border change plus a
-// dot (shape, not color alone: RGAA 10.14 / WCAG 1.4.1), same reasoning as
-// the current-page indicators elsewhere in this file. The real, readable
+// dot (shape, not color alone: RGAA 10.14 / WCAG 1.4.1). The real, readable
 // announcement for assistive tech is the aria-label suffix in the template.
 .nav__pref-btn--customized {
   border-color: var(--ice);
@@ -209,22 +145,14 @@
   border: 1.5px solid var(--bg);
 }
 
-.nav__lang-code {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.04em;
-}
-
-.nav__theme-btn {
-  padding: 0.35rem;
-}
-
-.nav__pref-btn mat-icon,
-.nav__logout--menu mat-icon,
-.nav__login--menu mat-icon {
+.nav__pref-btn mat-icon {
   font-size: 1.15rem;
   width: 1.15rem;
   height: 1.15rem;
+}
+
+.nav__pref-btn sn8w-flag {
+  font-size: 1.1rem;
 }
 
 .nav__lang-option {
@@ -233,96 +161,9 @@
   gap: 0.6rem;
 }
 
-// Mobile drawer: the languages lie flat as chips instead of behind a menu.
-.nav__lang-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2xs);
-  margin-top: var(--space-2xs);
-}
-
-.nav__lang-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.7rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: transparent;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--mist);
-  cursor: pointer;
-}
-
-.nav__lang-chip--active {
-  color: var(--ink);
-  border-color: var(--ice);
-}
-
-.nav__lang-chip:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 2px;
-}
-
-.nav__theme-btn--menu {
-  align-self: flex-start;
-  padding: 0.4rem 0.8rem;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-}
-
-.nav__logout {
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--mist);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.nav__login--menu,
-.nav__logout--menu {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-block: 0.35rem;
-}
-
-.nav__logout--menu {
-  text-align: left;
-  font-size: var(--text-sm);
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-.nav__login {
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--mist);
-  text-decoration: none;
-}
-
-.nav__login:hover,
-.nav__logout:hover {
-  color: var(--ember);
-}
-
-.nav__login:focus-visible,
-.nav__logout:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
 // Session state, colored on top of the login/logout icon shape (never
 // color alone): red on the sign-in control while logged out, green on
-// sign-out once logged in. Declared after every other login/logout color
-// rule above so it wins on equal specificity regardless of which of those
-// base classes a given instance also carries.
+// sign-out once logged in.
 .nav__session-btn--logged-out {
   color: var(--danger);
 }
@@ -355,118 +196,8 @@
   border-color: var(--success);
 }
 
-.menu-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  background: transparent;
-  border: 1px solid var(--line-strong);
-  border-radius: 2px;
-  cursor: pointer;
-}
-
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 2px;
-}
-
-.menu-toggle__bars {
-  position: relative;
-  width: 1.1rem;
-  height: 0.75rem;
-}
-
-.menu-toggle__bars span {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  background: var(--ink);
-  transition: transform 0.18s ease;
-}
-
-.menu-toggle__bars span:first-child {
-  top: 0;
-}
-
-.menu-toggle__bars span:last-child {
-  bottom: 0;
-}
-
-.menu-toggle__bars--open span:first-child {
-  transform: translateY(5.5px) rotate(45deg);
-}
-
-.menu-toggle__bars--open span:last-child {
-  transform: translateY(-5.5px) rotate(-45deg);
-}
-
-.nav__menu {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--section-padding-inline) var(--space-lg);
-  border-top: 1px solid var(--line);
-}
-
-.nav__menu a:not(.btn) {
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
-  font-family: var(--font-sans);
-  font-size: var(--text-md);
-  color: var(--ink);
-  text-decoration: none;
-  padding-block: 0.35rem;
-  padding-left: 0.6rem;
-  border-left: 3px solid transparent;
-}
-
-// Same non-color-only signal as the desktop nav's pill (RGAA 10.14 / WCAG
-// 1.4.1), adapted for a stacked list — a left border reads more naturally
-// than a pill once items run full-width instead of sitting in a row.
-.nav__menu a.nav__link--active:not(.btn) {
-  color: var(--ice);
-  font-weight: 700;
-  border-left-color: var(--ice);
-}
-
-.nav__menu a:focus-visible {
-  outline: 2px solid var(--ice);
-  outline-offset: 2px;
-}
-
-// A full reset, not just additions: this shares .nav__tools's class for
-// the "real route, not a page anchor" semantic, but .nav__tools itself is
-// styled as a horizontal pill row with a left divider for the desktop bar
-// (align-items: center, padding-left, border-left) — every one of those
-// needs an explicit override here, or it leaks into this stacked drawer
-// list as off-center items sitting in a stray half-drawn box.
-.nav__tools--menu {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--space-sm);
-  padding-top: var(--space-sm);
-  padding-left: 0;
-  border-top: 1px solid var(--line);
-  border-left: none;
-}
-
-.nav__lang--menu {
-  margin-top: var(--space-2xs);
-}
-
-.nav__menu .btn {
-  align-self: flex-start;
-  margin-top: var(--space-2xs);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .nav,
-  .menu-toggle__bars span {
+  .nav {
     transition: none;
   }
 }
