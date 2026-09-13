@@ -1,12 +1,12 @@
 # sn8w
 
-The site and small private toolkit for [www.sn8w.com](https://www.sn8w.com): a public landing page (products, in 6 languages, in either of two switchable visual themes) backed by a database-driven admin panel, a todo board, and a daily diary — all on Angular 22 + a PHP/MySQL API, deployed to OVH shared hosting.
+The site and small private toolkit for [www.sn8w.com](https://www.sn8w.com): a public landing page (products, in English and French, in either of two switchable visual themes) backed by a database-driven admin panel, a todo board, and a daily diary — all on Angular 22 + a PHP/MySQL API, deployed to OVH shared hosting.
 
 See [SPEC.md](SPEC.md) for the original design brief this started from. This README describes what actually got built, which has grown well past that brief — read this first if you're picking the project back up.
 
 ## What's here
 
-- **`/`** — public landing page. Flagship products, ecosystem, and lab sections, all sourced live from the `projects` table via the PHP API. Available in English, French, German, Korean, Japanese and Spanish (switcher in the nav), and in two visual themes — "Night Sky" (dark, default) and "Lucky Squirrel" (warm, sakura-branch hero photo, falling-petal ambient canvas) — switchable in the nav, persisted per-browser.
+- **`/`** — public landing page. Flagship products, ecosystem, and lab sections, all sourced live from the `projects` table via the PHP API. Available in English and French (switcher in the nav), and in two visual themes — "Night Sky" (dark, default) and "Lucky Squirrel" (warm, sakura-branch hero photo, falling-petal ambient canvas) — switchable in the nav, persisted per-browser.
 - **`/login`** — signs in to the private area below. Single admin user, PHP session cookie auth.
 - **`/admin`** — add, edit, delete the products shown on the landing page. Requires login.
 - **`/todo`** — a three-column todo / in-progress / done board. Requires login.
@@ -40,7 +40,7 @@ Frontend: Angular 22, standalone components, zoneless change detection, signals 
 
 Theming: every color is a CSS custom property (`--bg`, `--ink`, `--ice`, `--ember`, `--mist`, `--line`, `--line-strong`, `--surface-raised`, `--surface-sunken`, `--danger`) defined once in `src/styles.scss` for the default theme and re-defined under `html[data-theme='squirrel']` for the second theme. `ThemeService` just toggles the `data-theme` attribute and persists the choice to `localStorage`; nothing else needs to know a second theme exists.
 
-i18n: `I18nService` holds a `Lang` signal and a typed `Dict` (see `core/i18n/dictionary.ts`) — every UI string lives in `dictionary.ts` (English, the source of truth for the type) plus one file per other language (`fr.ts`, `de.ts`, `ko.ts`, `ja.ts`, `es.ts`), each typed `satisfies Dict` so a missing key is a compile error. Product names/taglines themselves are **not** translated — they live in the database in whatever language they were entered (currently English); only UI chrome is translated.
+i18n: `I18nService` holds a `Lang` signal and a typed `Dict` (see `core/i18n/dictionary.ts`) — every UI string lives in `dictionary.ts` (English, the source of truth for the type) plus `fr.ts`, each typed `satisfies Dict` so a missing key is a compile error. The site previously shipped six languages; `de.ts`, `ko.ts`, `ja.ts` and `es.ts` still exist on disk but are no longer imported anywhere — the portfolio was narrowed to English/French to match the France/Switzerland job search, and those files are dead code, not a language list to keep in sync. Product names/taglines themselves are **not** translated — they live in the database in whatever language they were entered (currently English); only UI chrome is translated.
 
 ## Development
 
@@ -170,7 +170,7 @@ flow as the other migrations (utf-8 charset).
 
 ## Picking this back up later
 
-Everything above reflects the actual shipped state as of the last deploy: Angular 22 zoneless app, PHP/MySQL API, 6 languages, 2 themes, working CI/CD to OVH. Nothing is a known-broken stub. If you're resuming work:
+Everything above reflects the actual shipped state as of the last deploy: Angular 22 zoneless app, PHP/MySQL API, English/French, 2 themes, working CI/CD to OVH. Nothing is a known-broken stub. If you're resuming work:
 
 - `git log --oneline` tells the real story better than any summary — the commit messages describe *why*, not just *what*, for every non-obvious fix (see the gotchas above for the ones worth reading first).
 - Product content (names, taglines, categories) lives in the database, not in code — edit it via `/admin`, not by editing `api/schema.sql`'s seed data (that only runs once, on an empty table).
