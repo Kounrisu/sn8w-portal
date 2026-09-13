@@ -1,5 +1,5 @@
 # sn8w Portal
-> Generated: 2026-09-07 | Path: `C:\dev\angular\08_sn8w-portal`
+> Generated: 2026-09-07 | Path: `C:\dev\dev-projects\08-sn8w-portal`
 
 ## Purpose
 This is the public site and private toolkit for `www.sn8w.com`. It includes a public landing page plus private admin, todo, and diary tools.
