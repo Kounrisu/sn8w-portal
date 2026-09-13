@@ -62,14 +62,13 @@ OVH database. Instead:
 
 ## i18n
 
-Six languages: `en` (source of truth, typed interface in
-`core/i18n/dictionary.ts`) plus `fr`, `de`, `ko`, `ja`, `es`, each
-`satisfies Dict`. When editing `fr.ts` or `es.ts`, the Edit tool's exact-match
-frequently fails on accented characters, non-breaking spaces before French
-`?`/`!`, or apostrophes in words like "l'accès" — prefer a small Python
-script (read, `str.replace`, write) over repeated Edit attempts. After
-inserting a new key into one language file, grep all six to confirm the key
-actually landed before moving on.
+Two public languages: `en` (source of truth, typed interface in
+`core/i18n/dictionary.ts`) and `fr`. Keep both dictionaries aligned and use
+`apply_patch` for manual edits, preserving accents and punctuation.
+The old `de`, `ko`, `ja` and `es` dictionaries are retained as practice work,
+but are not imported into the application. Do not re-enable them without asking.
+The owner's working languages are French and English. Website translations
+must not be presented as evidence of additional spoken languages.
 
 ## Design direction
 
