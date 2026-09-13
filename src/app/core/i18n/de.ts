@@ -46,7 +46,7 @@ export const de: Dict = {
         context: "Im Bankenumfeld seit 2015",
       },
       {
-        value: "JS → 21",
+        value: "JS → 22",
         unit: "",
         label: "Angular-Migrationen",
         context: "Gemeinsame Komponentenbibliotheken",
@@ -73,7 +73,7 @@ export const de: Dict = {
         role: 'Frontend-Angular-Entwickler',
         org: 'Bankensektor, Paris',
         description:
-          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen sowie Konzeption und Durchführung der Barrierefreiheits-Schulungen für Entwickler — ich erstelle die Materialien selbst und prüfe, ob die Inhalte wirklich verstanden werden, statt sie nur zu präsentieren. Durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
+          'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 22, Durchführung von RGAA-Barrierefreiheitsprüfungen sowie Konzeption und Durchführung der Barrierefreiheits-Schulungen für Entwickler — ich erstelle die Materialien selbst und prüfe, ob die Inhalte wirklich verstanden werden, statt sie nur zu präsentieren. Durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
       },
       {
         period: '2014 — 2015',
@@ -107,7 +107,7 @@ export const de: Dict = {
     skillsLabel: 'Fähigkeiten',
     skillsGroups: {
       languages: { label: 'Sprachen', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v22), React' },
       accessibility: { label: 'Barrierefreiheit & UX', value: 'RGAA, WCAG, Prüfungen zur digitalen Nachhaltigkeit' },
       training: {
         label: 'Schulung & Vermittlung',

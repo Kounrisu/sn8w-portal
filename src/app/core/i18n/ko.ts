@@ -46,7 +46,7 @@ export const ko: Dict = {
         context: "2015년부터 은행권에서 근무",
       },
       {
-        value: "JS → 21",
+        value: "JS → 22",
         unit: "",
         label: "Angular 마이그레이션",
         context: "공유 컴포넌트 라이브러리",
@@ -73,7 +73,7 @@ export const ko: Dict = {
         role: '프론트엔드 Angular 개발자',
         org: '은행권, 파리',
         description:
-          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. AngularJS에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사를 진행하며, 개발자를 위한 접근성 교육을 직접 설계하고 진행합니다 — 교육 자료를 직접 만들고, 단순히 전달하는 데 그치지 않고 실제로 이해했는지 확인합니다. UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
+          '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. AngularJS에서 Angular 22로의 마이그레이션을 주도하고, RGAA 접근성 감사를 진행하며, 개발자를 위한 접근성 교육을 직접 설계하고 진행합니다 — 교육 자료를 직접 만들고, 단순히 전달하는 데 그치지 않고 실제로 이해했는지 확인합니다. UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
       },
       {
         period: '2014년 — 2015년',
@@ -107,7 +107,7 @@ export const ko: Dict = {
     skillsLabel: '기술',
     skillsGroups: {
       languages: { label: '언어', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: '프레임워크', value: 'Angular (AngularJS – v21), React' },
+      frameworks: { label: '프레임워크', value: 'Angular (AngularJS – v22), React' },
       accessibility: { label: '접근성 & UX', value: 'RGAA, WCAG, 디지털 절제 감사' },
       training: {
         label: '교육 & 멘토링',

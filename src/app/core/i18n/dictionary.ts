@@ -387,7 +387,7 @@ export const en: Dict = {
         context: "Banking environments since 2015",
       },
       {
-        value: "JS → 21",
+        value: "JS → 22",
         unit: "",
         label: "Angular migrations",
         context: "Shared component libraries",
@@ -414,7 +414,7 @@ export const en: Dict = {
         role: 'Front-End Angular Developer',
         org: 'Banking sector, Paris',
         description:
-          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits, and designing and delivering the accessibility training developers take — building the materials myself and checking the ideas actually land, not just handing off a slide deck. Supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
+          "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 22, running RGAA accessibility audits, and designing and delivering the accessibility training developers take — building the materials myself and checking the ideas actually land, not just handing off a slide deck. Supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
       },
       {
         period: '2014 — 2015',
@@ -448,7 +448,7 @@ export const en: Dict = {
     skillsLabel: 'Skills',
     skillsGroups: {
       languages: { label: 'Languages', value: 'HTML5, CSS3, SCSS, JavaScript, TypeScript, SQL, Java, Node.js, PHP' },
-      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v21), React' },
+      frameworks: { label: 'Frameworks', value: 'Angular (AngularJS – v22), React' },
       accessibility: { label: 'Accessibility & UX', value: 'RGAA, WCAG, digital sobriety audits' },
       training: {
         label: 'Training & mentoring',
