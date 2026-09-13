@@ -66,7 +66,7 @@ question applies: mine a couple of specifics, or leave the summary as-is.
 | Site | CV, not on site |
 |---|---|
 | HTML5, CSS3, SCSS, JS, TS, SQL, Java, Node.js, PHP | — |
-| Angular (AngularJS–v21), React | — |
+| Angular (AngularJS–v22), React | — |
 | RGAA, WCAG, digital sobriety audits | — |
 | Training & mentoring | — |
 | Git, GitLab, Jenkins, SonarQube, Jira, Figma, CI/CD | **WebStorm, IntelliJ, Sublime Text, Photoshop, Illustrator, Sketch, InVision, OpenShift (notions), SQL Server, MongoDB, Windows/macOS/Linux** |

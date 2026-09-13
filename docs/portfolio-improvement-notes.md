@@ -29,7 +29,7 @@ Source: https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/professionnels-
 | Figure | Existing evidence | What it means |
 | --- | --- | --- |
 | 10+ years | Career timeline starts banking development in 2015 | Front-end experience, not a count of projects |
-| AngularJS to Angular 21 | Existing migration and component-library experience | Versions worked across, not 21 migrations |
+| AngularJS to Angular 22 | Existing migration and component-library experience | Versions worked across, not 22 migrations |
 | 750/1000 | Existing Opquast entry, dated 2026 | Individual digital-quality certification score, not this site's accessibility compliance |
 
 The score has a proportional meter. The career timeline shows the existing sequence of roles. No estimated client counts, productivity percentages, skill percentages or performance gains have been added.

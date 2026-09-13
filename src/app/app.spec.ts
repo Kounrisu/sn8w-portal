@@ -53,6 +53,7 @@ describe('App', () => {
     const headings = compiled.querySelectorAll('h1');
     expect(headings.length).toBe(1);
     expect(headings[0].textContent).toContain('Philippe Parmentier');
+    expect(compiled.querySelector('.hero__stats')?.textContent).toContain('JS → 22');
 
     const expertise = compiled.querySelector('#expertise');
     expect(expertise?.getAttribute('aria-labelledby')).toBe('expertise-heading');
