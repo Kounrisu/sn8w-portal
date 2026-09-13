@@ -1,0 +1,57 @@
+<section id="expertise" aria-labelledby="expertise-heading">
+  <div class="container expertise">
+    <div class="expertise__copy">
+      <p class="kicker">{{ i18n.dict().accessibilityExpertise.kicker }}</p>
+      <h2 class="section-title" id="expertise-heading">
+        {{ i18n.dict().accessibilityExpertise.title }}
+      </h2>
+      <p class="section-lede">{{ i18n.dict().accessibilityExpertise.lede }}</p>
+      <p class="expertise__training">
+        <mat-icon aria-hidden="true">school</mat-icon>
+        {{ i18n.dict().accessibilityExpertise.training }}
+      </p>
+      <div class="expertise__practices">
+        @for (practice of i18n.dict().accessibilityExpertise.practices; track $index) {
+          <details class="practice">
+            <summary>
+              <mat-icon aria-hidden="true">{{ icons[$index] }}</mat-icon>
+              <span>{{ practice.title }}</span>
+              <mat-icon class="practice__chevron" aria-hidden="true">expand_more</mat-icon>
+            </summary>
+            <p>{{ practice.description }}</p>
+          </details>
+        }
+      </div>
+    </div>
+    <figure class="expertise__reference">
+      <figcaption>
+        <span class="kicker">{{ i18n.dict().accessibilityExpertise.referenceLabel }}</span>
+        <strong>RGAA 4.1.2</strong>
+      </figcaption>
+      <dl class="reference__figures">
+        <div>
+          <dt>{{ i18n.dict().accessibilityExpertise.criteria }}</dt>
+          <dd>106</dd>
+        </div>
+        <div>
+          <dt>{{ i18n.dict().accessibilityExpertise.topics }}</dt>
+          <dd>13</dd>
+        </div>
+      </dl>
+      <div class="reference__grid" aria-hidden="true">
+        @for (criterion of criteria; track criterion) {
+          <span [style.--cell-delay]="criterion * 5 + 'ms'"></span>
+        }
+      </div>
+      <p class="reference__note">{{ i18n.dict().accessibilityExpertise.referenceNote }}</p>
+      <a
+        class="reference__source"
+        href="https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ i18n.dict().accessibilityExpertise.source }}
+      </a>
+    </figure>
+  </div>
+</section>

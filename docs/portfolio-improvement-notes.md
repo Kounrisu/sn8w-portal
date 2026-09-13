@@ -10,6 +10,22 @@ The public training section now says that intensive learning with Claude Code, C
 
 ## Figures now shown
 
+The accessibility section also shows the reference's 106 criteria and 13 topics,
+explicitly labelled as RGAA 4.1.2 scope, not personal achievements or site
+compliance. Source: https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/
+
+The owner clarified that the aim is to present development experience with
+accessibility, not to publish unverified audit or training counts. The older
+full-compliance statement has been qualified: no criterion-by-criterion audit
+supporting a score for this redesigned version is available in the project.
+
+Recruiting context: new accessibility requirements apply to certain products and
+services, including consumer banking services, since 28 June 2025. Scope and
+exceptions depend on the service. This is context for the relevance of the
+owner's experience, not a claim that every banking or insurance application has
+identical obligations.
+Source: https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/professionnels-vos-produits-et-services-doivent-etre-conformes-la-directive-accessibilite
+
 | Figure | Existing evidence | What it means |
 | --- | --- | --- |
 | 10+ years | Career timeline starts banking development in 2015 | Front-end experience, not a count of projects |

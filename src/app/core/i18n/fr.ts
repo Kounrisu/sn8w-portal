@@ -200,9 +200,38 @@ export const fr: Dict = {
     lede: 'Des idées explorées par curiosité, pour apprendre de nouvelles technologies et approches.',
     tag: '[prototype]',
   },
+  accessibilityExpertise: {
+    kicker: 'Angular & accessibilité',
+    title: "L'accessibilité fait partie du développement.",
+    lede: "J'accompagne les équipes dans le développement d'applications métier accessibles : composants Angular partagés, vérifications RGAA/WCAG et support aux développeurs.",
+    training: 'Formation accessibilité Access42 · 2020',
+    referenceLabel: "Le référentiel français d'accessibilité",
+    criteria: 'Critères de contrôle',
+    topics: 'Thématiques',
+    referenceNote:
+      "Périmètre du référentiel RGAA 4.1.2. Ces chiffres ne sont ni un résultat d'audit ni un taux de conformité de ce site.",
+    source: 'Consulter le référentiel officiel',
+    practices: [
+      {
+        title: 'Évaluer les interfaces',
+        description:
+          'Examiner la structure, la navigation clavier, le focus, les formulaires et les contrastes. Associer les contrôles automatisés aux vérifications manuelles requises par chaque critère.',
+      },
+      {
+        title: 'Améliorer les composants',
+        description:
+          'Corriger les composants Angular partagés et vérifier les parcours qui en dépendent. Documenter leur comportement et surveiller les régressions.',
+      },
+      {
+        title: 'Accompagner les équipes',
+        description:
+          "Concevoir les supports de formation, animer des sessions d'accessibilité et aider les développeurs à appliquer les principes dans leur travail quotidien.",
+      },
+    ],
+  },
   ctaSection: {
-    title: 'Envie d’en voir plus ?',
-    lede: 'Tout part d’un dépôt de code sur GitHub — n’hésitez pas à regarder, ou à me contacter.',
+    title: 'Un poste Angular à pourvoir ?',
+    lede: "Parlons de votre équipe, de vos applications et de leurs contraintes. Je serai heureux d'échanger sur ce que mon expérience du développement et de l'accessibilité peut vous apporter.",
   },
   behindTheScenes: {
     kicker: 'Dans les coulisses',

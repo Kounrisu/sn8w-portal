@@ -82,6 +82,50 @@
   object-fit: contain;
 }
 
+.flagship__visual {
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+.flagship__visual:focus-within {
+  border-color: var(--ice);
+}
+@media (hover: hover) and (pointer: fine) {
+  .flagship__visual:hover {
+    border-color: var(--ice);
+    box-shadow: 0 12px 28px -18px rgb(0 0 0 / 0.35);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .flagship.is-active {
+    animation: project-arrive 480ms ease-out both;
+  }
+  .flagship__visual {
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+  .flagship__visual:focus-within {
+    transform: translateY(-3px);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .flagship__visual:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+@keyframes project-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (min-width: 900px) {
   .flagship:has(.flagship__visual) {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);

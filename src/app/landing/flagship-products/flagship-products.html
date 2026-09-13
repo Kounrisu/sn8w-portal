@@ -7,7 +7,7 @@
     </div>
     <div class="flagship-list">
       @for (product of projects.flagship(); track product.id; let i = $index) {
-        <article class="flagship">
+        <article class="flagship" snStackReveal>
           <div class="flagship__copy">
             <span class="flagship__index" aria-hidden="true">{{
               (i + 1).toString().padStart(2, '0')
