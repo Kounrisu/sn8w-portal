@@ -1,12 +1,14 @@
 @use '../../../panel';
 
 :host {
-  @include panel.pane;
+  display: block;
+  position: relative;
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--line);
 }
 
 .section-head {
-  @include panel.glass;
-  @include panel.reveal;
+  max-width: 48rem;
 }
 
 // Same flat-shelf pattern as the ecosystem grid — a taxonomy heading per
@@ -15,14 +17,14 @@
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: var(--space-sm);
   margin-top: var(--space-md);
 }
 
 .lab-item {
-  @include panel.glass;
-  @include panel.reveal;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line-strong);
 
   display: flex;
   flex-direction: column;

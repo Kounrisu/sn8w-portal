@@ -51,7 +51,7 @@
         <div class="fact-block" sn8wSpotlight>
           <h3 class="about-subheading">{{ i18n.dict().aboutSection.certificationsLabel }}</h3>
           <ul class="certifications-list">
-            @for (cert of i18n.dict().aboutSection.certifications; track cert) {
+            @for (cert of i18n.dict().aboutSection.certifications; track $index) {
               <li>{{ cert }}</li>
             }
           </ul>
@@ -60,7 +60,7 @@
         <div class="fact-block" sn8wSpotlight>
           <h3 class="about-subheading">{{ i18n.dict().aboutSection.interestsLabel }}</h3>
           <dl class="skills-list">
-            @for (group of interests(); track group.label) {
+            @for (group of interests(); track $index) {
               <div class="skills-list__row">
                 <dt>{{ group.label }}</dt>
                 <dd>{{ group.value }}</dd>

@@ -1,52 +1,22 @@
 @use '@angular/material' as mat;
 @use 'panel';
 
-// Color tokens below are grouped per theme. The names (--ice, --ember, ...)
-// are inherited slot names from an earlier palette and now act as generic
-// semantic slots — primary accent, secondary accent, muted text — reused
-// as-is rather than renamed, to avoid a repaint-only refactor touching
-// every component stylesheet.
-//
-// Dark ("frost", the default every visitor lands on) is a dark charcoal-navy
-// ground with a saturated, flat blue primary accent and a teal secondary —
-// chosen for the site's actual reader (a technical hiring manager, often at
-// a bank), deliberately restrained rather than a gradient/glow treatment.
-// Lightened slightly from an earlier true-near-black (#0a0b0d) that read as
-// too heavy once seen deployed rather than in a swatch.
-// --ice at #157dff clears WCAG AA (4.6:1) against --bg and --surface-raised.
+// Shared theme slots keep existing components and accessibility preferences aligned.
+// Default: neutral charcoal, blue controls and a warm secondary accent.
 :root {
-  --bg: #14171e;
+  --bg: #181a1b;
   --ink: #eef0f3;
-  --ice: #157dff;
-  --ember: #2dd4bf;
-  --mist: #8a8f99;
-  --line: #232730;
-  --line-strong: #333944;
-  --surface-raised: #191d26;
-  --surface-sunken: #0d0f14;
+  --ice: #328bff;
+  --ember: #d5b08a;
+  --mist: #a0a6ac;
+  --line: #2e3235;
+  --line-strong: #444a4f;
+  --surface-raised: #202325;
+  --surface-sunken: #131516;
   --danger: #e0566d;
   --success: #4fd1a5;
 
-  // The hero name's gradient — both stops lightened toward white rather
-  // than toward black, since darkening would have lost contrast against
-  // this dark background instead of gaining it. Verified at 6.6:1 / 10.7:1
-  // for the two stops against --bg, both well past the 4.5:1 AA floor.
-  --ice-gradient: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--ice) 75%, white) 0%,
-    color-mix(in srgb, var(--ice) 40%, white) 100%
-  );
-
-  // Manrope (headings, via the --font-serif slot — kept as the existing
-  // generic name rather than renamed, same reasoning as the color tokens
-  // above) is a clean, highly legible modern grotesk with a bit more
-  // character than Inter at large sizes, without tipping into a quirkier
-  // geometric face — Inter alone for both display and body read flat once
-  // the palette got this much darker and more saturated. Inter stays for
-  // body copy: still the most legible workhorse at small sizes.
-  // IBM Plex Mono — associated with technical and financial-trust contexts
-  // — handles metadata, labels and badges, so it still contrasts against
-  // the body face the way a mono face is supposed to.
+  // Heading, metadata and body families; accessibility modes override these slots.
   --font-serif: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -60,21 +30,16 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  // Type scale — fluid between mobile and desktop, one scale for the whole
-  // page. Kept as separate "-base" values multiplied through --text-scale
-  // (1 = no change) rather than edited directly, so the accessibility
-  // settings page's font-size control affects every one of these at once —
-  // everything else in the app already reads var(--text-xs) etc. and never
-  // needs to know the multiplier exists.
+  // Fixed type sizes, multiplied by the visitor's accessibility text setting.
   --text-scale: 1;
-  --text-xs-base: clamp(0.7rem, 0.66rem + 0.2vw, 0.78rem);
-  --text-sm-base: clamp(0.82rem, 0.78rem + 0.2vw, 0.9rem);
-  --text-base-base: clamp(0.95rem, 0.91rem + 0.2vw, 1.05rem);
-  --text-md-base: clamp(1.1rem, 1.02rem + 0.4vw, 1.3rem);
-  --text-lg-base: clamp(1.35rem, 1.2rem + 0.75vw, 1.75rem);
-  --text-xl-base: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
-  --text-2xl-base: clamp(2.25rem, 1.8rem + 2.25vw, 3.5rem);
-  --text-3xl-base: clamp(2.75rem, 2rem + 3.75vw, 5rem);
+  --text-xs-base: 0.8125rem;
+  --text-sm-base: 0.9375rem;
+  --text-base-base: 1rem;
+  --text-md-base: 1.125rem;
+  --text-lg-base: 1.5rem;
+  --text-xl-base: 2rem;
+  --text-2xl-base: 2.5rem;
+  --text-3xl-base: 3rem;
 
   --text-xs: calc(var(--text-scale) * var(--text-xs-base));
   --text-sm: calc(var(--text-scale) * var(--text-sm-base));
@@ -176,17 +141,6 @@ html[data-theme='squirrel'] {
   --danger: #b42318;
   --success: #157a57;
 
-  // Opposite direction from the dark theme's --ice-gradient: the deep
-  // stop is only lightly darkened (not toward the near-black used before)
-  // for a softer, less heavy pairing, ending on plain --ice itself rather
-  // than a darkened stop — brighter overall while staying well past AA.
-  // Verified at 7.9:1 / 6.4:1 for the two stops against --bg.
-  --ice-gradient: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--ice) 85%, black) 0%,
-    var(--ice) 100%
-  );
-
   --mat-sys-shadow: #55627a;
   --mat-sys-scrim: #55627a;
 }
@@ -210,8 +164,6 @@ html[data-theme='contrast'] {
   --surface-sunken: #000000;
   --danger: #ff8080;
   --success: #4dffa6;
-
-  --ice-gradient: linear-gradient(135deg, var(--ice) 0%, var(--ice) 100%);
 
   --mat-sys-shadow: black;
   --mat-sys-scrim: black;
@@ -302,7 +254,7 @@ body {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--mist);
 }
@@ -318,7 +270,7 @@ body {
   font-weight: 600;
   font-size: var(--text-2xl);
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   color: var(--ink);
   text-wrap: balance;
 }
@@ -359,12 +311,17 @@ body {
 // text clears WCAG AA (4.5:1); --ice itself stays at full saturation for
 // links, focus rings and the kicker labels that use it elsewhere.
 .btn--primary {
-  background-color: color-mix(in srgb, var(--ice) 85%, black);
+  background-color: color-mix(in srgb, var(--ice) 80%, black);
   color: #fff;
 }
 
 .btn--primary:hover {
-  background-color: color-mix(in srgb, var(--ice) 85%, var(--ember) 15%);
+  background-color: color-mix(in srgb, var(--ice) 75%, black);
+}
+
+html[data-theme='contrast'] .btn--primary {
+  background: var(--ice);
+  color: var(--bg);
 }
 
 .btn--secondary {

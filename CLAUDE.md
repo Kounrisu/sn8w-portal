@@ -73,12 +73,34 @@ actually landed before moving on.
 
 ## Design direction
 
+The September 2026 portfolio review uses unframed sections, neutral charcoal,
+restrained blue controls, a warm secondary accent, and real project screenshots.
+Projects appear before the detailed CV. Preserve light/high-contrast themes and
+the visitor's accessibility settings. Use the existing Angular/Material stack.
+
+Only publish figures supported by the supplied career content. Opquast 750/1000
+is a personal certification score, not a site accessibility score. Keep employer
+names and mission dates discreet. Describe Claude Code, ChatGPT and Frontend
+Masters as ongoing learning, not credentials or delivered expertise.
+
+The public-read-only preview runs with:
+
+```powershell
+node scripts/preview-api.mjs
+# In another terminal:
+npm start -- --host 127.0.0.1 --port 4201 --proxy-config proxy.preview.json
+```
+
+Review desktop/mobile screenshots and actual navigation before deployment.
+Detailed content priorities are in docs/portfolio-improvement-notes.md.
+
 This site should not read as an AI-generated template. Concretely, avoid
 landing on these without a deliberate reason: a warm cream background with a
 high-contrast serif and a terracotta/dusty-rose accent, or a near-black
 background with one neon/bright accent — both are extremely common defaults,
 and the current "Lucky Squirrel" theme already sits close to the first one.
-**Load the `frontend-design` skill before any non-trivial visual change.**
+Use an available design-review skill when useful. Do not require 21st generation
+or describe the site as generated with a tool the owner did not use.
 
 A colleague's from-scratch redesign proposal lives outside this repo at
 `../vlad-mycv/philippe/` (docs + a working Angular scaffold) — genuinely

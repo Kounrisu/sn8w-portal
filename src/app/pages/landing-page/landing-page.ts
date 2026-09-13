@@ -16,8 +16,8 @@ import { SideToc } from '../../landing/side-toc/side-toc';
   imports: [Hero, AboutExperience, FlagshipProducts, EngineeringPrinciples, LabProjects, SideToc],
   template: `
     <sn8w-hero />
-    <sn8w-about-experience />
     <sn8w-flagship-products />
+    <sn8w-about-experience />
     <sn8w-engineering-principles />
     <sn8w-lab-projects />
     <sn8w-side-toc />

@@ -35,23 +35,43 @@ export const es: Dict = {
   },
   hero: {
     kicker: 'París, Francia',
-    headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Desarrollador front-end Angular senior para plataformas reguladas',
-    lede: 'Construyo interfaces Angular para entornos exigentes. Actualmente estoy terminando una misión en la Banque de France, en París, que finaliza a finales de octubre de 2026, centrada en bibliotecas de componentes compartidas, accesibilidad RGAA/WCAG, migraciones de AngularJS a Angular y entregas respaldadas por CI/CD.',
-    proofPoints: ['Más de 10 años de entrega front-end', 'Biblioteca de componentes bancaria', 'Accesibilidad RGAA/WCAG', 'Migraciones de AngularJS a Angular 21'],
+    headlineMain: 'Philippe Parmentier',
+    headlineAccent: "Desarrollador front-end Angular senior",
+    lede: "Desarrollo componentes compartidos y aplicaciones de negocio accesibles. Mi trabajo combina Angular, accesibilidad RGAA y apoyo a equipos del sector bancario.",
+    stats: [
+      {
+        value: "10+",
+        unit: "",
+        label: "Años de desarrollo front-end",
+        context: "En el sector bancario desde 2015",
+      },
+      {
+        value: "JS → 21",
+        unit: "",
+        label: "Migraciones Angular",
+        context: "Bibliotecas de componentes compartidas",
+      },
+      {
+        value: "750",
+        unit: "/1000",
+        label: "Certificación Opquast",
+        context: "Calidad digital · 2026",
+        score: 750,
+      }
+    ],
     ctaPrimary: 'Ver mi experiencia',
     ctaSecondary: 'Ver en GitHub',
   },
   aboutSection: {
     kicker: 'Acerca de mí',
-    title: 'Un poco sobre mi trayectoria',
-    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 trabajo en misiones de Banque de France alrededor de bibliotecas de componentes Angular compartidas: migraciones de AngularJS a Angular 21, accesibilidad RGAA/WCAG, pipelines CI/CD y soporte diario a los equipos que las utilizan. Mi misión actual termina a finales de octubre de 2026. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales: automoción, cosmética y cristales oftálmicos de policarbonato. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
+    title: "Trayectoria y experiencia",
+    lede: "Desde 2015 desarrollo interfaces bancarias y acompaño a equipos en Angular y accesibilidad. Mi experiencia anterior en mejora continua industrial marcó mi forma de documentar decisiones, verificar resultados y colaborar entre disciplinas.",
     timelineLabel: 'Experiencia',
     timeline: [
       {
         period: '2015 — Actualidad',
         role: 'Desarrollador Front-End Angular',
-        org: 'Banque de France, París',
+        org: 'Sector bancario, París',
         description:
           'Desarrollo y mantenimiento de una biblioteca de componentes Angular compartida, utilizada en una decena de aplicaciones internas. Liderazgo de las migraciones desde AngularJS hasta Angular 21, auditorías de accesibilidad RGAA, y diseño e impartición de la formación en accesibilidad que reciben los desarrolladores — elaboro yo mismo los materiales y compruebo que los conceptos realmente se entienden, no solo que se presentan. Acompañamiento de los equipos de proyecto de principio a fin — desde talleres UX y maquetas en Figma hasta la estimación, integración y pipelines CI/CD (Jenkins, SonarQube).',
       },
@@ -107,6 +127,7 @@ export const es: Dict = {
     },
     certificationsLabel: 'Certificaciones y formación',
     certifications: [
+      "Formación intensiva en curso: Claude Code, ChatGPT y Frontend Masters",
       'Ingeniero en plásticos — ESP, hoy integrada en el INSA Lyon',
       'Opquast — Referencial de Calidad Digital, 750/1000 (2026)',
       'Access42 — Formación en accesibilidad web (2020)',
@@ -117,8 +138,8 @@ export const es: Dict = {
   },
   flagshipSection: {
     kicker: 'Proyectos personales',
-    title: 'Algunas cosas en las que estoy trabajando',
-    lede: 'Proyectos personales fuera del trabajo, sobre todo para probar herramientas nuevas y seguir aprendiendo.',
+    title: "Proyectos seleccionados",
+    lede: "Aplicaciones personales de finanzas y otros ámbitos. Interfaces, código fuente y estado actual de desarrollo.",
     followBuild: 'Seguir en GitHub',
   },
   status: {
@@ -140,8 +161,8 @@ export const es: Dict = {
   },
   principlesSection: {
     kicker: 'Cómo trabajo',
-    title: 'Algunos hábitos que intento mantener',
-    lede: 'Nada formal — simplemente hábitos que se repiten, sea un proyecto de trabajo o algo pequeño personal.',
+    title: "Mi forma de trabajar",
+    lede: "Componentes compartidos, comprobaciones de accesibilidad y decisiones documentadas en el trabajo de equipo.",
     items: {
       accessibility: {
         title: 'Accesibilidad desde el diseño',

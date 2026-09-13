@@ -42,7 +42,7 @@ type TitleKey =
   | 'preferences'
   | 'accessibilityStatement';
 
-const BASE_TITLE = 'Philippe Parmentier — Front-End Angular Developer';
+const BASE_TITLE = 'Philippe Parmentier | Angular';
 
 // The RGAA declaration page is deliberately French-only (see its own
 // component) regardless of site language, so its title is too.

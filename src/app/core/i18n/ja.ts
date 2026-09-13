@@ -36,22 +36,42 @@ export const ja: Dict = {
   hero: {
     kicker: 'パリ、フランス',
     headlineMain: 'フィリップ・パルマンティエ',
-    headlineAccent: '規制領域のプラットフォーム向けシニアAngularフロントエンド開発者',
-    lede: '要求の高い環境向けにAngularインターフェースを構築しています。現在はパリのBanque de Franceで、2026年10月末に終了予定のミッションを担当しており、共有コンポーネントライブラリ、RGAA/WCAGアクセシビリティ、AngularJSからAngularへの移行、CI/CDに支えられたデリバリーに取り組んでいます。',
-    proofPoints: ['フロントエンドデリバリー10年以上', '銀行系コンポーネントライブラリ', 'RGAA/WCAGアクセシビリティ', 'AngularJSからAngular 21への移行'],
+    headlineAccent: "シニアAngularフロントエンド開発者",
+    lede: "共有コンポーネントとアクセシブルな業務アプリケーションを開発しています。Angular、RGAAアクセシビリティ、銀行領域の開発チーム支援が日々の仕事です。",
+    stats: [
+      {
+        value: "10+",
+        unit: "",
+        label: "フロントエンド開発の経験",
+        context: "2015年から銀行領域で勤務",
+      },
+      {
+        value: "JS → 21",
+        unit: "",
+        label: "Angularの移行",
+        context: "共有コンポーネントライブラリ",
+      },
+      {
+        value: "750",
+        unit: "/1000",
+        label: "Opquast認定",
+        context: "デジタル品質 · 2026",
+        score: 750,
+      }
+    ],
     ctaPrimary: '経歴を見る',
     ctaSecondary: 'GitHubで見る',
   },
   aboutSection: {
     kicker: '自己紹介',
-    title: 'これまでの経歴について',
-    lede: 'パリ近郊を拠点とするフロントエンド Angular 開発者です。2015年からBanque de Franceのミッションで、共有Angularコンポーネントライブラリ、AngularJSからAngular 21への移行、RGAA/WCAGアクセシビリティ、CI/CDパイプライン、そしてそれを使う各チームへの日々のサポートに取り組んできました。現在のミッションは2026年10月末に終了予定です。開発に移る前は、イギリス、そしてアメリカで10年間、自動車、化粧品、眼鏡用ポリカーボネートレンズの製造現場で継続的改善を推進していました。手法・ドキュメント・部門を超えた仕事へのこだわりは、その頃に身についたものです。',
+    title: "経歴と専門分野",
+    lede: "2015年から銀行領域のインターフェース開発と、Angular・アクセシビリティに関するチーム支援に取り組んでいます。以前の製造業での継続的改善の経験が、意思決定の記録、結果の検証、部門を越えた協働の土台となっています。",
     timelineLabel: '職務経歴',
     timeline: [
       {
         period: '2015年 — 現在',
         role: 'フロントエンドAngular開発者',
-        org: 'Banque de France（パリ）',
+        org: '銀行領域、パリ',
         description:
           '十数の社内アプリケーションで共有されるAngularコンポーネントライブラリを開発・保守。AngularJSからAngular 21へのバージョン移行を主導し、RGAAアクセシビリティ監査を実施するとともに、開発者向けのアクセシビリティ研修を自ら設計・実施しています — 教材を自作し、伝えるだけでなく本当に理解できているかを確認します。UXワークショップやFigmaの引き継ぎから、見積もり、実装、CI/CD（Jenkins、SonarQube）まで、プロジェクトチームを一貫して支援。',
       },
@@ -107,6 +127,7 @@ export const ja: Dict = {
     },
     certificationsLabel: '資格・研修',
     certifications: [
+      "集中的に学習中：Claude Code、ChatGPT、Frontend Masters",
       'プラスチック工学エンジニア学位 — ESP（現在は INSA リヨンの一部）',
       'Opquast — デジタル品質リファレンス、750/1000点（2026年）',
       'Access42 — ウェブアクセシビリティ研修（2020年）',
@@ -117,8 +138,8 @@ export const ja: Dict = {
   },
   flagshipSection: {
     kicker: '個人プロジェクト',
-    title: '今取り組んでいること',
-    lede: '仕事以外の時間で作っている個人プロジェクトです。新しい技術を試したり、学んだりするためのものです。',
+    title: "主なプロジェクト",
+    lede: "金融をはじめとする個人プロジェクトです。画面、ソースコード、開発状況をご覧いただけます。",
     followBuild: 'GitHubで見る',
   },
   status: {
@@ -140,8 +161,8 @@ export const ja: Dict = {
   },
   principlesSection: {
     kicker: '仕事の進め方',
-    title: '大切にしているいくつかの習慣',
-    lede: '特別なものではなく、仕事でも個人の小さなプロジェクトでも変わらず続けている習慣です。',
+    title: "仕事の進め方",
+    lede: "共有コンポーネント、アクセシビリティの検証、意思決定の文書化をチームの日常に取り入れています。",
     items: {
       accessibility: {
         title: '設計段階からのアクセシビリティ',

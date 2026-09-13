@@ -1,12 +1,14 @@
 @use '../../../panel';
 
 :host {
-  @include panel.pane;
+  display: block;
+  position: relative;
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--line);
 }
 
 .section-head {
-  @include panel.glass;
-  @include panel.reveal;
+  max-width: 48rem;
 }
 
 .principles-grid {
@@ -14,13 +16,13 @@
   margin: var(--space-md) 0 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-sm);
 }
 
 .principle {
-  @include panel.glass;
-  @include panel.reveal;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line-strong);
 
   display: flex;
   flex-direction: column;
@@ -59,6 +61,6 @@
 
 @media (min-width: 1100px) {
   .principles-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }

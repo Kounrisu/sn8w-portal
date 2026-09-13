@@ -7,7 +7,7 @@
     </div>
 
     <ul class="principles-grid">
-      @for (principle of principles(); track principle.title) {
+      @for (principle of principles(); track principle.icon) {
         <li class="principle" sn8wSpotlight>
           <mat-icon class="principle__icon" aria-hidden="true">{{ principle.icon }}</mat-icon>
           <h3 class="principle__title">{{ principle.title }}</h3>

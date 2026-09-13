@@ -36,22 +36,42 @@ export const ko: Dict = {
   hero: {
     kicker: '프랑스 파리',
     headlineMain: '필립 파르망티에',
-    headlineAccent: '규제 산업 플랫폼을 위한 시니어 Angular 프론트엔드 개발자',
-    lede: '까다로운 환경을 위한 Angular 인터페이스를 만듭니다. 현재 파리 Banque de France에서 2026년 10월 말 종료 예정인 미션을 마무리하고 있으며, 공유 컴포넌트 라이브러리, RGAA/WCAG 접근성, AngularJS에서 Angular로의 마이그레이션, CI/CD 기반 전달에 집중하고 있습니다.',
-    proofPoints: ['프론트엔드 전달 10년 이상', '은행권 컴포넌트 라이브러리', 'RGAA/WCAG 접근성', 'AngularJS에서 Angular 21로 마이그레이션'],
+    headlineAccent: "시니어 Angular 프론트엔드 개발자",
+    lede: "공유 컴포넌트와 접근성 있는 업무 애플리케이션을 개발합니다. Angular, RGAA 접근성, 은행권 개발팀 지원이 제 업무의 중심입니다.",
+    stats: [
+      {
+        value: "10+",
+        unit: "",
+        label: "프론트엔드 개발 경력",
+        context: "2015년부터 은행권에서 근무",
+      },
+      {
+        value: "JS → 21",
+        unit: "",
+        label: "Angular 마이그레이션",
+        context: "공유 컴포넌트 라이브러리",
+      },
+      {
+        value: "750",
+        unit: "/1000",
+        label: "Opquast 인증",
+        context: "디지털 품질 · 2026",
+        score: 750,
+      }
+    ],
     ctaPrimary: '경력 보기',
     ctaSecondary: 'GitHub에서 보기',
   },
   aboutSection: {
     kicker: '소개',
-    title: '제 경력에 대해 조금',
-    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 Banque de France 미션에서 공유 Angular 컴포넌트 라이브러리, AngularJS에서 Angular 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원을 맡아 왔습니다. 현재 미션은 2026년 10월 말에 종료됩니다. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 자동차, 화장품, 안경용 폴리카보네이트 렌즈 생산 현장의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
+    title: "경력과 전문 분야",
+    lede: "2015년부터 은행권 인터페이스를 개발하고 Angular와 접근성 분야에서 팀을 지원해 왔습니다. 이전 산업 현장의 지속적 개선 경험은 의사결정을 기록하고 결과를 검증하며 여러 분야와 협업하는 방식의 바탕이 되었습니다.",
     timelineLabel: '경력',
     timeline: [
       {
         period: '2015년 — 현재',
         role: '프론트엔드 Angular 개발자',
-        org: 'Banque de France (파리)',
+        org: '은행권, 파리',
         description:
           '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. AngularJS에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사를 진행하며, 개발자를 위한 접근성 교육을 직접 설계하고 진행합니다 — 교육 자료를 직접 만들고, 단순히 전달하는 데 그치지 않고 실제로 이해했는지 확인합니다. UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
       },
@@ -107,6 +127,7 @@ export const ko: Dict = {
     },
     certificationsLabel: '자격증 및 교육',
     certifications: [
+      "집중 학습 중: Claude Code, ChatGPT, Frontend Masters",
       '플라스틱 공학 엔지니어 학위 — ESP(현재 INSA 리옹 소속)',
       'Opquast — 디지털 품질 기준, 750/1000점 (2026)',
       'Access42 — 웹 접근성 교육 (2020)',
@@ -117,8 +138,8 @@ export const ko: Dict = {
   },
   flagshipSection: {
     kicker: '개인 프로젝트',
-    title: '요즘 작업하고 있는 것들',
-    lede: '업무 외 시간에 만드는 개인 프로젝트입니다. 새로운 도구를 써보고 계속 배우기 위한 것입니다.',
+    title: "주요 프로젝트",
+    lede: "금융을 비롯한 다양한 분야의 개인 프로젝트입니다. 실제 화면, 소스 코드와 개발 현황을 살펴볼 수 있습니다.",
     followBuild: 'GitHub에서 보기',
   },
   status: {
@@ -140,8 +161,8 @@ export const ko: Dict = {
   },
   principlesSection: {
     kicker: '일하는 방식',
-    title: '지키려고 하는 몇 가지 습관',
-    lede: '거창한 건 아니고, 업무든 작은 개인 프로젝트든 이어지는 습관들입니다.',
+    title: "일하는 방식",
+    lede: "공유 컴포넌트, 접근성 점검, 의사결정 문서화를 개발팀의 일상에 적용합니다.",
     items: {
       accessibility: {
         title: '설계 단계부터 접근성 고려',
