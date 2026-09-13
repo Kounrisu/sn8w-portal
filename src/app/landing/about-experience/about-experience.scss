@@ -1,12 +1,14 @@
 @use '../../../panel';
 
 :host {
-  @include panel.pane;
+  display: block;
+  position: relative;
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--line);
 }
 
 .section-head {
-  @include panel.glass;
-  @include panel.reveal;
+  max-width: 48rem;
 }
 
 .about-layout {
@@ -35,21 +37,34 @@
   gap: var(--space-sm);
 }
 
-// Each entry is its own small card rather than a run of text down one
-// shared rule — keeps the blocks small enough that the video reads between
-// and around them.
 .timeline__item {
-  @include panel.glass;
-  @include panel.reveal;
+  position: relative;
+  padding: 0 0 2rem 1.5rem;
+  border-left: 1px solid var(--line-strong);
+}
 
-  border-left: 2px solid var(--line-strong);
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  left: -0.3rem;
+  top: 0.2rem;
+  background: var(--ice);
+  border: 2px solid var(--bg);
+  outline: 1px solid var(--ice);
+  border-radius: 50%;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
 }
 
 .timeline__period {
   margin: 0 0 0.35rem;
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--ice);
 }
@@ -85,8 +100,8 @@
 }
 
 .fact-block {
-  @include panel.glass;
-  @include panel.reveal;
+  padding-block: 0 1.5rem;
+  border-bottom: 1px solid var(--line);
 }
 
 .skills-list {
@@ -131,6 +146,7 @@
 @media (min-width: 1000px) {
   .about-layout {
     grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
     align-items: start;
   }
 }

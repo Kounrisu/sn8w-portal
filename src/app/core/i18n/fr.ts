@@ -35,23 +35,43 @@ export const fr: Dict = {
   },
   hero: {
     kicker: 'Paris, France',
-    headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Développeur front-end Angular confirmé pour plateformes régulées',
-    lede: "Je construis des interfaces Angular pour des environnements exigeants. Je termine actuellement une mission à la Banque de France à Paris, prévue jusqu'à fin octobre 2026, autour des bibliothèques de composants partagées, de l'accessibilité RGAA/WCAG, des migrations AngularJS vers Angular et de la livraison appuyée par CI/CD.",
-    proofPoints: ['10+ ans de livraison front-end', 'Bibliothèque de composants bancaire', 'Accessibilité RGAA/WCAG', 'Migrations AngularJS vers Angular 21'],
+    headlineMain: 'Philippe Parmentier',
+    headlineAccent: "Développeur front-end Angular confirmé",
+    lede: "Je développe des composants partagés et des applications métier accessibles. Mon quotidien : Angular, l'accessibilité RGAA et l'accompagnement des équipes en environnement bancaire.",
+    stats: [
+      {
+        value: "10+",
+        unit: "",
+        label: "Années en développement front-end",
+        context: "En environnement bancaire depuis 2015",
+      },
+      {
+        value: "JS → 21",
+        unit: "",
+        label: "Migrations Angular",
+        context: "Bibliothèques de composants partagées",
+      },
+      {
+        value: "750",
+        unit: "/1000",
+        label: "Certification Opquast",
+        context: "Qualité numérique · 2026",
+        score: 750,
+      }
+    ],
     ctaPrimary: 'Voir mon parcours',
     ctaSecondary: 'Voir sur GitHub',
   },
   aboutSection: {
     kicker: 'À propos',
-    title: 'Un peu sur mon parcours',
-    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je travaille sur des missions Banque de France autour de bibliothèques de composants Angular partagées : migrations d'AngularJS à Angular 21, accessibilité RGAA/WCAG, pipelines CI/CD, et support quotidien des équipes qui s'appuient dessus. Ma mission actuelle se termine fin octobre 2026. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel, de l'automobile au cosmétique puis aux verres ophtalmiques en polycarbonate. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
+    title: "Parcours & expertise",
+    lede: "Depuis 2015, je développe des interfaces bancaires et j'accompagne les équipes sur Angular et l'accessibilité. Mon premier métier, l'amélioration continue en industrie, m'a appris à documenter les décisions, vérifier les résultats et travailler avec plusieurs métiers.",
     timelineLabel: 'Expérience',
     timeline: [
       {
         period: '2015 — Aujourd\'hui',
         role: 'Développeur Front-End Angular confirmé',
-        org: 'Banque de France, Paris',
+        org: 'Secteur bancaire, Paris',
         description:
           "Développement et maintenance d'une bibliothèque de composants Angular partagée, utilisée sur une dizaine d'applications internes. Pilotage des migrations depuis AngularJS jusqu'à la version 21 d'Angular, audits d'accessibilité RGAA, et conception et animation des formations à l'accessibilité que suivent les développeurs — je construis moi-même les supports et je vérifie que les notions passent vraiment, pas seulement qu'elles sont présentées. Accompagnement des équipes projets de bout en bout — des ateliers UX et maquettes Figma jusqu'au chiffrage, à l'intégration et aux pipelines CI/CD (Jenkins, SonarQube).",
       },
@@ -107,6 +127,7 @@ export const fr: Dict = {
     },
     certificationsLabel: 'Certifications & formations',
     certifications: [
+      "Formation intensive en cours : Claude Code, ChatGPT et Frontend Masters",
       "Diplôme d'ingénieur plasturgiste — ESP, aujourd'hui rattachée à l'INSA Lyon",
       'Opquast — Mobiliser un Référentiel Qualité Numérique, 750/1000 (2026)',
       'Access42 — Formation accessibilité numérique (2020)',
@@ -117,8 +138,8 @@ export const fr: Dict = {
   },
   flagshipSection: {
     kicker: 'Projets sélectionnés',
-    title: 'Des produits concrets, construits comme preuves de travail',
-    lede: "Des projets personnels choisis pour ce qu'ils démontrent : tableaux de bord financiers, parcours orientés risque, outillage développeur accessible, et livraison Angular propre hors contexte corporate.",
+    title: "Une sélection de projets",
+    lede: "Des applications personnelles, en finance et au-delà. Interfaces, code source et état d'avancement : chaque projet se découvre concrètement.",
     followBuild: 'Suivre sur GitHub',
   },
   status: {
@@ -140,8 +161,8 @@ export const fr: Dict = {
   },
   principlesSection: {
     kicker: 'Standards de livraison',
-    title: 'Construit pour des équipes qui ne peuvent pas livrer au hasard',
-    lede: "Le travail reste volontairement pratique : Angular maintenable, interfaces accessibles, décisions documentées, garde-fous qualité mesurables, et assez de soin UX pour que les outils internes restent agréables.",
+    title: "Ma façon de travailler",
+    lede: "Composants partagés, vérifications d'accessibilité et décisions documentées : les pratiques que j'apporte à une équipe de développement.",
     items: {
       accessibility: {
         title: 'Accessibilité dès la conception',

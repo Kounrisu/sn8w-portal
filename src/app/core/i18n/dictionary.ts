@@ -43,7 +43,7 @@ export interface Dict {
     headlineMain: string;
     headlineAccent: string;
     lede: string;
-    proofPoints: readonly string[];
+    stats: readonly { value: string; unit: string; label: string; context: string; score?: number }[];
     ctaPrimary: string;
     ctaSecondary: string;
   };
@@ -364,23 +364,43 @@ export const en: Dict = {
   },
   hero: {
     kicker: 'Paris, France',
-    headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Senior Angular front-end developer for regulated platforms',
-    lede: 'I build Angular interfaces for demanding environments. I am currently completing a Banque de France mission in Paris, ending at the end of October 2026, focused on shared component libraries, RGAA/WCAG accessibility, AngularJS-to-Angular migrations and CI/CD-backed delivery.',
-    proofPoints: ['10+ years in front-end delivery', 'Banking component library', 'RGAA/WCAG accessibility', 'AngularJS to Angular 21 migrations'],
+    headlineMain: 'Philippe Parmentier',
+    headlineAccent: "Senior Angular front-end developer",
+    lede: "I build shared components and accessible business applications. My work brings together Angular, RGAA accessibility and the day-to-day needs of teams in banking.",
+    stats: [
+      {
+        value: "10+",
+        unit: "",
+        label: "Years in front-end development",
+        context: "Banking environments since 2015",
+      },
+      {
+        value: "JS → 21",
+        unit: "",
+        label: "Angular migrations",
+        context: "Shared component libraries",
+      },
+      {
+        value: "750",
+        unit: "/1000",
+        label: "Opquast certification",
+        context: "Digital quality · 2026",
+        score: 750,
+      }
+    ],
     ctaPrimary: 'See my experience',
     ctaSecondary: 'View on GitHub',
   },
   aboutSection: {
     kicker: 'About',
-    title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked on Banque de France missions around shared Angular component libraries: AngularJS to Angular 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on them. My current mission ends at the end of October 2026. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites: automotive, cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
+    title: "Experience & expertise",
+    lede: "Since 2015, I have built banking interfaces and supported teams working with Angular and accessibility. My earlier career in industrial process improvement shaped how I document decisions, verify results and work across disciplines.",
     timelineLabel: 'Experience',
     timeline: [
       {
         period: '2015 — Present',
         role: 'Front-End Angular Developer',
-        org: 'Banque de France, Paris',
+        org: 'Banking sector, Paris',
         description:
           "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits, and designing and delivering the accessibility training developers take — building the materials myself and checking the ideas actually land, not just handing off a slide deck. Supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
       },
@@ -436,6 +456,7 @@ export const en: Dict = {
     },
     certificationsLabel: 'Certifications & training',
     certifications: [
+      "Ongoing intensive learning: Claude Code, ChatGPT and Frontend Masters",
       'Plastics engineering degree — ESP, now part of INSA Lyon',
       'Opquast — Digital Quality Reference Framework, 750/1000 (2026)',
       'Access42 — Web Accessibility Training (2020)',
@@ -446,8 +467,8 @@ export const en: Dict = {
   },
   flagshipSection: {
     kicker: 'Selected projects',
-    title: 'Practical products, built as proof of work',
-    lede: 'Personal projects selected for what they demonstrate: financial dashboards, risk-oriented workflows, accessible developer tooling, and clean Angular delivery outside a corporate codebase.',
+    title: "Selected projects",
+    lede: "Personal applications in finance and beyond. Explore the interfaces, source code and current development status.",
     followBuild: 'Follow along on GitHub',
   },
   status: {
@@ -469,8 +490,8 @@ export const en: Dict = {
   },
   principlesSection: {
     kicker: 'Delivery standards',
-    title: 'Built for teams that cannot ship guesswork',
-    lede: 'The work is deliberately practical: maintainable Angular, accessible interfaces, documented decisions, measurable quality gates, and enough UX care that internal tools still feel considered.',
+    title: "How I work",
+    lede: "Shared components, accessibility checks and documented decisions: the practices I bring to a development team.",
     items: {
       accessibility: {
         title: 'Accessibility by design',

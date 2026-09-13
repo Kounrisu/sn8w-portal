@@ -34,7 +34,7 @@
   font-size: 1.15rem;
   color: var(--mist);
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .site-footer__logo .accent {
@@ -47,6 +47,8 @@
 }
 
 .footer-links {
+  width: 100%;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,7 +64,10 @@
   color: var(--mist);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  max-width: 100%;
+  min-height: 2.75rem;
   text-decoration: none;
   background: none;
   border: 1.5px solid transparent;
@@ -104,6 +109,7 @@
 }
 
 .footer-links mat-icon {
+  flex-shrink: 0;
   font-size: 1.1rem;
   width: 1.1rem;
   height: 1.1rem;

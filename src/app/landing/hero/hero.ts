@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { PROFILES } from '../../core/profiles';
-import { SpotlightDirective } from '../../shared/spotlight.directive';
+import { MatIconModule } from '@angular/material/icon';
 import { ExternalLinkDirective } from '../../shared/external-link.directive';
 
 @Component({
   selector: 'sn8w-hero',
-  imports: [RouterLink, SpotlightDirective, ExternalLinkDirective],
+  imports: [RouterLink, MatIconModule, ExternalLinkDirective],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,46 +1,74 @@
-# Portfolio Improvement Notes
+# Portfolio: content and next steps
 
-Context: the site should now read less like a casual project shelf and more like a professional Angular portfolio for banking, insurance, public service, and other regulated environments. Avoid generic AI wording. Use concrete proof.
+Private working notes. The public portfolio keeps employer names and mission dates discreet.
 
 ## Positioning
 
-- Lead with: senior Angular front-end developer, regulated platforms, Banque de France mission ending at the end of October 2026.
-- Keep the tone factual and calm. Recruiters should understand the value in 10 seconds.
-- Prefer "shared component library", "RGAA/WCAG", "AngularJS to Angular migrations", "CI/CD", "SonarQube", "developer training", and "team support" over vague phrases such as "innovative digital experiences".
+Experienced Angular front-end developer, with a banking background, shared component libraries, accessibility audits and developer training. This is relevant to banking, insurance and other teams maintaining complex business applications. Insurance is a target audience, not an employment history claim.
 
-## Content To Add
+The public training section now says that intensive learning with Claude Code, ChatGPT and Frontend Masters is in progress. It does not claim an AI qualification or expertise.
 
-- Add 2 or 3 short case studies, not just project cards:
-  - Banque de France component library: problem, role, stack, accessibility work, migration work, measurable result if available.
-  - RGAA training: what you created, who used it, how understanding was checked.
-  - A finance/risk personal project: why it exists, what it demonstrates technically.
-- Add project screenshots only when they show a real interface. Empty mockups are weaker than a clean text card.
-- Add a professional portrait in the hero once selected. Crop should be head-and-shoulders, neutral background, confident but not stiff.
-- Add a small "available from November 2026" signal if you want recruiters to act quickly.
+## Figures now shown
 
-## Projects To Rebalance
+| Figure | Existing evidence | What it means |
+| --- | --- | --- |
+| 10+ years | Career timeline starts banking development in 2015 | Front-end experience, not a count of projects |
+| AngularJS to Angular 21 | Existing migration and component-library experience | Versions worked across, not 21 migrations |
+| 750/1000 | Existing Opquast entry, dated 2026 | Individual digital-quality certification score, not this site's accessibility compliance |
 
-- Keep strongest for regulated-sector positioning:
-  - Healthcorp or risk-oriented finance work.
-  - StockTracker Personal.
-  - RGAA Dev Assistant.
-  - CI/CD Accessibility Pipeline.
-- Consider moving more playful projects lower or keeping them in the lab:
-  - K-Pop Affinity / K-Pop Universe.
-  - WoW Progress Companion.
-  - Lenormand, unless you want a clearly personal/creative section.
-- For each selected project, add one technical proof line: Angular version, data model, accessibility check, testing, deployment, or API design.
+The score has a proportional meter. The career timeline shows the existing sequence of roles. No estimated client counts, productivity percentages, skill percentages or performance gains have been added.
 
-## CV Alignment
+## Highest-value content to prepare
 
-- Decide whether the public site should say Banque de France everywhere. It now does in the hero and current role.
-- Add missing but relevant training from the CV if you want the industrial/process-improvement story to be stronger:
-  - CESI - Master's-level continuous improvement training, 2008-2009.
-  - Dale Carnegie Leadership, 2009.
-- Add German as basic only if it helps the international profile. Otherwise keep the language list focused.
+1. **A shared-component case study.** Describe one problem, your exact responsibility, a technical decision, and how teams used the result. Add a permitted anonymized example. Confirm how many applications or teams used the library before turning the existing approximate count into a headline.
+2. **An accessibility case study.** Pick a real keyboard, focus, form or screen-reader issue. Show the starting behavior, the fix and how you verified it. Distinguish an automated check from a full audit.
+3. **An Angular migration case study.** Explain one difficult compatibility or architecture decision, the migration stages and regression checks. Use before/after numbers only when you have records.
+4. **A short AI learning record.** For three real changes, record the task, what Claude Code or ChatGPT proposed, what you changed or rejected, and the checks you ran. Link a commit or PR. Keep client code out of examples.
+5. **A focused Frontend Masters list.** Add completed course names, dates and a small implementation demonstrating each useful skill. Separate completed courses from courses in progress.
 
-## Visual Direction
+Case-study outline: context -> responsibility -> constraints -> decision -> implementation -> verification -> result. A concise, inspectable example is enough; each does not need a long essay.
 
-- Keep the palette restrained: dark institutional base, blue accent, fine borders, dense but readable information.
-- Avoid heavy illustration, generic gradients, oversized slogans, and buzzword blocks.
-- The site should feel like a reliable internal banking tool presented with enough polish to be memorable.
+## Live catalogue findings
+
+Public catalogue reviewed on 13 September 2026. No production records were changed.
+
+- **Healthcorp** is the strongest first project for this audience. Its public description is only one sentence. Explain the rating inputs, the simulated data, your contribution, and why the interface is structured that way. Clarify the difference between the Healthcorp name and the risklens URL.
+- **StockTracker Personal** has a real screenshot and a public demo, but no repository link in the catalogue. Add the repository if shareable, or a technical write-up. Discuss account modeling, financial calculations and the checks used for correctness.
+- **lotoKarma** has a screenshot and repository. Keep it as a secondary example of data handling. Describe historical data and verification rather than implying frequency analysis predicts future random draws.
+- **Lenormand** has a real interface and repository. It adds personality, but consider moving it to the workshop or lab for a banking-focused presentation.
+- **books** is listed as flagship with no category, description or screenshot. The public selection now omits entries without a description; the record remains editable in admin. Complete those fields to make it appear, or move it to the workshop.
+- **RGAA Dev Assistant** and **CI/CD Accessibility Pipeline** are currently prototypes, without public demos or repositories in the catalogue. They could become strong evidence after one inspectable workflow is available. Avoid presenting them as delivered products.
+
+For each featured project: what it does, what you built yourself, one important technical decision, an actual screenshot, a repository/demo link, and an honest development status.
+
+The uploaded screenshots are currently full-resolution PNGs. The browser reports an image-size warning at some small viewports. A future upload improvement should generate responsive WebP thumbnails alongside the original and expose them through srcset.
+
+## Personal presentation
+
+- The supplied smiling photo works as a small portrait. For a larger professional portrait, take a daylight head-and-shoulders photo with a plain background, no cap and no travel equipment. Keep it natural.
+- Prepare a short PDF CV matching the site's role and experience wording, then add a download link when the public version is ready.
+- Add a professional email alias on your own domain if you use one.
+- Keep the earlier industrial career: it explains your process-improvement experience and international work. Summarize it after the development experience.
+- Review the existing accessibility declaration after this redesign. An Opquast score is not evidence that the site is fully RGAA compliant.
+
+## Design decisions
+
+Unframed sections, neutral charcoal, restrained blue navigation, a warm accent for project numbers, consistent type sizes, and real product screenshots. Project screenshots preserve their full frame. The page shows work before the longer CV, and keeps the existing light and high-contrast settings.
+
+## Local review
+
+The visual preview reads the existing public project catalogue and screenshots. It forwards no logins, admin requests or writes. Analytics requests are handled locally.
+
+Start the read-only API:
+
+```powershell
+node scripts/preview-api.mjs
+```
+
+In another terminal, start the site:
+
+```powershell
+npm start -- --host 127.0.0.1 --port 4201 --proxy-config proxy.preview.json
+```
+
+Open http://127.0.0.1:4201/. Internet access is needed for the public catalogue and fonts. The normal production API and deployment configuration are unchanged. Review this preview before pushing, because a push to main deploys the site.

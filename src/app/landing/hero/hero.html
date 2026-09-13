@@ -1,61 +1,54 @@
-<div class="hero__bg" aria-hidden="true">
-  <div class="hero__scrim"></div>
-</div>
-
+<div class="hero__bg" aria-hidden="true"></div>
 <div class="container hero__inner">
-  <div class="hero__layout">
-    <div class="hero__copy" sn8wSpotlight>
+  <div class="hero__identity">
+    <img
+      class="hero__portrait"
+      src="/images/philippe-portrait.jpg"
+      alt="Philippe Parmentier"
+      width="96"
+      height="96"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <div>
       <p class="kicker">{{ i18n.dict().hero.kicker }}</p>
-      <h1 class="hero__name">{{ i18n.dict().hero.headlineMain }}</h1>
       <p class="hero__role">{{ i18n.dict().hero.headlineAccent }}</p>
-      <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
-
-      <ul class="hero__proofs" aria-label="Profile highlights">
-        @for (proof of i18n.dict().hero.proofPoints; track proof) {
-          <li>{{ proof }}</li>
-        }
-      </ul>
-
-      <div class="hero__actions">
-        <a class="btn btn--primary" routerLink="/" fragment="studio">{{ i18n.dict().hero.ctaPrimary }}</a>
-        <a class="btn btn--secondary" [href]="profiles.github" target="_blank" rel="noopener noreferrer">
-          {{ i18n.dict().hero.ctaSecondary }}
-        </a>
-        <!-- Brand names, so the labels stay untranslated. Same URLs as the
-             footer, kept on the component rather than repeated inline. -->
-        <a class="btn btn--secondary" [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer">
-          LinkedIn
-        </a>
-        <a class="btn btn--secondary" [href]="profiles.frontendMasters" target="_blank" rel="noopener noreferrer">
-          Frontend Masters
-        </a>
-      </div>
-    </div>
-
-    <div class="hero__dossier" sn8wSpotlight aria-hidden="true">
-      <div class="hero__portrait">
-        <span>PP</span>
-      </div>
-      <div class="hero__dossier-lines">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <dl class="hero__metrics">
-        <div>
-          <dt>Sector</dt>
-          <dd>Banking</dd>
-        </div>
-        <div>
-          <dt>Focus</dt>
-          <dd>RGAA</dd>
-        </div>
-        <div>
-          <dt>Stack</dt>
-          <dd>Angular</dd>
-        </div>
-      </dl>
     </div>
   </div>
+  <h1 class="hero__name">{{ i18n.dict().hero.headlineMain }}</h1>
+  <div class="hero__introduction">
+    <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" routerLink="/" fragment="products">
+        {{ i18n.dict().nav.products }}
+        <mat-icon aria-hidden="true">arrow_downward</mat-icon>
+      </a>
+      <a class="hero__link" routerLink="/" fragment="studio">{{ i18n.dict().hero.ctaPrimary }}</a>
+      <a class="hero__link" [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer"
+        >LinkedIn</a
+      >
+    </div>
+  </div>
+  <dl class="hero__stats">
+    @for (stat of i18n.dict().hero.stats; track stat.label) {
+      <div class="hero__stat">
+        <dt>{{ stat.label }}</dt>
+        <dd class="hero__stat-value">
+          {{ stat.value }}<span>{{ stat.unit }}</span>
+        </dd>
+        <dd class="hero__stat-context">{{ stat.context }}</dd>
+        @if (stat.score !== undefined) {
+          <meter
+            class="hero__score"
+            min="0"
+            max="1000"
+            [value]="stat.score"
+            [attr.aria-label]="stat.label"
+          >
+            {{ stat.score }}/1000
+          </meter>
+        }
+      </div>
+    }
+  </dl>
 </div>
-

@@ -35,7 +35,7 @@ export class ProjectsService {
 
   readonly flagship = computed(() =>
     this.localized()
-      .filter((p) => p.tier === 'flagship')
+      .filter((p) => p.tier === 'flagship' && p.tagline.trim().length > 0)
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
