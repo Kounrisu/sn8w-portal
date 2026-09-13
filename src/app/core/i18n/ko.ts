@@ -36,21 +36,22 @@ export const ko: Dict = {
   hero: {
     kicker: '프랑스 파리',
     headlineMain: '필립 파르망티에',
-    headlineAccent: '프론트엔드 Angular 개발자',
-    lede: '주로 Angular로 일하고 있고, 현재 파리에 있는 유럽의 한 중앙은행에서 접근성(RGAA)을 중심으로 근무하고 있습니다. 이 사이트는 제 이력서 역할을 하면서, 배우기 위해 만들고 있는 개인 프로젝트 몇 가지도 함께 소개합니다.',
+    headlineAccent: '규제 산업 플랫폼을 위한 시니어 Angular 프론트엔드 개발자',
+    lede: '까다로운 환경을 위한 Angular 인터페이스를 만듭니다. 현재 파리 Banque de France에서 2026년 10월 말 종료 예정인 미션을 마무리하고 있으며, 공유 컴포넌트 라이브러리, RGAA/WCAG 접근성, AngularJS에서 Angular로의 마이그레이션, CI/CD 기반 전달에 집중하고 있습니다.',
+    proofPoints: ['프론트엔드 전달 10년 이상', '은행권 컴포넌트 라이브러리', 'RGAA/WCAG 접근성', 'AngularJS에서 Angular 21로 마이그레이션'],
     ctaPrimary: '경력 보기',
     ctaSecondary: 'GitHub에서 보기',
   },
   aboutSection: {
     kicker: '소개',
     title: '제 경력에 대해 조금',
-    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 유럽 중앙은행의 공용 컴포넌트 라이브러리를 개발·유지보수하는 팀에서 일해 왔습니다 — AngularJS에서 Angular 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 산업 현장 — 자동차에서 화장품, 그리고 안경용 폴리카보네이트 렌즈까지 — 의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
+    lede: '파리 근교에 기반을 둔 프론트엔드 Angular 개발자입니다. 2015년부터 Banque de France 미션에서 공유 Angular 컴포넌트 라이브러리, AngularJS에서 Angular 21까지의 마이그레이션, RGAA/WCAG 접근성, CI/CD 파이프라인, 그리고 이를 사용하는 팀들에 대한 일상적인 지원을 맡아 왔습니다. 현재 미션은 2026년 10월 말에 종료됩니다. 개발로 전향하기 전에는 영국과 미국에서 10년 동안 자동차, 화장품, 안경용 폴리카보네이트 렌즈 생산 현장의 지속적 개선을 이끌었습니다. 방법론과 문서화, 부서를 넘나드는 협업에 대한 애착은 그때 생긴 것입니다.',
     timelineLabel: '경력',
     timeline: [
       {
         period: '2015년 — 현재',
         role: '프론트엔드 Angular 개발자',
-        org: '유럽 중앙은행 (파리)',
+        org: 'Banque de France (파리)',
         description:
           '10여 개의 사내 애플리케이션에서 공통으로 사용되는 Angular 컴포넌트 라이브러리를 개발 및 유지보수. AngularJS에서 Angular 21로의 마이그레이션을 주도하고, RGAA 접근성 감사를 진행하며, 개발자를 위한 접근성 교육을 직접 설계하고 진행합니다 — 교육 자료를 직접 만들고, 단순히 전달하는 데 그치지 않고 실제로 이해했는지 확인합니다. UX 워크숍과 Figma 전달부터 견적, 통합, CI/CD(Jenkins, SonarQube)까지 프로젝트 팀을 전 과정에서 지원.',
       },
