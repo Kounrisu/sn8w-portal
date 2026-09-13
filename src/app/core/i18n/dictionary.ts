@@ -330,15 +330,11 @@ export interface Dict {
   };
 }
 
-export type Lang = 'en' | 'fr' | 'de' | 'ko' | 'ja' | 'es';
+export type Lang = 'en' | 'fr';
 
 export const LANG_LABELS: Record<Lang, string> = {
   en: 'English',
   fr: 'Français',
-  de: 'Deutsch',
-  ko: '한국어',
-  ja: '日本語',
-  es: 'Español',
 };
 
 export const en: Dict = {
@@ -375,7 +371,7 @@ export const en: Dict = {
     preferences: 'Accessibility settings',
   },
   hero: {
-    kicker: 'Paris, France',
+    kicker: 'Open to roles in France and Switzerland',
     headlineMain: 'Philippe Parmentier',
     headlineAccent: "Senior Angular front-end developer",
     lede: "I build shared components and accessible business applications. My work brings together Angular, RGAA accessibility and the day-to-day needs of teams in banking.",
@@ -458,7 +454,7 @@ export const en: Dict = {
     },
     interestsLabel: 'Outside the code',
     interestsGroups: {
-      languages: { label: 'Languages', value: 'French, fluent English, Japanese in progress — and a little Korean' },
+      languages: { label: 'Working languages', value: 'French and fluent English' },
       sport: { label: 'Sport', value: "Karate, krav maga, and a lot of walking — Paris daily by Vélib'" },
       sea: { label: 'At sea', value: 'Kitesurfing and coastal sailing, usually at Le Grau-du-Roi near Montpellier' },
       watching: { label: 'Watching', value: "Korean and Japanese series, which is where this site's mood comes from" },
@@ -572,7 +568,7 @@ export const en: Dict = {
   },
   ctaSection: {
     title: 'An Angular role to discuss?',
-    lede: "Tell me about your team, your applications and the challenges ahead. Let's discuss where my development and accessibility experience could help.",
+    lede: "Open to opportunities across France and Switzerland. Tell me about your team and your applications, and let's discuss where my development and accessibility experience could help.",
   },
   behindTheScenes: {
     kicker: 'Behind the scenes',
@@ -583,7 +579,7 @@ export const en: Dict = {
     changelogTitle: 'Everything that has happened here',
     changelogLede: 'Straight from the git log — no editing, no tidying up. The awkward commits stay in.',
     statCommits: 'commits',
-    statStack: 'languages spoken',
+    statStack: 'website languages',
     statCoffee: 'undocumented coffees',
     empty: 'The changelog has not been generated for this build. Run npm run changelog.',
     backHome: 'Back to the site',
@@ -679,7 +675,7 @@ export const en: Dict = {
     exportButton: 'Export for translation',
     translationHelpTitle: 'Translating project content',
     translationHelpIntro:
-      'Project names, categories and taglines are stored in the database in English and translated into French, German, Korean, Japanese and Spanish. To add or update translations for a project:',
+      'Project names, categories and taglines are stored in the database in English and translated into French. To add or update the French translation for a project:',
     translationHelpSteps: [
       'Add or edit the project below in English — it is fine to leave the category or tagline empty and ask Claude to write it.',
       'Click "Export for translation" to download a JSON file of the current project list.',

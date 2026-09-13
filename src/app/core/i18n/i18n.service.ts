@@ -5,7 +5,7 @@ import type { ProductStatus } from '../models';
 import { TRANSLATIONS } from './translations';
 
 const STORAGE_KEY = 'sn8w-lang';
-const SUPPORTED: readonly Lang[] = ['en', 'fr', 'de', 'ko', 'ja', 'es'];
+const SUPPORTED: readonly Lang[] = ['fr', 'en'];
 
 function detectInitialLang(): Lang {
   if (typeof localStorage !== 'undefined') {
@@ -46,7 +46,7 @@ export class I18nService {
   }
 
   setLang(lang: Lang): void {
-    this.lang.set(lang);
+    if (SUPPORTED.includes(lang)) this.lang.set(lang);
   }
 
   statusLabel(status: ProductStatus): string {

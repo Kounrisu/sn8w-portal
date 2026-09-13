@@ -34,7 +34,7 @@ export const fr: Dict = {
     preferences: "Paramètres d'accessibilité",
   },
   hero: {
-    kicker: 'Paris, France',
+    kicker: 'Mobilité : France et Suisse',
     headlineMain: 'Philippe Parmentier',
     headlineAccent: "Développeur front-end Angular confirmé",
     lede: "Je développe des composants partagés et des applications métier accessibles. Mon quotidien : Angular, l'accessibilité RGAA et l'accompagnement des équipes en environnement bancaire.",
@@ -117,7 +117,7 @@ export const fr: Dict = {
     },
     interestsLabel: 'Hors du code',
     interestsGroups: {
-      languages: { label: 'Langues', value: "Français, anglais courant, japonais en cours — et quelques bases de coréen" },
+      languages: { label: 'Langues de travail', value: 'Français et anglais courant' },
       sport: { label: 'Sport', value: "Karaté, krav maga, et beaucoup de marche — Paris au quotidien en Vélib'" },
       sea: { label: 'La mer', value: 'Kitesurf et navigation côtière, souvent au Grau-du-Roi, près de Montpellier' },
       watching: { label: 'Écrans', value: "Séries coréennes et japonaises, d'où vient l'ambiance de ce site" },
@@ -231,7 +231,7 @@ export const fr: Dict = {
   },
   ctaSection: {
     title: 'Un poste Angular à pourvoir ?',
-    lede: "Parlons de votre équipe, de vos applications et de leurs contraintes. Je serai heureux d'échanger sur ce que mon expérience du développement et de l'accessibilité peut vous apporter.",
+    lede: "Ouvert aux opportunités partout en France et en Suisse. Parlons de votre équipe, de vos applications et de ce que mon expérience du développement et de l'accessibilité peut vous apporter.",
   },
   behindTheScenes: {
     kicker: 'Dans les coulisses',
@@ -242,7 +242,7 @@ export const fr: Dict = {
     changelogTitle: "Tout ce qui s'est passé ici",
     changelogLede: "Directement depuis le journal git — sans édition, sans rangement. Les commits maladroits restent.",
     statCommits: 'commits',
-    statStack: 'langues parlées',
+    statStack: 'langues du site',
     statCoffee: 'cafés non documentés',
     empty: "Le changelog n'a pas été généré pour ce build. Lancez npm run changelog.",
     backHome: 'Retour au site',
@@ -338,7 +338,7 @@ export const fr: Dict = {
     exportButton: 'Exporter pour traduction',
     translationHelpTitle: 'Traduire le contenu des projets',
     translationHelpIntro:
-      "Les noms, catégories et accroches des projets sont stockés en anglais dans la base de données, puis traduits en français, allemand, coréen, japonais et espagnol. Pour ajouter ou mettre à jour des traductions :",
+      "Les noms, catégories et accroches des projets sont stockés en anglais dans la base de données, puis traduits en français. Pour ajouter ou mettre à jour la traduction française :",
     translationHelpSteps: [
       "Ajoutez ou modifiez le projet ci-dessous en anglais — la catégorie ou l'accroche peuvent rester vides, demandez à Claude de les rédiger.",
       "Cliquez sur « Exporter pour traduction » pour télécharger un fichier JSON de la liste actuelle des projets.",

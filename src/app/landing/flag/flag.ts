@@ -39,40 +39,6 @@ import type { Lang } from '../../core/i18n/dictionary';
           <rect x="6" width="3" height="6" fill="#ce1126" />
         </svg>
       }
-      @case ('de') {
-        <svg viewBox="0 0 9 6" aria-hidden="true">
-          <rect width="9" height="2" fill="#000" />
-          <rect y="2" width="9" height="2" fill="#dd0000" />
-          <rect y="4" width="9" height="2" fill="#ffce00" />
-        </svg>
-      }
-      @case ('es') {
-        <svg viewBox="0 0 9 6" aria-hidden="true">
-          <rect width="9" height="6" fill="#aa151b" />
-          <rect y="1.5" width="9" height="3" fill="#f1bf00" />
-        </svg>
-      }
-      @case ('ja') {
-        <svg viewBox="0 0 9 6" aria-hidden="true">
-          <rect width="9" height="6" fill="#fff" />
-          <circle cx="4.5" cy="3" r="1.8" fill="#bc002d" />
-        </svg>
-      }
-      @case ('ko') {
-        <svg viewBox="0 0 36 24" aria-hidden="true">
-          <rect width="36" height="24" fill="#fff" />
-          <circle cx="18" cy="12" r="5" fill="#cd2e3a" />
-          <path d="M13 12a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 0 5 0 5 5 0 0 1-10 0" fill="#0047a0" />
-          <g fill="#000" transform="rotate(-56.3 18 12)">
-            <rect x="6.4" y="10.6" width="4" height="0.8" />
-            <rect x="6.4" y="11.6" width="4" height="0.8" />
-            <rect x="6.4" y="12.6" width="4" height="0.8" />
-            <rect x="25.6" y="10.6" width="4" height="0.8" />
-            <rect x="25.6" y="11.6" width="4" height="0.8" />
-            <rect x="25.6" y="12.6" width="4" height="0.8" />
-          </g>
-        </svg>
-      }
       @default {
         <!-- English. A Union Jack without the counterchanged diagonals: the
              offset is invisible at 20px wide, and the alternative is a dozen

@@ -8,6 +8,16 @@ Experienced Angular front-end developer, with a banking background, shared compo
 
 The public training section now says that intensive learning with Claude Code, ChatGPT and Frontend Masters is in progress. It does not claim an AI qualification or expertise.
 
+The owner confirmed French and English as the only public website languages.
+The profile now explicitly lists French and fluent English as working languages.
+The other translation dictionaries remain in the repository as practice work,
+but are not loaded or offered to visitors. Existing database translations are
+left intact. The website language count is labelled separately from personal skills.
+
+The owner is open to opportunities throughout France and Switzerland. This is
+shown in the hero and contact copy; it does not imply German fluency, immediate
+availability or a particular Swiss work authorization.
+
 ## Figures now shown
 
 The accessibility section also shows the reference's 106 criteria and 13 topics,
