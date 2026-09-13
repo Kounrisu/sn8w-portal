@@ -200,9 +200,38 @@ export const es: Dict = {
     lede: 'Ideas exploradas por curiosidad, para aprender nuevas tecnologías y enfoques.',
     tag: '[prototipo]',
   },
+  accessibilityExpertise: {
+    kicker: 'Angular y accesibilidad',
+    title: 'La accesibilidad forma parte del desarrollo.',
+    lede: 'Acompaño a equipos en el desarrollo de aplicaciones de negocio accesibles: componentes Angular compartidos, comprobaciones RGAA/WCAG y apoyo a desarrolladores.',
+    training: 'Formación en accesibilidad de Access42 · 2020',
+    referenceLabel: 'Referencia francesa de accesibilidad',
+    criteria: 'Criterios de evaluación',
+    topics: 'Temáticas',
+    referenceNote:
+      'Alcance de RGAA 4.1.2. Estas cifras no representan un resultado de auditoría ni el grado de conformidad de este sitio.',
+    source: 'Consultar la referencia oficial',
+    practices: [
+      {
+        title: 'Evaluar las interfaces',
+        description:
+          'Revisar estructura semántica, teclado, foco, formularios y contraste. Combinar controles automatizados con las verificaciones manuales necesarias.',
+      },
+      {
+        title: 'Mejorar los componentes',
+        description:
+          'Corregir componentes Angular compartidos y verificar los recorridos que dependen de ellos. Documentar su comportamiento y vigilar las regresiones.',
+      },
+      {
+        title: 'Acompañar al equipo',
+        description:
+          'Crear materiales de formación, impartir sesiones de accesibilidad y ayudar a aplicar los principios en el trabajo diario.',
+      },
+    ],
+  },
   ctaSection: {
-    title: '¿Quieres ver más?',
-    lede: 'Todo aquí empieza como un repositorio en GitHub — siéntete libre de mirar, o escríbeme.',
+    title: '¿Buscas un desarrollador Angular?',
+    lede: 'Hablemos de tu equipo, tus aplicaciones y los próximos retos. Podemos explorar cómo mi experiencia en desarrollo y accesibilidad puede ayudar.',
   },
   behindTheScenes: {
     kicker: 'Entre bastidores',

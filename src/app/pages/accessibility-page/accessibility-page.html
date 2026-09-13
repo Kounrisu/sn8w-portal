@@ -3,36 +3,42 @@
     <p class="kicker">Accessibilité</p>
     <h1 class="section-title">Déclaration d'accessibilité</h1>
     <p class="section-lede">
-      Ce site applique volontairement le référentiel RGAA (Référentiel Général d'Amélioration de
-      l'Accessibilité) — une démarche personnelle, pas une obligation légale pour un site comme
-      celui-ci, mais une pratique directement liée à mon métier au quotidien.
+      Cette page présente les contrôles d'accessibilité documentés pour ce site et permet de
+      signaler une difficulté d'utilisation.
     </p>
   </header>
 
   <section class="a11y__section" sn8wSpotlight>
     <h2>État de conformité</h2>
     <p>
-      <strong>sn8w.com est totalement conforme au RGAA 4.1.</strong> L'audit décrit ci-dessous n'a
-      révélé aucune non-conformité restante : les trois anomalies détectées ont été corrigées
-      avant la publication de cette déclaration.
+      <strong>Le taux de conformité RGAA de la version actuelle n'est pas établi.</strong>
+      Les contrôles techniques décrits ci-dessous ne constituent pas, à eux seuls, un audit complet
+      des critères applicables du RGAA 4.1.2. Ils ne permettent donc pas de publier un pourcentage
+      de conformité.
+    </p>
+    <p>
+      <a
+        class="a11y__link"
+        href="https://accessibilite.numerique.gouv.fr/obligations/evaluation-conformite/"
+        >Méthode officielle d'évaluation de la conformité</a
+      >
     </p>
   </section>
 
   <section class="a11y__section" sn8wSpotlight>
-    <h2>Résultats des tests</h2>
+    <h2>Contrôles internes documentés</h2>
     <p>
-      Un audit interne a été mené le {{ auditDate }} sur l'ensemble des pages du site, dans les
-      deux thèmes proposés (clair et sombre), à l'aide de tests automatisés (axe-core, règles WCAG
-      2.1 A/AA et bonnes pratiques) complétés par une revue manuelle du code pour les critères
-      qu'un outil automatisé ne peut pas vérifier seul (structure sémantique, navigation au
-      clavier, alternatives textuelles, gestion du focus, préférence de mouvement réduit).
+      Le compte rendu interne du {{ auditDate }} décrit des vérifications sur les pages listées
+      ci-dessous, dans les thèmes clair et sombre, à l'aide de tests automatisés (axe-core, règles
+      WCAG 2.1 A/AA et bonnes pratiques) complétés par une revue manuelle du code pour les critères
+      qu'un outil automatisé ne peut pas vérifier seul (structure sémantique, navigation au clavier,
+      alternatives textuelles, gestion du focus, préférence de mouvement réduit).
     </p>
-    <p>Trois anomalies ont été détectées puis corrigées :</p>
+    <p>Ce compte rendu consigne trois anomalies corrigées :</p>
     <ul>
       <li>
-        Une région complémentaire (<code>&lt;aside&gt;</code>) imbriquée dans une autre région de
-        la page, gênant la navigation par points de repère pour les utilisateurs de lecteurs
-        d'écran.
+        Une région complémentaire (<code>&lt;aside&gt;</code>) imbriquée dans une autre région de la
+        page, gênant la navigation par points de repère pour les utilisateurs de lecteurs d'écran.
       </li>
       <li>
         Un curseur de progression (barre de tâche) sans étiquette accessible, rendant sa fonction
@@ -43,12 +49,14 @@
         d'un des boutons de progression rapide.
       </li>
     </ul>
-    <p>Aucune non-conformité n'a été identifiée après correction.</p>
+    <p>Ces corrections ne préjugent pas du résultat d'un audit complet de la version actuelle.</p>
   </section>
 
   <section class="a11y__section" sn8wSpotlight>
     <h2>Contenus non accessibles</h2>
-    <p>Aucun contenu non accessible n'a été identifié à ce jour.</p>
+    <p>
+      L'inventaire exhaustif des éventuelles non-conformités reste à établir par un audit complet.
+    </p>
   </section>
 
   <section class="a11y__section" sn8wSpotlight>

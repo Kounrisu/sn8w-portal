@@ -1,0 +1,66 @@
+:host {
+  display: block;
+  position: relative;
+  border-top: 1px solid var(--line-strong);
+  padding-block: 4rem;
+  background: var(--surface-raised);
+}
+.contact {
+  display: grid;
+  gap: 2rem;
+}
+.contact .section-title {
+  max-width: 24ch;
+}
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  align-content: center;
+  min-width: 0;
+}
+.contact__actions .btn {
+  min-height: 3.25rem;
+  font-size: var(--text-base);
+}
+.contact__actions mat-icon {
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.contact__email,
+.contact__linkedin {
+  color: var(--ink);
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  text-underline-offset: 0.3em;
+  overflow-wrap: anywhere;
+}
+.contact__email {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+.contact__linkedin {
+  font-size: var(--text-sm);
+}
+.contact__email:focus-visible,
+.contact__linkedin:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
+@media (min-width: 900px) {
+  .contact {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 4rem;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .contact mat-icon {
+    transition: transform 180ms ease;
+  }
+  .contact .btn:is(:hover, :focus-visible) mat-icon {
+    transform: translate(3px, -3px);
+  }
+}

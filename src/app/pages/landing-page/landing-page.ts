@@ -5,6 +5,8 @@ import { FlagshipProducts } from '../../landing/flagship-products/flagship-produ
 import { EngineeringPrinciples } from '../../landing/engineering-principles/engineering-principles';
 import { LabProjects } from '../../landing/lab-projects/lab-projects';
 import { SideToc } from '../../landing/side-toc/side-toc';
+import { AccessibilityExpertise } from '../../landing/accessibility-expertise/accessibility-expertise';
+import { ContactSection } from '../../landing/contact-section/contact-section';
 
 @Component({
   selector: 'sn8w-landing-page',
@@ -13,13 +15,24 @@ import { SideToc } from '../../landing/side-toc/side-toc';
   // hero's fixed video backdrop. `display: contents` makes it transparent to
   // layout instead, so <main> is the sections' true parent.
   styles: ':host { display: contents; }',
-  imports: [Hero, AboutExperience, FlagshipProducts, EngineeringPrinciples, LabProjects, SideToc],
+  imports: [
+    Hero,
+    AboutExperience,
+    FlagshipProducts,
+    EngineeringPrinciples,
+    LabProjects,
+    SideToc,
+    AccessibilityExpertise,
+    ContactSection,
+  ],
   template: `
     <sn8w-hero />
     <sn8w-flagship-products />
+    <sn8w-accessibility-expertise />
     <sn8w-about-experience />
     <sn8w-engineering-principles />
     <sn8w-lab-projects />
+    <sn8w-contact-section />
     <sn8w-side-toc />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

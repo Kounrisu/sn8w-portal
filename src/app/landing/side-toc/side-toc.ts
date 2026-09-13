@@ -31,6 +31,7 @@ export class SideToc {
     const dict = this.i18n.dict().nav;
     return [
       { fragment: 'products', label: dict.products },
+      { fragment: 'expertise', label: this.i18n.dict().footer.accessibility },
       { fragment: 'studio', label: dict.about },
       { fragment: 'contact', label: dict.contact },
     ];

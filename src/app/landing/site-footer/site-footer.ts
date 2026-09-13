@@ -19,7 +19,7 @@ import { ExternalLinkDirective } from '../../shared/external-link.directive';
 })
 export class SiteFooter {
   protected readonly i18n = inject(I18nService);
-  protected readonly email = 'kounrisu@gmail.com';
+  protected readonly email = PROFILES.email;
 
   // Still referenced by the version badge's tooltip.
   protected readonly commit = environment.commit;

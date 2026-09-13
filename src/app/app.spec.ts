@@ -29,7 +29,7 @@ describe('App', () => {
     httpMock.verify();
   });
 
-  it('should render a single h1 with the hero headline', async () => {
+  it('should render the portfolio with one h1, an RGAA reference and direct contact', async () => {
     const fixture = TestBed.createComponent(App);
     const router = TestBed.inject(Router);
 
@@ -53,5 +53,19 @@ describe('App', () => {
     const headings = compiled.querySelectorAll('h1');
     expect(headings.length).toBe(1);
     expect(headings[0].textContent).toContain('Philippe Parmentier');
+
+    const expertise = compiled.querySelector('#expertise');
+    expect(expertise?.getAttribute('aria-labelledby')).toBe('expertise-heading');
+    expect(expertise?.querySelectorAll('details > summary').length).toBe(3);
+    expect(expertise?.querySelectorAll('.reference__grid span').length).toBe(106);
+    expect(expertise?.querySelector('.reference__grid')?.getAttribute('aria-hidden')).toBe('true');
+    expect(expertise?.querySelector('.reference__source')?.getAttribute('href')).toBe(
+      'https://accessibilite.numerique.gouv.fr/methode/criteres-et-tests/',
+    );
+
+    expect(compiled.querySelectorAll('#contact').length).toBe(1);
+    expect(compiled.querySelector('#contact .btn')?.getAttribute('href')).toBe(
+      'mailto:kounrisu@gmail.com',
+    );
   });
 });

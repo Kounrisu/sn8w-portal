@@ -200,9 +200,38 @@ export const ko: Dict = {
     lede: '새로운 기술과 접근 방식을 배우기 위해 호기심으로 시도해 본 아이디어들입니다.',
     tag: '[프로토타입]',
   },
+  accessibilityExpertise: {
+    kicker: 'Angular와 접근성',
+    title: '접근성도 개발의 일부입니다.',
+    lede: '공유 Angular 컴포넌트, RGAA/WCAG 점검, 개발자 지원을 통해 접근성 있는 업무 애플리케이션을 만드는 팀을 돕습니다.',
+    training: 'Access42 접근성 교육 · 2020',
+    referenceLabel: '프랑스 접근성 기준',
+    criteria: '검사 기준',
+    topics: '주제',
+    referenceNote:
+      'RGAA 4.1.2 기준의 범위입니다. 이 수치는 이 사이트의 감사 결과나 준수율이 아닙니다.',
+    source: '공식 RGAA 기준 보기',
+    practices: [
+      {
+        title: '인터페이스 평가',
+        description:
+          '의미 구조, 키보드 탐색, 포커스, 폼과 대비를 점검합니다. 자동 검사와 각 기준에 필요한 수동 검증을 함께 수행합니다.',
+      },
+      {
+        title: '컴포넌트 개선',
+        description:
+          '공유 Angular 컴포넌트의 문제를 해결하고 관련 사용자 흐름을 확인합니다. 동작을 문서화하고 회귀를 점검합니다.',
+      },
+      {
+        title: '팀 지원',
+        description:
+          '교육 자료를 만들고 접근성 교육을 진행하며 개발자가 일상 업무에 원칙을 적용하도록 돕습니다.',
+      },
+    ],
+  },
   ctaSection: {
-    title: '더 보고 싶으신가요?',
-    lede: '여기 있는 모든 것은 GitHub의 저장소에서 시작됩니다. 편하게 둘러보시거나, 연락해 주세요.',
+    title: 'Angular 개발자를 찾고 계신가요?',
+    lede: '팀과 애플리케이션, 앞으로의 과제에 대해 이야기해 주세요. 개발과 접근성 경험으로 어떻게 기여할 수 있을지 함께 논의하고 싶습니다.',
   },
   behindTheScenes: {
     kicker: '무대 뒤에서',

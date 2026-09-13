@@ -5,10 +5,17 @@ import { RepoLink } from '../repo-link/repo-link';
 import { ProjectsService } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ExternalLinkDirective } from '../../shared/external-link.directive';
+import { StackRevealDirective } from '../../core/stack-reveal.directive';
 
 @Component({
   selector: 'sn8w-flagship-products',
-  imports: [StatusBadge, ProjectAvailability, RepoLink, ExternalLinkDirective],
+  imports: [
+    StatusBadge,
+    ProjectAvailability,
+    RepoLink,
+    ExternalLinkDirective,
+    StackRevealDirective,
+  ],
   templateUrl: './flagship-products.html',
   styleUrl: './flagship-products.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

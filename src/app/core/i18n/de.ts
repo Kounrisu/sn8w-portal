@@ -200,9 +200,38 @@ export const de: Dict = {
     lede: 'Ideen, die ich aus Neugier ausprobiert habe, um neue Technologien und Ansätze kennenzulernen.',
     tag: '[Prototyp]',
   },
+  accessibilityExpertise: {
+    kicker: 'Angular & Barrierefreiheit',
+    title: 'Barrierefreiheit gehört zur Entwicklung.',
+    lede: 'Ich unterstütze Teams bei barrierefreien Fachanwendungen: gemeinsame Angular-Komponenten, RGAA/WCAG-Prüfungen und Unterstützung für Entwickler.',
+    training: 'Access42-Schulung zur Barrierefreiheit · 2020',
+    referenceLabel: 'Französischer Barrierefreiheitsstandard',
+    criteria: 'Prüfkriterien',
+    topics: 'Themenbereiche',
+    referenceNote:
+      'Umfang des RGAA 4.1.2. Diese Zahlen sind weder ein Auditergebnis noch eine Konformitätsquote dieser Website.',
+    source: 'Offiziellen RGAA-Standard ansehen',
+    practices: [
+      {
+        title: 'Oberflächen prüfen',
+        description:
+          'Semantik, Tastaturbedienung, Fokus, Formulare und Kontraste prüfen. Automatisierte Tests mit den erforderlichen manuellen Prüfungen verbinden.',
+      },
+      {
+        title: 'Komponenten verbessern',
+        description:
+          'Probleme in gemeinsamen Angular-Komponenten beheben und betroffene Abläufe prüfen. Verhalten dokumentieren und Regressionen beobachten.',
+      },
+      {
+        title: 'Teams unterstützen',
+        description:
+          'Schulungsmaterialien erstellen, Schulungen zur Barrierefreiheit durchführen und Entwickler bei der täglichen Anwendung unterstützen.',
+      },
+    ],
+  },
   ctaSection: {
-    title: 'Möchtest du mehr sehen?',
-    lede: 'Alles hier beginnt als Repository auf GitHub — schau gerne vorbei, oder melde dich.',
+    title: 'Eine Angular-Stelle zu besetzen?',
+    lede: 'Sprechen wir über Ihr Team, Ihre Anwendungen und die nächsten Herausforderungen. Ich freue mich auf einen Austausch über Entwicklung und Barrierefreiheit.',
   },
   behindTheScenes: {
     kicker: 'Hinter den Kulissen',

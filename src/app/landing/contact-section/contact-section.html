@@ -1,0 +1,20 @@
+<section id="contact" class="container contact" aria-labelledby="contact-heading">
+  <div>
+    <p class="kicker">{{ i18n.dict().nav.contact }}</p>
+    <h2 id="contact-heading" class="section-title">{{ i18n.dict().ctaSection.title }}</h2>
+    <p class="section-lede">{{ i18n.dict().ctaSection.lede }}</p>
+  </div>
+  <div class="contact__actions">
+    <a class="btn btn--primary" [href]="'mailto:' + profiles.email">
+      {{ i18n.dict().nav.contact }} <mat-icon aria-hidden="true">arrow_outward</mat-icon>
+    </a>
+    <a class="contact__email" [href]="'mailto:' + profiles.email">{{ profiles.email }}</a>
+    <a
+      class="contact__linkedin"
+      [href]="profiles.linkedIn"
+      target="_blank"
+      rel="noopener noreferrer"
+      >LinkedIn</a
+    >
+  </div>
+</section>

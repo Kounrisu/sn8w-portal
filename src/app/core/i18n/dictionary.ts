@@ -117,6 +117,18 @@ export interface Dict {
     lede: string;
     tag: string;
   };
+  accessibilityExpertise: {
+    kicker: string;
+    title: string;
+    lede: string;
+    training: string;
+    referenceLabel: string;
+    criteria: string;
+    topics: string;
+    referenceNote: string;
+    source: string;
+    practices: readonly { title: string; description: string }[];
+  };
   ctaSection: {
     title: string;
     lede: string;
@@ -529,9 +541,38 @@ export const en: Dict = {
     lede: 'Ideas explored out of curiosity, to learn new technologies and approaches.',
     tag: '[prototype]',
   },
+  accessibilityExpertise: {
+    kicker: 'Angular & accessibility',
+    title: 'Accessibility is part of development.',
+    lede: 'I help teams build accessible business applications: shared Angular components, RGAA/WCAG checks and support for developers.',
+    training: 'Access42 accessibility training · 2020',
+    referenceLabel: 'The French accessibility reference',
+    criteria: 'Assessment criteria',
+    topics: 'Topics',
+    referenceNote:
+      'Scope of the RGAA 4.1.2 reference. These figures are not an audit result or a compliance score for this site.',
+    source: 'Explore the official RGAA reference',
+    practices: [
+      {
+        title: 'Assess the interface',
+        description:
+          'Review semantic structure, keyboard navigation, focus, forms and contrast. Combine automated checks with the manual verification each criterion requires.',
+      },
+      {
+        title: 'Improve shared components',
+        description:
+          'Resolve issues in Angular components and check the user journeys that depend on them. Document behavior and watch for regressions.',
+      },
+      {
+        title: 'Support the team',
+        description:
+          'Create training materials, run accessibility sessions and help developers apply the principles in their everyday work.',
+      },
+    ],
+  },
   ctaSection: {
-    title: 'Want to see more?',
-    lede: 'Everything here starts as a repository on GitHub — feel free to look around, or get in touch.',
+    title: 'An Angular role to discuss?',
+    lede: "Tell me about your team, your applications and the challenges ahead. Let's discuss where my development and accessibility experience could help.",
   },
   behindTheScenes: {
     kicker: 'Behind the scenes',

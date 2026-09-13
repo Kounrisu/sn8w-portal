@@ -7,6 +7,7 @@
  * templates rather than the i18n dictionary.
  */
 export const PROFILES = {
+  email: 'kounrisu@gmail.com',
   github: 'https://github.com/Kounrisu',
   linkedIn: 'https://www.linkedin.com/in/sn8w22/',
   frontendMasters: 'https://master.dev/u/sn8w/',

@@ -19,11 +19,11 @@
   <div class="hero__introduction">
     <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
     <div class="hero__actions">
-      <a class="btn btn--primary" routerLink="/" fragment="products">
-        {{ i18n.dict().nav.products }}
-        <mat-icon aria-hidden="true">arrow_downward</mat-icon>
+      <a class="btn btn--primary" [href]="'mailto:' + profiles.email">
+        {{ i18n.dict().nav.contact }}
+        <mat-icon aria-hidden="true">arrow_outward</mat-icon>
       </a>
-      <a class="hero__link" routerLink="/" fragment="studio">{{ i18n.dict().hero.ctaPrimary }}</a>
+      <a class="hero__link" routerLink="/" fragment="products">{{ i18n.dict().nav.products }}</a>
       <a class="hero__link" [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer"
         >LinkedIn</a
       >
