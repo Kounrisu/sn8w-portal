@@ -36,21 +36,22 @@ export const fr: Dict = {
   hero: {
     kicker: 'Paris, France',
     headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Développeur Front-End Angular',
-    lede: "Je travaille surtout avec Angular, actuellement dans une banque centrale européenne à Paris, avec un accent sur l'accessibilité (RGAA). Ce site me sert de CV, et présente quelques projets personnels que je développe pour apprendre.",
+    headlineAccent: 'Développeur front-end Angular confirmé pour plateformes régulées',
+    lede: "Je construis des interfaces Angular pour des environnements exigeants. Je termine actuellement une mission à la Banque de France à Paris, prévue jusqu'à fin octobre 2026, autour des bibliothèques de composants partagées, de l'accessibilité RGAA/WCAG, des migrations AngularJS vers Angular et de la livraison appuyée par CI/CD.",
+    proofPoints: ['10+ ans de livraison front-end', 'Bibliothèque de composants bancaire', 'Accessibilité RGAA/WCAG', 'Migrations AngularJS vers Angular 21'],
     ctaPrimary: 'Voir mon parcours',
     ctaSecondary: 'Voir sur GitHub',
   },
   aboutSection: {
     kicker: 'À propos',
     title: 'Un peu sur mon parcours',
-    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je travaille au sein de l'équipe qui développe et maintient la bibliothèque de composants partagée d'une banque centrale européenne : migrations d'AngularJS à Angular 21, accessibilité RGAA/WCAG, pipelines CI/CD, et le support quotidien des équipes qui s'appuient dessus. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel, de l'automobile au cosmétique puis aux verres ophtalmiques en polycarbonate. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
+    lede: "Développeur Front-End Angular basé près de Paris. Depuis 2015, je travaille sur des missions Banque de France autour de bibliothèques de composants Angular partagées : migrations d'AngularJS à Angular 21, accessibilité RGAA/WCAG, pipelines CI/CD, et support quotidien des équipes qui s'appuient dessus. Ma mission actuelle se termine fin octobre 2026. Avant le développement, j'ai passé dix ans à l'international — en Angleterre puis aux États-Unis — à piloter l'amélioration continue en milieu industriel, de l'automobile au cosmétique puis aux verres ophtalmiques en polycarbonate. C'est de là que viennent mon goût pour la méthode, la documentation et le travail transverse.",
     timelineLabel: 'Expérience',
     timeline: [
       {
         period: '2015 — Aujourd\'hui',
         role: 'Développeur Front-End Angular confirmé',
-        org: 'Banque centrale européenne, Paris',
+        org: 'Banque de France, Paris',
         description:
           "Développement et maintenance d'une bibliothèque de composants Angular partagée, utilisée sur une dizaine d'applications internes. Pilotage des migrations depuis AngularJS jusqu'à la version 21 d'Angular, audits d'accessibilité RGAA, et conception et animation des formations à l'accessibilité que suivent les développeurs — je construis moi-même les supports et je vérifie que les notions passent vraiment, pas seulement qu'elles sont présentées. Accompagnement des équipes projets de bout en bout — des ateliers UX et maquettes Figma jusqu'au chiffrage, à l'intégration et aux pipelines CI/CD (Jenkins, SonarQube).",
       },
@@ -115,9 +116,9 @@ export const fr: Dict = {
     ],
   },
   flagshipSection: {
-    kicker: 'Projets personnels',
-    title: 'Quelques projets sur lesquels je travaille',
-    lede: "Des projets personnels développés en dehors du travail, surtout pour essayer de nouveaux outils et continuer à apprendre.",
+    kicker: 'Projets sélectionnés',
+    title: 'Des produits concrets, construits comme preuves de travail',
+    lede: "Des projets personnels choisis pour ce qu'ils démontrent : tableaux de bord financiers, parcours orientés risque, outillage développeur accessible, et livraison Angular propre hors contexte corporate.",
     followBuild: 'Suivre sur GitHub',
   },
   status: {
@@ -138,37 +139,37 @@ export const fr: Dict = {
     },
   },
   principlesSection: {
-    kicker: 'Comment je travaille',
-    title: "Quelques habitudes que j'essaie de garder",
-    lede: "Rien de formel — juste des habitudes qui reviennent, que ce soit sur un projet professionnel ou un petit projet personnel.",
+    kicker: 'Standards de livraison',
+    title: 'Construit pour des équipes qui ne peuvent pas livrer au hasard',
+    lede: "Le travail reste volontairement pratique : Angular maintenable, interfaces accessibles, décisions documentées, garde-fous qualité mesurables, et assez de soin UX pour que les outils internes restent agréables.",
     items: {
       accessibility: {
         title: 'Accessibilité dès la conception',
-        description: 'RGAA et WCAG vérifiés avant le lancement, pas ajoutés après coup.',
+        description: "RGAA et WCAG pensés de la structure à l'interaction, puis vérifiés avant livraison.",
       },
       architecture: {
         title: 'Architecture Angular moderne',
-        description: 'Composants autonomes, signaux, zoneless — aucun schéma hérité.',
+        description: 'Composants autonomes, signaux et zoneless quand ces choix simplifient le code durable.',
       },
       responsive: {
-        title: 'Interfaces responsives',
-        description: "Conçues d'abord pour le plus petit écran, jamais étirées depuis le bureau.",
+        title: 'Interfaces opérationnelles',
+        description: "Des écrans denses qui restent utilisables sur petit format sans masquer l'essentiel.",
       },
       performance: {
         title: 'Performance',
-        description: 'Bundles légers, interactions rapides, aucun surplus de framework.',
+        description: 'Bundles légers, interactions prévisibles, aucun poids de framework inutile.',
       },
       designSystems: {
-        title: 'Systèmes de design réutilisables',
-        description: 'Composants et jetons typés, partagés entre tous les projets.',
+        title: 'Systèmes réutilisables',
+        description: 'Composants typés, tokens et documentation pour réutiliser au lieu de refaire.',
       },
       testing: {
-        title: 'Tests',
-        description: "Tests unitaires et audits d'accessibilité intégrés à la construction, pas ajoutés après.",
+        title: 'Garde-fous qualité',
+        description: "Tests unitaires, audits d'accessibilité, SonarQube et CI/CD comme outils de livraison.",
       },
       ux: {
-        title: 'UX réfléchie',
-        description: "Chaque écran mérite sa place — rien n'est livré juste pour remplir l'espace.",
+        title: 'UX utile',
+        description: 'Des parcours conçus pour des personnes qui reviennent chaque jour sur les mêmes écrans.',
       },
     },
   },

@@ -3,24 +3,58 @@
 </div>
 
 <div class="container hero__inner">
-  <div class="hero__copy" sn8wSpotlight>
-    <p class="kicker">{{ i18n.dict().hero.kicker }}</p>
-    <h1 class="hero__name">{{ i18n.dict().hero.headlineMain }}</h1>
-    <p class="hero__role">{{ i18n.dict().hero.headlineAccent }}</p>
-    <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" routerLink="/" fragment="studio">{{ i18n.dict().hero.ctaPrimary }}</a>
-      <a class="btn btn--secondary" [href]="profiles.github" target="_blank" rel="noopener noreferrer">
-        {{ i18n.dict().hero.ctaSecondary }}
-      </a>
-      <!-- Brand names, so the labels stay untranslated. Same URLs as the
-           footer, kept on the component rather than repeated inline. -->
-      <a class="btn btn--secondary" [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer">
-        LinkedIn
-      </a>
-      <a class="btn btn--secondary" [href]="profiles.frontendMasters" target="_blank" rel="noopener noreferrer">
-        Frontend Masters
-      </a>
+  <div class="hero__layout">
+    <div class="hero__copy" sn8wSpotlight>
+      <p class="kicker">{{ i18n.dict().hero.kicker }}</p>
+      <h1 class="hero__name">{{ i18n.dict().hero.headlineMain }}</h1>
+      <p class="hero__role">{{ i18n.dict().hero.headlineAccent }}</p>
+      <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
+
+      <ul class="hero__proofs" aria-label="Profile highlights">
+        @for (proof of i18n.dict().hero.proofPoints; track proof) {
+          <li>{{ proof }}</li>
+        }
+      </ul>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" routerLink="/" fragment="studio">{{ i18n.dict().hero.ctaPrimary }}</a>
+        <a class="btn btn--secondary" [href]="profiles.github" target="_blank" rel="noopener noreferrer">
+          {{ i18n.dict().hero.ctaSecondary }}
+        </a>
+        <!-- Brand names, so the labels stay untranslated. Same URLs as the
+             footer, kept on the component rather than repeated inline. -->
+        <a class="btn btn--secondary" [href]="profiles.linkedIn" target="_blank" rel="noopener noreferrer">
+          LinkedIn
+        </a>
+        <a class="btn btn--secondary" [href]="profiles.frontendMasters" target="_blank" rel="noopener noreferrer">
+          Frontend Masters
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__dossier" sn8wSpotlight aria-hidden="true">
+      <div class="hero__portrait">
+        <span>PP</span>
+      </div>
+      <div class="hero__dossier-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <dl class="hero__metrics">
+        <div>
+          <dt>Sector</dt>
+          <dd>Banking</dd>
+        </div>
+        <div>
+          <dt>Focus</dt>
+          <dd>RGAA</dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd>Angular</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </div>

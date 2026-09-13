@@ -36,21 +36,22 @@ export const de: Dict = {
   hero: {
     kicker: 'Paris, Frankreich',
     headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Frontend-Angular-Entwickler',
-    lede: 'Ich arbeite hauptsächlich mit Angular, derzeit bei einer europäischen Zentralbank in Paris, mit Schwerpunkt auf Barrierefreiheit (RGAA). Diese Seite dient als Lebenslauf und zeigt ein paar private Projekte, an denen ich zum Lernen arbeite.',
+    headlineAccent: 'Senior Angular Frontend-Entwickler für regulierte Plattformen',
+    lede: 'Ich entwickle Angular-Oberflächen für anspruchsvolle Umgebungen. Derzeit schließe ich eine Mission bei der Banque de France in Paris ab, die Ende Oktober 2026 endet, mit Fokus auf gemeinsame Komponentenbibliotheken, RGAA/WCAG-Barrierefreiheit, Migrationen von AngularJS zu Angular und CI/CD-gestützte Auslieferung.',
+    proofPoints: ['10+ Jahre Frontend-Auslieferung', 'Banking-Komponentenbibliothek', 'RGAA/WCAG-Barrierefreiheit', 'Migrationen von AngularJS zu Angular 21'],
     ctaPrimary: 'Meine Erfahrung ansehen',
     ctaSecondary: 'Auf GitHub ansehen',
   },
   aboutSection: {
     kicker: 'Über mich',
     title: 'Etwas zu meinem Werdegang',
-    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 arbeite ich in dem Team, das die gemeinsame Komponentenbibliothek einer europäischen Zentralbank entwickelt und pflegt: Migrationen von AngularJS auf Angular 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und die tägliche Unterstützung der Teams, die darauf aufbauen. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet — von der Automobil- über die Kosmetikindustrie bis zu ophthalmischen Polycarbonat-Brillengläsern. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
+    lede: 'Frontend-Angular-Entwickler in der Nähe von Paris. Seit 2015 arbeite ich in Banque-de-France-Missionen rund um gemeinsame Angular-Komponentenbibliotheken: Migrationen von AngularJS auf Angular 21, Barrierefreiheit nach RGAA/WCAG, CI/CD-Pipelines und tägliche Unterstützung der Teams, die darauf aufbauen. Meine aktuelle Mission endet Ende Oktober 2026. Vor der Entwicklung habe ich zehn Jahre im Ausland verbracht — in England, dann in den USA — und dort kontinuierliche Verbesserung an Industriestandorten geleitet: Automobil, Kosmetik und ophthalmische Polycarbonat-Brillengläser. Daher kommt meine Vorliebe für Methodik, Dokumentation und teamübergreifende Arbeit.',
     timelineLabel: 'Erfahrung',
     timeline: [
       {
         period: '2015 — Heute',
         role: 'Frontend-Angular-Entwickler',
-        org: 'Europäische Zentralbank, Paris',
+        org: 'Banque de France, Paris',
         description:
           'Entwicklung und Pflege einer gemeinsam genutzten Angular-Komponentenbibliothek für rund ein Dutzend interner Anwendungen. Leitung der Migrationen von AngularJS auf Angular 21, Durchführung von RGAA-Barrierefreiheitsprüfungen sowie Konzeption und Durchführung der Barrierefreiheits-Schulungen für Entwickler — ich erstelle die Materialien selbst und prüfe, ob die Inhalte wirklich verstanden werden, statt sie nur zu präsentieren. Durchgängige Unterstützung der Projektteams — von UX-Workshops und Figma-Übergaben bis zu Aufwandsschätzung, Integration und CI/CD (Jenkins, SonarQube).',
       },

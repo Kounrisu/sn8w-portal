@@ -36,21 +36,22 @@ export const es: Dict = {
   hero: {
     kicker: 'París, Francia',
     headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Desarrollador Front-End Angular',
-    lede: 'Trabajo sobre todo con Angular, actualmente en un banco central europeo en París, con un enfoque en la accesibilidad (RGAA). Esta web es mi CV, y muestra algunos proyectos personales que desarrollo para aprender.',
+    headlineAccent: 'Desarrollador front-end Angular senior para plataformas reguladas',
+    lede: 'Construyo interfaces Angular para entornos exigentes. Actualmente estoy terminando una misión en la Banque de France, en París, que finaliza a finales de octubre de 2026, centrada en bibliotecas de componentes compartidas, accesibilidad RGAA/WCAG, migraciones de AngularJS a Angular y entregas respaldadas por CI/CD.',
+    proofPoints: ['Más de 10 años de entrega front-end', 'Biblioteca de componentes bancaria', 'Accesibilidad RGAA/WCAG', 'Migraciones de AngularJS a Angular 21'],
     ctaPrimary: 'Ver mi experiencia',
     ctaSecondary: 'Ver en GitHub',
   },
   aboutSection: {
     kicker: 'Acerca de mí',
     title: 'Un poco sobre mi trayectoria',
-    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 formo parte del equipo que desarrolla y mantiene la biblioteca de componentes compartida de un banco central europeo: migraciones de AngularJS a Angular 21, accesibilidad RGAA/WCAG, pipelines CI/CD y el soporte diario a los equipos que la utilizan. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales: de la automoción a la cosmética y después a los cristales oftálmicos de policarbonato. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
+    lede: 'Desarrollador Front-End Angular afincado cerca de París. Desde 2015 trabajo en misiones de Banque de France alrededor de bibliotecas de componentes Angular compartidas: migraciones de AngularJS a Angular 21, accesibilidad RGAA/WCAG, pipelines CI/CD y soporte diario a los equipos que las utilizan. Mi misión actual termina a finales de octubre de 2026. Antes de dedicarme al desarrollo pasé diez años en el extranjero — en Inglaterra y después en Estados Unidos — dirigiendo la mejora continua en entornos industriales: automoción, cosmética y cristales oftálmicos de policarbonato. De ahí vienen mi gusto por el método, la documentación y el trabajo transversal.',
     timelineLabel: 'Experiencia',
     timeline: [
       {
         period: '2015 — Actualidad',
         role: 'Desarrollador Front-End Angular',
-        org: 'Banco central europeo, París',
+        org: 'Banque de France, París',
         description:
           'Desarrollo y mantenimiento de una biblioteca de componentes Angular compartida, utilizada en una decena de aplicaciones internas. Liderazgo de las migraciones desde AngularJS hasta Angular 21, auditorías de accesibilidad RGAA, y diseño e impartición de la formación en accesibilidad que reciben los desarrolladores — elaboro yo mismo los materiales y compruebo que los conceptos realmente se entienden, no solo que se presentan. Acompañamiento de los equipos de proyecto de principio a fin — desde talleres UX y maquetas en Figma hasta la estimación, integración y pipelines CI/CD (Jenkins, SonarQube).',
       },

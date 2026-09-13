@@ -43,6 +43,7 @@ export interface Dict {
     headlineMain: string;
     headlineAccent: string;
     lede: string;
+    proofPoints: readonly string[];
     ctaPrimary: string;
     ctaSecondary: string;
   };
@@ -364,21 +365,22 @@ export const en: Dict = {
   hero: {
     kicker: 'Paris, France',
     headlineMain: 'Philippe PARMENTIER',
-    headlineAccent: 'Front-End Angular Developer',
-    lede: "I work mainly with Angular, currently at a European central bank in Paris, with a focus on accessibility (RGAA). This site doubles as my CV, and a place to share a few personal projects I'm building to learn.",
+    headlineAccent: 'Senior Angular front-end developer for regulated platforms',
+    lede: 'I build Angular interfaces for demanding environments. I am currently completing a Banque de France mission in Paris, ending at the end of October 2026, focused on shared component libraries, RGAA/WCAG accessibility, AngularJS-to-Angular migrations and CI/CD-backed delivery.',
+    proofPoints: ['10+ years in front-end delivery', 'Banking component library', 'RGAA/WCAG accessibility', 'AngularJS to Angular 21 migrations'],
     ctaPrimary: 'See my experience',
     ctaSecondary: 'View on GitHub',
   },
   aboutSection: {
     kicker: 'About',
     title: 'A bit about my background',
-    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked in the team that builds and maintains a European central bank's shared component library: AngularJS to Angular 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on it. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites — automotive, then cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
+    lede: "Front-end Angular developer based near Paris. Since 2015 I have worked on Banque de France missions around shared Angular component libraries: AngularJS to Angular 21 migrations, RGAA/WCAG accessibility, CI/CD pipelines, and day-to-day support for the teams building on them. My current mission ends at the end of October 2026. Before development I spent ten years abroad — in England, then the United States — running continuous improvement on industrial sites: automotive, cosmetics, then ophthalmic polycarbonate lenses. That is where the habit of method, documentation and cross-team work comes from.",
     timelineLabel: 'Experience',
     timeline: [
       {
         period: '2015 — Present',
         role: 'Front-End Angular Developer',
-        org: 'European central bank, Paris',
+        org: 'Banque de France, Paris',
         description:
           "Building and maintaining a shared Angular component library used across a dozen internal applications. Leading migrations from AngularJS to Angular 21, running RGAA accessibility audits, and designing and delivering the accessibility training developers take — building the materials myself and checking the ideas actually land, not just handing off a slide deck. Supporting project teams end to end — from UX workshops and Figma handoff through estimation, integration and CI/CD (Jenkins, SonarQube).",
       },
@@ -443,9 +445,9 @@ export const en: Dict = {
     ],
   },
   flagshipSection: {
-    kicker: 'Personal projects',
-    title: "A few things I'm working on",
-    lede: 'Side projects I build outside of work, mostly to try new tools and keep learning.',
+    kicker: 'Selected projects',
+    title: 'Practical products, built as proof of work',
+    lede: 'Personal projects selected for what they demonstrate: financial dashboards, risk-oriented workflows, accessible developer tooling, and clean Angular delivery outside a corporate codebase.',
     followBuild: 'Follow along on GitHub',
   },
   status: {
@@ -466,37 +468,37 @@ export const en: Dict = {
     },
   },
   principlesSection: {
-    kicker: 'How I work',
-    title: 'A few habits I try to keep',
-    lede: "Nothing formal — just habits that carry over whether it's a work project or something small on the side.",
+    kicker: 'Delivery standards',
+    title: 'Built for teams that cannot ship guesswork',
+    lede: 'The work is deliberately practical: maintainable Angular, accessible interfaces, documented decisions, measurable quality gates, and enough UX care that internal tools still feel considered.',
     items: {
       accessibility: {
         title: 'Accessibility by design',
-        description: 'RGAA and WCAG checked before launch, not bolted on after.',
+        description: 'RGAA and WCAG considered from structure to interaction, then checked before release.',
       },
       architecture: {
         title: 'Modern Angular architecture',
-        description: 'Standalone components, signals, zoneless — no legacy patterns.',
+        description: 'Standalone components, signals and zoneless patterns where they simplify long-lived code.',
       },
       responsive: {
-        title: 'Responsive interfaces',
-        description: 'Designed for the smallest screen first, not stretched from desktop.',
+        title: 'Responsive operations',
+        description: 'Dense interfaces that remain usable on small screens without hiding the important work.',
       },
       performance: {
         title: 'Performance',
-        description: 'Small bundles, fast interactions, no framework bloat.',
+        description: 'Small bundles, predictable interactions and no unnecessary framework weight.',
       },
       designSystems: {
-        title: 'Reusable design systems',
-        description: 'Typed components and tokens, shared across every project.',
+        title: 'Reusable systems',
+        description: 'Typed components, tokens and documentation so teams reuse instead of reimplementing.',
       },
       testing: {
-        title: 'Testing',
-        description: 'Unit tests and accessibility audits as part of the build, not an afterthought.',
+        title: 'Quality gates',
+        description: 'Unit tests, accessibility audits, SonarQube and CI/CD treated as delivery tools.',
       },
       ux: {
-        title: 'Thoughtful UX',
-        description: 'Every screen earns its place — nothing ships just to fill space.',
+        title: 'Useful UX',
+        description: 'Workflows designed for people who return to the same screens every day.',
       },
     },
   },

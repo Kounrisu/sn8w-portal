@@ -51,6 +51,7 @@ api/uploads/
 testem.log
 /typings
 __screenshots__/
+/output/
 
 # System files
 .DS_Store
