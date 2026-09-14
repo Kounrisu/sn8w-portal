@@ -8,13 +8,18 @@
         <p class="section-lede">{{ note }}</p>
       }
     </div>
-    <sn8w-project-count [count]="projects.flagship().length" [total]="projects.visible().length" [label]="copy().shown" />
+    <div class="flagship-toolbar">
+      <sn8w-project-count [count]="projects.flagship().length" [total]="projects.visible().length" [label]="copy().shown" />
+      <a class="flagship-catalog-link" routerLink="/projects">
+        <span>{{ copy().viewAll }}</span>
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
     <div class="flagship-list">
       @for (product of projects.flagship(); track product.id; let i = $index) {
         <sn8w-project-card [project]="product" [index]="i" />
       }
     </div>
-    <a class="btn btn--secondary" routerLink="/projects">{{ copy().viewAll }} →</a>
   </div>
 </section>
 
