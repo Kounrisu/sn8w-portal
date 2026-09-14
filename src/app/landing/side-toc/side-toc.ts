@@ -23,7 +23,7 @@ interface TocLink {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideToc {
-  private readonly i18n = inject(I18nService);
+  protected readonly i18n = inject(I18nService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly injector = inject(Injector);
 

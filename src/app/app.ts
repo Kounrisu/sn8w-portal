@@ -80,7 +80,7 @@ export class App implements AfterViewInit, OnDestroy {
   // so every preference silently stops applying anywhere else on the site.
   private readonly preferences = inject(PreferencesService);
   private readonly titleService = inject(Title);
-  private readonly i18n = inject(I18nService);
+  protected readonly i18n = inject(I18nService);
 
   private readonly currentTitleKey = signal<TitleKey | undefined>(undefined);
   // Announced through a visually-hidden aria-live region on every in-app
@@ -88,10 +88,10 @@ export class App implements AfterViewInit, OnDestroy {
   // reader users, who get no equivalent of a real page load's announcement.
   protected readonly routeAnnouncement = signal('');
 
-  private readonly prefersReducedMotion =
-    typeof window !== 'undefined' &&
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  private readonly motionQuery = typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+    ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  private readonly systemReducedMotion = signal(this.motionQuery?.matches ?? false);
+  private readonly updateSystemMotion = () => this.systemReducedMotion.set(this.motionQuery?.matches ?? false);
 
   private animationFrame = 0;
   private particles: Particle[] = [];
@@ -106,9 +106,10 @@ export class App implements AfterViewInit, OnDestroy {
   private dpr = 1;
 
   constructor() {
+    this.motionQuery?.addEventListener('change', this.updateSystemMotion);
     effect(() => {
       const theme = this.themeService.theme();
-      this.starfieldEnabled = theme !== 'contrast';
+      this.starfieldEnabled = theme !== 'contrast' && !this.systemReducedMotion() && this.preferences.motion() !== 'reduced';
       this.mode = theme === 'squirrel' ? 'squirrel' : 'frost';
       this.regenerate();
     });
@@ -181,8 +182,17 @@ export class App implements AfterViewInit, OnDestroy {
     resize();
     this.resizeObserver = new ResizeObserver(resize);
     this.resizeObserver.observe(canvas);
+  }
 
-    if (!this.prefersReducedMotion) {
+  private regenerate(): void {
+    if (!this.canvas || !this.ctx) return;
+    cancelAnimationFrame(this.animationFrame);
+    this.animationFrame = 0;
+    this.particles = this.starfieldEnabled
+      ? createParticles(this.canvas.clientWidth, this.canvas.clientHeight, this.mode)
+      : [];
+    drawFrame(this.ctx, this.particles, this.dpr, 0, this.mode);
+    if (this.starfieldEnabled) {
       const tick = (time: number) => {
         if (this.ctx) drawFrame(this.ctx, this.particles, this.dpr, time, this.mode);
         this.animationFrame = requestAnimationFrame(tick);
@@ -191,17 +201,8 @@ export class App implements AfterViewInit, OnDestroy {
     }
   }
 
-  private regenerate(): void {
-    if (!this.canvas || !this.ctx) return;
-    this.particles = this.starfieldEnabled
-      ? createParticles(this.canvas.clientWidth, this.canvas.clientHeight, this.mode)
-      : [];
-    if (this.prefersReducedMotion || !this.starfieldEnabled) {
-      drawFrame(this.ctx, this.particles, this.dpr, 0, this.mode);
-    }
-  }
-
   ngOnDestroy(): void {
+    this.motionQuery?.removeEventListener('change', this.updateSystemMotion);
     cancelAnimationFrame(this.animationFrame);
     this.resizeObserver?.disconnect();
   }

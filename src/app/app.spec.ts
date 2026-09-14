@@ -56,6 +56,10 @@ describe('App', () => {
     expect(compiled.querySelector('.nav__links a')?.getAttribute('href')).toBe('/#products');
     expect(compiled.querySelector('#products .flagship-toolbar a')?.getAttribute('href')).toBe('/projects');
     expect(compiled.querySelector('.hero__stats')?.textContent).toContain('JS → 22');
+    expect(compiled.querySelector('.hero__score')?.parentElement?.tagName).toBe('DD');
+    expect(compiled.querySelector('.side-toc')?.getAttribute('aria-label')).not.toBe(
+      compiled.querySelector('.nav__links')?.getAttribute('aria-label'),
+    );
 
     const expertise = compiled.querySelector('#expertise');
     expect(expertise?.getAttribute('aria-labelledby')).toBe('expertise-heading');

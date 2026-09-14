@@ -92,6 +92,8 @@
 // needed.
 .prefs__switch {
   flex-shrink: 0;
+  min-width: 3rem;
+  min-height: 2.75rem;
   padding: 0;
   border: none;
   background: none;
@@ -144,6 +146,7 @@
 }
 
 .prefs__theme-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -164,12 +167,23 @@
   color: var(--ink);
 }
 
-.prefs__theme-btn:focus-visible {
+.prefs__theme-btn:has(input:focus-visible) {
   outline: 2px solid var(--ice);
   outline-offset: 2px;
 }
 
+.prefs__theme-btn input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+}
+
 .prefs__theme-btn--active {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
   color: var(--ink);
   border-color: var(--ice);
 }

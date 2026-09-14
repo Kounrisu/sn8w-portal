@@ -133,7 +133,7 @@
 // ragged left edge.
 .bts__commit {
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto minmax(0, 1fr);
   gap: var(--space-2xs) var(--space-sm);
   align-items: baseline;
   padding-block: 0.45rem;
@@ -156,6 +156,8 @@
 }
 
 .bts__commit-subject {
+  min-width: 0;
+  overflow-wrap: anywhere;
   font-size: var(--text-sm);
   line-height: 1.5;
   color: var(--ink);
@@ -169,8 +171,10 @@
   // The time/sha pair moves above the subject instead of squeezing three
   // columns into a phone width.
   .bts__commit {
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
+
+  .bts__commit-sha { overflow-wrap: anywhere; }
 
   .bts__commit-subject {
     grid-column: 1 / -1;
