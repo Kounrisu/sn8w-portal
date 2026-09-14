@@ -28,7 +28,9 @@ function screenshot_dir(): string
 /** Deletes the file backing a stored screenshot path, if any. */
 function delete_screenshot_file(?string $screenshot): void
 {
-    if ($screenshot === null) {
+    // Packaged showroom assets are versioned and may be reused. Only this
+    // endpoint's own uploaded files can be physically removed.
+    if ($screenshot === null || preg_match('#^/api/uploads/screenshots/[a-zA-Z0-9_-]+\.(?:png|jpg|jpeg|webp)$#D', $screenshot) !== 1) {
         return;
     }
     $path = __DIR__ . '/../' . ltrim(parse_url($screenshot, PHP_URL_PATH) ?: '', '/');

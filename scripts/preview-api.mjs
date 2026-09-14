@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import { readFile } from 'node:fs/promises';
 
 // Local visual review uses only public catalogue data. No private endpoints
 // or mutations are forwarded to the live site.
@@ -35,7 +36,48 @@ createServer(async (request, response) => {
       'Content-Type': upstream.headers.get('content-type') || 'application/octet-stream',
       'Cache-Control': 'no-store',
     });
-    response.end(Buffer.from(await upstream.arrayBuffer()));
+    if (isCatalogue && upstream.ok && process.env.SHOWROOM_PREVIEW === '1') {
+      const catalog = JSON.parse(
+        await readFile(new URL('./showroom-preview.json', import.meta.url), 'utf8'),
+      );
+      const rows = await upstream.json();
+      for (const row of rows) row.showInShowcase = row.tier === 'flagship' && !!row.tagline.trim();
+      for (const [index, item] of catalog.entries()) {
+        let row = rows.find((row) => row.id === item.existingId);
+        if (!row) {
+          row = {
+            id: 1000 + index,
+            name: item.name,
+            category: lang === 'fr' ? item.categoryFr ?? item.category : item.category,
+            tagline: lang === 'fr' ? item.taglineFr ?? item.tagline : item.tagline,
+            tier: 'ecosystem',
+            status: item.status ?? 'prototype',
+            availability: 'inactive',
+            url: null,
+            repoUrl: null,
+            repoPrivate: false,
+            groupTitle: null,
+            mockup: null,
+            sortOrder: index + 10,
+            showInShowcase: false,
+          };
+          rows.push(row);
+        }
+        if (item.files.length) {
+          row.screenshot = item.files[0];
+          row.screenshots = item.files.slice(1);
+          if (item.existingId) row.showInShowcase = true;
+        }
+        if (item.existingId && item.tagline) {
+          row.category = lang === 'fr' ? item.categoryFr : item.category;
+          row.tagline = lang === 'fr' ? item.taglineFr : item.tagline;
+          row.status = 'in-development';
+        }
+      }
+      response.end(JSON.stringify(rows));
+    } else {
+      response.end(Buffer.from(await upstream.arrayBuffer()));
+    }
   } catch {
     response.writeHead(502, { 'Content-Type': 'application/json' });
     response.end(JSON.stringify({ error: 'Public catalogue unavailable.' }));

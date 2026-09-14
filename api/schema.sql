@@ -29,6 +29,8 @@ CREATE TABLE IF NOT EXISTS projects (
   repo_private TINYINT(1) NOT NULL DEFAULT 0 COMMENT 'When true, link to the GitHub profile + a mailto request instead of the repo itself',
   screenshot VARCHAR(255) NULL COMMENT 'Relative path to an uploaded screenshot, e.g. /api/uploads/screenshots/...',
   availability ENUM('active', 'inactive') NOT NULL DEFAULT 'active' COMMENT 'Whether the URL is currently reachable — independent of the maturity `status`',
+  screenshots TEXT NULL COMMENT 'JSON array of additional screenshot paths, in display order',
+  show_in_showcase TINYINT(1) NOT NULL DEFAULT 0,
   activation_requested_at TIMESTAMP NULL COMMENT 'Set when a visitor asks for an inactive project to be spun back up',
   sort_order INT NOT NULL DEFAULT 0,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -91,8 +93,8 @@ CREATE TABLE IF NOT EXISTS diary_entries (
 -- Seed the existing landing-page catalog so the site has real content on
 -- first deploy. Safe to edit afterwards from the admin panel — this only
 -- runs once since projects starts empty.
-INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, sort_order)
-SELECT * FROM (SELECT
+INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, sort_order, show_in_showcase)
+SELECT seed.*, IF(seed.tier = 'flagship', 1, 0) FROM (SELECT
   'flagship' AS tier, NULL AS group_title, 'inspector' AS mockup,
   'RGAA Dev Assistant' AS name, 'Developer & Accessibility Tools' AS category,
   'Live DOM inspection that turns RGAA and WCAG issues into fixes your team can actually ship.' AS tagline,

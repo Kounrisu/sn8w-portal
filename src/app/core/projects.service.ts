@@ -35,7 +35,7 @@ export class ProjectsService {
 
   readonly flagship = computed(() =>
     this.localized()
-      .filter((p) => p.tier === 'flagship' && p.tagline.trim().length > 0)
+      .filter((p) => p.showInShowcase ?? (p.tier === 'flagship' && p.tagline.trim().length > 0))
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
@@ -45,16 +45,16 @@ export class ProjectsService {
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
-  /**
-   * Ecosystem and lab projects that are still just an idea — merged into
-   * one section rather than two, and filtered to `concept` status only.
-   * Anything further along (prototype, in-development, live) either has a
-   * more prominent spot already or isn't ready to show yet; flip its
-   * status forward in admin once it earns a place here.
-   */
+  /** Legacy API compatibility. Migrated catalogs use the explicit showcase
+   * checkbox for every tier and never leak hidden entries into this section. */
   readonly explorations = computed(() =>
     this.localized()
-      .filter((p) => (p.tier === 'ecosystem' || p.tier === 'lab') && p.status === 'concept')
+      .filter(
+        (p) =>
+          p.showInShowcase === undefined &&
+          (p.tier === 'ecosystem' || p.tier === 'lab') &&
+          p.status === 'concept',
+      )
       .sort((a, b) => a.sortOrder - b.sortOrder),
   );
 
@@ -175,11 +175,7 @@ export class ProjectsService {
   /** Clears a pending activation request without changing availability. */
   async dismissActivationRequest(id: number): Promise<Project> {
     const updated = await firstValueFrom(
-      this.http.put<Project>(
-        this.baseUrl,
-        { activationRequestedAt: null },
-        { params: { id } },
-      ),
+      this.http.put<Project>(this.baseUrl, { activationRequestedAt: null }, { params: { id } }),
     );
     this.all.update((projects) => projects.map((p) => (p.id === id ? updated : p)));
     this.refreshLocalized();

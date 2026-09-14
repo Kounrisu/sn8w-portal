@@ -98,8 +98,8 @@ landing on these without a deliberate reason: a warm cream background with a
 high-contrast serif and a terracotta/dusty-rose accent, or a near-black
 background with one neon/bright accent — both are extremely common defaults,
 and the current "Lucky Squirrel" theme already sits close to the first one.
-Use an available design-review skill when useful. Do not require 21st generation
-or describe the site as generated with a tool the owner did not use.
+Use an available design-review skill when useful. Do not describe the site as
+generated with a tool the owner did not use.
 
 A colleague's from-scratch redesign proposal lives outside this repo at
 `../vlad-mycv/philippe/` (docs + a working Angular scaffold) — genuinely

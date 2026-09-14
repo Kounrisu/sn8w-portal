@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+button {
+  font: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-raised);
+  border-radius: 6px;
+}
+button:focus-visible {
+  outline: 3px solid var(--ice);
+  outline-offset: 4px;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.cover {
+  display: block;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+  text-align: left;
+}
+.cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: contain;
+  background: var(--surface-sunken);
+}
+.cover span {
+  display: block;
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+}
+.thumbnails {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding: 0.75rem 0.25rem;
+}
+.thumbnails button {
+  position: relative;
+  padding: 0;
+  flex: 0 0 96px;
+  overflow: hidden;
+}
+.thumbnails img {
+  display: block;
+  width: 96px;
+  height: 60px;
+  object-fit: cover;
+}
+.thumbnails span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--surface-raised);
+  padding: 0 0.4rem;
+  font-size: 0.75rem;
+}
+dialog {
+  box-sizing: border-box;
+  width: min(1280px, 94vw);
+  max-width: 94vw;
+  max-height: 94dvh;
+  padding: 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--bg);
+}
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.8);
+}
+.toolbar,
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.toolbar {
+  margin-bottom: 0.75rem;
+}
+.toolbar button,
+.controls button {
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+}
+.expanded {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72dvh;
+  object-fit: contain;
+}
+.controls {
+  margin-top: 0.75rem;
+}
+@media (max-width: 600px) {
+  dialog {
+    padding: 0.65rem;
+  }
+  .controls {
+    font-size: 0.8rem;
+  }
+}

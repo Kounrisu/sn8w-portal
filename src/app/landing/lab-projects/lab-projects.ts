@@ -6,6 +6,7 @@ import { ProjectsService } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { StackRevealDirective } from '../../core/stack-reveal.directive';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
+import { ProjectGallery } from '../project-gallery/project-gallery';
 
 /**
  * One section for anything still just an idea — merges what used to be two
@@ -16,7 +17,7 @@ import { SpotlightDirective } from '../../shared/spotlight.directive';
  */
 @Component({
   selector: 'sn8w-lab-projects',
-  imports: [StatusBadge, ProjectAvailability, RepoLink, SpotlightDirective],
+  imports: [StatusBadge, ProjectAvailability, RepoLink, SpotlightDirective, ProjectGallery],
   hostDirectives: [StackRevealDirective],
   templateUrl: './lab-projects.html',
   styleUrl: './lab-projects.scss',

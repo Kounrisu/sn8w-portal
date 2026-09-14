@@ -11,15 +11,13 @@
         @for (idea of projects.explorations(); track idea.id) {
           <li class="lab-item" sn8wSpotlight>
             <div class="lab-item__head">
-              @if (idea.screenshot) {
-                <img class="lab-item__thumb" [src]="idea.screenshot" alt="" />
-              }
               <div class="lab-item__info">
                 <span class="lab-item__name">{{ idea.name }}</span>
               </div>
               <sn8w-status-badge [status]="idea.status" />
             </div>
             <p class="lab-item__tagline">{{ idea.tagline }}</p>
+            <sn8w-project-gallery [project]="idea" />
             @if (idea.url || idea.repoUrl) {
               <div class="lab-item__links">
                 <sn8w-project-availability [project]="idea" />
