@@ -53,6 +53,8 @@ describe('App', () => {
     const headings = compiled.querySelectorAll('h1');
     expect(headings.length).toBe(1);
     expect(headings[0].textContent).toContain('Philippe Parmentier');
+    expect(compiled.querySelector('.nav__links a')?.getAttribute('href')).toBe('/#products');
+    expect(compiled.querySelector('#products .flagship-toolbar a')?.getAttribute('href')).toBe('/projects');
     expect(compiled.querySelector('.hero__stats')?.textContent).toContain('JS → 22');
 
     const expertise = compiled.querySelector('#expertise');
@@ -68,5 +70,13 @@ describe('App', () => {
     expect(compiled.querySelector('#contact .btn')?.getAttribute('href')).toBe(
       'mailto:kounrisu@gmail.com',
     );
+
+    await router.navigateByUrl('/plan-du-site');
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(Array.from(compiled.querySelectorAll('.sitemap__home a'), link => link.getAttribute('href'))).toEqual([
+      '/#products', '/#expertise', '/#studio', '/#contact',
+    ]);
+    expect(compiled.querySelectorAll('.sitemap a[href="/projects"]').length).toBe(1);
   });
 });
