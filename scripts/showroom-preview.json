@@ -1,0 +1,352 @@
+[
+  {
+    "folder": "07-my_server_infact_anacottest",
+    "name": "Healthcorp",
+    "slug": "healthcorp",
+    "existingId": 6,
+    "images": [
+      "healthcorp-portfolio",
+      "healthcorp-companies"
+    ],
+    "source": "https://risklens.sn8w.com — public simulated data",
+    "category": "Business analysis",
+    "categoryFr": "Analyse des entreprises",
+    "tagline": "Explore company financial statements, activity and credit risk through a demonstration interface using simulated data. This project connects my interest in economics and industry with the questions I encounter as the owner of a small business.",
+    "taglineFr": "Explorer les bilans, l’activité et le risque de crédit des entreprises à travers une interface de démonstration utilisant des données simulées. Ce projet fait le lien entre mon intérêt pour l’économie et l’industrie et les questions que je me pose en tant que gérant d’une EURL.",
+    "previousTagline": "Credit-risk rating platform.",
+    "files": [
+      "/images/projects/healthcorp/healthcorp-portfolio.webp",
+      "/images/projects/healthcorp/healthcorp-companies.webp"
+    ]
+  },
+  {
+    "folder": "03-stock-events",
+    "name": "StockTracker Personal",
+    "slug": "stocks",
+    "existingId": 2,
+    "images": [
+      "stocks-dashboard",
+      "stocks-holdings"
+    ],
+    "source": "https://lucky-stocks.sn8w.com — public demo account",
+    "category": "Personal finance",
+    "categoryFr": "Finances personnelles",
+    "tagline": "Bring investment accounts together in one dashboard to follow holdings and performance. A tool I am developing for my own use, driven by my interest in economics, companies and industry.",
+    "taglineFr": "Réunir ses comptes d’investissement dans un même tableau de bord pour suivre ses positions et leur évolution. Un outil que je développe pour mon propre usage, nourri par mon intérêt pour l’économie, les entreprises et l’industrie.",
+    "previousTagline": "One dashboard for every account — PEA, PER, CTO — with the KPIs that matter.",
+    "files": [
+      "/images/projects/stocks/stocks-dashboard.webp",
+      "/images/projects/stocks/stocks-holdings.webp"
+    ]
+  },
+  {
+    "folder": "06-lotokarma",
+    "name": "lotoKarma",
+    "slug": "lotokarma",
+    "existingId": 10,
+    "images": [
+      "lotokarma-home",
+      "lotokarma-euromillions"
+    ],
+    "source": "https://lotokarma.sn8w.com — home and grid generator",
+    "category": "Playful simulations",
+    "categoryFr": "Simulations ludiques",
+    "tagline": "Would your birthday have brought you luck? Generate numbers inspired by your birth date or numerology and see whether they would have won in past draws. Explore the estimated winnings, ticket costs and net result of playing the same numbers at every draw in the available archives. Then compare with an estimate of investing the same budget in an S&P 500 ETF. A playful look at past results, with no prediction of future draws.",
+    "taglineFr": "Votre date de naissance vous aurait-elle porté chance ? Générez vos numéros à partir de votre naissance ou de la numérologie et découvrez s’ils auraient déjà gagné. Explorez les gains estimés, le coût des tickets et le bilan en rejouant la même grille à chaque tirage des archives disponibles. Et si vous aviez investi ce budget dans un ETF S&P 500 ? Comparez avec une estimation. Une façon ludique d’explorer le passé, sans prédire les prochains tirages.",
+    "previousTagline": "A modern web app for FDJ lottery players — Loto, EuroMillions and Crescendo. lotoKarma lets you generate number grids, check them against the complete draw history, browse the archives, and analyze frequency statistics to refine your choices.",
+    "files": [
+      "/images/projects/lotokarma/lotokarma-home.webp",
+      "/images/projects/lotokarma/lotokarma-euromillions.webp"
+    ]
+  },
+  {
+    "folder": "09-lenormand",
+    "name": "Lenormand",
+    "slug": "lenormand",
+    "existingId": 17,
+    "images": [
+      "lenormand-deck",
+      "lenormand-cards"
+    ],
+    "source": "https://lenormand.sn8w.com — deck and card selection",
+    "files": [
+      "/images/projects/lenormand/lenormand-deck.webp",
+      "/images/projects/lenormand/lenormand-cards.webp"
+    ]
+  },
+  {
+    "folder": "10-kanji",
+    "name": "Kanji",
+    "slug": "kanji",
+    "existingId": 3,
+    "images": [
+      "kanji-home",
+      "kanji-list"
+    ],
+    "source": "https://kanji.sn8w.com — animator and kanji list",
+    "category": "Language learning",
+    "tagline": "Learning Japanese, but intimidated by kanji? Their many strokes can look daunting at first. Explore the characters and watch them drawn one stroke at a time, at your own pace. A visual, playful way to make kanji more approachable and take your first steps with confidence.",
+    "categoryFr": "Apprentissage des langues",
+    "taglineFr": "Envie d’apprendre le japonais, mais les kanjis vous intimident ? Avec leurs nombreux traits, ils peuvent sembler impossibles à retenir. Explorez les caractères et regardez-les se dessiner trait par trait, à votre rythme. Une approche visuelle et ludique pour les rendre plus familiers et oser se lancer.",
+    "previousTagline": "Explore Japanese characters and watch them drawn stroke by stroke.",
+    "files": [
+      "/images/projects/kanji/kanji-home.webp",
+      "/images/projects/kanji/kanji-list.webp"
+    ]
+  },
+  {
+    "folder": "21-books",
+    "name": "books",
+    "slug": "books",
+    "existingId": 18,
+    "images": [
+      "books-library",
+      "books-locations"
+    ],
+    "source": "https://books.sn8w.com — public demo library",
+    "category": "Personal library",
+    "tagline": "Keep track of your books, find where they are stored and follow your reading. I love books: this application starts with a practical need to organize my own library and enjoy it more.",
+    "categoryFr": "Bibliothèque personnelle",
+    "taglineFr": "Retrouver ses livres, savoir où ils sont rangés et suivre ses lectures. J’aime beaucoup les livres : cette application part d’un besoin concret, organiser ma propre bibliothèque pour mieux en profiter.",
+    "previousTagline": "Catalog books, track reading and organize a personal library by location.",
+    "files": [
+      "/images/projects/books/books-library.webp",
+      "/images/projects/books/books-locations.webp"
+    ]
+  },
+  {
+    "folder": "08-sn8w-portal",
+    "name": "sn8w Portal",
+    "slug": "sn8w-portal",
+    "images": [
+      "portal-home",
+      "portal-projects"
+    ],
+    "category": "Portfolio",
+    "tagline": "Bilingual Angular CV and project showroom with a PHP and MySQL administration area.",
+    "source": "Local portal preview",
+    "files": [
+      "/images/projects/sn8w-portal/portal-home.webp",
+      "/images/projects/sn8w-portal/portal-projects.webp"
+    ]
+  },
+  {
+    "folder": "11-new_cv_site",
+    "name": "CV redesign study",
+    "slug": "cv-redesign",
+    "images": [
+      "cv-redesign-home",
+      "cv-redesign-light"
+    ],
+    "category": "Design exploration",
+    "tagline": "Alternative Angular portfolio design and accessibility-focused CV presentation.",
+    "source": "Local design study",
+    "files": [
+      "/images/projects/cv-redesign/cv-redesign-home.webp",
+      "/images/projects/cv-redesign/cv-redesign-light.webp"
+    ]
+  },
+  {
+    "folder": "12-devfest-manager",
+    "name": "Devfest Manager",
+    "slug": "devfest",
+    "images": [
+      "devfest-events",
+      "devfest-admin"
+    ],
+    "category": "Learning project",
+    "tagline": "Angular event-management exercise with event cards and administration screens.",
+    "source": "Local exercise; placeholder event cards",
+    "files": [
+      "/images/projects/devfest/devfest-events.webp",
+      "/images/projects/devfest/devfest-admin.webp"
+    ]
+  },
+  {
+    "folder": "02-gaetan-rouzies-4h-course",
+    "name": "Prompt Hub — Angular course",
+    "slug": "prompt-hub",
+    "images": [
+      "prompt-hub-home"
+    ],
+    "category": "Learning project",
+    "tagline": "Angular course workspace for discovering and sharing prompts.",
+    "source": "Course starter branch; inspect before featuring",
+    "files": [
+      "/images/projects/prompt-hub/prompt-hub-home.webp"
+    ]
+  },
+  {
+    "folder": "13-bastion-angular",
+    "name": "Bastion Angular",
+    "slug": "bastion",
+    "images": [
+      "bastion-starter"
+    ],
+    "category": "Learning project",
+    "tagline": "Angular practice workspace with a starter application.",
+    "source": "Default Angular starter page; no distinct product interface",
+    "files": [
+      "/images/projects/bastion/bastion-starter.webp"
+    ]
+  },
+  {
+    "folder": "14-repototxt",
+    "name": "Repo to Text — local workspace",
+    "slug": "repo-to-text",
+    "images": [
+      "repo-to-text-github",
+      "repo-to-text-local"
+    ],
+    "category": "Reference tool",
+    "tagline": "Local checkout of a repository-to-text tool for preparing code context.",
+    "source": "Third-party tool by abinthomasonline; do not present as original authorship",
+    "files": [
+      "/images/projects/repo-to-text/repo-to-text-github.webp",
+      "/images/projects/repo-to-text/repo-to-text-local.webp"
+    ]
+  },
+  {
+    "folder": "15-angular-wow",
+    "name": "WoW Character Viewer",
+    "slug": "wow",
+    "images": [
+      "wow-login"
+    ],
+    "category": "Learning project",
+    "tagline": "Angular character-viewer project with a Battle.net sign-in flow.",
+    "source": "Local app; character screens require Battle.net authorization",
+    "files": [
+      "/images/projects/wow/wow-login.webp"
+    ]
+  },
+  {
+    "folder": "16-practices",
+    "name": "Monster Dex — practice",
+    "slug": "monster-dex",
+    "images": [
+      "monster-dex-list"
+    ],
+    "category": "Learning project",
+    "tagline": "Angular practice application for displaying a collection of monsters.",
+    "source": "Local practice app",
+    "files": [
+      "/images/projects/monster-dex/monster-dex-list.webp"
+    ]
+  },
+  {
+    "folder": "18-clock-weather-widget",
+    "name": "Clock and Weather Widget",
+    "slug": "weather",
+    "images": [
+      "weather-gallery",
+      "weather-mobile"
+    ],
+    "category": "UI component",
+    "tagline": "Clock and weather component with day, night and weather-state previews.",
+    "source": "Local gallery uses explicit preview data",
+    "files": [
+      "/images/projects/weather/weather-gallery.webp",
+      "/images/projects/weather/weather-mobile.webp"
+    ]
+  },
+  {
+    "folder": "01-angular-fundamentals-lessons",
+    "name": "Angular Fundamentals Lessons",
+    "slug": "angular-lessons",
+    "images": [
+      "angular-forms"
+    ],
+    "category": "Learning workspace",
+    "tagline": "Exercises covering Angular components, routing, forms and signals.",
+    "source": "Multi-app course workspace; individual lessons are not separate products",
+    "files": [
+      "/images/projects/angular-lessons/angular-forms.webp"
+    ]
+  },
+  {
+    "folder": "17-frontendmaster",
+    "name": "Frontend Masters — learning workspace",
+    "slug": "frontend-masters",
+    "images": [],
+    "category": "Learning workspace",
+    "tagline": "Course notes and exercises in TypeScript, Java and Spring Boot.",
+    "source": "Course material; no single showcase web app",
+    "files": []
+  },
+  {
+    "folder": "19-tanaguru",
+    "name": "Tanaguru — accessibility reference",
+    "slug": "tanaguru",
+    "images": [],
+    "category": "Accessibility reference",
+    "tagline": "Local checkout of the Tanaguru web accessibility evaluation extension.",
+    "source": "Third-party browser extension, not a standalone web app or original product",
+    "files": []
+  },
+  {
+    "folder": "20-access42",
+    "name": "Access42 — accessibility training",
+    "slug": "access42",
+    "images": [],
+    "category": "Learning workspace",
+    "tagline": "Accessibility training materials and HTML interface examples.",
+    "source": "Training material; not an original product",
+    "files": []
+  },
+  {
+    "folder": "AI_template_suggestions",
+    "name": "AI Project Planning Template",
+    "slug": "ai-template",
+    "images": [],
+    "category": "Documentation tool",
+    "tagline": "Reusable documentation structure for software, product and design projects.",
+    "source": "Documentation-only project",
+    "files": []
+  },
+  {
+    "folder": "photo-book-scanner",
+    "name": "Photo Book Scanner",
+    "slug": "photo-book-scanner",
+    "images": [],
+    "category": "Data processing and image analysis",
+    "categoryFr": "Traitement des données et analyse d’images",
+    "tagline": "Find book covers among the images in a personal photo library. This Python project uses a locally run image model to identify likely covers and prepare a catalog. For a library of, for example, 50,000 photos, I want to compare local processing with online analysis through services such as Claude or ChatGPT: cost, accuracy, processing time and privacy. The aim is to choose the right tool for the volume and the need.",
+    "taglineFr": "Retrouver les couvertures de livres parmi les images de sa photothèque. Ce projet Python utilise un modèle d’analyse d’images exécuté localement pour repérer les couvertures probables et préparer un catalogue. À l’échelle d’une photothèque de 50 000 photos, par exemple, je souhaite comparer ce traitement à une analyse en ligne avec Claude ou ChatGPT : coût, précision, temps de calcul et confidentialité. L’objectif est de choisir l’outil adapté au volume et au besoin.",
+    "source": "Local Python and CLIP image-classification code inspected; 50,000 photos is an illustrative workload, not a measured benchmark. No browser interface.",
+    "files": []
+  },
+  {
+    "folder": "05-ultimatecourses",
+    "name": "Ultimate Courses — workspace",
+    "slug": "ultimate-courses",
+    "images": [],
+    "category": "Learning workspace",
+    "tagline": "Reserved workspace for course exercises.",
+    "source": "Empty folder at inventory time",
+    "files": []
+  },
+  {
+    "folder": "dev-project-sandbox",
+    "name": "Development sandbox",
+    "slug": "sandbox",
+    "images": [],
+    "category": "Experiment workspace",
+    "tagline": "Reserved workspace for development experiments.",
+    "source": "Empty folder at inventory time",
+    "files": []
+  },
+  {
+    "folder": null,
+    "name": "Fighto",
+    "slug": "fighto",
+    "status": "concept",
+    "images": [],
+    "category": "Time, goals and health habits",
+    "categoryFr": "Temps, objectifs et habitudes de santé",
+    "tagline": "Make room for what matters: organize your time, move towards your goals and protect your focus. Fighto is a planned application bringing these needs together with food habits, diabetes monitoring and physical activity — exercise, with a particular focus on tracking walks. The aim is to follow your progress and build a more balanced, active daily life.",
+    "taglineFr": "Faire de la place à ce qui compte : organiser son temps, avancer vers ses objectifs et préserver sa concentration. Fighto est un projet d’application pour réunir ces besoins avec le suivi de l’alimentation, du diabète et de l’activité physique, avec des exercices et une attention particulière au suivi de la marche. L’idée : voir ses progrès et construire un quotidien plus équilibré et plus actif.",
+    "source": "Planned application described by the owner; no project folder, implementation or screenshots yet",
+    "files": []
+  }
+]

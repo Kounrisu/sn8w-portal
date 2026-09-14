@@ -4,6 +4,9 @@
       <p class="kicker">{{ i18n.dict().flagshipSection.kicker }}</p>
       <h2 id="products-heading" class="section-title">{{ i18n.dict().flagshipSection.title }}</h2>
       <p class="section-lede">{{ i18n.dict().flagshipSection.lede }}</p>
+      @if (i18n.dict().flagshipSection.learningNote; as note) {
+        <p class="section-lede">{{ note }}</p>
+      }
     </div>
     <div class="flagship-list">
       @for (product of projects.flagship(); track product.id; let i = $index) {
@@ -21,41 +24,7 @@
               <sn8w-repo-link [project]="product" />
             </div>
           </div>
-          @if (product.screenshot) {
-            <div class="flagship__visual">
-              @if (product.url) {
-                <a
-                  class="flagship__screenshot-link"
-                  [href]="product.url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    class="flagship__screenshot"
-                    [src]="product.screenshot"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    width="1440"
-                    height="900"
-                  />
-                  <span class="visually-hidden"
-                    >{{ i18n.dict().projectCard.visit }}: {{ product.name }}</span
-                  >
-                </a>
-              } @else {
-                <img
-                  class="flagship__screenshot"
-                  [src]="product.screenshot"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  width="1440"
-                  height="900"
-                />
-              }
-            </div>
-          }
+          <sn8w-project-gallery class="flagship__visual" [project]="product" />
         </article>
       }
     </div>

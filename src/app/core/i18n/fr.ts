@@ -139,7 +139,8 @@ export const fr: Dict = {
   flagshipSection: {
     kicker: 'Projets sélectionnés',
     title: "Une sélection de projets",
-    lede: "Des applications personnelles, en finance et au-delà. Interfaces, code source et état d'avancement : chaque projet se découvre concrètement.",
+    lede: "Ces applications personnelles sont toutes en cours de développement. Je pars des usages, avec une attention portée à la simplicité, aux interfaces adaptées aux différents écrans et à l’accessibilité. Certaines sont ludiques, d’autres répondent à mes propres besoins. Elles reflètent mon goût pour les livres, l’économie, l’industrie, la création et l’artisanat.",
+    learningNote: "Ces projets me permettent d’explorer le frontend, le backend et le traitement des données. Je souhaite approfondir Python, Java et SQL, travailler avec PostgreSQL, apprendre React en complément d’Angular et progresser sur les conteneurs et le DevOps. Je veux aussi renforcer mes pratiques de qualité du code et de sécurité : écrire un code lisible et maintenable, vérifier les changements et protéger les données. J’expérimente les outils d’IA pour concevoir, corriger, améliorer, tester et déployer, en cherchant un workflow fiable qui évite de gaspiller du temps et des tokens. Cela passe aussi par la comparaison entre traitement local et services en ligne, selon le coût, la qualité des résultats, le temps de calcul et la confidentialité. Même une idée simple peut réserver de vrais défis — et la satisfaction d’apprendre en construisant quelque chose d’utile.",
     followBuild: 'Suivre sur GitHub',
   },
   status: {

@@ -2,7 +2,12 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
-import { DragDropModule, moveItemInArray, type CdkDrag, type CdkDragDrop } from '@angular/cdk/drag-drop';
+import {
+  DragDropModule,
+  moveItemInArray,
+  type CdkDrag,
+  type CdkDragDrop,
+} from '@angular/cdk/drag-drop';
 import {
   FLAGSHIP_MOCKUPS,
   PRODUCT_STATUSES,
@@ -11,9 +16,16 @@ import {
   ProjectsService,
 } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
-import type { FlagshipMockup, Project, ProjectInput, ProductStatus, ProductTier } from '../../core/models';
+import type {
+  FlagshipMockup,
+  Project,
+  ProjectInput,
+  ProductStatus,
+  ProductTier,
+} from '../../core/models';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { ExternalLinkDirective } from '../../shared/external-link.directive';
+import { GALLERY_COPY } from '../../landing/project-gallery/project-gallery';
 
 const EMPTY_FORM: ProjectInput = {
   tier: 'ecosystem',
@@ -28,6 +40,8 @@ const EMPTY_FORM: ProjectInput = {
   repoPrivate: false,
   availability: 'active',
   sortOrder: 0,
+  screenshots: [],
+  showInShowcase: false,
 };
 
 @Component({
@@ -53,6 +67,24 @@ export class AdminPage {
   protected readonly form = signal<ProjectInput>({ ...EMPTY_FORM });
   protected readonly saving = signal(false);
   protected readonly uploadingScreenshot = signal(false);
+  protected readonly galleryPaths = signal('');
+  protected galleryCopy() {
+    return GALLERY_COPY[this.i18n.lang()];
+  }
+  protected showcaseLabel(): string {
+    return this.i18n.lang() === 'fr' ? 'Afficher dans la vitrine' : 'Show in showcase';
+  }
+  protected isShown(project: Project): boolean {
+    return project.showInShowcase ?? (project.tier === 'flagship' && !!project.tagline.trim());
+  }
+  protected async toggleShowcase(project: Project): Promise<void> {
+    try {
+      await this.projects.update(project.id, { showInShowcase: !this.isShown(project) });
+      this.notify(this.i18n.dict().admin.saved);
+    } catch {
+      this.notify(this.i18n.dict().common.error);
+    }
+  }
 
   protected displayUrl(url: string): string {
     return url.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -112,7 +144,11 @@ export class AdminPage {
   protected canMoveDown(project: Project): boolean {
     const list = this.projects.list();
     const index = list.findIndex((p) => p.id === project.id);
-    return index !== -1 && index < list.length - 1 && this.groupKey(list[index + 1]) === this.groupKey(project);
+    return (
+      index !== -1 &&
+      index < list.length - 1 &&
+      this.groupKey(list[index + 1]) === this.groupKey(project)
+    );
   }
 
   protected async moveUp(project: Project): Promise<void> {
@@ -175,6 +211,7 @@ export class AdminPage {
   }
 
   protected openCreate(): void {
+    this.galleryPaths.set('');
     this.editingId.set(null);
     this.editingProject.set(null);
     this.form.set({ ...EMPTY_FORM });
@@ -182,6 +219,7 @@ export class AdminPage {
   }
 
   protected openEdit(project: Project): void {
+    this.galleryPaths.set((project.screenshots ?? []).join('\n'));
     this.editingId.set(project.id);
     this.editingProject.set(project);
     this.form.set({
@@ -197,6 +235,9 @@ export class AdminPage {
       repoPrivate: project.repoPrivate,
       availability: project.availability,
       sortOrder: project.sortOrder,
+      screenshots: project.screenshots ?? [],
+      showInShowcase:
+        project.showInShowcase ?? (project.tier === 'flagship' && !!project.tagline.trim()),
     });
     this.formOpen.set(true);
   }
@@ -223,6 +264,10 @@ export class AdminPage {
       const value = this.form();
       const input: ProjectInput = {
         ...value,
+        screenshots: this.galleryPaths()
+          .split(/\r?\n/)
+          .map((path) => path.trim())
+          .filter(Boolean),
         groupTitle: value.tier === 'ecosystem' ? value.groupTitle || null : null,
         mockup: value.tier === 'flagship' ? (value.mockup as FlagshipMockup | null) : null,
         url: value.url || null,

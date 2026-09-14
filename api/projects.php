@@ -26,6 +26,24 @@ function validate_project_input(array $body, bool $partial = false): array
 {
     $errors = [];
     $fields = [];
+    if (array_key_exists('showInShowcase', $body)) {
+        if (!is_bool($body['showInShowcase'])) json_error('showInShowcase must be boolean', 422);
+        $fields['show_in_showcase'] = $body['showInShowcase'] ? 1 : 0;
+    }
+
+    if (array_key_exists('screenshots', $body)) {
+        $images = $body['screenshots'];
+        if (!is_array($images) || !array_is_list($images) || count($images) > 12) {
+            json_error('screenshots must be a list of up to 12 image paths', 422);
+        }
+        foreach ($images as $image) {
+            if (!is_string($image) || strlen($image) > 255 ||
+                preg_match('#^/(?:images/projects|api/uploads/screenshots)/[a-zA-Z0-9/_-]+\.(?:png|jpg|jpeg|webp)$#D', $image) !== 1) {
+                json_error('Screenshot paths must be local PNG, JPEG or WebP images', 422);
+            }
+        }
+        $fields['screenshots'] = json_encode(array_values(array_unique($images)), JSON_THROW_ON_ERROR);
+    }
 
     if (!$partial || array_key_exists('tier', $body)) {
         $tier = $body['tier'] ?? null;
@@ -158,10 +176,12 @@ require_auth();
 
 if ($method === 'POST') {
     $fields = validate_project_input(json_body(), partial: false);
+    $fields['screenshots'] ??= '[]';
+    $fields['show_in_showcase'] ??= 0;
 
     $stmt = db()->prepare(
-        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order)
-         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order)'
+        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order, screenshots, show_in_showcase)
+         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order, :screenshots, :show_in_showcase)'
     );
     $stmt->execute($fields);
 

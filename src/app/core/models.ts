@@ -17,15 +17,14 @@ export interface Project {
   readonly repoUrl: string | null;
   readonly repoPrivate: boolean;
   readonly screenshot: string | null;
+  readonly screenshots?: readonly string[];
+  readonly showInShowcase?: boolean;
   readonly availability: ProjectAvailability;
   readonly activationRequestedAt: string | null;
   readonly sortOrder: number;
 }
 
-export type ProjectInput = Omit<
-  Project,
-  'id' | 'screenshot' | 'activationRequestedAt'
->;
+export type ProjectInput = Omit<Project, 'id' | 'screenshot' | 'activationRequestedAt'>;
 
 export type TodoStatus = 'todo' | 'in_progress' | 'done';
 export type TodoPriority = 'low' | 'medium' | 'high';

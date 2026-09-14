@@ -21,6 +21,7 @@ function project_row_to_json(array $row, bool $includePrivate = false): array
         'repoUrl' => $row['repo_url'],
         'repoPrivate' => false,
         'screenshot' => $row['screenshot'],
+        'screenshots' => json_decode($row['screenshots'] ?? '[]', true) ?: [],
         'availability' => $row['availability'],
         'activationRequestedAt' => null,
         'sortOrder' => (int) $row['sort_order'],
@@ -31,5 +32,8 @@ function project_row_to_json(array $row, bool $includePrivate = false): array
         $json['activationRequestedAt'] = $row['activation_requested_at'];
     }
 
+    if (isset($row['show_in_showcase'])) {
+        $json['showInShowcase'] = (bool) $row['show_in_showcase'];
+    }
     return $json;
 }

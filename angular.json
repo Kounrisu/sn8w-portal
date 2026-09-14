@@ -24,6 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              { "glob": "**/*.webp", "input": "docs/images/projects", "output": "images/projects" },
               {
                 "glob": "**/*",
                 "input": "public"

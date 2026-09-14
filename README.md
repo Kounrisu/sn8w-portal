@@ -4,6 +4,8 @@ The site and small private toolkit for [www.sn8w.com](https://www.sn8w.com): a p
 
 See [SPEC.md](SPEC.md) for the original design brief this started from. This README describes what actually got built, which has grown well past that brief — read this first if you're picking the project back up.
 
+Screenshot showroom update: see [rollout and admin instructions](docs/showroom-rollout.md) and the [project capture inventory](docs/project-screenshot-inventory.md). The gallery uses real screenshots, separate app links, and an explicit visibility checkbox per project. Production requires migrations 007 and 008 in the documented order.
+
 ## What's here
 
 - **`/`** — public landing page. Flagship products, ecosystem, and lab sections, all sourced live from the `projects` table via the PHP API. Available in English and French (switcher in the nav), and in two visual themes — "Night Sky" (dark, default) and "Lucky Squirrel" (warm, sakura-branch hero photo, falling-petal ambient canvas) — switchable in the nav, persisted per-browser.

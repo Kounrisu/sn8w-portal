@@ -78,6 +78,7 @@ export interface Dict {
     kicker: string;
     title: string;
     lede: string;
+    learningNote?: string;
     followBuild: string;
   };
   status: {
@@ -476,7 +477,8 @@ export const en: Dict = {
   flagshipSection: {
     kicker: 'Selected projects',
     title: "Selected projects",
-    lede: "Personal applications in finance and beyond. Explore the interfaces, source code and current development status.",
+    lede: "These personal applications are all works in progress. I start with people's needs, paying attention to usability, layouts that adapt to different screens and accessibility. Some projects are playful; others serve my own needs. They reflect my interests in books, economics, industry, making things and craftsmanship.",
+    learningNote: "These projects let me explore frontend, backend and data processing. I want to deepen my knowledge of Python, Java and SQL, work with PostgreSQL, learn React alongside Angular, and develop my skills with containers and DevOps. I also want to strengthen my code quality and security practices: writing readable, maintainable code, checking changes and protecting data. I experiment with AI tools throughout design, fixes, improvements, testing and deployment, aiming for a reliable workflow with less wasted time and tokens. This also means comparing local processing with online services according to cost, result quality, processing time and privacy. Even a simple idea can bring real challenges — and the satisfaction of learning by making something useful.",
     followBuild: 'Follow along on GitHub',
   },
   status: {
