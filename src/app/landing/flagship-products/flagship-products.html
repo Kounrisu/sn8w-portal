@@ -8,25 +8,13 @@
         <p class="section-lede">{{ note }}</p>
       }
     </div>
+    <sn8w-project-count [count]="projects.flagship().length" [total]="projects.visible().length" [label]="copy().shown" />
     <div class="flagship-list">
       @for (product of projects.flagship(); track product.id; let i = $index) {
-        <article class="flagship" snStackReveal>
-          <div class="flagship__copy">
-            <span class="flagship__index" aria-hidden="true">{{
-              (i + 1).toString().padStart(2, '0')
-            }}</span>
-            <p class="flagship__category">{{ product.category }}</p>
-            <h3 class="flagship__name">{{ product.name }}</h3>
-            <p class="flagship__tagline">{{ product.tagline }}</p>
-            <div class="flagship__meta">
-              <sn8w-status-badge [status]="product.status" />
-              <sn8w-project-availability [project]="product" />
-              <sn8w-repo-link [project]="product" />
-            </div>
-          </div>
-          <sn8w-project-gallery class="flagship__visual" [project]="product" />
-        </article>
+        <sn8w-project-card [project]="product" [index]="i" />
       }
     </div>
+    <a class="btn btn--secondary" routerLink="/projects">{{ copy().viewAll }} →</a>
   </div>
 </section>
+

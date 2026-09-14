@@ -3,6 +3,7 @@ export type ProductTier = 'flagship' | 'ecosystem' | 'lab';
 export type FlagshipMockup = 'inspector' | 'dashboard' | 'creative';
 /** Whether the project's URL is currently reachable — independent of maturity `status`. */
 export type ProjectAvailability = 'active' | 'inactive';
+export type ProjectTheme = 'finance' | 'health' | 'learning' | 'games' | 'utilities' | 'developer-tools' | 'sandbox';
 
 export interface Project {
   readonly id: number;
@@ -19,6 +20,8 @@ export interface Project {
   readonly screenshot: string | null;
   readonly screenshots?: readonly string[];
   readonly showInShowcase?: boolean;
+  readonly featuredOnHome?: boolean;
+  readonly projectTheme?: ProjectTheme;
   readonly availability: ProjectAvailability;
   readonly activationRequestedAt: string | null;
   readonly sortOrder: number;

@@ -26,6 +26,7 @@ import type {
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { ExternalLinkDirective } from '../../shared/external-link.directive';
 import { GALLERY_COPY } from '../../landing/project-gallery/project-gallery';
+import { CATALOG_COPY, PROJECT_THEMES, isProjectVisible, projectTheme } from '../../core/project-catalog';
 
 const EMPTY_FORM: ProjectInput = {
   tier: 'ecosystem',
@@ -42,6 +43,8 @@ const EMPTY_FORM: ProjectInput = {
   sortOrder: 0,
   screenshots: [],
   showInShowcase: false,
+  featuredOnHome: false,
+  projectTheme: 'utilities',
 };
 
 @Component({
@@ -68,21 +71,36 @@ export class AdminPage {
   protected readonly saving = signal(false);
   protected readonly uploadingScreenshot = signal(false);
   protected readonly galleryPaths = signal('');
+  protected readonly themes = PROJECT_THEMES;
+  protected readonly pendingPresentation = signal<readonly number[]>([]);
+  protected readonly themeOf = projectTheme;
+  protected catalogCopy() { return CATALOG_COPY[this.i18n.lang()]; }
   protected galleryCopy() {
     return GALLERY_COPY[this.i18n.lang()];
   }
   protected showcaseLabel(): string {
-    return this.i18n.lang() === 'fr' ? 'Afficher dans la vitrine' : 'Show in showcase';
+    return this.catalogCopy().visible;
   }
   protected isShown(project: Project): boolean {
-    return project.showInShowcase ?? (project.tier === 'flagship' && !!project.tagline.trim());
+    return isProjectVisible(project);
   }
+  protected isFeatured(project: Project): boolean { return project.featuredOnHome ?? this.isShown(project); }
   protected async toggleShowcase(project: Project): Promise<void> {
+    await this.updatePresentation(project, { showInShowcase: !this.isShown(project) });
+  }
+  protected async toggleFeatured(project: Project): Promise<void> {
+    await this.updatePresentation(project, { featuredOnHome: !this.isFeatured(project) });
+  }
+  protected async updatePresentation(project: Project, fields: Partial<ProjectInput>): Promise<void> {
+    if (this.pendingPresentation().includes(project.id)) return;
+    this.pendingPresentation.update(ids => [...ids, project.id]);
     try {
-      await this.projects.update(project.id, { showInShowcase: !this.isShown(project) });
+      await this.projects.update(project.id, fields);
       this.notify(this.i18n.dict().admin.saved);
     } catch {
       this.notify(this.i18n.dict().common.error);
+    } finally {
+      this.pendingPresentation.update(ids => ids.filter(id => id !== project.id));
     }
   }
 
@@ -236,6 +254,8 @@ export class AdminPage {
       availability: project.availability,
       sortOrder: project.sortOrder,
       screenshots: project.screenshots ?? [],
+      featuredOnHome: this.isFeatured(project),
+      projectTheme: projectTheme(project),
       showInShowcase:
         project.showInShowcase ?? (project.tier === 'flagship' && !!project.tagline.trim()),
     });
