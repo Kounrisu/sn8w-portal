@@ -7,6 +7,29 @@
 
   <section class="prefs__group prefs__group--column" sn8wSpotlight>
     <div class="prefs__group-text">
+      <h2>{{ i18n.dict().preferences.motionLabel }}</h2>
+      <p>{{ i18n.dict().preferences.motionHint }}</p>
+    </div>
+    <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.motionLabel">
+      <label
+        class="prefs__theme-btn"
+        [class.prefs__theme-btn--active]="prefs.motion() === 'system'"
+      >
+        <input type="radio" name="motion" value="system" [checked]="prefs.motion() === 'system'" (change)="prefs.setMotion('system')" />
+        {{ i18n.dict().preferences.motionSystem }}
+      </label>
+      <label
+        class="prefs__theme-btn"
+        [class.prefs__theme-btn--active]="prefs.motion() === 'reduced'"
+      >
+        <input type="radio" name="motion" value="reduced" [checked]="prefs.motion() === 'reduced'" (change)="prefs.setMotion('reduced')" />
+        {{ i18n.dict().preferences.motionReduced }}
+      </label>
+    </div>
+  </section>
+
+  <section class="prefs__group prefs__group--column" sn8wSpotlight>
+    <div class="prefs__group-text">
       <h2>{{ i18n.dict().preferences.fontSizeLabel }}</h2>
       <p>{{ i18n.dict().preferences.fontSizeHint }}</p>
     </div>
@@ -36,6 +59,7 @@
       class="prefs__switch"
       [class.prefs__switch--on]="prefs.boldText()"
       [attr.aria-pressed]="prefs.boldText()"
+      [attr.aria-label]="i18n.dict().preferences.boldTextLabel"
       (click)="prefs.setBoldText(!prefs.boldText())"
     >
       <span class="prefs__switch-track"><span class="prefs__switch-thumb"></span></span>
@@ -49,16 +73,13 @@
     </div>
     <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.dyslexicFontLabel">
       @for (choice of fontChoices; track choice) {
-        <button
-          type="button"
+        <label
           class="prefs__theme-btn"
           [class.prefs__theme-btn--active]="prefs.dyslexicFont() === choice"
-          role="radio"
-          [attr.aria-checked]="prefs.dyslexicFont() === choice"
-          (click)="prefs.setDyslexicFont(choice)"
         >
+          <input type="radio" name="reading-font" [value]="choice" [checked]="prefs.dyslexicFont() === choice" (change)="prefs.setDyslexicFont(choice)" />
           {{ fontChoiceLabel(choice) }}
-        </button>
+        </label>
       }
     </div>
   </section>
@@ -118,49 +139,19 @@
     </div>
     <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.themeLabel">
       @for (t of themes; track t) {
-        <button
-          type="button"
+        <label
           class="prefs__theme-btn"
           [class.prefs__theme-btn--active]="theme.theme() === t"
-          role="radio"
-          [attr.aria-checked]="theme.theme() === t"
-          (click)="theme.setTheme(t)"
         >
+          <input type="radio" name="color-theme" [value]="t" [checked]="theme.theme() === t" (change)="theme.setTheme(t)" />
           <span class="prefs__theme-swatch" [class]="'prefs__theme-swatch--' + t" aria-hidden="true"></span>
           {{ themeLabel(t) }}
-        </button>
+        </label>
       }
     </div>
   </section>
 
-  <section class="prefs__group prefs__group--column" sn8wSpotlight>
-    <div class="prefs__group-text">
-      <h2>{{ i18n.dict().preferences.motionLabel }}</h2>
-      <p>{{ i18n.dict().preferences.motionHint }}</p>
-    </div>
-    <div class="prefs__theme-row" role="radiogroup" [attr.aria-label]="i18n.dict().preferences.motionLabel">
-      <button
-        type="button"
-        class="prefs__theme-btn"
-        [class.prefs__theme-btn--active]="prefs.motion() === 'system'"
-        role="radio"
-        [attr.aria-checked]="prefs.motion() === 'system'"
-        (click)="prefs.setMotion('system')"
-      >
-        {{ i18n.dict().preferences.motionSystem }}
-      </button>
-      <button
-        type="button"
-        class="prefs__theme-btn"
-        [class.prefs__theme-btn--active]="prefs.motion() === 'reduced'"
-        role="radio"
-        [attr.aria-checked]="prefs.motion() === 'reduced'"
-        (click)="prefs.setMotion('reduced')"
-      >
-        {{ i18n.dict().preferences.motionReduced }}
-      </button>
-    </div>
-  </section>
+
 
   <div class="prefs__actions">
     <button type="button" class="btn btn--secondary" (click)="prefs.resetAll()">

@@ -1,100 +1,75 @@
-<div class="a11y container">
-  <header class="a11y__head" sn8wSpotlight>
-    <p class="kicker">Accessibilité</p>
-    <h1 class="section-title">Déclaration d'accessibilité</h1>
-    <p class="section-lede">
-      Cette page présente les contrôles d'accessibilité documentés pour ce site et permet de
-      signaler une difficulté d'utilisation.
-    </p>
+<div class="a11y container" lang="fr">
+  <header class="a11y__head">
+    <p class="kicker">Contrôle du {{ auditDate }}</p>
+    <h1 class="section-title">Accessibilité</h1>
+    <p class="section-lede">Résultats des vérifications du site public.</p>
   </header>
 
-  <section class="a11y__section" sn8wSpotlight>
-    <h2>État de conformité</h2>
+  <section class="a11y__section">
+    <h2>Résultats automatisés</h2>
+    <p><strong>Aucune violation détectée sur les 48 configurations contrôlées.</strong></p>
     <p>
-      <strong>Le taux de conformité RGAA de la version actuelle n'est pas établi.</strong>
-      Les contrôles techniques décrits ci-dessous ne constituent pas, à eux seuls, un audit complet
-      des critères applicables du RGAA 4.1.2. Ils ne permettent donc pas de publier un pourcentage
-      de conformité.
+      Huit pages, deux langues d'interface et trois thèmes ont été vérifiés avec axe-core 4.11.0 :
+      règles WCAG 2.1 de niveaux A et AA, ainsi que les bonnes pratiques de l'outil.
     </p>
     <p>
-      <a
-        class="a11y__link"
-        href="https://accessibilite.numerique.gouv.fr/obligations/evaluation-conformite/"
-        >Méthode officielle d'évaluation de la conformité</a
-      >
+      Certains contrastes sur des arrière-plans composés restent signalés par l'outil
+      comme nécessitant une vérification manuelle. Ils ne sont pas comptés comme validés.
     </p>
   </section>
 
-  <section class="a11y__section" sn8wSpotlight>
-    <h2>Contrôles internes documentés</h2>
-    <p>
-      Le compte rendu interne du {{ auditDate }} décrit des vérifications sur les pages listées
-      ci-dessous, dans les thèmes clair et sombre, à l'aide de tests automatisés (axe-core, règles
-      WCAG 2.1 A/AA et bonnes pratiques) complétés par une revue manuelle du code pour les critères
-      qu'un outil automatisé ne peut pas vérifier seul (structure sémantique, navigation au clavier,
-      alternatives textuelles, gestion du focus, préférence de mouvement réduit).
-    </p>
-    <p>Ce compte rendu consigne trois anomalies corrigées :</p>
+  <section class="a11y__section">
+    <h2>Vérifications dans le navigateur</h2>
     <ul>
-      <li>
-        Une région complémentaire (<code>&lt;aside&gt;</code>) imbriquée dans une autre région de la
-        page, gênant la navigation par points de repère pour les utilisateurs de lecteurs d'écran.
-      </li>
-      <li>
-        Un curseur de progression (barre de tâche) sans étiquette accessible, rendant sa fonction
-        ambiguë au clavier ou au lecteur d'écran.
-      </li>
-      <li>
-        Un contraste de texte insuffisant (4,34:1 au lieu de 4,5:1 requis) sur l'état sélectionné
-        d'un des boutons de progression rapide.
-      </li>
+      <li>Navigation au clavier, lien d'évitement et accès aux sections.</li>
+      <li>Ouverture, confinement du focus et fermeture des galeries avec retour au déclencheur.</li>
+      <li>Recherche de projets, état sans résultat et réinitialisation.</li>
+      <li>Réglages au clavier et prise en compte de la réduction des animations.</li>
+      <li>Champs obligatoires de connexion et annonce d'une erreur de connexion simulée.</li>
+      <li>Affichage à 320 pixels de large, texte agrandi à 200 % et espacements de texte augmentés.</li>
     </ul>
-    <p>Ces corrections ne préjugent pas du résultat d'un audit complet de la version actuelle.</p>
   </section>
 
-  <section class="a11y__section" sn8wSpotlight>
-    <h2>Contenus non accessibles</h2>
-    <p>
-      L'inventaire exhaustif des éventuelles non-conformités reste à établir par un audit complet.
-    </p>
-  </section>
-
-  <section class="a11y__section" sn8wSpotlight>
-    <h2>Établissement de cette déclaration d'accessibilité</h2>
+  <section class="a11y__section">
+    <h2>Périmètre du contrôle</h2>
     <dl class="a11y__facts">
-      <div class="a11y__fact">
-        <dt>Établie le</dt>
-        <dd>{{ auditDate }}</dd>
-      </div>
-      <div class="a11y__fact">
-        <dt>Technologies utilisées</dt>
-        <dd>HTML5, CSS3, JavaScript (Angular), ARIA</dd>
-      </div>
-      <div class="a11y__fact">
-        <dt>Outils d'évaluation</dt>
-        <dd>axe-core 4.10 (WCAG 2.1 A/AA), revue de code manuelle</dd>
-      </div>
-      <div class="a11y__fact">
-        <dt>Pages vérifiées</dt>
-        <dd>
-          Accueil, Connexion, Coulisses, Administration, Tâches, Journal, Statistiques — thèmes
-          clair et sombre
-        </dd>
-      </div>
+      <div class="a11y__fact"><dt>Date</dt><dd>{{ auditDate }}</dd></div>
+      <div class="a11y__fact"><dt>Environnement</dt><dd>Windows, Chromium 152, Playwright et axe-core 4.11.0</dd></div>
+      <div class="a11y__fact"><dt>Langues et thèmes</dt><dd>Français et anglais ; sombre, clair et contraste élevé.</dd></div>
     </dl>
+    <ul>
+      <li><a class="a11y__link" routerLink="/">Accueil, dont la section contact</a></li>
+      <li><a class="a11y__link" routerLink="/projects">Tous les projets</a></li>
+      <li><a class="a11y__link" routerLink="/behind-the-scenes">Coulisses</a></li>
+      <li><a class="a11y__link" routerLink="/login">Connexion</a></li>
+      <li>Accessibilité</li>
+      <li><a class="a11y__link" routerLink="/plan-du-site">Plan du site</a></li>
+      <li><a class="a11y__link" routerLink="/workshop">Atelier</a></li>
+      <li><a class="a11y__link" routerLink="/parametres-accessibilite">Paramètres d'accessibilité</a></li>
+    </ul>
   </section>
 
-  <section class="a11y__section" sn8wSpotlight>
-    <h2>Retour d'information et contact</h2>
+  <section class="a11y__section">
+    <h2>Portée des résultats</h2>
     <p>
-      Si vous rencontrez un défaut d'accessibilité vous empêchant d'accéder à un contenu ou à une
-      fonctionnalité du site, merci de me le signaler à
-      <a class="a11y__link" href="mailto:{{ contactEmail }}">{{ contactEmail }}</a>
-      — je m'engage à vous répondre.
+      Ces résultats décrivent les contrôles effectués, pas un taux de conformité RGAA.
+      Les essais avec lecteurs d'écran, la validation exhaustive des critères applicables
+      et les pages privées après connexion ne sont pas couverts par ce contrôle.
+    </p>
+    <p>
+      <a class="a11y__link" href="https://accessibilite.numerique.gouv.fr/obligations/evaluation-conformite/">
+        Méthode d'évaluation RGAA
+      </a>
     </p>
   </section>
 
-  <p class="a11y__back">
-    <a class="btn btn--secondary" routerLink="/">Retour au site</a>
-  </p>
+  <section class="a11y__section">
+    <h2>Signaler une difficulté</h2>
+    <p>
+      Vous pouvez signaler un problème d'accessibilité à
+      <a class="a11y__link" href="mailto:{{ contactEmail }}">{{ contactEmail }}</a>.
+    </p>
+  </section>
+
+  <p class="a11y__back"><a class="btn btn--secondary" routerLink="/">Retour au site</a></p>
 </div>

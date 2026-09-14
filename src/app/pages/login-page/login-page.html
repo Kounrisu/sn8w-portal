@@ -4,9 +4,9 @@
     <h1 class="login-title">{{ i18n.dict().auth.title }}</h1>
     <p class="login-lede">{{ i18n.dict().auth.lede }}</p>
 
-    <form class="login-form" (ngSubmit)="submit()">
+    <form class="login-form" ngNativeValidate (ngSubmit)="submit()">
       <label class="field">
-        <span class="field-label">{{ i18n.dict().auth.username }}</span>
+        <span class="field-label">{{ i18n.dict().auth.username }} {{ i18n.lang() === 'fr' ? '(obligatoire)' : '(required)' }}</span>
         <input
           type="text"
           name="username"
@@ -18,7 +18,7 @@
       </label>
 
       <label class="field">
-        <span class="field-label">{{ i18n.dict().auth.password }}</span>
+        <span class="field-label">{{ i18n.dict().auth.password }} {{ i18n.lang() === 'fr' ? '(obligatoire)' : '(required)' }}</span>
         <input
           type="password"
           name="password"

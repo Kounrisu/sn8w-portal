@@ -38,6 +38,7 @@
         </dd>
         <dd class="hero__stat-context">{{ stat.context }}</dd>
         @if (stat.score !== undefined) {
+          <dd>
           <meter
             class="hero__score"
             min="0"
@@ -47,6 +48,7 @@
           >
             {{ stat.score }}/1000
           </meter>
+          </dd>
         }
       </div>
     }

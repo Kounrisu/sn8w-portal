@@ -1,4 +1,4 @@
-<nav class="side-toc" aria-label="Primary">
+<nav class="side-toc" [attr.aria-label]="i18n.lang() === 'fr' ? 'Sections de la page' : 'Page sections'">
   <ul class="side-toc__list">
     @for (link of links(); track link.fragment) {
       <li class="side-toc__item">
