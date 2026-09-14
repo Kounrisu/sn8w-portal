@@ -26,6 +26,16 @@ function validate_project_input(array $body, bool $partial = false): array
 {
     $errors = [];
     $fields = [];
+    if (array_key_exists('featuredOnHome', $body)) {
+        if (!is_bool($body['featuredOnHome'])) json_error('featuredOnHome must be boolean', 422);
+        $fields['featured_on_home'] = $body['featuredOnHome'] ? 1 : 0;
+    }
+    if (array_key_exists('projectTheme', $body)) {
+        if (!in_array($body['projectTheme'], ['finance', 'health', 'learning', 'games', 'utilities', 'developer-tools', 'sandbox'], true)) {
+            json_error('Invalid project theme', 422);
+        }
+        $fields['project_theme'] = $body['projectTheme'];
+    }
     if (array_key_exists('showInShowcase', $body)) {
         if (!is_bool($body['showInShowcase'])) json_error('showInShowcase must be boolean', 422);
         $fields['show_in_showcase'] = $body['showInShowcase'] ? 1 : 0;
@@ -178,10 +188,12 @@ if ($method === 'POST') {
     $fields = validate_project_input(json_body(), partial: false);
     $fields['screenshots'] ??= '[]';
     $fields['show_in_showcase'] ??= 0;
+    $fields['featured_on_home'] ??= 0;
+    $fields['project_theme'] ??= 'utilities';
 
     $stmt = db()->prepare(
-        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order, screenshots, show_in_showcase)
-         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order, :screenshots, :show_in_showcase)'
+        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order, screenshots, show_in_showcase, featured_on_home, project_theme)
+         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order, :screenshots, :show_in_showcase, :featured_on_home, :project_theme)'
     );
     $stmt->execute($fields);
 

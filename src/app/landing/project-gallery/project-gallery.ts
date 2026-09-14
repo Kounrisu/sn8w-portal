@@ -4,7 +4,7 @@ import { I18nService } from '../../core/i18n/i18n.service';
 
 export const GALLERY_COPY = {
   en: {
-    open: 'View screenshot',
+    open: 'Enlarge',
     close: 'Close',
     previous: 'Previous',
     next: 'Next',
@@ -12,7 +12,7 @@ export const GALLERY_COPY = {
     hint: 'Additional image paths, one per line. The uploaded cover appears first. Use /images/projects/… or /api/uploads/screenshots/… (PNG, JPEG or WebP).',
   },
   fr: {
-    open: 'Voir la capture',
+    open: 'Agrandir',
     close: 'Fermer',
     previous: 'Précédente',
     next: 'Suivante',
@@ -25,44 +25,31 @@ export const GALLERY_COPY = {
   selector: 'sn8w-project-gallery',
   template: `
     @if (images().length) {
-      <div class="gallery" [attr.aria-label]="copy().images + ': ' + project().name">
+      <div class="gallery" role="group" [attr.aria-label]="copy().images + ': ' + project().name"
+        (keydown.arrowLeft)="move(-1, $event)" (keydown.arrowRight)="move(1, $event)">
         <button
           type="button"
           class="cover"
-          (click)="open(viewer, 0)"
-          [attr.aria-label]="copy().open + ': ' + project().name + ' (1 / ' + images().length + ')'"
+          (click)="open(viewer, activeIndex())"
+          aria-haspopup="dialog"
+          [attr.aria-label]="copy().open + ': ' + project().name + ' (' + (activeIndex() + 1) + ' / ' + images().length + ')'"
         >
           <img
-            [src]="variant(images()[0], 'preview')"
-            (error)="useOriginal($event, images()[0])"
-            [alt]="project().name + ' — ' + copy().images + ' 1'"
+            [src]="variant(images()[activeIndex()], 'preview')"
+            (error)="useOriginal($event, images()[activeIndex()])"
+            [alt]="project().name + ' — ' + copy().images + ' ' + (activeIndex() + 1)"
             width="1440"
             height="900"
             loading="lazy"
             decoding="async"
           />
-          <span>{{ copy().images }} · {{ images().length }} ↗</span>
+          <span>{{ copy().open }} ↗</span>
         </button>
         @if (images().length > 1) {
-          <div class="thumbnails">
-            @for (src of images(); track src; let i = $index) {
-              <button
-                type="button"
-                (click)="open(viewer, i)"
-                [attr.aria-label]="copy().open + ' ' + (i + 1) + ': ' + project().name"
-              >
-                <img
-                  [src]="variant(src, 'thumb')"
-                  (error)="useOriginal($event, src)"
-                  alt=""
-                  width="144"
-                  height="90"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span>{{ i + 1 }}</span>
-              </button>
-            }
+          <div class="controls inline-controls">
+            <button type="button" (click)="move(-1)" [attr.aria-label]="copy().previous + ': ' + project().name">← {{ copy().previous }}</button>
+            <span role="status" [attr.aria-live]="opened() ? 'off' : 'polite'" aria-atomic="true"><span class="sr-only">{{ copy().images }} </span>{{ activeIndex() + 1 }} / {{ images().length }}</span>
+            <button type="button" (click)="move(1)" [attr.aria-label]="copy().next + ': ' + project().name">{{ copy().next }} →</button>
           </div>
         }
       </div>
@@ -72,6 +59,8 @@ export const GALLERY_COPY = {
         (close)="opened.set(false)"
         (keydown.arrowLeft)="move(-1, $event)"
         (keydown.arrowRight)="move(1, $event)"
+        (keydown.tab)="keepFocus($event, viewer)"
+        (keydown.shift.tab)="keepFocus($event, viewer)"
         (click)="backdrop($event, viewer)"
       >
         <div class="toolbar">
@@ -81,15 +70,15 @@ export const GALLERY_COPY = {
         @if (opened()) {
           <img
             class="expanded"
-            [src]="images()[selected()]"
-            [alt]="project().name + ' — ' + copy().images + ' ' + (selected() + 1)"
+            [src]="images()[activeIndex()]"
+            [alt]="project().name + ' — ' + copy().images + ' ' + (activeIndex() + 1)"
           />
         }
         <div class="controls">
           <button type="button" (click)="move(-1)" [disabled]="images().length < 2">
             ← {{ copy().previous }}
           </button>
-          <span aria-live="polite">{{ selected() + 1 }} / {{ images().length }}</span>
+          <span aria-live="polite" aria-atomic="true"><span class="sr-only">{{ copy().images }} </span>{{ activeIndex() + 1 }} / {{ images().length }}</span>
           <button type="button" (click)="move(1)" [disabled]="images().length < 2">
             {{ copy().next }} →
           </button>
@@ -112,6 +101,7 @@ export class ProjectGallery {
     ),
   ]);
   readonly selected = signal(0);
+  readonly activeIndex = computed(() => Math.min(this.selected(), Math.max(0, this.images().length - 1)));
   readonly opened = signal(false);
   useOriginal(event: Event, src: string): void {
     const image = event.target as HTMLImageElement;
@@ -128,8 +118,9 @@ export class ProjectGallery {
     dialog.showModal();
   }
   move(step: number, event?: Event): void {
+    if (this.images().length < 2) return;
     event?.preventDefault();
-    this.selected.update((index) => (index + step + this.images().length) % this.images().length);
+    this.selected.set((this.activeIndex() + step + this.images().length) % this.images().length);
   }
   backdrop(event: MouseEvent, dialog: HTMLDialogElement): void {
     if (event.target !== dialog) return;
@@ -141,5 +132,18 @@ export class ProjectGallery {
       event.clientY > bounds.bottom
     )
       dialog.close();
+  }
+  keepFocus(event: Event, dialog: HTMLDialogElement): void {
+    const key = event as KeyboardEvent;
+    const buttons = dialog.querySelectorAll<HTMLButtonElement>('button:not(:disabled)');
+    const first = buttons[0];
+    const last = buttons[buttons.length - 1];
+    if (key.shiftKey && document.activeElement === first) {
+      key.preventDefault();
+      last?.focus();
+    } else if (!key.shiftKey && document.activeElement === last) {
+      key.preventDefault();
+      first?.focus();
+    }
   }
 }

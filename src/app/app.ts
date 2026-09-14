@@ -30,6 +30,7 @@ import { createParticles, drawFrame, type Particle, type StarfieldMode } from '.
 // its own label from the already-translated dictionary, so it follows the
 // current language automatically.
 type TitleKey =
+  | 'projects'
   | 'home'
   | 'behindTheScenes'
   | 'login'
@@ -47,6 +48,7 @@ const BASE_TITLE = 'Philippe Parmentier | Angular';
 // The RGAA declaration page is deliberately French-only (see its own
 // component) regardless of site language, so its title is too.
 const TITLE_RESOLVERS: Record<TitleKey, (dict: Dict) => string> = {
+  projects: (d) => d.nav.products,
   home: (d) => d.sitemap.home,
   behindTheScenes: (d) => d.behindTheScenes.navLabel,
   login: (d) => d.auth.title,

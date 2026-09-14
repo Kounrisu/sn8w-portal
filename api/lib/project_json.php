@@ -35,5 +35,7 @@ function project_row_to_json(array $row, bool $includePrivate = false): array
     if (isset($row['show_in_showcase'])) {
         $json['showInShowcase'] = (bool) $row['show_in_showcase'];
     }
+    if (isset($row['featured_on_home'])) $json['featuredOnHome'] = (bool) $row['featured_on_home'];
+    if (isset($row['project_theme'])) $json['projectTheme'] = $row['project_theme'];
     return $json;
 }

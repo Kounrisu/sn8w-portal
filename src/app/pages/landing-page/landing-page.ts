@@ -3,7 +3,6 @@ import { Hero } from '../../landing/hero/hero';
 import { AboutExperience } from '../../landing/about-experience/about-experience';
 import { FlagshipProducts } from '../../landing/flagship-products/flagship-products';
 import { EngineeringPrinciples } from '../../landing/engineering-principles/engineering-principles';
-import { LabProjects } from '../../landing/lab-projects/lab-projects';
 import { SideToc } from '../../landing/side-toc/side-toc';
 import { AccessibilityExpertise } from '../../landing/accessibility-expertise/accessibility-expertise';
 import { ContactSection } from '../../landing/contact-section/contact-section';
@@ -20,7 +19,6 @@ import { ContactSection } from '../../landing/contact-section/contact-section';
     AboutExperience,
     FlagshipProducts,
     EngineeringPrinciples,
-    LabProjects,
     SideToc,
     AccessibilityExpertise,
     ContactSection,
@@ -31,7 +29,6 @@ import { ContactSection } from '../../landing/contact-section/contact-section';
     <sn8w-accessibility-expertise />
     <sn8w-about-experience />
     <sn8w-engineering-principles />
-    <sn8w-lab-projects />
     <sn8w-contact-section />
     <sn8w-side-toc />
   `,

@@ -1,0 +1,32 @@
+<div class="projects-page container">
+  <header class="page-head">
+    <a routerLink="/">← {{ copy().home }}</a>
+    <h1 class="section-title">{{ copy().title }}</h1>
+    <p class="section-lede">{{ copy().lede }}</p>
+  </header>
+  <div class="filters" role="group" [attr.aria-label]="copy().filter">
+    <button type="button" [attr.aria-pressed]="selected() === 'all'" (click)="select('all')">{{ copy().all }} <span>({{ projects.visible().length }})</span></button>
+    @for (theme of themes; track theme) {
+      <button type="button" [attr.aria-pressed]="selected() === theme" (click)="select(theme)">{{ copy().themes[theme] }} <span>({{ count(theme) }})</span></button>
+    }
+  </div>
+  @if (projects.publicLoading()) {
+    <p role="status">{{ copy().loading }}</p>
+  }
+  @if (projects.publicError()) {
+    <div role="alert" class="load-error"><p>{{ copy().error }}</p><button class="btn btn--secondary" type="button" (click)="projects.reloadPublic()">{{ copy().retry }}</button></div>
+  }
+  <sn8w-project-count [count]="shown().length" [total]="filtered().length" [label]="copy().shown" />
+  <div id="project-results" [attr.aria-busy]="projects.publicLoading()">
+    @for (project of shown(); track project.id; let i = $index) {
+      <sn8w-project-card [project]="project" [index]="i" [headingLevel]="2" />
+    } @empty {
+      @if (!projects.publicLoading() && !projects.publicError()) {
+        <p class="empty">{{ projects.visible().length ? copy().empty : copy().emptyCatalog }}</p>
+      }
+    }
+  </div>
+  @if (shown().length < filtered().length) {
+    <div class="load-more"><button type="button" class="btn btn--primary" aria-controls="project-results" (click)="showMore()">{{ copy().more }} (+{{ filtered().length - shown().length > 6 ? 6 : filtered().length - shown().length }})</button></div>
+  }
+</div>

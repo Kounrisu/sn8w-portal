@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { StatusBadge } from '../status-badge/status-badge';
-import { ProjectAvailability } from '../project-availability/project-availability';
-import { RepoLink } from '../repo-link/repo-link';
+import { RouterLink } from '@angular/router';
+import { ProjectCard } from '../project-card/project-card';
+import { ProjectCount } from '../project-count/project-count';
+import { CATALOG_COPY } from '../../core/project-catalog';
 import { ProjectsService } from '../../core/projects.service';
 import { I18nService } from '../../core/i18n/i18n.service';
-import { ProjectGallery } from '../project-gallery/project-gallery';
-import { StackRevealDirective } from '../../core/stack-reveal.directive';
 
 @Component({
   selector: 'sn8w-flagship-products',
-  imports: [StatusBadge, ProjectAvailability, RepoLink, ProjectGallery, StackRevealDirective],
+  imports: [ProjectCard, ProjectCount, RouterLink],
   templateUrl: './flagship-products.html',
   styleUrl: './flagship-products.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,4 +16,5 @@ import { StackRevealDirective } from '../../core/stack-reveal.directive';
 export class FlagshipProducts {
   protected readonly i18n = inject(I18nService);
   protected readonly projects = inject(ProjectsService);
+  protected copy() { return CATALOG_COPY[this.i18n.lang()]; }
 }

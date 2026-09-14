@@ -4,6 +4,7 @@
       <p class="kicker">{{ i18n.dict().nav.admin }}</p>
       <h1 class="section-title">{{ i18n.dict().admin.title }}</h1>
       <p class="section-lede">{{ i18n.dict().admin.lede }}</p>
+      <p class="section-lede">{{ catalogCopy().hint }}</p>
     </div>
     <div class="admin-head__actions">
       <button type="button" class="btn btn--secondary" (click)="renumberAll()">
@@ -176,6 +177,16 @@
         >
       </label>
       <label class="field">
+        <span><input type="checkbox" name="featuredOnHome" [ngModel]="form().featuredOnHome" (ngModelChange)="updateField('featuredOnHome', $event)" [disabled]="!form().showInShowcase" /> {{ catalogCopy().featured }}</span>
+      </label>
+      <label class="field">
+        <span>{{ catalogCopy().theme }}</span>
+        <select name="projectTheme" [ngModel]="form().projectTheme" (ngModelChange)="updateField('projectTheme', $event)">
+          @for (theme of themes; track theme) { <option [value]="theme">{{ catalogCopy().themes[theme] }}</option> }
+        </select>
+      </label>
+      <p>{{ catalogCopy().hint }}</p>
+      <label class="field">
         <span class="field-label">{{ galleryCopy().images }}</span>
         <textarea
           name="screenshots"
@@ -261,6 +272,8 @@
           <th scope="col">{{ i18n.dict().admin.tier }}</th>
           <th scope="col">{{ i18n.dict().admin.sortOrder }}</th>
           <th scope="col">{{ showcaseLabel() }}</th>
+          <th scope="col">{{ catalogCopy().featured }}</th>
+          <th scope="col">{{ catalogCopy().theme }}</th>
           <th scope="col">{{ i18n.dict().admin.status }}</th>
           <th scope="col">{{ i18n.dict().admin.availability }}</th>
           <th scope="col">{{ i18n.dict().admin.url }}</th>
@@ -324,10 +337,15 @@
               <input
                 type="checkbox"
                 [checked]="isShown(project)"
+                [disabled]="pendingPresentation().includes(project.id)"
                 (change)="toggleShowcase(project)"
                 [attr.aria-label]="showcaseLabel() + ': ' + project.name"
               />
             </td>
+            <td><input type="checkbox" [checked]="isFeatured(project)" [disabled]="!isShown(project) || pendingPresentation().includes(project.id)" (change)="toggleFeatured(project)" [attr.aria-label]="catalogCopy().featured + ': ' + project.name" /></td>
+            <td><select class="admin-table__select" [ngModel]="themeOf(project)" [disabled]="pendingPresentation().includes(project.id)" (ngModelChange)="updatePresentation(project, { projectTheme: $event })" [attr.aria-label]="catalogCopy().theme + ': ' + project.name">
+              @for (theme of themes; track theme) { <option [value]="theme">{{ catalogCopy().themes[theme] }}</option> }
+            </select></td>
             <td>
               <select
                 class="admin-table__select"

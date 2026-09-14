@@ -3,6 +3,11 @@ import { authGuard } from './core/auth.guard';
 
 export const routes: Routes = [
   {
+    path: 'projects',
+    loadComponent: () => import('./pages/projects-page/projects-page').then((m) => m.ProjectsPage),
+    data: { titleKey: 'projects' },
+  },
+  {
     path: '',
     loadComponent: () => import('./pages/landing-page/landing-page').then((m) => m.LandingPage),
     data: { titleKey: 'home' },

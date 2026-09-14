@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { I18nService } from './i18n/i18n.service';
 import type { Lang } from './i18n/dictionary';
+import { homepageProjects, visibleProjects } from './project-catalog';
 import type {
   FlagshipMockup,
   Project,
@@ -32,12 +33,12 @@ export class ProjectsService {
    * admin form and have it saved over the English original.
    */
   private readonly localized = signal<Project[]>([]);
+  readonly publicLoading = signal(true);
+  readonly publicError = signal(false);
+  private publicRequest = 0;
 
-  readonly flagship = computed(() =>
-    this.localized()
-      .filter((p) => p.showInShowcase ?? (p.tier === 'flagship' && p.tagline.trim().length > 0))
-      .sort((a, b) => a.sortOrder - b.sortOrder),
-  );
+  readonly visible = computed(() => visibleProjects(this.localized()));
+  readonly flagship = computed(() => homepageProjects(this.localized()));
 
   readonly lab = computed(() =>
     this.localized()
@@ -82,14 +83,24 @@ export class ProjectsService {
   }
 
   private async loadLocalized(lang: Lang): Promise<void> {
+    const request = ++this.publicRequest;
+    this.publicLoading.set(true);
+    this.publicError.set(false);
     try {
       const params: Record<string, string> = lang === 'en' ? {} : { lang };
       const projects = await firstValueFrom(this.http.get<Project[]>(this.baseUrl, { params }));
-      this.localized.set(projects);
+      if (request === this.publicRequest) this.localized.set(projects);
     } catch {
       // Leave the previous localized list in place on a transient failure —
       // better a stale-but-correct list than an empty landing page.
+      if (request === this.publicRequest) this.publicError.set(true);
+    } finally {
+      if (request === this.publicRequest) this.publicLoading.set(false);
     }
+  }
+
+  async reloadPublic(): Promise<void> {
+    await this.loadLocalized(this.i18n.lang());
   }
 
   /**

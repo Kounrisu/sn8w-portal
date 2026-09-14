@@ -42,4 +42,21 @@ describe('Project screenshot gallery', () => {
     gallery.move(-1);
     expect(gallery.selected()).toBe(1);
   });
+
+  it('changes the inline image with controls and clamps selection when images are removed', () => {
+    const fixture = TestBed.createComponent(ProjectGallery);
+    fixture.componentRef.setInput('project', project);
+    fixture.detectChanges();
+    fixture.nativeElement.querySelector('.inline-controls button:last-child').click();
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.cover img').getAttribute('src')).toContain('locations.preview.webp');
+    expect(fixture.nativeElement.querySelector('dialog').open).toBe(false);
+    expect(fixture.nativeElement.querySelector('.thumbnails')).toBeNull();
+    fixture.componentRef.setInput('project', { ...project, screenshots: [] });
+    fixture.detectChanges();
+    expect(fixture.componentInstance.activeIndex()).toBe(0);
+    expect(fixture.nativeElement.querySelector('.inline-controls')).toBeNull();
+    fixture.componentInstance.move(1);
+    expect(fixture.componentInstance.activeIndex()).toBe(0);
+  });
 });
