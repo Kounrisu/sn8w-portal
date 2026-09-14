@@ -49,14 +49,60 @@ describe('Project screenshot gallery', () => {
     fixture.detectChanges();
     fixture.nativeElement.querySelector('.inline-controls button:last-child').click();
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('.cover img').getAttribute('src')).toContain('locations.preview.webp');
+    expect(fixture.nativeElement.querySelector('.cover img').getAttribute('src')).toContain(
+      'locations.preview.webp',
+    );
     expect(fixture.nativeElement.querySelector('dialog').open).toBe(false);
     expect(fixture.nativeElement.querySelector('.thumbnails')).toBeNull();
     fixture.componentRef.setInput('project', { ...project, screenshots: [] });
     fixture.detectChanges();
     expect(fixture.componentInstance.activeIndex()).toBe(0);
-    expect(fixture.nativeElement.querySelector('.inline-controls')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.inline-controls button')).toBeNull();
     fixture.componentInstance.move(1);
     expect(fixture.componentInstance.activeIndex()).toBe(0);
+  });
+
+  it('keeps translated captions attached to image paths after reordering and renders them as text', () => {
+    const fixture = TestBed.createComponent(ProjectGallery);
+    const path = project.screenshots![1];
+    fixture.componentRef.setInput('project', {
+      ...project,
+      screenshotCaptions: { [path]: { en: '<b>Locations</b>', fr: 'Emplacements' } },
+    });
+    const gallery = fixture.componentInstance;
+    gallery.open({ showModal: () => {} } as HTMLDialogElement, 1);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('figcaption').textContent).toBe('<b>Locations</b>');
+    expect(fixture.nativeElement.querySelector('figcaption b')).toBeNull();
+    TestBed.inject(I18nService).lang.set('fr');
+    fixture.detectChanges();
+    expect(gallery.caption()).toBe('Emplacements');
+    fixture.componentRef.setInput('project', {
+      ...project,
+      screenshot: path,
+      screenshots: [project.screenshot],
+      screenshotCaptions: { [path]: { fr: 'Emplacements' } },
+    });
+    gallery.selected.set(0);
+    fixture.detectChanges();
+    expect(gallery.caption()).toBe('Emplacements');
+  });
+
+  it('uses initial captions for known screenshots but respects explicitly blank saved captions', () => {
+    const fixture = TestBed.createComponent(ProjectGallery);
+    const path = '/images/projects/books/books-library.webp';
+    fixture.componentRef.setInput('project', { ...project, screenshot: path, screenshots: [] });
+    expect(fixture.componentInstance.caption()).toContain('Browse covers');
+    fixture.componentRef.setInput('project', {
+      ...project,
+      screenshot: path,
+      screenshots: [],
+      screenshotCaptions: { [path]: { en: '' } },
+    });
+    expect(fixture.componentInstance.caption()).toBe('');
+    fixture.componentRef.setInput('project', { ...project, screenshot: null, screenshots: [] });
+    fixture.detectChanges();
+    fixture.componentInstance.move(1);
+    expect(fixture.nativeElement.querySelector('.gallery')).toBeNull();
   });
 });

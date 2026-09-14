@@ -197,6 +197,25 @@
         ></textarea>
         <span id="gallery-hint">{{ galleryCopy().hint }}</span>
       </label>
+      @if (captionPaths().length) {
+        <fieldset class="gallery-captions">
+          <legend>{{ galleryCopy().captions }}</legend>
+          <p class="field-hint">{{ galleryCopy().captionHint }}</p>
+          @for (path of captionPaths(); track path; let i = $index) {
+            <fieldset class="gallery-caption">
+              <legend>{{ galleryCopy().image }} {{ i + 1 }} · {{ path.split('/').pop() }}</legend>
+              <label class="field">
+                <span>{{ galleryCopy().captionEnglish }}</span>
+                <textarea rows="2" maxlength="500" [name]="'caption-en-' + i" [ngModel]="caption(path, 'en')" (ngModelChange)="setCaption(path, 'en', $event)"></textarea>
+              </label>
+              <label class="field">
+                <span>{{ galleryCopy().captionFrench }}</span>
+                <textarea rows="2" maxlength="500" [name]="'caption-fr-' + i" [ngModel]="caption(path, 'fr')" (ngModelChange)="setCaption(path, 'fr', $event)"></textarea>
+              </label>
+            </fieldset>
+          }
+        </fieldset>
+      }
       @if (editingProject(); as project) {
         <div class="admin-form__screenshot">
           <span class="field-label">{{ i18n.dict().admin.screenshotLabel }}</span>

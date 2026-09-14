@@ -1,0 +1,142 @@
+@if (images().length) {
+  <div
+    class="gallery"
+    role="group"
+    [attr.aria-label]="copy().images + ' : ' + project().name"
+    (keydown.arrowLeft)="move(-1, $event)"
+    (keydown.arrowRight)="move(1, $event)"
+  >
+    <button
+      type="button"
+      class="cover"
+      (click)="open(viewer, activeIndex())"
+      aria-haspopup="dialog"
+      [attr.aria-label]="openLabel()"
+    >
+      @for (slide of activeSlides(); track slide.src) {
+        <img
+          [src]="variant(slide.src, 'preview')"
+          (error)="useOriginal($event, slide.src)"
+          (load)="imageLoaded($event)"
+          [alt]="imageLabel()"
+          width="1440"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+      }
+      <span class="expand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7" /></svg>
+      </span>
+    </button>
+    <div class="gallery-footer">
+      <div class="controls inline-controls">
+        @if (images().length > 1) {
+          <button
+            type="button"
+            class="icon-button"
+            (click)="move(-1)"
+            [attr.aria-label]="copy().previous + ' : ' + project().name"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6M8 12h12" /></svg>
+          </button>
+        }
+        <span class="position" aria-hidden="true">{{ position() }}</span>
+        @if (images().length > 1) {
+          <button
+            type="button"
+            class="icon-button"
+            (click)="move(1)"
+            [attr.aria-label]="copy().next + ' : ' + project().name"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6M16 12H4" /></svg>
+          </button>
+        }
+      </div>
+      <button
+        type="button"
+        class="invitation"
+        (click)="open(viewer, activeIndex())"
+        aria-haspopup="dialog"
+        [attr.aria-label]="openLabel()"
+      >
+        <span>{{ copy().open }}</span
+        ><span aria-hidden="true">↗</span>
+      </button>
+    </div>
+    <p
+      class="sr-only"
+      role="status"
+      [attr.aria-live]="opened() ? 'off' : 'polite'"
+      aria-atomic="true"
+    >
+      {{ imageLabel() }} / {{ images().length }}
+    </p>
+  </div>
+  <dialog
+    #viewer
+    [attr.aria-label]="project().name + ' — ' + copy().images"
+    (close)="opened.set(false)"
+    (keydown.arrowLeft)="move(-1, $event)"
+    (keydown.arrowRight)="move(1, $event)"
+    (keydown.tab)="keepFocus($event, viewer)"
+    (keydown.shift.tab)="keepFocus($event, viewer)"
+    (click)="backdrop($event, viewer)"
+  >
+    <div class="toolbar">
+      <div>
+        <span class="eyebrow">{{ copy().images }}</span>
+        <h2>{{ project().name }}</h2>
+      </div>
+      <button type="button" class="close-button" autofocus (click)="viewer.close()">
+        {{ copy().close
+        }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+    @if (opened()) {
+      <figure>
+        <div class="expanded-stage">
+          @for (slide of activeSlides(); track slide.src) {
+            <img
+              class="expanded"
+              [src]="slide.src"
+              [alt]="imageLabel()"
+              (load)="imageLoaded($event)"
+            />
+          }
+        </div>
+        @if (caption()) {
+          <figcaption>{{ caption() }}</figcaption>
+        }
+      </figure>
+    }
+    <div class="modal-footer">
+      <div class="controls">
+        @if (images().length > 1) {
+          <button
+            type="button"
+            class="icon-button"
+            (click)="move(-1)"
+            [attr.aria-label]="copy().previous"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6M8 12h12" /></svg>
+          </button>
+        }
+        <span class="position" aria-hidden="true">{{ position() }}</span>
+        @if (images().length > 1) {
+          <button
+            type="button"
+            class="icon-button"
+            (click)="move(1)"
+            [attr.aria-label]="copy().next"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6M16 12H4" /></svg>
+          </button>
+        }
+      </div>
+      <p class="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {{ imageLabel() }} / {{ images().length }}. {{ caption() }}
+      </p>
+    </div>
+  </dialog>
+}

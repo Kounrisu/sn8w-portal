@@ -4,6 +4,7 @@ export type FlagshipMockup = 'inspector' | 'dashboard' | 'creative';
 /** Whether the project's URL is currently reachable — independent of maturity `status`. */
 export type ProjectAvailability = 'active' | 'inactive';
 export type ProjectTheme = 'finance' | 'health' | 'learning' | 'games' | 'utilities' | 'developer-tools' | 'sandbox';
+export type ScreenshotCaption = Readonly<{ en?: string; fr?: string }>;
 
 export interface Project {
   readonly id: number;
@@ -19,6 +20,7 @@ export interface Project {
   readonly repoPrivate: boolean;
   readonly screenshot: string | null;
   readonly screenshots?: readonly string[];
+  readonly screenshotCaptions?: Readonly<Record<string, ScreenshotCaption>>;
   readonly showInShowcase?: boolean;
   readonly featuredOnHome?: boolean;
   readonly projectTheme?: ProjectTheme;

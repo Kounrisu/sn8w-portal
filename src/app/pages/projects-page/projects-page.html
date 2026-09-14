@@ -4,29 +4,102 @@
     <h1 class="section-title">{{ copy().title }}</h1>
     <p class="section-lede">{{ copy().lede }}</p>
   </header>
-  <div class="filters" role="group" [attr.aria-label]="copy().filter">
-    <button type="button" [attr.aria-pressed]="selected() === 'all'" (click)="select('all')">{{ copy().all }} <span>({{ projects.visible().length }})</span></button>
-    @for (theme of themes; track theme) {
-      <button type="button" [attr.aria-pressed]="selected() === theme" (click)="select(theme)">{{ copy().themes[theme] }} <span>({{ count(theme) }})</span></button>
-    }
-  </div>
+  <form
+    class="filters"
+    role="search"
+    [attr.aria-label]="copy().search"
+    (submit)="$event.preventDefault()"
+  >
+    <div class="filter-field search-field">
+      <label for="project-search">{{ copy().search }}</label>
+      <div class="field-control">
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 4 4" />
+        </svg>
+        <input
+          #projectSearch
+          id="project-search"
+          name="query"
+          type="search"
+          autocomplete="off"
+          maxlength="200"
+          [placeholder]="copy().searchPlaceholder"
+          [ngModel]="query()"
+          (ngModelChange)="search($event)"
+          aria-controls="project-results"
+          aria-describedby="project-search-hint"
+        />
+      </div>
+      <span id="project-search-hint" class="sr-only">{{ copy().searchHint }}</span>
+    </div>
+    <div class="filter-field domain-field">
+      <label for="project-domain">{{ copy().domain }}</label>
+      <div class="field-control">
+        <select
+          id="project-domain"
+          name="domain"
+          [ngModel]="activeTheme()"
+          (ngModelChange)="select($event)"
+          aria-controls="project-results"
+        >
+          <option value="all">{{ copy().allDomains }} ({{ projects.visible().length }})</option>
+          @for (theme of themes(); track theme) {
+            <option [value]="theme">{{ copy().themes[theme] }} ({{ count(theme) }})</option>
+          }
+        </select>
+        <svg class="select-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m7 10 5 5 5-5" />
+        </svg>
+      </div>
+    </div>
+  </form>
   @if (projects.publicLoading()) {
     <p role="status">{{ copy().loading }}</p>
   }
   @if (projects.publicError()) {
-    <div role="alert" class="load-error"><p>{{ copy().error }}</p><button class="btn btn--secondary" type="button" (click)="projects.reloadPublic()">{{ copy().retry }}</button></div>
+    <div role="alert" class="load-error">
+      <p>{{ copy().error }}</p>
+      <button class="btn btn--secondary" type="button" (click)="projects.reloadPublic()">
+        {{ copy().retry }}
+      </button>
+    </div>
   }
-  <sn8w-project-count [count]="shown().length" [total]="filtered().length" [label]="copy().shown" />
+  <div class="results-summary">
+    <sn8w-project-count
+      [count]="shown().length"
+      [total]="filtered().length"
+      [label]="copy().shown"
+    />
+    @if (hasFilters()) {
+      <button type="button" class="clear-filters" (click)="clear(projectSearch)">
+        {{ copy().clear }} <span aria-hidden="true">×</span>
+      </button>
+    }
+  </div>
   <div id="project-results" [attr.aria-busy]="projects.publicLoading()">
     @for (project of shown(); track project.id; let i = $index) {
       <sn8w-project-card [project]="project" [index]="i" [headingLevel]="2" />
     } @empty {
       @if (!projects.publicLoading() && !projects.publicError()) {
-        <p class="empty">{{ projects.visible().length ? copy().empty : copy().emptyCatalog }}</p>
+        <p class="empty">
+          {{ projects.visible().length ? copy().noResults : copy().emptyCatalog }}
+        </p>
       }
     }
   </div>
   @if (shown().length < filtered().length) {
-    <div class="load-more"><button type="button" class="btn btn--primary" aria-controls="project-results" (click)="showMore()">{{ copy().more }} (+{{ filtered().length - shown().length > 6 ? 6 : filtered().length - shown().length }})</button></div>
+    <div class="load-more">
+      <button
+        type="button"
+        class="btn btn--primary"
+        aria-controls="project-results"
+        (click)="showMore()"
+      >
+        {{ copy().more }} (+{{
+          filtered().length - shown().length > 6 ? 6 : filtered().length - shown().length
+        }})
+      </button>
+    </div>
   }
 </div>

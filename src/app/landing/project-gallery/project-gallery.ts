@@ -1,91 +1,44 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import type { Project } from '../../core/models';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { defaultCaption } from '../../core/project-captions';
 
 export const GALLERY_COPY = {
   en: {
-    open: 'Enlarge',
+    open: 'See the bigger picture',
+    opensDialog: 'opens the screenshot gallery dialog',
     close: 'Close',
     previous: 'Previous',
     next: 'Next',
     images: 'Screenshots',
+    image: 'Screenshot',
+    captions: 'Screenshot captions',
+    captionHint:
+      'A short description of each screen, shown beneath the enlarged image. Up to 500 characters per language. Leave blank to omit a caption.',
+    captionEnglish: 'Caption in English',
+    captionFrench: 'Caption in French',
     hint: 'Additional image paths, one per line. The uploaded cover appears first. Use /images/projects/… or /api/uploads/screenshots/… (PNG, JPEG or WebP).',
   },
   fr: {
-    open: 'Agrandir',
+    open: 'Voyez le projet en grand',
+    opensDialog: 'ouvre la galerie de captures dans une fenêtre de dialogue',
     close: 'Fermer',
     previous: 'Précédente',
     next: 'Suivante',
     images: 'Captures d’écran',
+    image: 'Capture',
+    captions: 'Légendes des captures',
+    captionHint:
+      'Une courte description de chaque écran, affichée sous l’image agrandie. Jusqu’à 500 caractères par langue. Laissez vide pour ne pas afficher de légende.',
+    captionEnglish: 'Légende en anglais',
+    captionFrench: 'Légende en français',
     hint: 'Chemins des images supplémentaires, un par ligne. La couverture téléversée apparaît en premier. Utilisez /images/projects/… ou /api/uploads/screenshots/… (PNG, JPEG ou WebP).',
   },
 };
 
 @Component({
   selector: 'sn8w-project-gallery',
-  template: `
-    @if (images().length) {
-      <div class="gallery" role="group" [attr.aria-label]="copy().images + ': ' + project().name"
-        (keydown.arrowLeft)="move(-1, $event)" (keydown.arrowRight)="move(1, $event)">
-        <button
-          type="button"
-          class="cover"
-          (click)="open(viewer, activeIndex())"
-          aria-haspopup="dialog"
-          [attr.aria-label]="copy().open + ': ' + project().name + ' (' + (activeIndex() + 1) + ' / ' + images().length + ')'"
-        >
-          <img
-            [src]="variant(images()[activeIndex()], 'preview')"
-            (error)="useOriginal($event, images()[activeIndex()])"
-            [alt]="project().name + ' — ' + copy().images + ' ' + (activeIndex() + 1)"
-            width="1440"
-            height="900"
-            loading="lazy"
-            decoding="async"
-          />
-          <span>{{ copy().open }} ↗</span>
-        </button>
-        @if (images().length > 1) {
-          <div class="controls inline-controls">
-            <button type="button" (click)="move(-1)" [attr.aria-label]="copy().previous + ': ' + project().name">← {{ copy().previous }}</button>
-            <span role="status" [attr.aria-live]="opened() ? 'off' : 'polite'" aria-atomic="true"><span class="sr-only">{{ copy().images }} </span>{{ activeIndex() + 1 }} / {{ images().length }}</span>
-            <button type="button" (click)="move(1)" [attr.aria-label]="copy().next + ': ' + project().name">{{ copy().next }} →</button>
-          </div>
-        }
-      </div>
-      <dialog
-        #viewer
-        [attr.aria-label]="project().name + ' — ' + copy().images"
-        (close)="opened.set(false)"
-        (keydown.arrowLeft)="move(-1, $event)"
-        (keydown.arrowRight)="move(1, $event)"
-        (keydown.tab)="keepFocus($event, viewer)"
-        (keydown.shift.tab)="keepFocus($event, viewer)"
-        (click)="backdrop($event, viewer)"
-      >
-        <div class="toolbar">
-          <strong>{{ project().name }}</strong>
-          <button type="button" autofocus (click)="viewer.close()">{{ copy().close }} ×</button>
-        </div>
-        @if (opened()) {
-          <img
-            class="expanded"
-            [src]="images()[activeIndex()]"
-            [alt]="project().name + ' — ' + copy().images + ' ' + (activeIndex() + 1)"
-          />
-        }
-        <div class="controls">
-          <button type="button" (click)="move(-1)" [disabled]="images().length < 2">
-            ← {{ copy().previous }}
-          </button>
-          <span aria-live="polite" aria-atomic="true"><span class="sr-only">{{ copy().images }} </span>{{ activeIndex() + 1 }} / {{ images().length }}</span>
-          <button type="button" (click)="move(1)" [disabled]="images().length < 2">
-            {{ copy().next }} →
-          </button>
-        </div>
-      </dialog>
-    }
-  `,
+  templateUrl: './project-gallery.html',
   styleUrl: './project-gallery.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -101,8 +54,30 @@ export class ProjectGallery {
     ),
   ]);
   readonly selected = signal(0);
-  readonly activeIndex = computed(() => Math.min(this.selected(), Math.max(0, this.images().length - 1)));
+  readonly activeIndex = computed(() =>
+    Math.min(this.selected(), Math.max(0, this.images().length - 1)),
+  );
   readonly opened = signal(false);
+  readonly currentImage = computed(() => this.images()[this.activeIndex()]);
+  readonly activeSlides = computed(() => [{ src: this.currentImage() }]);
+  readonly caption = computed(() => {
+    const path = this.currentImage();
+    const captions = this.project().screenshotCaptions?.[path] ?? defaultCaption(path ?? '');
+    return captions[this.i18n.lang()] ?? captions.en ?? '';
+  });
+  readonly position = computed(
+    () =>
+      `${String(this.activeIndex() + 1).padStart(2, '0')} / ${String(this.images().length).padStart(2, '0')}`,
+  );
+  readonly imageLabel = computed(
+    () => `${this.project().name} — ${this.copy().image} ${this.activeIndex() + 1}`,
+  );
+  readonly openLabel = computed(
+    () => `${this.copy().open} — ${this.project().name} : ${this.copy().opensDialog}`,
+  );
+  imageLoaded(event: Event): void {
+    (event.target as HTMLImageElement).classList.add('image-ready');
+  }
   useOriginal(event: Event, src: string): void {
     const image = event.target as HTMLImageElement;
     if (image.getAttribute('src') !== src) image.src = src;

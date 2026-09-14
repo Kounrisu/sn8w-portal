@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS projects (
   screenshot VARCHAR(255) NULL COMMENT 'Relative path to an uploaded screenshot, e.g. /api/uploads/screenshots/...',
   availability ENUM('active', 'inactive') NOT NULL DEFAULT 'active' COMMENT 'Whether the URL is currently reachable — independent of the maturity `status`',
   screenshots TEXT NULL COMMENT 'JSON array of additional screenshot paths, in display order',
+  screenshot_captions TEXT NULL COMMENT 'JSON object keyed by image path, with en/fr captions',
   show_in_showcase TINYINT(1) NOT NULL DEFAULT 0,
   featured_on_home TINYINT(1) NOT NULL DEFAULT 0,
   project_theme VARCHAR(32) NOT NULL DEFAULT 'utilities',
