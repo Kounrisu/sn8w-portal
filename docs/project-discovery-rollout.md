@@ -1,5 +1,7 @@
 # Project discovery
 
+The catalog now uses a compact keyword search and a native domain select instead of theme buttons. Search combines words across the project name, category and description, ignoring case and accents. Domain counts include all visible projects, independently of the search text; domains with no visible projects are omitted. Filters reset pagination to six and clearing filters restores focus to the search input. Both counter numbers animate, while assistive technology receives only final values. Browser checks cover combined filters, no matches, accents, clear focus, keyboard order and mobile reflow at 320px. The updated suite has 18 passing tests. This toolbar change needs no additional database migration.
+
 Import `api/migrations/009_project_discovery.sql` in phpMyAdmin with UTF-8 before deploying. Existing installations require 007; import the catalog 008 before 009 to classify its entries. This additive migration preserves later admin choices when rerun. It has not been executed against production.
 
 Admin controls now separate site visibility from homepage featuring, with seven editable themes. Homepage shows at most six visible featured projects. `/projects` filters visible projects by theme and reveals batches of six. Counters exclude hidden projects and follow the selected filter. Ordering uses ascending sortOrder and then id for ties; existing admin reorder operations retain their tier/group numbering.

@@ -412,3 +412,8 @@
   font-size: var(--text-xs);
   color: var(--mist);
 }
+
+.gallery-captions, .gallery-caption { min-width: 0; margin-block: 1rem; padding: 1rem; border: 1px solid var(--line-strong); border-radius: 6px; }
+.gallery-caption legend { overflow-wrap: anywhere; font-size: .85rem; }
+.gallery-caption { display: grid; gap: 1rem; }
+@media (min-width: 800px) { .gallery-caption { grid-template-columns: 1fr 1fr; } }

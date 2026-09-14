@@ -26,6 +26,29 @@ function validate_project_input(array $body, bool $partial = false): array
 {
     $errors = [];
     $fields = [];
+    if (array_key_exists('screenshotCaptions', $body)) {
+        $captions = $body['screenshotCaptions'];
+        if (!is_array($captions) || count($captions) > 13) {
+            json_error('screenshotCaptions must map up to 13 image paths to captions', 422);
+        }
+        $clean = [];
+        foreach ($captions as $path => $languages) {
+            if (!is_string($path) || strlen($path) > 255 ||
+                preg_match('#^/(?:images/projects|api/uploads/screenshots)/[a-zA-Z0-9/_-]+\.(?:png|jpg|jpeg|webp)$#D', $path) !== 1 ||
+                !is_array($languages) || array_diff(array_keys($languages), ['en', 'fr']) !== []) {
+                json_error('Invalid screenshot caption path or language', 422);
+            }
+            $clean[$path] = [];
+            foreach ($languages as $lang => $caption) {
+                if (!is_string($caption) || preg_match('/\A.{0,500}\z/us', $caption) !== 1) {
+                    json_error('Each caption must be text of up to 500 characters', 422);
+                }
+                $clean[$path][$lang] = trim($caption);
+            }
+            $clean[$path] = (object) $clean[$path];
+        }
+        $fields['screenshot_captions'] = json_encode((object) $clean, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE);
+    }
     if (array_key_exists('featuredOnHome', $body)) {
         if (!is_bool($body['featuredOnHome'])) json_error('featuredOnHome must be boolean', 422);
         $fields['featured_on_home'] = $body['featuredOnHome'] ? 1 : 0;
@@ -187,13 +210,14 @@ require_auth();
 if ($method === 'POST') {
     $fields = validate_project_input(json_body(), partial: false);
     $fields['screenshots'] ??= '[]';
+    $fields['screenshot_captions'] ??= '{}';
     $fields['show_in_showcase'] ??= 0;
     $fields['featured_on_home'] ??= 0;
     $fields['project_theme'] ??= 'utilities';
 
     $stmt = db()->prepare(
-        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order, screenshots, show_in_showcase, featured_on_home, project_theme)
-         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order, :screenshots, :show_in_showcase, :featured_on_home, :project_theme)'
+        'INSERT INTO projects (tier, group_title, mockup, name, category, tagline, status, url, repo_url, repo_private, availability, sort_order, screenshots, screenshot_captions, show_in_showcase, featured_on_home, project_theme)
+         VALUES (:tier, :group_title, :mockup, :name, :category, :tagline, :status, :url, :repo_url, :repo_private, :availability, :sort_order, :screenshots, :screenshot_captions, :show_in_showcase, :featured_on_home, :project_theme)'
     );
     $stmt->execute($fields);
 

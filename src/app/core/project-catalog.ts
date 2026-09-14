@@ -6,7 +6,8 @@ export const PROJECT_BATCH_SIZE = 6;
 export const CATALOG_COPY = {
   en: {
     title: 'All projects', viewAll: 'View all projects', home: 'Back to the homepage',
-    lede: 'Explore my applications, experiments and learning projects. Filter by theme to find what interests you.',
+    lede: 'Explore my applications, experiments and learning projects. Search by keyword or choose a domain.',
+    search: 'Search projects', searchPlaceholder: 'A name, an idea…', domain: 'Domain', allDomains: 'All domains', clear: 'Clear filters', searchHint: 'Results update as you type.', noResults: 'No projects match these filters. Try another keyword or domain.',
     all: 'All themes', filter: 'Filter by theme', more: 'Show more projects', shown: 'projects shown', of: 'of',
     empty: 'No projects in this theme yet.', emptyCatalog: 'No projects are currently visible.',
     retry: 'Try again', error: 'The projects could not be loaded.', loading: 'Loading projects…',
@@ -16,7 +17,8 @@ export const CATALOG_COPY = {
   },
   fr: {
     title: 'Tous les projets', viewAll: 'Voir tous les projets', home: 'Retour à l’accueil',
-    lede: 'Explorez mes applications, expérimentations et projets d’apprentissage. Filtrez par thème pour découvrir ce qui vous intéresse.',
+    lede: 'Explorez mes applications, expérimentations et projets d’apprentissage. Recherchez un mot-clé ou choisissez un domaine.',
+    search: 'Rechercher un projet', searchPlaceholder: 'Un nom, une idée…', domain: 'Domaine', allDomains: 'Tous les domaines', clear: 'Effacer les filtres', searchHint: 'Les résultats se mettent à jour pendant la saisie.', noResults: 'Aucun projet ne correspond à ces filtres. Essayez un autre mot-clé ou domaine.',
     all: 'Tous les thèmes', filter: 'Filtrer par thème', more: 'Afficher davantage de projets', shown: 'projets affichés', of: 'sur',
     empty: 'Aucun projet dans ce thème pour le moment.', emptyCatalog: 'Aucun projet n’est actuellement visible.',
     retry: 'Réessayer', error: 'Impossible de charger les projets.', loading: 'Chargement des projets…',

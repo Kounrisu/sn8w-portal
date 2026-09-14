@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +26,7 @@ import type {
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { ExternalLinkDirective } from '../../shared/external-link.directive';
 import { GALLERY_COPY } from '../../landing/project-gallery/project-gallery';
+import { defaultCaption } from '../../core/project-captions';
 import { CATALOG_COPY, PROJECT_THEMES, isProjectVisible, projectTheme } from '../../core/project-catalog';
 
 const EMPTY_FORM: ProjectInput = {
@@ -42,6 +43,7 @@ const EMPTY_FORM: ProjectInput = {
   availability: 'active',
   sortOrder: 0,
   screenshots: [],
+  screenshotCaptions: {},
   showInShowcase: false,
   featuredOnHome: false,
   projectTheme: 'utilities',
@@ -71,6 +73,18 @@ export class AdminPage {
   protected readonly saving = signal(false);
   protected readonly uploadingScreenshot = signal(false);
   protected readonly galleryPaths = signal('');
+  protected readonly captionPaths = computed(() => [...new Set([
+    this.editingProject()?.screenshot, ...this.galleryPaths().split(/\r?\n/).map(path => path.trim()),
+  ].filter((path): path is string => !!path))]);
+  protected caption(path: string, lang: 'en' | 'fr'): string {
+    return (this.form().screenshotCaptions?.[path] ?? defaultCaption(path))[lang] ?? '';
+  }
+  protected setCaption(path: string, lang: 'en' | 'fr', value: string): void {
+    this.form.update(form => ({ ...form, screenshotCaptions: {
+      ...form.screenshotCaptions,
+      [path]: { ...(form.screenshotCaptions?.[path] ?? defaultCaption(path)), [lang]: value },
+    } }));
+  }
   protected readonly themes = PROJECT_THEMES;
   protected readonly pendingPresentation = signal<readonly number[]>([]);
   protected readonly themeOf = projectTheme;
@@ -120,6 +134,7 @@ export class AdminPage {
       name: p.name,
       category: p.category,
       tagline: p.tagline,
+      screenshotCaptions: p.screenshotCaptions,
     }));
     const blob = new Blob([JSON.stringify(rows, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -254,6 +269,7 @@ export class AdminPage {
       availability: project.availability,
       sortOrder: project.sortOrder,
       screenshots: project.screenshots ?? [],
+      screenshotCaptions: project.screenshotCaptions ?? {},
       featuredOnHome: this.isFeatured(project),
       projectTheme: projectTheme(project),
       showInShowcase:
@@ -284,6 +300,9 @@ export class AdminPage {
       const value = this.form();
       const input: ProjectInput = {
         ...value,
+        screenshotCaptions: Object.fromEntries(this.captionPaths().map(path => [path, {
+          en: this.caption(path, 'en').trim(), fr: this.caption(path, 'fr').trim(),
+        }])),
         screenshots: this.galleryPaths()
           .split(/\r?\n/)
           .map((path) => path.trim())

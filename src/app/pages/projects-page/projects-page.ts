@@ -1,15 +1,30 @@
-import { afterNextRender, ChangeDetectionStrategy, Component, computed, ElementRef, inject, Injector, signal } from '@angular/core';
+import {
+  afterNextRender,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  ElementRef,
+  inject,
+  Injector,
+  signal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ProjectsService } from '../../core/projects.service';
-import { CATALOG_COPY, PROJECT_BATCH_SIZE, PROJECT_THEMES, projectTheme } from '../../core/project-catalog';
+import {
+  CATALOG_COPY,
+  PROJECT_BATCH_SIZE,
+  PROJECT_THEMES,
+  projectTheme,
+} from '../../core/project-catalog';
 import type { ProjectTheme } from '../../core/models';
 import { ProjectCard } from '../../landing/project-card/project-card';
 import { ProjectCount } from '../../landing/project-count/project-count';
 
 @Component({
   selector: 'sn8w-projects-page',
-  imports: [RouterLink, ProjectCard, ProjectCount],
+  imports: [RouterLink, FormsModule, ProjectCard, ProjectCount],
   templateUrl: './projects-page.html',
   styleUrl: './projects-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,23 +35,57 @@ export class ProjectsPage {
   private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
   private readonly injector = inject(Injector);
   protected readonly copy = computed(() => CATALOG_COPY[this.i18n.lang()]);
-  protected readonly themes = PROJECT_THEMES;
+  protected readonly themes = computed(() =>
+    PROJECT_THEMES.filter((theme) => this.count(theme) > 0),
+  );
   protected readonly selected = signal<ProjectTheme | 'all'>('all');
+  protected readonly activeTheme = computed(() =>
+    this.themes().includes(this.selected() as ProjectTheme) ? this.selected() : 'all',
+  );
+  protected readonly query = signal('');
+  protected readonly hasFilters = computed(
+    () => this.query().length > 0 || this.activeTheme() !== 'all',
+  );
   protected readonly limit = signal(PROJECT_BATCH_SIZE);
-  protected readonly filtered = computed(() => this.projects.visible().filter(p => this.selected() === 'all' || projectTheme(p) === this.selected()));
+  protected readonly filtered = computed(() => {
+    const terms = normalizeSearch(this.query()).split(/\s+/).filter(Boolean);
+    return this.projects.visible().filter((p) => {
+      if (this.activeTheme() !== 'all' && projectTheme(p) !== this.activeTheme()) return false;
+      const text = normalizeSearch(`${p.name} ${p.category} ${p.tagline}`);
+      return terms.every((term) => text.includes(term));
+    });
+  });
   protected readonly shown = computed(() => this.filtered().slice(0, this.limit()));
   protected select(theme: ProjectTheme | 'all'): void {
     this.selected.set(theme);
     this.limit.set(PROJECT_BATCH_SIZE);
   }
+  protected search(value: string): void {
+    this.query.set(value);
+    this.limit.set(PROJECT_BATCH_SIZE);
+  }
+  protected clear(searchInput: HTMLInputElement): void {
+    this.query.set('');
+    this.select('all');
+    searchInput.focus();
+  }
   protected count(theme: ProjectTheme): number {
-    return this.projects.visible().filter(p => projectTheme(p) === theme).length;
+    return this.projects.visible().filter((p) => projectTheme(p) === theme).length;
   }
   protected showMore(): void {
     const firstNew = this.shown().length;
-    this.limit.update(value => value + PROJECT_BATCH_SIZE);
-    afterNextRender(() => {
-      this.host.nativeElement.querySelectorAll<HTMLElement>('[data-project-heading]')[firstNew]?.focus();
-    }, { injector: this.injector });
+    this.limit.update((value) => value + PROJECT_BATCH_SIZE);
+    afterNextRender(
+      () => {
+        this.host.nativeElement
+          .querySelectorAll<HTMLElement>('[data-project-heading]')
+          [firstNew]?.focus();
+      },
+      { injector: this.injector },
+    );
   }
+}
+
+function normalizeSearch(value: string): string {
+  return value.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase().trim();
 }

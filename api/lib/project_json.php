@@ -22,6 +22,7 @@ function project_row_to_json(array $row, bool $includePrivate = false): array
         'repoPrivate' => false,
         'screenshot' => $row['screenshot'],
         'screenshots' => json_decode($row['screenshots'] ?? '[]', true) ?: [],
+        'screenshotCaptions' => (object) (json_decode($row['screenshot_captions'] ?? '{}', true) ?: []),
         'availability' => $row['availability'],
         'activationRequestedAt' => null,
         'sortOrder' => (int) $row['sort_order'],
