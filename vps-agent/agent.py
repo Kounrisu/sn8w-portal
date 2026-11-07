@@ -210,6 +210,76 @@ def do_update(key):
 git_cache = {}
 
 
+disk_cache = {}  # refreshed in the background: where the disk goes, per project
+
+
+def dir_size(path):
+    try:
+        r = subprocess.run(["nice", "-n", "19", "du", "-sb", path], capture_output=True, text=True, timeout=300)
+        return int(r.stdout.split()[0]) if r.returncode == 0 and r.stdout.strip() else 0
+    except Exception:
+        return 0
+
+
+def image_bytes(key):
+    """Unique image bytes used by this project's containers (asked to Docker directly,
+    so compose variable interpolation / .env files are not needed)."""
+    code, out = sh(["docker", "ps", "-a", "--filter", f"label=com.docker.compose.project={key}",
+                    "--format", "{{.Image}}"], "/", timeout=60)
+    seen = {}
+    if code == 0:
+        for image in set(out.split()):
+            c, info = sh(["docker", "image", "inspect", image, "--format", "{{.Id}} {{.Size}}"], "/", timeout=60)
+            parts = info.split()
+            if c == 0 and len(parts) == 2 and parts[1].isdigit():
+                seen[parts[0]] = int(parts[1])
+    return sum(seen.values())
+
+
+def node_modules_paths(key):
+    d = PROJECTS[key]["dir"]
+    return [p for p in (os.path.join(d, "node_modules"), os.path.join(d, "frontend", "node_modules")) if os.path.isdir(p)]
+
+
+def disk_refresher():
+    while True:
+        report = {}
+        for key, p in list(dict(PROJECTS.items()).items()):
+            try:
+                d = p["dir"]
+                report[key] = {
+                    "source": dir_size(d),
+                    "nodeModules": sum(dir_size(x) for x in node_modules_paths(key)),
+                    "git": dir_size(os.path.join(d, ".git")) if os.path.isdir(os.path.join(d, ".git")) else 0,
+                    "images": image_bytes(key),
+                }
+            except Exception:
+                continue
+        disk_cache.update({"projects": report, "at": int(time.time())})
+        time.sleep(900)
+
+
+def do_clean(key):
+    """Remove regenerable files: node_modules (rebuilt by Update) and git garbage."""
+    d = PROJECTS[key]["dir"]
+    log = []
+    for path in node_modules_paths(key):
+        rel = os.path.relpath(path, d).replace(os.sep, "/")
+        # root-owned files (created by the build container) -> remove through a container
+        c, out = sh(["docker", "run", "--rm", "-v", f"{d}:/w", "node:24-alpine", "sh", "-c", f"rm -rf /w/{rel}"], d, timeout=600)
+        log.append(f"removed {rel}" if c == 0 else f"failed {rel}: {out}")
+    if os.path.isdir(os.path.join(d, ".git")):
+        sh(["git", "reflog", "expire", "--expire=now", "--all"], d)
+        c, out = sh(["git", "gc", "--prune=now", "--quiet"], d, timeout=600)
+        log.append("git gc ok" if c == 0 else "git gc failed: " + out)
+    return 0, "\n".join(log) or "nothing to clean"
+
+
+def do_prune_cache():
+    c, out = sh(["docker", "builder", "prune", "-af"], "/", timeout=900)
+    return c, out
+
+
 def do_action(key, action):
     try:
         if action == "start":
@@ -218,6 +288,10 @@ def do_action(key, action):
             code, out = run(key, "stop")
         elif action == "update":  # git pull + frontend build + compose up --build
             code, out = do_update(key)
+        elif action == "clean":
+            code, out = do_clean(key)
+        elif action == "prune-cache":  # host-wide, key is "_host"
+            code, out = do_prune_cache()
         elif action == "uninstall":  # frees RAM + disk: containers + images; KEEPS data volumes
             code, out = run(key, "down", "--rmi", "all", "--remove-orphans")
         else:
@@ -359,10 +433,18 @@ class Handler(BaseHTTPRequestHandler):
                       "builds": bool(build_steps(k)), "usage": usage.get(k)}
                    for k, p in PROJECTS.items()}
             top = sorted((docker_stats.get("containers") or {}).values(), key=lambda c: -c["mem"])[:8]
-            return self.reply(200, {"host": host_info(), "projects": out, "topContainers": top})
+            return self.reply(200, {"host": host_info(), "projects": out, "topContainers": top,
+                                    "disk": disk_cache.get("projects"), "hostJob": snap.get("_host")})
         if self.command == "POST" and len(parts) == 3 and parts[0] == "projects":
             key, action = parts[1], parts[2]
-            if key not in PROJECTS or action not in ("start", "stop", "uninstall", "update"):
+            if key == "_host" and action == "prune-cache":
+                with jobs_lock:
+                    if jobs.get(key, {}).get("state") == "running":
+                        return self.reply(409, {"error": "operation already running"})
+                    jobs[key] = {"op": action, "state": "running", "log": "", "at": int(time.time())}
+                threading.Thread(target=do_action, args=(key, action), daemon=True).start()
+                return self.reply(202, {"accepted": True})
+            if key not in PROJECTS or action not in ("start", "stop", "uninstall", "update", "clean"):
                 return self.reply(404, {"error": "unknown project or action"})
             with jobs_lock:
                 if jobs.get(key, {}).get("state") == "running":
@@ -378,4 +460,5 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     threading.Thread(target=git_refresher, daemon=True).start()
     threading.Thread(target=stats_refresher, daemon=True).start()
+    threading.Thread(target=disk_refresher, daemon=True).start()
     ThreadingHTTPServer((BIND, PORT), Handler).serve_forever()
