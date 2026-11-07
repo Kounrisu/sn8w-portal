@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 import { I18nService } from '../../../core/i18n/i18n.service';
 import { ProjectsService } from '../../../core/projects.service';
 
-type VpsAction = 'start' | 'stop' | 'uninstall' | 'update';
+type VpsAction = 'start' | 'stop' | 'uninstall' | 'update' | 'clean';
 
 interface VpsJob {
   op: VpsAction;
@@ -59,6 +59,8 @@ interface VpsStatus {
   projects: VpsProject[];
   topContainers?: VpsContainer[];
   linksAvailable?: boolean;
+  disk?: Record<string, { source: number; nodeModules: number; git: number; images: number }> | null;
+  hostJob?: VpsJob | null;
 }
 
 const COPY = {
@@ -77,6 +79,17 @@ const COPY = {
     uninstall: 'Uninstall',
     update: 'Update from GitHub',
     redeploy: 'Redeploy',
+    clean: 'Free space',
+    diskTitle: 'Where the disk goes',
+    colImages: 'Images',
+    colSource: 'Source',
+    colModules: 'node_modules',
+    colGit: '.git',
+    colTotal: 'Total',
+    pruneCache: 'Clear Docker build cache',
+    pruneHint: 'Reclaimable build cache, rebuilt on demand',
+    confirmClean: 'Delete node_modules (rebuilt on the next Update) and run git gc?',
+    confirmPrune: 'Clear the Docker build cache? Only makes the next image build slower.',
     upToDate: 'Up to date',
     behind: 'commits behind',
     dirty: 'uncommitted changes on VPS',
@@ -104,6 +117,17 @@ const COPY = {
     uninstall: 'Désinstaller',
     update: 'Mettre à jour depuis GitHub',
     redeploy: 'Redéployer',
+    clean: 'Libérer de l’espace',
+    diskTitle: 'Où va le disque',
+    colImages: 'Images',
+    colSource: 'Sources',
+    colModules: 'node_modules',
+    colGit: '.git',
+    colTotal: 'Total',
+    pruneCache: 'Vider le cache de build Docker',
+    pruneHint: 'Cache récupérable, reconstruit à la demande',
+    confirmClean: 'Supprimer node_modules (reconstruit à la prochaine mise à jour) et lancer git gc ?',
+    confirmPrune: 'Vider le cache de build Docker ? Le prochain build d’image sera juste plus lent.',
     upToDate: 'À jour',
     behind: 'commits de retard',
     dirty: 'modifications non commitées sur le VPS',
@@ -186,6 +210,31 @@ const COPY = {
             </details>
           }
         }
+        @if (s.disk) {
+          <details class="vps__disk" open>
+            <summary>{{ t().diskTitle }}</summary>
+            <table>
+              <thead><tr><th></th><th>{{ t().colImages }}</th><th>{{ t().colSource }}</th><th>{{ t().colModules }}</th><th>{{ t().colGit }}</th><th>{{ t().colTotal }}</th></tr></thead>
+              <tbody>
+                @for (row of diskRows(s); track row.key) {
+                  <tr>
+                    <th scope="row">{{ row.name }}</th>
+                    <td>{{ fmt(row.images) }}</td><td>{{ fmt(row.source) }}</td><td>{{ fmt(row.nodeModules) }}</td><td>{{ fmt(row.git) }}</td>
+                    <td><strong>{{ fmt(row.total) }}</strong></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            <p class="vps__cache">
+              @for (d of s.host?.docker ?? []; track d.type) {
+                @if (d.type === 'Build Cache' && d.size > 0) {
+                  {{ d.type }}: {{ fmt(d.size) }} — {{ t().pruneHint }}
+                  <button type="button" class="btn btn--secondary" [disabled]="s.hostJob?.state === 'running'" (click)="pruneCache()">{{ t().pruneCache }}</button>
+                }
+              }
+            </p>
+          </details>
+        }
         <ul class="vps__list">
           @for (p of s.projects; track p.key) {
             <li class="vps__row">
@@ -222,6 +271,9 @@ const COPY = {
                 <button type="button" class="btn btn--primary" [disabled]="isBusy(p) || p.state === 'running'" (click)="act(p, 'start')">{{ t().start }}</button>
                 <button type="button" class="btn btn--secondary" [disabled]="isBusy(p) || p.state === 'stopped' || p.state === 'uninstalled'" (click)="act(p, 'stop')">{{ t().stop }}</button>
                 <button type="button" class="btn btn--secondary" [disabled]="isBusy(p) || p.state === 'uninstalled'" (click)="act(p, 'uninstall')">{{ t().uninstall }}</button>
+                @if ((s.disk?.[p.key]?.nodeModules ?? 0) > 0 || (s.disk?.[p.key]?.git ?? 0) > 50000000) {
+                  <button type="button" class="btn btn--secondary" [disabled]="isBusy(p)" (click)="act(p, 'clean')">{{ t().clean }}</button>
+                }
                 @if (!p.git?.repo || p.manual) {
                   <button type="button" class="btn btn--secondary" [disabled]="isBusy(p) || p.state === 'uninstalled'" (click)="act(p, 'start')">{{ t().redeploy }}</button>
                 }
@@ -253,6 +305,11 @@ const COPY = {
     .vps__bar > div.vps__bar--warn { background: var(--danger); }
     .vps__top { margin: 0 0 1rem; font-size: .85rem; color: var(--mist); }
     .vps__top ul { margin: .5rem 0 0; padding-left: 1.2rem; }
+    .vps__disk { margin: 0 0 1rem; font-size: .85rem; }
+    .vps__disk table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+    .vps__disk th, .vps__disk td { padding: .25rem .5rem; text-align: right; border-top: 1px solid var(--line); }
+    .vps__disk th[scope='row'], .vps__disk thead th:first-child { text-align: left; }
+    .vps__cache { color: var(--mist); display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
     .vps__git { font-size: .8rem; color: var(--mist); }
     .vps__state--running { color: var(--ice); }
     .vps__link { display: grid; gap: .25rem; font-size: .8rem; color: var(--mist); }
@@ -327,8 +384,29 @@ export class VpsPanel implements OnInit {
     return String(e);
   }
 
+  protected diskRows(s: VpsStatus) {
+    return s.projects
+      .map((p) => {
+        const d = s.disk?.[p.key];
+        return { key: p.key, name: p.name, images: d?.images ?? 0, source: d?.source ?? 0, nodeModules: d?.nodeModules ?? 0, git: d?.git ?? 0, total: (d?.images ?? 0) + (d?.source ?? 0) };
+      })
+      .sort((a, b) => b.total - a.total);
+  }
+
+  protected async pruneCache(): Promise<void> {
+    if (!confirm(this.t().confirmPrune)) return;
+    try {
+      await firstValueFrom(this.http.post(this.url, { key: '_host', action: 'prune-cache' }));
+    } catch (e) {
+      this.error.set(true);
+      this.errorDetail.set(this.describe(e));
+    }
+    this.timer = setTimeout(() => void this.refresh(), 1500);
+  }
+
   protected async act(p: VpsProject, action: VpsAction): Promise<void> {
     if (action === 'uninstall' && !confirm(this.t().confirmUninstall)) return;
+    if (action === 'clean' && !confirm(this.t().confirmClean)) return;
     this.pending.update((s) => new Set(s).add(p.key));
     try {
       await firstValueFrom(this.http.post(this.url, { key: p.key, action }));

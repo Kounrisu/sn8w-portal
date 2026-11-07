@@ -8,7 +8,7 @@ require_once __DIR__ . '/lib/auth.php';
 require_method('GET', 'POST');
 require_auth();
 
-const VPS_ACTIONS = ['start', 'stop', 'uninstall', 'update'];
+const VPS_ACTIONS = ['start', 'stop', 'uninstall', 'update', 'clean'];
 
 /** Signed call to the VPS agent (HMAC-SHA256 over ts.METHOD.path.body). */
 function agent_call(string $method, string $path, string $body = ''): array
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ];
     }
 
-    json_response(['host' => $data['host'] ?? null, 'projects' => $out, 'topContainers' => $data['topContainers'] ?? [], 'linksAvailable' => $linksAvailable]);
+    json_response(['host' => $data['host'] ?? null, 'projects' => $out, 'topContainers' => $data['topContainers'] ?? [], 'disk' => $data['disk'] ?? null, 'hostJob' => $data['hostJob'] ?? null, 'linksAvailable' => $linksAvailable]);
 }
 
 // POST: { key, action: start|stop|uninstall|link, projectId? }
@@ -109,6 +109,20 @@ if ($action === 'link') {
             ->execute(['k' => $key, 'p' => $projectId]);
     }
     json_response(['linked' => $projectId]);
+}
+
+if ($key === '_host') {
+    if ($action !== 'prune-cache') {
+        json_error('Invalid action', 422);
+    }
+    [$status] = agent_call('POST', '/projects/_host/prune-cache');
+    if ($status === 409) {
+        json_error('An operation is already running', 409);
+    }
+    if ($status !== 202) {
+        json_error('VPS agent refused the request', 502);
+    }
+    json_response(['accepted' => true], 202);
 }
 
 if (!in_array($action, VPS_ACTIONS, true)) {
