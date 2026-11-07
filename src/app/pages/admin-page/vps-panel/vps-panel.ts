@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../../environments/environment';
@@ -132,7 +132,7 @@ const COPY = {
       </div>
 
       @if (error()) {
-        <p class="vps__error">{{ t().unreachable }}</p>
+        <p class="vps__error">{{ t().unreachable }} @if (errorDetail()) { <code>{{ errorDetail() }}</code> }</p>
       }
 
       @if (status(); as s) {
@@ -265,6 +265,7 @@ export class VpsPanel implements OnInit {
 
   protected readonly status = signal<VpsStatus | null>(null);
   protected readonly error = signal(false);
+  protected readonly errorDetail = signal('');
   protected readonly pending = signal<ReadonlySet<string>>(new Set());
   private timer: ReturnType<typeof setTimeout> | undefined;
 
@@ -302,14 +303,24 @@ export class VpsPanel implements OnInit {
       const s = await firstValueFrom(this.http.get<VpsStatus>(this.url));
       this.status.set(s);
       this.error.set(false);
+      this.errorDetail.set('');
       // The portal syncs card availability server-side; reload cards when it may have changed.
       await this.projects.load();
       if (s.projects.some((p) => p.job?.state === 'running')) {
         this.timer = setTimeout(() => void this.refresh(), 4000);
       }
-    } catch {
+    } catch (e) {
       this.error.set(true);
+      this.errorDetail.set(this.describe(e));
     }
+  }
+
+  private describe(e: unknown): string {
+    if (e instanceof HttpErrorResponse) {
+      const msg = (e.error as { error?: string } | null)?.error;
+      return `HTTP ${e.status}${msg ? ' — ' + msg : ''}`;
+    }
+    return String(e);
   }
 
   protected async act(p: VpsProject, action: VpsAction): Promise<void> {
