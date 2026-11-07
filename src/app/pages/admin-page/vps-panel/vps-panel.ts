@@ -260,12 +260,14 @@ const COPY = {
               </div>
               <label class="vps__link">
                 {{ t().link }}
-                <select [ngModel]="p.projectId" (ngModelChange)="link(p, $event)" [name]="'link-' + p.key">
-                  <option [ngValue]="null">{{ t().none }}</option>
-                  @for (c of projects.list(); track c.id) {
-                    <option [ngValue]="c.id">{{ c.name }}</option>
-                  }
-                </select>
+                <span class="vps__select">
+                  <select [ngModel]="p.projectId" (ngModelChange)="link(p, $event)" [name]="'link-' + p.key">
+                    <option [ngValue]="null">{{ t().none }}</option>
+                    @for (c of projects.list(); track c.id) {
+                      <option [ngValue]="c.id">{{ c.name }}</option>
+                    }
+                  </select>
+                </span>
               </label>
               <div class="vps__actions">
                 <button type="button" class="btn btn--primary" [disabled]="isBusy(p) || p.state === 'running'" (click)="act(p, 'start')">{{ t().start }}</button>
@@ -312,7 +314,12 @@ const COPY = {
     .vps__cache { color: var(--mist); display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
     .vps__git { font-size: .8rem; color: var(--mist); }
     .vps__state--running { color: var(--ice); }
-    .vps__link { display: grid; gap: .25rem; font-size: .8rem; color: var(--mist); }
+    .vps__link { display: grid; gap: .35rem; font-size: .85rem; font-weight: 600; color: var(--ink); }
+    .vps__select { position: relative; display: block; }
+    .vps__select select { appearance: none; width: 100%; min-width: 12rem; padding: .6rem 2.25rem .6rem .75rem; border: 1px solid var(--line-strong); border-radius: .5rem; background: var(--surface-sunken); color: var(--ink); font: inherit; font-size: .9rem; font-weight: 400; cursor: pointer; }
+    .vps__select select:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
+    .vps__select select option { background: var(--surface-raised); color: var(--ink); }
+    .vps__select::after { content: ''; position: absolute; right: .9rem; top: 50%; width: .5rem; height: .5rem; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
     .vps__actions { display: flex; gap: .5rem; flex-wrap: wrap; }
     @media (max-width: 800px) { .vps__row { grid-template-columns: 1fr; } }
   `,
