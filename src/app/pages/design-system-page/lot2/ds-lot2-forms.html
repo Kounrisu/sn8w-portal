@@ -1,0 +1,65 @@
+@let c = copy().lot2;
+<header class="ds-lot">
+  <h2 class="ds-lot__title">{{ c.title }}</h2>
+  <p class="ds-muted">{{ c.lede }}</p>
+</header>
+
+<section class="ds-box" id="ds-lot2-forms">
+  <p class="ds-label">{{ c.forms.label }}</p>
+  <h2 class="ds-box__title">{{ c.forms.title }}</h2>
+
+  <h3 class="ds-sub">Password</h3>
+  <div class="ds-grid ds-grid--2">
+    <div class="ds-field">
+      <label for="ds-pw1">{{ c.forms.password.label }}</label>
+      <div class="ds-pw">
+        <input id="ds-pw1" [type]="showPassword() ? 'text' : 'password'" autocomplete="new-password" aria-describedby="ds-pw1-hint" value="Cerisier-2026" />
+        <button type="button" class="ds-pw__toggle" [attr.aria-pressed]="showPassword()" [attr.aria-label]="c.forms.password.showAria" (click)="showPassword.set(!showPassword())">
+          {{ showPassword() ? c.forms.password.hide : c.forms.password.show }}
+        </button>
+      </div>
+      <p id="ds-pw1-hint" class="ds-field__state">{{ c.forms.password.hint }}</p>
+    </div>
+    <div class="ds-field">
+      <label for="ds-pw2">{{ c.forms.password.label }}</label>
+      <input id="ds-pw2" type="password" autocomplete="new-password" aria-invalid="true" aria-describedby="ds-pw2-err" value="abc" />
+      <p id="ds-pw2-err" class="ds-field__error">{{ c.forms.password.error }}</p>
+    </div>
+  </div>
+
+  <h3 class="ds-sub">Range</h3>
+  <div class="ds-grid ds-grid--2">
+    <div class="ds-range">
+      <div class="ds-range__head">
+        <label for="ds-range1">{{ c.forms.range.label }}</label>
+        <output for="ds-range1">{{ rangeValue() }} %</output>
+      </div>
+      <input id="ds-range1" type="range" min="100" max="200" step="10" [value]="rangeValue()" [attr.aria-valuetext]="rangeValue() + ' %'" (input)="onRange($event)" />
+      <div class="ds-range__scale" aria-hidden="true"><span>{{ c.forms.range.min }}</span><span>{{ c.forms.range.max }}</span></div>
+    </div>
+    <div class="ds-range">
+      <div class="ds-range__head">
+        <label for="ds-range2">{{ c.forms.range.label }}</label>
+        <output for="ds-range2">110 %</output>
+      </div>
+      <input id="ds-range2" type="range" min="100" max="200" step="10" value="110" disabled />
+      <div class="ds-range__scale" aria-hidden="true"><span>{{ c.forms.range.min }}</span><span>{{ c.forms.range.max }}</span></div>
+    </div>
+  </div>
+
+  <h3 class="ds-sub">Upload</h3>
+  <div class="ds-field ds-upload">
+    <label for="ds-file">{{ c.forms.upload.label }}</label>
+    <p id="ds-file-hint" class="ds-field__state">{{ c.forms.upload.hint }}</p>
+    <input id="ds-file" type="file" accept=".pdf,.png" aria-describedby="ds-file-hint ds-file-status" (change)="onFile($event, c.forms.upload.none, c.forms.upload.tooLarge, c.forms.upload.selected)" />
+    <p id="ds-file-status" class="ds-upload__status" [class.is-error]="fileError()" aria-live="polite">{{ fileStatus() || c.forms.upload.none }}</p>
+  </div>
+
+  <h3 class="ds-sub">Segmented control</h3>
+  <fieldset class="ds-seg">
+    <legend class="ds-visually-hidden">{{ c.forms.segmented.legend }}</legend>
+    @for (option of c.forms.segmented.options; track option; let i = $index) {
+      <label class="ds-seg__option"><input type="radio" name="ds-view" [checked]="i === 0" /><span>{{ option }}</span></label>
+    }
+  </fieldset>
+</section>

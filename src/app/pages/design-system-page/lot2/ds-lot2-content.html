@@ -1,0 +1,43 @@
+@let c = copy().lot2.content;
+<section class="ds-box" id="ds-lot2-content">
+  <p class="ds-label">{{ c.label }}</p>
+  <h2 class="ds-box__title" id="ds-lot2-content-title" tabindex="-1">{{ c.title }}</h2>
+
+  <h3 class="ds-sub">Notice</h3>
+  <div class="ds-notices">
+    @for (tone of tones; track tone; let i = $index) {
+      @if (!dismissed().includes(i)) {
+        <section class="ds-notice" [class]="'ds-notice ds-notice--' + tone" [attr.aria-label]="c.notice.aria + ' (' + c.notice.tones[i] + ')'">
+          <span class="ds-notice__tone">{{ c.notice.tones[i] }}</span>
+          <p class="ds-notice__text">{{ c.notice.messages[i] }}</p>
+          <a class="ds-notice__link" routerLink="/design-system/governance">{{ c.notice.link }}</a>
+          <button type="button" class="ds-notice__close" [attr.aria-label]="c.notice.close + ' — ' + c.notice.tones[i]" (click)="dismiss(i)"><span aria-hidden="true">×</span></button>
+        </section>
+      }
+    }
+    @if (dismissed().length > 0) {
+      <p><button type="button" class="btn btn--secondary" (click)="restore()">{{ c.notice.restore }}</button></p>
+    }
+  </div>
+
+  <h3 class="ds-sub">Highlight</h3>
+  <p class="ds-hl">{{ c.highlight }}</p>
+
+  <h3 class="ds-sub">Quote</h3>
+  <figure class="ds-quote">
+    <blockquote><p>{{ c.quote.text }}</p></blockquote>
+    <figcaption>{{ c.quote.caption }}</figcaption>
+  </figure>
+
+  <h3 class="ds-sub">Tile</h3>
+  <ul class="ds-grid ds-grid--3">
+    @for (tile of c.tiles; track tile.t; let i = $index) {
+      <li class="ds-tile">
+        <span class="ds-tile__icon" aria-hidden="true">UI</span>
+        <h4 class="ds-tile__title"><a [routerLink]="tileRoutes[i]">{{ tile.t }}</a></h4>
+        <p class="ds-muted">{{ tile.d }}</p>
+        <span class="ds-tile__arrow" aria-hidden="true">→</span>
+      </li>
+    }
+  </ul>
+</section>

@@ -1,0 +1,136 @@
+/* Shared base for the design-system sub-components (Angular styles are view-scoped,
+   so each component pulls this partial in with @use). Prefix `ds-` only. */
+
+@mixin ds-focus {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+:host {
+  display: contents;
+}
+
+.ds-lot {
+  margin-top: var(--space-md);
+}
+
+.ds-lot__title {
+  margin: 0 0 var(--space-2xs);
+  font-size: 1.75rem;
+}
+
+.ds-box {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: var(--space-md);
+}
+
+.ds-box__title {
+  margin: 0 0 var(--space-xs);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.ds-label {
+  margin: 0 0 var(--space-2xs);
+  color: var(--lavender);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ds-muted {
+  margin: 0;
+  color: var(--mist);
+}
+
+.ds-sub {
+  margin: var(--space-md) 0 var(--space-xs);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.ds-note {
+  margin-top: var(--space-xs);
+  font-size: 0.85rem;
+}
+
+.ds-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ds-grid {
+  display: grid;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-grid--2 { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+.ds-grid--3 { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+
+.ds-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.ds-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ds-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ds-field input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background: var(--surface-sunken);
+  color: var(--ink);
+  font: inherit;
+}
+
+.ds-field input:focus-visible {
+  @include ds-focus;
+}
+
+.ds-field__state {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.78rem;
+}
+
+.ds-field__error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.8rem;
+}
+
+.ds-link {
+  color: var(--ice);
+  font-weight: 600;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

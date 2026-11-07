@@ -1,0 +1,142 @@
+@use '../ds-base' as *;
+
+.ds-pw {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background: var(--surface-sunken);
+}
+
+.ds-pw:focus-within {
+  @include ds-focus;
+}
+
+.ds-pw input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+}
+
+.ds-pw__toggle {
+  padding: 0.5rem 0.9rem;
+  border: 0;
+  background: transparent;
+  color: var(--ice);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ds-pw__toggle:focus-visible {
+  @include ds-focus;
+}
+
+.ds-field input[aria-invalid='true'] {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+.ds-range {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.ds-range__head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ds-range input[type='range'] {
+  width: 100%;
+  accent-color: var(--ice);
+}
+
+.ds-range input[type='range']:focus-visible {
+  @include ds-focus;
+}
+
+.ds-range input:disabled {
+  opacity: 0.5;
+}
+
+.ds-range__scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mist);
+  font-size: 0.72rem;
+}
+
+.ds-upload {
+  max-width: 28rem;
+}
+
+.ds-upload input[type='file'] {
+  padding: 0.75rem;
+  border: 1px dashed var(--line-strong);
+}
+
+.ds-upload input[type='file']::file-selector-button {
+  margin-right: 0.75rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ds-upload__status {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.85rem;
+}
+
+.ds-upload__status.is-error {
+  color: var(--danger);
+}
+
+.ds-seg {
+  display: inline-flex;
+  gap: 2px;
+  margin: 0;
+  padding: 3px;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.65rem;
+  background: var(--surface-sunken);
+}
+
+.ds-seg__option {
+  position: relative;
+  cursor: pointer;
+}
+
+.ds-seg__option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.ds-seg__option span {
+  display: block;
+  padding: 0.5rem 1.1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.ds-seg__option input:checked + span {
+  background: color-mix(in srgb, var(--ice) 20%, transparent);
+  font-weight: 700;
+}
+
+.ds-seg__option input:focus-visible + span {
+  @include ds-focus;
+}

@@ -1,0 +1,158 @@
+@use '../ds-base' as *;
+
+.ds-notices {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.ds-notice {
+  --tone: var(--ice);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--tone);
+  background: color-mix(in srgb, var(--tone) 12%, var(--surface-raised));
+  color: var(--ink);
+}
+
+.ds-notice--warning { --tone: var(--warning); }
+.ds-notice--alert { --tone: var(--danger); }
+
+.ds-notice__tone {
+  padding: 0.15rem 0.65rem;
+  border: 1px solid var(--tone);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.ds-notice__text {
+  flex: 1 1 14rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.ds-notice__link {
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ds-notice__close {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.ds-notice__link:focus-visible,
+.ds-notice__close:focus-visible,
+.ds-tile__title a:focus-visible {
+  @include ds-focus;
+}
+
+#ds-lot2-content-title:focus {
+  outline: none;
+}
+
+.ds-hl {
+  max-width: 42rem;
+  margin: 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 4px solid var(--ice);
+  font-size: 1.25rem;
+}
+
+.ds-quote {
+  max-width: 36rem;
+  margin: 0;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-raised);
+}
+
+.ds-quote blockquote {
+  margin: 0;
+}
+
+.ds-quote blockquote p {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.ds-quote blockquote p::before {
+  content: '“' / '';
+  display: block;
+  color: var(--lavender);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ds-quote figcaption {
+  margin-top: var(--space-xs);
+  color: var(--mist);
+  font-size: 0.85rem;
+}
+
+.ds-tile {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-raised);
+}
+
+.ds-tile:hover,
+.ds-tile:focus-within {
+  border-color: var(--ice);
+}
+
+.ds-tile:hover .ds-tile__title a {
+  text-decoration: underline;
+}
+
+.ds-tile__icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--ice) 20%, transparent);
+  color: var(--ice);
+  font-weight: 700;
+}
+
+.ds-tile__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ds-tile__title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* One link per tile (the title), clickable over the whole tile. */
+.ds-tile__title a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.ds-tile__arrow {
+  color: var(--ice);
+  font-size: 1.1rem;
+}

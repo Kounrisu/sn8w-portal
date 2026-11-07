@@ -1,0 +1,120 @@
+@let c = copy().lot2.navigation;
+@let nav = copy().nav;
+<section class="ds-box" id="ds-lot2-nav">
+  <p class="ds-label">{{ c.label }}</p>
+  <h2 class="ds-box__title">{{ c.title }}</h2>
+
+  <h3 class="ds-sub">Link</h3>
+  <div class="ds-row">
+    <a class="ds-a" routerLink="/design-system/governance">{{ c.link.default }}</a>
+    <a class="ds-a" href="https://github.com/Kounrisu" target="_blank" rel="noopener noreferrer">
+      {{ c.link.external }} <span aria-hidden="true">↗</span><span class="ds-visually-hidden"> {{ c.link.newWindow }}</span>
+    </a>
+    <span>
+      <a class="ds-a" [href]="downloadHref(c.link.fileContent)" download="design-system-notes.txt">{{ c.link.download }}</a>
+      <span class="ds-muted ds-fileinfo">{{ c.link.fileInfo }}</span>
+    </span>
+  </div>
+
+  <h3 class="ds-sub">Skip links</h3>
+  <div class="ds-skip">
+    <p class="ds-skip__title">{{ c.skip.title }}</p>
+    <ul>
+      @for (item of c.skip.items; track item; let i = $index) {
+        <li><a class="ds-a" routerLink="/design-system/components" [fragment]="skipTargets[i]">{{ item }}</a></li>
+      }
+    </ul>
+  </div>
+
+  <h3 class="ds-sub">Header</h3>
+  <div class="ds-hdr" role="group" [attr.aria-label]="c.header.aria + ' — ' + c.header.desktop">
+    <p class="ds-brand"><span class="ds-brand__mark" aria-hidden="true">S8</span> SN8W</p>
+    <p class="ds-hdr__links">
+      @for (l of c.header.links; track l) {
+        <span>{{ l }}</span>
+      }
+      <span class="ds-pill">{{ c.header.search }}</span>
+      <span class="ds-pill">FR</span>
+    </p>
+  </div>
+  <div class="ds-hdr ds-hdr--mobile" role="group" [attr.aria-label]="c.header.aria + ' — ' + c.header.mobile">
+    <p class="ds-brand"><span class="ds-brand__mark" aria-hidden="true">S8</span> SN8W</p>
+    <button type="button" class="ds-burger" [attr.aria-expanded]="menuOpen()" aria-controls="ds-hdr-menu" [attr.aria-label]="menuOpen() ? c.header.menuCloseAria : c.header.menuOpenAria" (click)="menuOpen.set(!menuOpen())">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+    <ul id="ds-hdr-menu" class="ds-hdr__menu" [hidden]="!menuOpen()">
+      @for (l of c.header.links; track l) {
+        <li>{{ l }}</li>
+      }
+    </ul>
+  </div>
+
+  <h3 class="ds-sub">Main navigation</h3>
+  <nav [attr.aria-label]="c.mainNav.aria">
+    <ul class="ds-mainnav">
+      @for (item of c.mainNav.items; track item; let i = $index) {
+        <li>
+          <a [routerLink]="mainNavRoutes[i].path" [fragment]="mainNavRoutes[i].fragment" [attr.aria-current]="i === 0 ? 'page' : null">{{ item }}</a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="ds-grid ds-grid--3 ds-twocol">
+    <div>
+      <h3 class="ds-sub">Side menu</h3>
+      <nav class="ds-side" [attr.aria-label]="c.side.aria">
+        <p class="ds-side__title">{{ c.side.title }}</p>
+        <ul>
+          @for (page of sidePages; track page.key) {
+            <li><a [routerLink]="page.path" [attr.aria-current]="page.key === 'components' ? 'page' : null">{{ nav[page.key] }}</a></li>
+          }
+        </ul>
+      </nav>
+    </div>
+    <div>
+      <h3 class="ds-sub">Summary</h3>
+      <nav class="ds-summary" aria-labelledby="ds-summary-title">
+        <p id="ds-summary-title" class="ds-summary__title">{{ c.summary.title }}</p>
+        <ol>
+          @for (item of c.summary.items; track item; let i = $index) {
+            <li><a routerLink="/design-system/components" [fragment]="summaryTargets[i]">{{ item }}</a></li>
+          }
+        </ol>
+      </nav>
+    </div>
+    <div>
+      <h3 class="ds-sub">Dropdown menu</h3>
+      <div class="ds-dd">
+        <button type="button" id="ds-dd-trigger" class="btn btn--secondary" aria-haspopup="menu" [attr.aria-expanded]="ddOpen()" aria-controls="ds-dd-menu" (click)="toggleDd()" (keydown)="onTriggerKey($event)">
+          {{ c.dropdown.trigger }} <span aria-hidden="true">▾</span>
+        </button>
+        <ul id="ds-dd-menu" class="ds-dd__menu" role="menu" [attr.aria-label]="c.dropdown.trigger" [hidden]="!ddOpen()">
+          @for (item of c.dropdown.items; track item; let i = $index) {
+            <li role="none">
+              <button type="button" role="menuitem" [id]="'ds-dd-item-' + i" tabindex="-1" [class.is-danger]="i === 2" (click)="choose(i)" (keydown)="onMenuKey($event, i, c.dropdown.items.length)">{{ item }}</button>
+            </li>
+          }
+        </ul>
+      </div>
+      <p class="ds-muted ds-note" aria-live="polite">{{ ddChosen() >= 0 ? c.dropdown.chosen + c.dropdown.items[ddChosen()] : c.dropdown.none }}</p>
+    </div>
+  </div>
+
+  <h3 class="ds-sub">Footer</h3>
+  <div class="ds-ftr" role="group" [attr.aria-label]="c.footer.aria">
+    <div class="ds-ftr__cols">
+      @for (col of c.footer.cols; track col.t) {
+        <div>
+          <p class="ds-ftr__title">{{ col.t }}</p>
+          <ul>
+            @for (l of col.l; track l) {
+              <li>{{ l }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <p class="ds-muted ds-ftr__legal">{{ c.footer.copyright }}</p>
+  </div>
+</section>
