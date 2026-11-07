@@ -184,3 +184,10 @@ UNION ALL SELECT
   'prototype', NULL, 6
 ) AS seed
 WHERE NOT EXISTS (SELECT 1 FROM projects);
+
+-- 011: link VPS agent project keys to portal projects
+CREATE TABLE IF NOT EXISTS vps_links (
+  vps_key VARCHAR(64) NOT NULL PRIMARY KEY,
+  project_id INT NOT NULL,
+  UNIQUE KEY uq_vps_links_project (project_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

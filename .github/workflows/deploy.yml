@@ -97,12 +97,16 @@ jobs:
           define('SN8W_DB_NAME', '${OVH_DB_NAME}');
           define('SN8W_DB_USER', '${OVH_DB_USER}');
           define('SN8W_DB_PASSWORD', '${OVH_DB_PASSWORD}');
+          define('SN8W_VPS_AGENT_URL', '${VPS_AGENT_URL}');
+          define('SN8W_VPS_AGENT_SECRET', '${VPS_AGENT_SECRET}');
           PHP
         env:
           OVH_DB_HOST: ${{ secrets.OVH_DB_HOST }}
           OVH_DB_NAME: ${{ secrets.OVH_DB_NAME }}
           OVH_DB_USER: ${{ secrets.OVH_DB_USER }}
           OVH_DB_PASSWORD: ${{ secrets.OVH_DB_PASSWORD }}
+          VPS_AGENT_URL: ${{ secrets.VPS_AGENT_URL }}
+          VPS_AGENT_SECRET: ${{ secrets.VPS_AGENT_SECRET }}
 
       - name: Assemble deploy folder
         run: |
