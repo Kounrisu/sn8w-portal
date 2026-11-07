@@ -75,27 +75,33 @@ if ($fields !== []) {
     json_response(['error' => 'validation', 'fields' => $fields], 422);
 }
 
-// Retention: messages are kept 6 months, then purged (lazily, on each post).
-db()->exec('DELETE FROM contact_messages WHERE created_at < (NOW() - INTERVAL ' . CONTACT_RETENTION_DAYS . ' DAY)');
+try {
+    // Retention: messages are kept 6 months, then purged (lazily, on each post).
+    db()->exec('DELETE FROM contact_messages WHERE created_at < (NOW() - INTERVAL ' . CONTACT_RETENTION_DAYS . ' DAY)');
 
-// Rate limits. The IP is never stored — only a salted hash, enough to count.
-$ipHash = hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? '') . '|' . db_config('DB_PASSWORD'));
+    // Rate limits. The IP is never stored — only a salted hash, enough to count.
+    $ipHash = hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? '') . '|' . db_config('DB_PASSWORD'));
 
-$stmt = db()->prepare('SELECT COUNT(*) FROM contact_messages WHERE ip_hash = :h AND created_at > (NOW() - INTERVAL 1 HOUR)');
-$stmt->execute(['h' => $ipHash]);
-if ((int) $stmt->fetchColumn() >= CONTACT_MAX_PER_IP_PER_HOUR) {
-    json_response(['error' => 'rate_limited'], 429);
+    $stmt = db()->prepare('SELECT COUNT(*) FROM contact_messages WHERE ip_hash = :h AND created_at > (NOW() - INTERVAL 1 HOUR)');
+    $stmt->execute(['h' => $ipHash]);
+    if ((int) $stmt->fetchColumn() >= CONTACT_MAX_PER_IP_PER_HOUR) {
+        json_response(['error' => 'rate_limited'], 429);
+    }
+    $total = (int) db()->query('SELECT COUNT(*) FROM contact_messages WHERE created_at > (NOW() - INTERVAL 1 HOUR)')->fetchColumn();
+    if ($total >= CONTACT_MAX_TOTAL_PER_HOUR) {
+        json_response(['error' => 'rate_limited'], 429);
+    }
+
+    $stmt = db()->prepare(
+        'INSERT INTO contact_messages (name, email, message, lang, ip_hash) VALUES (:name, :email, :message, :lang, :ip_hash)'
+    );
+    $stmt->execute(['name' => $name, 'email' => $email, 'message' => $message, 'lang' => $lang, 'ip_hash' => $ipHash]);
+    $id = (int) db()->lastInsertId();
+} catch (PDOException $e) {
+    // Typically: migration 012 not applied to this database (SQLSTATE 42S02, table not found).
+    error_log('Contact storage failed: ' . $e->getMessage());
+    json_response(['error' => $e->getCode() === '42S02' ? 'storage_missing' : 'storage'], 503);
 }
-$total = (int) db()->query('SELECT COUNT(*) FROM contact_messages WHERE created_at > (NOW() - INTERVAL 1 HOUR)')->fetchColumn();
-if ($total >= CONTACT_MAX_TOTAL_PER_HOUR) {
-    json_response(['error' => 'rate_limited'], 429);
-}
-
-$stmt = db()->prepare(
-    'INSERT INTO contact_messages (name, email, message, lang, ip_hash) VALUES (:name, :email, :message, :lang, :ip_hash)'
-);
-$stmt->execute(['name' => $name, 'email' => $email, 'message' => $message, 'lang' => $lang, 'ip_hash' => $ipHash]);
-$id = (int) db()->lastInsertId();
 
 // Email notification. The message is already stored, so a failed mail never
 // loses it — it is flagged in the admin instead (mail_sent = 0).
