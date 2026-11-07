@@ -20,37 +20,29 @@ $info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox
   @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23#{$hex}' d='M12 2a10 10 0 100 20 10 10 0 000-20zm1.2 5v6.5h-2.4V7h2.4zm0 8.3v2.4h-2.4v-2.4h2.4z'/%3E%3C/svg%3E");
 }
 
-// Invalid text field: bordered, tinted, with the error icon inside. The icon comes
-// from --invalid-icon, defined once per theme in styles.scss.
-@mixin invalid-field($selector) {
-  #{$selector} {
-    border-color: var(--danger);
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-    border-width: 2px;
-    padding-right: 2.75rem;
-    background-color: color-mix(in srgb, var(--danger) 10%, var(--surface-sunken));
-    background-image: var(--invalid-icon);
-    background-repeat: no-repeat;
-    background-position: right 0.85rem top 0.8rem;
-    background-size: 1.25rem;
-  }
-}
+// Text field states: invalid (red, error icon) and validated (green, check mark).
+// Both add a thicker border, a tint and an icon inside the field, so neither
+// relies on color alone. Icons come from --invalid-icon / --valid-icon (styles.scss).
+@mixin field-states($base, $size: true) {
+  #{$base}:is([aria-invalid='true'], [data-valid='true']) {
+    @if $size {
+      box-sizing: border-box;
+      width: 100%;
+    }
 
-// Validated text field: green border, light tint and a check mark inside (--valid-icon).
-@mixin valid-field($selector) {
-  #{$selector} {
-    border-color: var(--success);
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
+    border-color: var(--tone);
     border-width: 2px;
     padding-right: 2.75rem;
-    background-color: color-mix(in srgb, var(--success) 9%, var(--surface-sunken));
-    background-image: var(--valid-icon);
-    background-repeat: no-repeat;
-    background-position: right 0.85rem top 0.8rem;
-    background-size: 1.25rem;
+    background: var(--state-icon) no-repeat right 0.85rem top 0.8rem / 1.25rem color-mix(in srgb, var(--tone) 10%, var(--surface-sunken));
+  }
+
+  #{$base}[aria-invalid='true'] {
+    --tone: var(--danger);
+    --state-icon: var(--invalid-icon);
+  }
+
+  #{$base}[data-valid='true'] {
+    --tone: var(--success);
+    --state-icon: var(--valid-icon);
   }
 }

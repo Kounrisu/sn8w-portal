@@ -460,13 +460,8 @@ html[data-theme='contrast'] .btn--primary {
   background-color: color-mix(in srgb, var(--danger) 10%, var(--surface-sunken));
 }
 
-@include status.invalid-field(".field input[aria-invalid='true']:not([type='checkbox']):not([type='radio'])");
-@include status.invalid-field('.field textarea[aria-invalid="true"]');
-@include status.invalid-field("html .ds-field input[aria-invalid='true']");
-@include status.valid-field(".field input[data-valid='true']");
-@include status.valid-field(".field textarea[data-valid='true']");
-@include status.valid-field("html .ds-field input[data-valid='true']");
-@include status.invalid-field("html .ds-field textarea[aria-invalid='true']");
+@include status.field-states('.field input:not([type="checkbox"]):not([type="radio"])');
+@include status.field-states('.field textarea');
 
 .field input:disabled,
 .field select:disabled,

@@ -1,3 +1,4 @@
+@use '../../../status-icons' as status;
 @use '../../../panel';
 
 :host {
@@ -367,6 +368,8 @@
 }
 
 .ds-field input {
+  box-sizing: border-box;
+  width: 100%;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--line-strong);
   border-radius: 0.5rem;
@@ -383,7 +386,6 @@
 
 /* Static look of the focus state for the specimen (a real focus uses :focus-visible above). */
 .ds-field__focus-demo {
-  border-color: var(--ice);
   outline: 2px solid var(--ice);
   outline-offset: 2px;
 }
@@ -540,3 +542,5 @@
     transition: none;
   }
 }
+
+@include status.field-states('.ds-field input', false);

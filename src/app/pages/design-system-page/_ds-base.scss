@@ -102,6 +102,9 @@
 
 .ds-field input,
 .ds-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
   padding: 0.6rem 0.75rem;
   border: 1px solid var(--line-strong);
   border-radius: 0.5rem;
