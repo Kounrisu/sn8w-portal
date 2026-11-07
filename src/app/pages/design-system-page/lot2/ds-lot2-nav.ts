@@ -29,9 +29,9 @@ export class DsLot2Nav {
   }
 
   protected readonly mainNavRoutes = [
-    { path: ['/projects'], fragment: undefined },
-    { path: ['/accessibilite'], fragment: undefined },
+    { path: ['/'], fragment: 'expertise' },
     { path: ['/'], fragment: 'studio' },
+    { path: ['/projects'], fragment: undefined },
     { path: ['/workshop'], fragment: undefined },
   ] as const;
 

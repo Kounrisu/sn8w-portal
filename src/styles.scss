@@ -415,9 +415,7 @@ html[data-theme='contrast'] .btn--primary {
 .field-ok,
 .ds-field__error,
 .ds-field__ok {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.4rem;
+  margin: 0;
   font-size: var(--text-xs);
   font-weight: 600;
   color: var(--danger);
@@ -426,18 +424,6 @@ html[data-theme='contrast'] .btn--primary {
 .field-ok,
 .ds-field__ok {
   color: var(--success);
-}
-
-.field-ok::before,
-.ds-field__ok::before {
-  @include status.icon(status.$success);
-}
-
-.field-error::before,
-.ds-field__error::before {
-  @include status.icon(status.$error);
-
-  margin-top: 0.05em;
 }
 
 .field input:not([type='checkbox']):not([type='radio']),

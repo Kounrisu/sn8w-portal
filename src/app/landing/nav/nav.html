@@ -14,9 +14,9 @@
 
     <div class="nav__actions">
       <nav class="nav__links" [attr.aria-label]="i18n.lang() === 'fr' ? 'Navigation principale' : 'Main navigation'">
-        <a routerLink="/projects" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.products }}</a>
         <a class="nav__portfolio-link" routerLink="/" fragment="expertise">{{ i18n.dict().footer.accessibility }}</a>
         <a class="nav__portfolio-link" routerLink="/" fragment="studio">{{ i18n.dict().nav.about }}</a>
+        <a routerLink="/projects" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">{{ i18n.dict().nav.products }}</a>
         <a routerLink="/workshop" routerLinkActive="nav__link--active" ariaCurrentWhenActive="page">
           {{ i18n.dict().workshop.navLabel }}
         </a>
