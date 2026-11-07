@@ -6,6 +6,9 @@ import { I18nService } from '../../core/i18n/i18n.service';
 import { DESIGN_SYSTEM_COPY } from '../../core/i18n/design-system-copy';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { DsLot1 } from './lot1/ds-lot1';
+import { DsLot2Forms } from './lot2/ds-lot2-forms';
+import { DsLot2Nav } from './lot2/ds-lot2-nav';
+import { DsLot2Content } from './lot2/ds-lot2-content';
 
 export const DS_SECTIONS = [
   'intro',
@@ -32,7 +35,7 @@ const SWATCHES = {
  */
 @Component({
   selector: 'sn8w-design-system-page',
-  imports: [RouterLink, SpotlightDirective, DsLot1],
+  imports: [RouterLink, SpotlightDirective, DsLot1, DsLot2Forms, DsLot2Nav, DsLot2Content],
   templateUrl: './design-system-page.html',
   styleUrl: './design-system-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

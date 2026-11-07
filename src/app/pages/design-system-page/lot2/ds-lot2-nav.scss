@@ -1,0 +1,288 @@
+@use '../ds-base' as *;
+
+.ds-a {
+  color: var(--ice);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.ds-a:focus-visible,
+.ds-burger:focus-visible,
+.ds-mainnav a:focus-visible,
+.ds-side a:focus-visible,
+.ds-summary a:focus-visible,
+.ds-dd__menu button:focus-visible {
+  @include ds-focus;
+}
+
+.ds-fileinfo {
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.ds-skip {
+  display: inline-block;
+  padding: var(--space-sm);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface-raised);
+}
+
+.ds-skip__title {
+  margin: 0 0 0.4rem;
+  color: var(--mist);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.ds-skip ul,
+.ds-side ul,
+.ds-summary ol,
+.ds-mainnav,
+.ds-hdr__menu,
+.ds-ftr ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-skip li {
+  padding: 0.2rem 0;
+}
+
+/* Header and footer specimens (visual only; their landmarks live in the real site shell). */
+.ds-hdr {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--line);
+  background: var(--surface-raised);
+}
+
+.ds-hdr--mobile {
+  max-width: 23.5rem;
+}
+
+.ds-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.ds-brand__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  color: var(--ice);
+  font-size: 0.75rem;
+}
+
+.ds-hdr__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.9rem;
+}
+
+.ds-pill {
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.ds-burger {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ds-burger span {
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+}
+
+.ds-hdr__menu {
+  flex-basis: 100%;
+  display: grid;
+  gap: 0.4rem;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--line);
+  color: var(--mist);
+}
+
+.ds-hdr__menu[hidden] {
+  display: none;
+}
+
+.ds-mainnav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.ds-mainnav a {
+  display: block;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 2px solid transparent;
+  color: var(--mist);
+  text-decoration: none;
+}
+
+.ds-mainnav a[aria-current='page'] {
+  border-bottom-color: var(--ice);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ds-twocol {
+  margin-top: var(--space-xs);
+}
+
+.ds-side,
+.ds-summary {
+  padding: var(--space-sm);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface-raised);
+}
+
+.ds-side__title,
+.ds-summary__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--mist);
+}
+
+.ds-summary__title {
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.ds-side a {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.ds-side a[aria-current='page'] {
+  background: color-mix(in srgb, var(--ice) 18%, transparent);
+  font-weight: 700;
+}
+
+.ds-summary ol {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1.2rem;
+  list-style: decimal;
+}
+
+.ds-summary a {
+  color: var(--ice);
+}
+
+.ds-dd {
+  position: relative;
+  display: inline-block;
+}
+
+.ds-dd__menu {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  min-width: 12.5rem;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface-raised);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.3);
+}
+
+.ds-dd__menu[hidden] {
+  display: none;
+}
+
+.ds-dd__menu button {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.4rem;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ds-dd__menu button:hover {
+  background: color-mix(in srgb, var(--ice) 16%, transparent);
+}
+
+.ds-dd__menu button.is-danger {
+  color: var(--danger);
+}
+
+.ds-ftr {
+  padding: var(--space-md);
+  border: 1px solid var(--line);
+  background: var(--surface-sunken);
+}
+
+.ds-ftr__cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.ds-ftr__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.ds-ftr ul {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--mist);
+  font-size: 0.85rem;
+}
+
+.ds-ftr__legal {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+}
