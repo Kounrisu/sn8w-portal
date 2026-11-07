@@ -64,7 +64,8 @@ const en = {
       field: 'Email address',
       placeholder: 'name@domain.com',
       error: 'Incorrect value',
-      states: ['Default', 'Focus', 'Error', 'Disabled'],
+      valid: 'Valid email address',
+      states: ['Default', 'Focus', 'Error', 'Valid', 'Disabled'],
       switchLabel: 'Enable the option',
     },
     navigation: {
@@ -283,7 +284,8 @@ const fr: DesignSystemCopy = {
       field: 'Adresse e-mail',
       placeholder: 'nom@domaine.fr',
       error: 'Valeur incorrecte',
-      states: ['Par défaut', 'Focus', 'Erreur', 'Désactivé'],
+      valid: 'Adresse e-mail valide',
+      states: ['Par défaut', 'Focus', 'Erreur', 'Valide', 'Désactivé'],
       switchLabel: 'Activer l’option',
     },
     navigation: {

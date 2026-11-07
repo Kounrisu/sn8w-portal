@@ -35,11 +35,15 @@
       aria-required="true"
       [value]="name()"
       (input)="name.set(value($event)); clear('name')"
+      (blur)="check('name')"
+      [attr.data-valid]="isValid('name') ? 'true' : null"
       [attr.aria-invalid]="errorText('name') ? 'true' : null"
       [attr.aria-describedby]="errorText('name') ? 'cf-name-err' : null"
     />
     @if (errorText('name')) {
       <p id="cf-name-err" class="field-error">{{ errorText('name') }}</p>
+    } @else if (isValid('name')) {
+      <p class="field-ok">{{ t.fieldOk }}</p>
     }
   </div>
 
@@ -57,12 +61,16 @@
       aria-required="true"
       [value]="email()"
       (input)="email.set(value($event)); clear('email')"
+      (blur)="check('email')"
+      [attr.data-valid]="isValid('email') ? 'true' : null"
       [attr.aria-invalid]="errorText('email') ? 'true' : null"
       [attr.aria-describedby]="errorText('email') ? 'cf-email-hint cf-email-err' : 'cf-email-hint'"
     />
     <p id="cf-email-hint" class="field-hint">{{ t.emailHint }}</p>
     @if (errorText('email')) {
       <p id="cf-email-err" class="field-error">{{ errorText('email') }}</p>
+    } @else if (isValid('email')) {
+      <p class="field-ok">{{ t.fieldOk }}</p>
     }
   </div>
 
@@ -76,12 +84,16 @@
       aria-required="true"
       [value]="message()"
       (input)="message.set(value($event)); clear('message')"
+      (blur)="check('message')"
+      [attr.data-valid]="isValid('message') ? 'true' : null"
       [attr.aria-invalid]="errorText('message') ? 'true' : null"
       [attr.aria-describedby]="errorText('message') ? 'cf-message-hint cf-message-err' : 'cf-message-hint'"
     ></textarea>
     <p id="cf-message-hint" class="field-hint">{{ t.messageHint }}</p>
     @if (errorText('message')) {
       <p id="cf-message-err" class="field-error">{{ errorText('message') }}</p>
+    } @else if (isValid('message')) {
+      <p class="field-ok">{{ t.fieldOk }}</p>
     }
   </div>
 

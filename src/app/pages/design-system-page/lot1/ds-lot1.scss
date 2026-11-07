@@ -171,6 +171,7 @@
 .ds-select select[aria-invalid='true'] {
   border-color: var(--danger);
   border-width: 2px;
+  background-color: color-mix(in srgb, var(--danger) 10%, var(--surface-sunken));
 }
 
 .ds-select select:disabled {

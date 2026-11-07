@@ -40,6 +40,9 @@ export class ContactForm {
   protected readonly serverError = signal('');
   protected readonly hasErrors = computed(() => Object.keys(this.errors()).length > 0);
 
+  /** Fields checked on blur and found valid: they get the green state (border, check mark and text). */
+  protected readonly validated = signal<Partial<Record<FieldName, true>>>({});
+
   protected readonly invalidFields = computed(() => FIELD_ORDER.filter((f) => this.errors()[f]));
 
   private openedAt = Date.now();
@@ -53,7 +56,25 @@ export class ContactForm {
     return (event.target as HTMLInputElement | HTMLTextAreaElement).value;
   }
 
+  protected isValid(field: FieldName): boolean {
+    return !!this.validated()[field] && !this.errors()[field];
+  }
+
+  /** Validate one field when the person leaves it (skipped while empty, so tabbing through shows nothing). */
+  protected check(field: FieldName): void {
+    const filled = { name: this.name(), email: this.email(), message: this.message() }[field as 'name' | 'email' | 'message'];
+    if (!filled?.trim()) return;
+    const code = this.validate()[field];
+    if (code) {
+      this.errors.update((e) => ({ ...e, [field]: code }));
+      this.validated.update(({ [field]: _v, ...rest }) => rest);
+    } else {
+      this.validated.update((v) => ({ ...v, [field]: true }));
+    }
+  }
+
   protected clear(field: FieldName): void {
+    this.validated.update(({ [field]: _v, ...rest }) => rest);
     if (this.errors()[field]) {
       this.errors.update(({ [field]: _removed, ...rest }) => rest);
     }
@@ -117,6 +138,7 @@ export class ContactForm {
       this.message.set('');
       this.consent.set(false);
       this.errors.set({});
+      this.validated.set({});
       this.openedAt = Date.now();
       this.state.set('sent');
       // The status region is empty (display: none) until Angular renders the message.
