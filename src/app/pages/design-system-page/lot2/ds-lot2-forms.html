@@ -27,6 +27,20 @@
     </div>
   </div>
 
+  <h3 class="ds-sub">Textarea</h3>
+  <div class="ds-grid ds-grid--2">
+    <div class="ds-field">
+      <label for="ds-ta1">{{ c.forms.textarea.label }}</label>
+      <textarea id="ds-ta1" rows="4" [placeholder]="c.forms.textarea.placeholder" aria-describedby="ds-ta1-hint"></textarea>
+      <p id="ds-ta1-hint" class="ds-field__state">{{ c.forms.textarea.hint }}</p>
+    </div>
+    <div class="ds-field">
+      <label for="ds-ta2">{{ c.forms.textarea.label }}</label>
+      <textarea id="ds-ta2" rows="4" aria-invalid="true" aria-describedby="ds-ta2-err">Bonjour</textarea>
+      <p id="ds-ta2-err" class="ds-field__error">{{ c.forms.textarea.error }}</p>
+    </div>
+  </div>
+
   <h3 class="ds-sub">Range</h3>
   <div class="ds-grid ds-grid--2">
     <div class="ds-range">

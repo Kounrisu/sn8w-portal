@@ -299,9 +299,9 @@ body {
   gap: 0.5em;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 500;
-  padding: 0.7em 1.4em;
-  border-radius: 2px;
+  font-weight: 600;
+  padding: 0.75rem 1.1rem;
+  border-radius: 8px;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
@@ -346,6 +346,32 @@ html[data-theme='contrast'] .btn--primary {
   outline-offset: 3px;
 }
 
+// Design-system button states and variants (see /design-system/components).
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn--danger {
+  background-color: var(--danger);
+  border-color: var(--danger);
+  color: var(--bg);
+}
+
+.btn--danger:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--ink);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .btn {
     transition: none;
@@ -356,7 +382,10 @@ html[data-theme='contrast'] .btn--primary {
   }
 }
 
-// Shared form-field pattern — used by the login, admin, todo and diary pages.
+// Shared form-field pattern — used by the login, admin, todo, diary and contact
+// forms. Mirrors the design-system "Text field", "Select" and "Textarea"
+// (see /design-system/components): sunken fill, 8px radius, visible label,
+// danger border plus a text message for errors.
 .field {
   display: flex;
   flex-direction: column;
@@ -364,11 +393,10 @@ html[data-theme='contrast'] .btn--primary {
 }
 
 .field-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--mist);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .field-hint {
@@ -376,16 +404,26 @@ html[data-theme='contrast'] .btn--primary {
   color: var(--mist);
 }
 
-.field input,
+.field-error {
+  font-size: var(--text-xs);
+  color: var(--danger);
+}
+
+.field input:not([type='checkbox']):not([type='radio']),
 .field select,
 .field textarea {
   font-family: var(--font-sans);
   font-size: var(--text-base);
   color: var(--ink);
-  background: var(--surface-raised);
+  background: var(--surface-sunken);
   border: 1px solid var(--line-strong);
-  border-radius: 3px;
-  padding: 0.65em 0.8em;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
 }
 
 .field input:focus-visible,
@@ -394,6 +432,18 @@ html[data-theme='contrast'] .btn--primary {
   outline: 2px solid var(--ice);
   outline-offset: 2px;
   border-color: var(--ice);
+}
+
+.field [aria-invalid='true'] {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .visually-hidden {

@@ -34,7 +34,8 @@
   @include ds-focus;
 }
 
-.ds-field input[aria-invalid='true'] {
+.ds-field input[aria-invalid='true'],
+.ds-field textarea[aria-invalid='true'] {
   border-color: var(--danger);
   border-width: 2px;
 }
