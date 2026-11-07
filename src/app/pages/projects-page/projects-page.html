@@ -58,7 +58,7 @@
     <p role="status">{{ copy().loading }}</p>
   }
   @if (projects.publicError()) {
-    <div role="alert" class="load-error">
+    <div role="alert" class="alert alert--error load-error">
       <p>{{ copy().error }}</p>
       <button class="btn btn--secondary" type="button" (click)="projects.reloadPublic()">
         {{ copy().retry }}
