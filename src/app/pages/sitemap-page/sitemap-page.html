@@ -22,6 +22,14 @@
       <li><a routerLink="/projects">{{ catalogCopy().title }}</a></li>
       <li><a routerLink="/behind-the-scenes">{{ i18n.dict().behindTheScenes.navLabel }}</a></li>
       <li><a routerLink="/workshop">{{ i18n.dict().workshop.navLabel }}</a></li>
+      <li>
+        <a routerLink="/design-system">{{ dsCopy().workshopEntry.title }}</a>
+        <ul class="sitemap__list">
+          @for (page of dsPages; track page.key) {
+            <li><a [routerLink]="page.path">{{ dsCopy().nav[page.key] }}</a></li>
+          }
+        </ul>
+      </li>
       <li><a routerLink="/accessibilite">{{ i18n.dict().footer.accessibility }}</a></li>
       <li><a routerLink="/parametres-accessibilite">{{ i18n.dict().preferences.navLabel }}</a></li>
       <li><a routerLink="/plan-du-site">{{ i18n.dict().footer.sitemap }}</a></li>

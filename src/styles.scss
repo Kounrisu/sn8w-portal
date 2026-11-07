@@ -15,6 +15,8 @@
   --surface-sunken: #131516;
   --danger: #e0566d;
   --success: #4fd1a5;
+  --lavender: #b4afe2;
+  --warning: #e3b341;
 
   // Heading, metadata and body families; accessibility modes override these slots.
   --font-serif: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -140,6 +142,8 @@ html[data-theme='squirrel'] {
   --surface-sunken: #edf1f7;
   --danger: #b42318;
   --success: #116746;
+  --lavender: #514b8f;
+  --warning: #8a5a00;
 
   --mat-sys-shadow: #55627a;
   --mat-sys-scrim: #55627a;
@@ -164,6 +168,8 @@ html[data-theme='contrast'] {
   --surface-sunken: #000000;
   --danger: #ff8080;
   --success: #4dffa6;
+  --lavender: #d6ccff;
+  --warning: #ffd23f;
 
   --mat-sys-shadow: black;
   --mat-sys-scrim: black;

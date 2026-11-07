@@ -1,0 +1,563 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.ds {
+  padding-block: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.ds-back {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.ds-back a {
+  color: var(--mist);
+
+  &:hover { color: var(--ink); }
+  &:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
+}
+
+/* ── Section navigation ─────────────────────────────────────────── */
+.ds-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-nav__link {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--mist);
+  text-decoration: none;
+  font-size: 0.9rem;
+
+  &:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+}
+
+.ds-nav__link--active {
+  color: var(--ink);
+  border-color: var(--ice);
+  background: color-mix(in srgb, var(--ice) 14%, transparent);
+}
+
+.ds-nav__link:focus-visible,
+.ds-tab:focus-visible,
+.ds-ghost:focus-visible,
+.ds-tag__remove:focus-visible,
+.ds-switch:focus-visible,
+.ds-accordion summary:focus-visible,
+.ds-tabpanel:focus-visible,
+.ds-field input:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+/* ── Headers and generic surfaces ──────────────────────────────── */
+.ds-head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+  max-width: 52rem;
+}
+
+.ds-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 var(--space-md);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.ds-brand__mark {
+  display: inline-grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  color: var(--ice);
+  font-size: 0.85rem;
+}
+
+.ds-box {
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: var(--space-md);
+}
+
+.ds-box__title {
+  margin: 0 0 var(--space-xs);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.ds-label {
+  margin: 0 0 var(--space-2xs);
+  color: var(--lavender);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ds-muted {
+  margin: 0;
+  color: var(--mist);
+}
+
+.ds-num {
+  margin: 0;
+  color: var(--ice);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.ds-big {
+  margin: 0 0 var(--space-xs);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+}
+
+.ds-value {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ice);
+}
+
+.ds-ref {
+  margin: 0.25rem 0 var(--space-xs);
+  color: var(--lavender);
+  font-size: 0.78rem;
+}
+
+.ds-grid {
+  display: grid;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-grid--2 { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); }
+.ds-grid--3 { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.ds-grid--4 { grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.ds-grid--5 { grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+
+.ds-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: var(--mist);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.ds-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.ds-step {
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  padding: var(--space-sm);
+}
+
+.ds-step__title {
+  margin: 0.4rem 0;
+  font-weight: 600;
+}
+
+.ds-list,
+.ds-checks,
+.ds-defs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.ds-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: baseline;
+  padding-block: 0.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.ds-checks li span {
+  color: var(--success);
+  margin-right: 0.4rem;
+}
+
+.ds-defs dt {
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.ds-defs dd {
+  margin: 0.1rem 0 0;
+}
+
+.ds-defs--stack > div {
+  margin: 0;
+}
+
+/* ── Foundations ───────────────────────────────────────────────── */
+/* Theme specimens show the Figma values whatever theme is active, so these
+   two panels intentionally hard-code the colors they document. */
+.ds-theme {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: var(--space-md);
+}
+
+.ds-theme--dark { background: #181a1b; color: #eef0f3; }
+.ds-theme--light { background: #f7f9fc; color: #0f172a; }
+.ds-theme--dark .ds-label { color: #b4afe2; }
+.ds-theme--light .ds-label { color: #514b8f; }
+
+.ds-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-swatches li {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.ds-swatch {
+  height: 4.5rem;
+  border: 1px solid rgb(128 128 128 / 0.4);
+  border-radius: 0.5rem;
+}
+
+.ds-swatches code {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.ds-type {
+  margin: 0;
+}
+
+.ds-type__row {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: var(--space-sm);
+  align-items: baseline;
+  padding-block: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.ds-type dt {
+  color: var(--mist);
+  font-size: 0.8rem;
+}
+
+.ds-type dd { margin: 0; }
+.ds-type__sample--0 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; }
+.ds-type__sample--1 { font-size: 1.75rem; font-weight: 700; }
+.ds-type__sample--2 { font-size: 1.375rem; font-weight: 600; }
+.ds-type__sample--3 { font-size: 1rem; }
+.ds-type__sample--4 { font-size: 0.75rem; letter-spacing: 0.08em; }
+
+/* ── Components ────────────────────────────────────────────────── */
+.ds-ghost {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+  }
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ds-badge,
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ds-badge--info { color: var(--ice); border-color: var(--ice); }
+.ds-badge--success { color: var(--success); border-color: var(--success); }
+
+.ds-tag {
+  color: var(--lavender);
+  border-color: transparent;
+  background: color-mix(in srgb, var(--lavender) 16%, transparent);
+}
+
+.ds-tag__remove {
+  background: none;
+  border: 0;
+  padding: 0 0.15rem;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.ds-alert {
+  --tone: var(--ice);
+
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--tone);
+  border-left-width: 4px;
+  border-radius: 0.5rem;
+  background: var(--surface-sunken);
+}
+
+.ds-alert--success { --tone: var(--success); }
+.ds-alert--warning { --tone: var(--warning); }
+.ds-alert--error { --tone: var(--danger); }
+
+.ds-alert__title {
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ds-alert__text {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.85rem;
+}
+
+.ds-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ds-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.ds-field input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.5rem;
+  background: var(--surface-sunken);
+  color: var(--ink);
+  font: inherit;
+}
+
+.ds-field input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ds-field input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+/* Static look of the focus state for the specimen (a real focus uses :focus-visible above). */
+.ds-field__focus-demo {
+  border-color: var(--ice);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ice) 45%, transparent);
+}
+
+.ds-field__state {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.78rem;
+}
+
+.ds-field__error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.8rem;
+}
+
+.ds-switch-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: var(--space-md) 0 0;
+}
+
+.ds-switch {
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface-sunken);
+  cursor: pointer;
+}
+
+.ds-switch__thumb {
+  position: absolute;
+  top: 0.15rem;
+  left: 0.15rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--mist);
+  transition: transform 0.15s ease;
+}
+
+.ds-switch[aria-checked='true'] {
+  background: var(--ice);
+  border-color: var(--ice);
+}
+
+.ds-switch[aria-checked='true'] .ds-switch__thumb {
+  transform: translateX(1.2rem);
+  background: var(--bg);
+}
+
+.ds-tabs [role='tablist'] {
+  display: flex;
+  gap: var(--space-xs);
+  border-bottom: 1px solid var(--line);
+}
+
+.ds-tab {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0.6rem 0.4rem;
+  color: var(--mist);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ds-tab[aria-selected='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--ice);
+}
+
+.ds-tabpanel {
+  padding: var(--space-sm) 0;
+  color: var(--mist);
+}
+
+.ds-accordion {
+  margin-top: var(--space-md);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  max-width: 32rem;
+}
+
+.ds-accordion summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ds-accordion p {
+  margin: 0.6rem 0 0;
+  color: var(--mist);
+}
+
+/* ── Patterns ──────────────────────────────────────────────────── */
+.ds-header-specimen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  padding: var(--space-sm) var(--space-md);
+
+  .ds-brand { margin: 0; }
+}
+
+.ds-header-specimen__links {
+  display: flex;
+  gap: var(--space-md);
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.9rem;
+}
+
+.ds-card {
+  display: grid;
+  gap: var(--space-xs);
+  background: var(--surface-raised);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: var(--space-md);
+}
+
+.ds-card__meta {
+  display: flex;
+  gap: var(--space-xs);
+  margin: 0;
+
+  .ds-label { margin: 0; }
+}
+
+.ds-card__visual {
+  display: grid;
+  place-items: center;
+  height: 8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface-sunken);
+  color: var(--ice);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.ds-link {
+  margin: 0;
+  color: var(--ice);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-switch__thumb {
+    transition: none;
+  }
+}

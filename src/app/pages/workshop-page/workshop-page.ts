@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { I18nService } from '../../core/i18n/i18n.service';
+import { DESIGN_SYSTEM_COPY } from '../../core/i18n/design-system-copy';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 
 /**
@@ -19,4 +20,15 @@ import { SpotlightDirective } from '../../shared/spotlight.directive';
 })
 export class WorkshopPage {
   protected readonly i18n = inject(I18nService);
+  protected readonly ds = computed(() => DESIGN_SYSTEM_COPY[this.i18n.lang()]);
+
+  /** The design system's pages, in order: [route, label key]. */
+  protected readonly dsPages = [
+    { path: ['/design-system'], key: 'intro' },
+    { path: ['/design-system', 'foundations'], key: 'foundations' },
+    { path: ['/design-system', 'components'], key: 'components' },
+    { path: ['/design-system', 'patterns'], key: 'patterns' },
+    { path: ['/design-system', 'accessibility'], key: 'accessibility' },
+    { path: ['/design-system', 'governance'], key: 'governance' },
+  ] as const;
 }
