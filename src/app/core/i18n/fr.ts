@@ -232,7 +232,7 @@ export const fr: Dict = {
   },
   ctaSection: {
     title: 'Écrivez-moi.',
-    lede: 'Une question, une proposition ? Écrivez-moi avec le formulaire ci-dessous.',
+    lede: 'Une question, une idée, ou simplement envie d’échanger ?',
   },
   behindTheScenes: {
     kicker: 'Dans les coulisses',
