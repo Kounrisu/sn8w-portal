@@ -118,6 +118,7 @@ const en = {
     forms: {
       label: 'FORMS',
       title: 'Input and selection (continued)',
+      textarea: { label: 'Message', placeholder: 'Write your message here', hint: '10 to 5,000 characters.', error: 'The message is too short.' },
       password: { label: 'Password', hint: '12 characters minimum, with a digit.', error: 'The password is too short.', show: 'Show', hide: 'Hide', showAria: 'Show the password', states: ['Default', 'Error'] },
       range: { label: 'Text size', min: '100 %', max: '200 %', disabled: 'Disabled' },
       upload: { label: 'Add a file', hint: 'Accepted formats: PDF, PNG. 5 MB maximum.', none: 'No file selected', tooLarge: 'The file exceeds 5 MB.', selected: 'File selected: ' },
@@ -336,6 +337,7 @@ const fr: DesignSystemCopy = {
     forms: {
       label: 'FORMULAIRES',
       title: 'Saisie et sélection (suite)',
+      textarea: { label: 'Message', placeholder: 'Écrivez votre message ici', hint: 'De 10 à 5 000 caractères.', error: 'Le message est trop court.' },
       password: { label: 'Mot de passe', hint: '12 caractères minimum, avec un chiffre.', error: 'Le mot de passe est trop court.', show: 'Afficher', hide: 'Masquer', showAria: 'Afficher le mot de passe', states: ['Par défaut', 'Erreur'] },
       range: { label: 'Taille du texte', min: '100 %', max: '200 %', disabled: 'Désactivé' },
       upload: { label: 'Ajouter un fichier', hint: 'Formats acceptés : PDF, PNG. 5 Mo maximum.', none: 'Aucun fichier sélectionné', tooLarge: 'Le fichier dépasse 5 Mo.', selected: 'Fichier sélectionné : ' },
