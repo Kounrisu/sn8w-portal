@@ -12,7 +12,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
  * Public contact form. Validation is mirrored on the server (api/contact.php,
  * which is the one that counts); here it only gives fast, accessible feedback:
  * every error is a text tied to its field (aria-describedby / aria-invalid),
- * focus goes to the first invalid field, and the outcome is announced in a
+ * an error summary with links to each field takes focus, and the outcome is announced in a
  * role="status" region.
  */
 @Component({
@@ -39,6 +39,8 @@ export class ContactForm {
   protected readonly state = signal<'idle' | 'sending' | 'sent' | 'error'>('idle');
   protected readonly serverError = signal('');
   protected readonly hasErrors = computed(() => Object.keys(this.errors()).length > 0);
+
+  protected readonly invalidFields = computed(() => FIELD_ORDER.filter((f) => this.errors()[f]));
 
   private openedAt = Date.now();
 
@@ -73,9 +75,17 @@ export class ContactForm {
     return errors;
   }
 
+  /** The error summary (rendered after the errors signal changes) takes focus, as in the French State design system. */
   private focusFirstInvalid(errors: Partial<Record<FieldName, string>>): void {
-    const first = FIELD_ORDER.find((f) => errors[f]);
-    if (first) queueMicrotask(() => document.getElementById(`cf-${first}`)?.focus());
+    if (FIELD_ORDER.some((f) => errors[f])) {
+      afterNextRender(() => document.getElementById('cf-summary')?.focus(), { injector: this.injector });
+    }
+  }
+
+  /** Summary links move focus to the field itself (a plain #hash would not reach a form control reliably). */
+  protected goToField(event: Event, field: FieldName): void {
+    event.preventDefault();
+    document.getElementById(`cf-${field}`)?.focus();
   }
 
   protected async submit(event: Event): Promise<void> {
