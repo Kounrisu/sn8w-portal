@@ -7,5 +7,5 @@ export const environment = {
   deployedAt: '__DEPLOYED_AT__',
   apiBaseUrl: '/api',
   /** Google Analytics 4 measurement id (G-XXXXXXXXXX). Empty = disabled. */
-  googleAnalyticsId: '',
+  googleAnalyticsId: 'G-L9TZ7LMV51',
 };
