@@ -58,6 +58,7 @@ interface VpsStatus {
   host: VpsHost | null;
   projects: VpsProject[];
   topContainers?: VpsContainer[];
+  linksAvailable?: boolean;
 }
 
 const COPY = {
@@ -136,6 +137,9 @@ const COPY = {
       }
 
       @if (status(); as s) {
+        @if (s.linksAvailable === false) {
+          <p class="vps__error">Table <code>vps_links</code> missing in this database — run migration 011 in phpMyAdmin to link projects to cards.</p>
+        }
         @if (s.host; as h) {
           <div class="vps__meters">
             <div class="vps__meter">

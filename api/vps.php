@@ -13,6 +13,9 @@ const VPS_ACTIONS = ['start', 'stop', 'uninstall', 'update'];
 /** Signed call to the VPS agent (HMAC-SHA256 over ts.METHOD.path.body). */
 function agent_call(string $method, string $path, string $body = ''): array
 {
+    if (!function_exists('curl_init')) {
+        json_error('PHP curl extension is not available on this hosting', 500);
+    }
     $ts = (string) time();
     $sig = hash_hmac('sha256', "{$ts}.{$method}.{$path}.{$body}", vps_config('SECRET'));
     $ch = curl_init(rtrim(vps_config('URL'), '/') . $path);
@@ -41,9 +44,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         json_error('VPS agent error', 502);
     }
 
+    // Degrade gracefully if migration 011 has not been applied to this database:
+    // the panel still works, only linking VPS projects to cards is unavailable.
     $links = [];
-    foreach (db()->query('SELECT vps_key, project_id FROM vps_links')->fetchAll() as $row) {
-        $links[$row['vps_key']] = (int) $row['project_id'];
+    $linksAvailable = true;
+    try {
+        foreach (db()->query('SELECT vps_key, project_id FROM vps_links')->fetchAll() as $row) {
+            $links[$row['vps_key']] = (int) $row['project_id'];
+        }
+    } catch (PDOException $e) {
+        error_log('vps_links unavailable: ' . $e->getMessage());
+        $linksAvailable = false;
     }
 
     $out = [];
@@ -72,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         ];
     }
 
-    json_response(['host' => $data['host'] ?? null, 'projects' => $out, 'topContainers' => $data['topContainers'] ?? []]);
+    json_response(['host' => $data['host'] ?? null, 'projects' => $out, 'topContainers' => $data['topContainers'] ?? [], 'linksAvailable' => $linksAvailable]);
 }
 
 // POST: { key, action: start|stop|uninstall|link, projectId? }
@@ -84,6 +95,11 @@ if (preg_match('/\A[a-z0-9_-]{1,64}\z/', $key) !== 1) {
 }
 
 if ($action === 'link') {
+    try {
+        db()->query('SELECT 1 FROM vps_links LIMIT 1');
+    } catch (PDOException $e) {
+        json_error('Table vps_links is missing: run migration 011_vps_links.sql in phpMyAdmin', 500);
+    }
     $projectId = $body['projectId'] ?? null;
     db()->prepare('DELETE FROM vps_links WHERE vps_key = :k')->execute(['k' => $key]);
     if ($projectId !== null) {
