@@ -28,25 +28,25 @@
 
   <h3 class="ds-sub">Header</h3>
   <div class="ds-hdr" role="group" [attr.aria-label]="c.header.aria + ' — ' + c.header.desktop">
-    <p class="ds-brand"><span class="ds-brand__mark" aria-hidden="true">S8</span> SN8W</p>
-    <p class="ds-hdr__links">
-      @for (l of c.header.links; track l) {
-        <span>{{ l }}</span>
-      }
-      <span class="ds-pill">{{ c.header.search }}</span>
-      <span class="ds-pill">FR</span>
-    </p>
+    <p class="ds-wordmark">Sn<span>8</span>w</p>
+    <div class="ds-hdr__right">
+      <p class="ds-pills">
+        @for (l of c.header.links; track l; let i = $index) {
+          <span class="ds-pill-link" [class.is-current]="i === 3">{{ l }}</span>
+        }
+      </p>
+      <p class="ds-iconbtns" aria-hidden="true"><span>FR</span><span>◐</span><span>Aa</span><span class="ds-icon-person"></span></p>
+    </div>
   </div>
   <div class="ds-hdr ds-hdr--mobile" role="group" [attr.aria-label]="c.header.aria + ' — ' + c.header.mobile">
-    <p class="ds-brand"><span class="ds-brand__mark" aria-hidden="true">S8</span> SN8W</p>
-    <button type="button" class="ds-burger" [attr.aria-expanded]="menuOpen()" aria-controls="ds-hdr-menu" [attr.aria-label]="menuOpen() ? c.header.menuCloseAria : c.header.menuOpenAria" (click)="menuOpen.set(!menuOpen())">
-      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
-    </button>
-    <ul id="ds-hdr-menu" class="ds-hdr__menu" [hidden]="!menuOpen()">
-      @for (l of c.header.links; track l) {
-        <li>{{ l }}</li>
-      }
-    </ul>
+    <p class="ds-wordmark">Sn<span>8</span>w</p>
+    <div class="ds-hdr__right">
+      <p class="ds-pills">
+        <span class="ds-pill-link">{{ c.header.links[0] }}</span>
+        <span class="ds-pill-link is-current">{{ c.header.links[3] }}</span>
+      </p>
+      <p class="ds-iconbtns" aria-hidden="true"><span>FR</span><span>◐</span><span>Aa</span><span class="ds-icon-person"></span></p>
+    </div>
   </div>
 
   <h3 class="ds-sub">Main navigation</h3>
@@ -54,7 +54,7 @@
     <ul class="ds-mainnav">
       @for (item of c.mainNav.items; track item; let i = $index) {
         <li>
-          <a [routerLink]="mainNavRoutes[i].path" [fragment]="mainNavRoutes[i].fragment" [attr.aria-current]="i === 0 ? 'page' : null">{{ item }}</a>
+          <a [routerLink]="mainNavRoutes[i].path" [fragment]="mainNavRoutes[i].fragment" [attr.aria-current]="i === 3 ? 'page' : null">{{ item }}</a>
         </li>
       }
     </ul>

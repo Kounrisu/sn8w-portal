@@ -20,7 +20,6 @@ export class DsLot2Nav {
   readonly copy = input.required<DesignSystemCopy>();
   private readonly injector = inject(Injector);
 
-  protected readonly menuOpen = signal(false);
   protected readonly ddOpen = signal(false);
   protected readonly ddChosen = signal(-1);
 
