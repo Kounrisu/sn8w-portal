@@ -1,3 +1,4 @@
+@use '../../../../status-icons' as status;
 @use '../ds-base' as *;
 
 .ds-pw {
@@ -34,6 +35,9 @@
   @include ds-focus;
 }
 
+
+@include status.field-states('.ds-field input');
+@include status.field-states('.ds-field textarea');
 
 .ds-range {
   display: grid;
