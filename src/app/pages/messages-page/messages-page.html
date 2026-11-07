@@ -1,0 +1,51 @@
+@let t = copy();
+<section class="messages container">
+  <header class="messages__head" sn8wSpotlight>
+    <h1 id="messages-title" class="section-title" tabindex="-1">{{ t.title }}</h1>
+    <p class="section-lede">{{ t.lede }}</p>
+    <p class="messages__meta">
+      <span>{{ unread() }} {{ t.unreadCount }}</span>
+      <button type="button" class="btn btn--secondary" (click)="load()">{{ t.refresh }}</button>
+    </p>
+  </header>
+
+  <div role="status">
+    @if (failed()) {
+      <p class="messages__error">{{ t.loadError }}</p>
+    } @else if (!loading() && messages().length === 0) {
+      <p class="messages__empty">{{ t.empty }}</p>
+    }
+  </div>
+
+  <ul class="messages__list">
+    @for (m of messages(); track m.id) {
+      <li>
+        <article class="msg" [class.msg--unread]="!m.read" [attr.aria-labelledby]="'msg-title-' + m.id">
+          <header class="msg__head">
+            <h2 id="msg-title-{{ m.id }}" class="msg__title">
+              {{ m.name }}
+              @if (!m.read) {
+                <span class="msg__badge">{{ t.unread }}</span>
+              }
+            </h2>
+            <p class="msg__meta">
+              {{ t.from }} <a [href]="'mailto:' + m.email">{{ m.email }}</a> · {{ t.received }}
+              <time [attr.datetime]="m.createdAt.replace(' ', 'T') + 'Z'">{{ formatDate(m.createdAt) }}</time>
+            </p>
+          </header>
+          <p class="msg__body">{{ m.message }}</p>
+          @if (!m.mailSent) {
+            <p class="msg__warn">{{ t.mailFailed }}</p>
+          }
+          <div class="msg__actions">
+            <a class="btn btn--primary" [href]="'mailto:' + m.email + '?subject=' + (m.lang === 'en' ? 'Re%3A%20your%20message' : 'Re%C2%A0%3A%20votre%20message')">{{ t.reply }}</a>
+            <button type="button" class="btn btn--secondary" (click)="toggleRead(m)">{{ m.read ? t.markUnread : t.markRead }}</button>
+            <button type="button" class="btn btn--danger" (click)="remove(m)">{{ t.remove }}</button>
+          </div>
+        </article>
+      </li>
+    }
+  </ul>
+
+  <p><a class="btn btn--ghost" routerLink="/">{{ t.back }}</a></p>
+</section>

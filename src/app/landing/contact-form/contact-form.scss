@@ -1,0 +1,102 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.cf {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-raised);
+}
+
+.cf__title {
+  margin: 0;
+  font-size: var(--text-lg, 1.25rem);
+}
+
+.cf__lede {
+  margin: -0.75rem 0 0;
+  color: var(--mist);
+}
+
+.cf__status {
+  outline: none;
+}
+
+.cf__status:empty {
+  display: none;
+}
+
+.cf__success,
+.cf__fail {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--success);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--success) 14%, var(--surface-raised));
+  color: var(--ink);
+}
+
+.cf__fail {
+  border-left-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 14%, var(--surface-raised));
+}
+
+/* Consent checkbox, same look as the design-system checkbox. */
+.cf__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+
+.cf__check input {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0.1rem 0 0;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--surface-sunken);
+}
+
+.cf__check input:checked {
+  border-color: var(--ice);
+  background: var(--ice);
+}
+
+.cf__check input:checked::after {
+  content: '';
+  width: 0.6rem;
+  height: 0.32rem;
+  margin-top: -0.1rem;
+  border-left: 2px solid var(--bg);
+  border-bottom: 2px solid var(--bg);
+  transform: rotate(-45deg);
+}
+
+.cf__check input:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.cf__check input[aria-invalid='true'] {
+  border-color: var(--danger);
+  border-width: 2px;
+}
+
+/* Honeypot: off-screen, never shown. */
+.cf__hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

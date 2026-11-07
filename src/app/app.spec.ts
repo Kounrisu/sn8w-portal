@@ -71,9 +71,8 @@ describe('App', () => {
     );
 
     expect(compiled.querySelectorAll('#contact').length).toBe(1);
-    expect(compiled.querySelector('#contact .btn')?.getAttribute('href')).toBe(
-      'mailto:kounrisu@gmail.com',
-    );
+    expect(compiled.querySelector('#contact form')?.getAttribute('aria-labelledby')).toBe('cf-title');
+    expect(compiled.querySelector('#contact a[href="mailto:kounrisu@gmail.com"]')).not.toBeNull();
 
     await router.navigateByUrl('/plan-du-site');
     fixture.detectChanges();

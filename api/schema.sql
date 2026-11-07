@@ -191,3 +191,18 @@ CREATE TABLE IF NOT EXISTS vps_links (
   project_id INT NOT NULL,
   UNIQUE KEY uq_vps_links_project (project_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 012: messages received through the contact form (see api/contact.php, read in /messages)
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(254) NOT NULL,
+  message TEXT NOT NULL,
+  lang VARCHAR(2) NOT NULL DEFAULT 'fr',
+  ip_hash CHAR(64) NOT NULL,
+  mail_sent TINYINT(1) NOT NULL DEFAULT 0,
+  read_at TIMESTAMP NULL DEFAULT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  KEY idx_contact_ip_created (ip_hash, created_at),
+  KEY idx_contact_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
