@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 import type { AuthSession } from './models';
+import { setTrackingOptOut } from './tracking-opt-out';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -43,6 +44,7 @@ export class AuthService {
       this.http.post<AuthSession>(`${this.baseUrl}/login.php`, { username, password }),
     );
     this.session.set(result);
+    if (result.authenticated) setTrackingOptOut(true); // the owner's own visits are not counted
     return result;
   }
 

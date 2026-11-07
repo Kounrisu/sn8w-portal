@@ -6,4 +6,6 @@ export const environment = {
   commitMessage: '__COMMIT_MESSAGE__',
   deployedAt: '__DEPLOYED_AT__',
   apiBaseUrl: '/api',
+  /** Google Analytics 4 measurement id (G-XXXXXXXXXX). Empty = disabled. */
+  googleAnalyticsId: '',
 };
