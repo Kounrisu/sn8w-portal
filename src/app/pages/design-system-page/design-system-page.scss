@@ -344,20 +344,6 @@
   border-radius: 50%;
 }
 
-.ds-alert {
-  --tone: var(--ice);
-
-  padding: var(--space-xs) var(--space-sm);
-  border: 1px solid var(--tone);
-  border-left-width: 4px;
-  border-radius: 0.5rem;
-  background: var(--surface-sunken);
-}
-
-.ds-alert--success { --tone: var(--success); }
-.ds-alert--warning { --tone: var(--warning); }
-.ds-alert--error { --tone: var(--danger); }
-
 .ds-alert__title {
   margin: 0 0 0.2rem;
   font-weight: 700;
@@ -394,14 +380,12 @@
   cursor: not-allowed;
 }
 
-.ds-field input[aria-invalid='true'] {
-  border-color: var(--danger);
-}
 
 /* Static look of the focus state for the specimen (a real focus uses :focus-visible above). */
 .ds-field__focus-demo {
   border-color: var(--ice);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ice) 45%, transparent);
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
 }
 
 .ds-field__state {
@@ -410,11 +394,6 @@
   font-size: 0.78rem;
 }
 
-.ds-field__error {
-  margin: 0;
-  color: var(--danger);
-  font-size: 0.8rem;
-}
 
 .ds-switch-row {
   display: flex;

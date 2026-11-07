@@ -1,0 +1,50 @@
+// Status icons shared by the site and the design-system page (RGAA 3.1: a state is
+// never carried by color alone). Masks take the current color of the element.
+$error: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1.2 5v6.5h-2.4V7h2.4zm0 8.3v2.4h-2.4v-2.4h2.4z'/%3E%3C/svg%3E");
+$warning: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5l10.5 18.5h-21L12 2.5zm1.2 6.5h-2.4v6h2.4V9zm0 7.4h-2.4v2.3h2.4v-2.3z'/%3E%3C/svg%3E");
+$success: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.6 14.6l-4.2-4.2 1.7-1.7 2.5 2.5 5.6-5.6 1.7 1.7-7.3 7.3z'/%3E%3C/svg%3E");
+$info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1.2 8v7h-2.4v-7h2.4zm0-3.3v2.3h-2.4V6.7h2.4z'/%3E%3C/svg%3E");
+
+@mixin icon($icon) {
+  content: '';
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+  background: currentColor;
+  mask: $icon center / contain no-repeat;
+}
+
+// Error icon drawn inside an invalid text field (data URIs cannot read CSS
+// variables, so the color is passed in, one value per theme).
+@function error-bg($hex) {
+  @return url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23#{$hex}' d='M12 2a10 10 0 100 20 10 10 0 000-20zm1.2 5v6.5h-2.4V7h2.4zm0 8.3v2.4h-2.4v-2.4h2.4z'/%3E%3C/svg%3E");
+}
+
+// Invalid text field: bordered, tinted, with the error icon inside. The icon comes
+// from --invalid-icon, defined once per theme in styles.scss.
+@mixin invalid-field($selector) {
+  #{$selector} {
+    border-color: var(--danger);
+    border-width: 2px;
+    padding-right: 2.75rem;
+    background-color: color-mix(in srgb, var(--danger) 10%, var(--surface-sunken));
+    background-image: var(--invalid-icon);
+    background-repeat: no-repeat;
+    background-position: right 0.85rem top 0.8rem;
+    background-size: 1.25rem;
+  }
+}
+
+// Validated text field: green border, light tint and a check mark inside (--valid-icon).
+@mixin valid-field($selector) {
+  #{$selector} {
+    border-color: var(--success);
+    border-width: 2px;
+    padding-right: 2.75rem;
+    background-color: color-mix(in srgb, var(--success) 9%, var(--surface-sunken));
+    background-image: var(--valid-icon);
+    background-repeat: no-repeat;
+    background-position: right 0.85rem top 0.8rem;
+    background-size: 1.25rem;
+  }
+}

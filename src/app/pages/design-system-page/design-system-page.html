@@ -120,7 +120,7 @@
         <h2 class="ds-box__title">{{ c.components.feedback.title }}</h2>
         <div class="ds-grid ds-grid--4">
           @for (tone of ['info', 'success', 'warning', 'error']; track tone; let i = $index) {
-            <div class="ds-alert" [class]="'ds-alert ds-alert--' + tone">
+            <div [class]="'alert alert--' + tone">
               <p class="ds-alert__title">{{ c.components.feedback.tones[i] }}</p>
               <p class="ds-alert__text">{{ c.components.feedback.message }}</p>
             </div>
@@ -131,7 +131,7 @@
       <section class="ds-box">
         <p class="ds-label">{{ c.components.forms.label }}</p>
         <h2 class="ds-box__title">{{ c.components.forms.title }}</h2>
-        <div class="ds-grid ds-grid--4">
+        <div class="ds-grid ds-grid--5">
           <div class="ds-field">
             <label for="ds-f1">{{ c.components.forms.field }}</label>
             <input id="ds-f1" type="email" [placeholder]="c.components.forms.placeholder" />
@@ -148,9 +148,14 @@
             <p id="ds-f3-err" class="ds-field__error">{{ c.components.forms.error }}</p>
           </div>
           <div class="ds-field">
+            <label for="ds-f5">{{ c.components.forms.field }}</label>
+            <input id="ds-f5" type="email" data-valid="true" aria-describedby="ds-f5-ok" value="nom@domaine.fr" />
+            <p id="ds-f5-ok" class="ds-field__ok">{{ c.components.forms.valid }}</p>
+          </div>
+          <div class="ds-field">
             <label for="ds-f4">{{ c.components.forms.field }}</label>
             <input id="ds-f4" type="email" disabled [placeholder]="c.components.forms.placeholder" />
-            <p class="ds-field__state">{{ c.components.forms.states[3] }}</p>
+            <p class="ds-field__state">{{ c.components.forms.states[4] }}</p>
           </div>
         </div>
         <p class="ds-switch-row">
