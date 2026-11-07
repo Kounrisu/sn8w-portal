@@ -8,7 +8,7 @@ import type { Lang } from './dictionary';
 const en = {
   form: {
     title: 'Send me a message',
-    lede: 'I answer by email, usually within a few days.',
+    lede: 'I usually answer within a few days.',
     name: 'Name',
     email: 'Email address',
     emailHint: 'So that I can answer you.',
@@ -62,7 +62,7 @@ export type ContactCopy = typeof en;
 const fr: ContactCopy = {
   form: {
     title: 'M’envoyer un message',
-    lede: 'Je réponds par e-mail, en général sous quelques jours.',
+    lede: 'Je réponds en général sous quelques jours.',
     name: 'Nom',
     email: 'Adresse e-mail',
     emailHint: 'Pour pouvoir vous répondre.',
