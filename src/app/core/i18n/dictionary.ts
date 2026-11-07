@@ -570,7 +570,7 @@ export const en: Dict = {
   },
   ctaSection: {
     title: 'Get in touch.',
-    lede: 'A question or a proposal? Write to me through the form below.',
+    lede: 'A question, an idea, or just want to chat?',
   },
   behindTheScenes: {
     kicker: 'Behind the scenes',
