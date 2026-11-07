@@ -11,6 +11,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import shutil
 import subprocess
 import threading
@@ -70,14 +71,53 @@ jobs = {}  # key -> {"op", "state": running|done|error, "log", "at"}
 jobs_lock = threading.Lock()
 
 
-def compose_base(key):
+STATE_DIR = os.environ.get("SN8W_AGENT_STATE", os.path.join(HOME, ".sn8w-agent"))
+LOG_MAX_SIZE = "10m"
+LOG_MAX_FILE = "3"
+
+
+def override_path(key):
+    return os.path.join(STATE_DIR, f"{key}.logging.yml")
+
+
+def compose_base(key, with_override=True):
     p = PROJECTS[key]
     # No -p: compose derives the project name from the directory, exactly as
     # when the stack was first created, so we address the existing containers.
     cmd = ["docker", "compose", "-f", p.get("compose", "docker-compose.prod.yml")]
+    # Generated log-rotation override (kept outside the project's git tree, so it
+    # never makes the working copy "dirty"): every service gets capped json logs.
+    if with_override and os.path.isfile(override_path(key)):
+        cmd += ["-f", override_path(key)]
     if p.get("env_file"):
         cmd += ["--env-file", p["env_file"]]
     return cmd
+
+
+def ensure_log_override(key):
+    """Write (or refresh) the log-rotation override for every service of a project."""
+    r = subprocess.run(compose_base(key, with_override=False) + ["config", "--services"],
+                       cwd=PROJECTS[key]["dir"], capture_output=True, text=True, timeout=60)
+    # stdout only (warnings go to stderr) and only valid service names.
+    services = [x for x in r.stdout.split() if re.fullmatch(r"[A-Za-z0-9_.-]+", x)] if r.returncode == 0 else []
+    if not services:
+        return None
+    lines = ["services:"]
+    for name in services:
+        lines += [f"  {name}:", "    logging:", "      driver: json-file", "      options:",
+                  f'        max-size: "{LOG_MAX_SIZE}"', f'        max-file: "{LOG_MAX_FILE}"']
+    text = "\n".join(lines) + "\n"
+    os.makedirs(STATE_DIR, exist_ok=True)
+    path = override_path(key)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            if f.read() == text:
+                return path
+    except OSError:
+        pass
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+    return path
 
 
 def run(key, *args):
@@ -282,6 +322,8 @@ def do_prune_cache():
 
 def do_action(key, action):
     try:
+        if action in ("start", "update"):
+            ensure_log_override(key)
         if action == "start":
             code, out = run(key, "up", "-d", "--build")
         elif action == "stop":  # frees RAM/CPU, keeps images + data
