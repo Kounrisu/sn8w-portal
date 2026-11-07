@@ -1,0 +1,333 @@
+@let c = copy();
+<div class="ds container">
+  <p class="ds-back"><a routerLink="/workshop">← {{ c.back }}</a></p>
+  <nav class="ds-nav" [attr.aria-label]="c.navLabel">
+    <ul>
+      @for (s of sections; track s) {
+        <li>
+          <a
+            [routerLink]="link(s)"
+            class="ds-nav__link"
+            [class.ds-nav__link--active]="current() === s"
+            [attr.aria-current]="current() === s ? 'page' : null"
+            >{{ sectionLabel(s) }}</a
+          >
+        </li>
+      }
+    </ul>
+  </nav>
+
+  @switch (current()) {
+    @case ('intro') {
+      <header class="ds-head" sn8wSpotlight>
+        <p class="ds-brand"><span class="ds-brand__mark" aria-hidden="true">S8</span> SN8W</p>
+        <p class="kicker">{{ c.intro.kicker }}</p>
+        <h1 class="section-title">{{ c.intro.title }}</h1>
+        <p class="section-lede">{{ c.intro.lede }}</p>
+      </header>
+      <ul class="ds-grid ds-grid--3">
+        @for (p of c.intro.principles; track p.n) {
+          <li class="ds-box">
+            <p class="ds-num">{{ p.n }}</p>
+            <h2 class="ds-box__title">{{ p.t }}</h2>
+            <p class="ds-muted">{{ p.d }}</p>
+          </li>
+        }
+      </ul>
+      <ul class="ds-meta">
+        @for (m of c.intro.meta; track m) {
+          <li>{{ m }}</li>
+        }
+      </ul>
+    }
+
+    @case ('foundations') {
+      <header class="ds-head" sn8wSpotlight>
+        <p class="kicker">{{ c.foundations.kicker }}</p>
+        <h1 class="section-title">{{ c.foundations.title }}</h1>
+        <p class="section-lede">{{ c.foundations.lede }}</p>
+      </header>
+
+      @for (theme of ['dark', 'light']; track theme) {
+        <section class="ds-theme" [class.ds-theme--dark]="theme === 'dark'" [class.ds-theme--light]="theme === 'light'">
+          <h2 class="ds-label">{{ theme === 'dark' ? c.foundations.dark : c.foundations.light }}</h2>
+          <ul class="ds-swatches">
+            @for (name of c.foundations.colors; track name; let i = $index) {
+              <li>
+                <span class="ds-swatch" aria-hidden="true" [style.background]="swatches[theme === 'dark' ? 'dark' : 'light'][i]"></span>
+                <strong>{{ name }}</strong>
+                <code>{{ swatches[theme === 'dark' ? 'dark' : 'light'][i] }}</code>
+              </li>
+            }
+          </ul>
+        </section>
+      }
+
+      <section class="ds-box">
+        <h2 class="ds-label">{{ c.foundations.typography }}</h2>
+        <dl class="ds-type">
+          @for (row of c.foundations.rows; track row.k; let i = $index) {
+            <div class="ds-type__row">
+              <dt>{{ row.k }}</dt>
+              <dd [class]="'ds-type__sample ds-type__sample--' + i">{{ row.v }}</dd>
+            </div>
+          }
+        </dl>
+      </section>
+    }
+
+    @case ('components') {
+      <header class="ds-head" sn8wSpotlight>
+        <p class="kicker">{{ c.components.kicker }}</p>
+        <h1 class="section-title">{{ c.components.title }}</h1>
+        <p class="section-lede">{{ c.components.lede }}</p>
+      </header>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.components.actions.label }}</p>
+        <h2 class="ds-box__title">{{ c.components.actions.title }}</h2>
+        <div class="ds-row">
+          <button type="button" class="btn btn--primary">{{ c.components.actions.primary }}</button>
+          <button type="button" class="btn btn--primary" disabled>{{ c.components.actions.primary }} ({{ c.components.actions.disabled }})</button>
+          <button type="button" class="btn btn--secondary">{{ c.components.actions.secondary }}</button>
+          <button type="button" class="btn btn--secondary" disabled>{{ c.components.actions.secondary }} ({{ c.components.actions.disabled }})</button>
+          <button type="button" class="btn ds-ghost">{{ c.components.actions.ghost }}</button>
+          <button type="button" class="btn ds-ghost" disabled>{{ c.components.actions.ghost }} ({{ c.components.actions.disabled }})</button>
+        </div>
+      </section>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.components.indicators.label }}</p>
+        <h2 class="ds-box__title">{{ c.components.indicators.title }}</h2>
+        <div class="ds-row">
+          <span class="ds-badge">{{ c.components.indicators.badges[0] }}</span>
+          <span class="ds-badge ds-badge--info">{{ c.components.indicators.badges[1] }}</span>
+          <span class="ds-badge ds-badge--success">{{ c.components.indicators.badges[2] }}</span>
+          <span class="ds-tag">{{ c.components.indicators.tag }}</span>
+          @if (tagVisible()) {
+            <span class="ds-tag">
+              {{ c.components.indicators.tag }}
+              <button type="button" class="ds-tag__remove" [attr.aria-label]="c.components.indicators.remove" (click)="tagVisible.set(false)">×</button>
+            </span>
+          } @else {
+            <button type="button" class="btn ds-ghost" (click)="tagVisible.set(true)">↺ {{ c.components.indicators.tag }}</button>
+          }
+        </div>
+      </section>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.components.feedback.label }}</p>
+        <h2 class="ds-box__title">{{ c.components.feedback.title }}</h2>
+        <div class="ds-grid ds-grid--4">
+          @for (tone of ['info', 'success', 'warning', 'error']; track tone; let i = $index) {
+            <div class="ds-alert" [class]="'ds-alert ds-alert--' + tone">
+              <p class="ds-alert__title">{{ c.components.feedback.tones[i] }}</p>
+              <p class="ds-alert__text">{{ c.components.feedback.message }}</p>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.components.forms.label }}</p>
+        <h2 class="ds-box__title">{{ c.components.forms.title }}</h2>
+        <div class="ds-grid ds-grid--4">
+          <div class="ds-field">
+            <label for="ds-f1">{{ c.components.forms.field }}</label>
+            <input id="ds-f1" type="email" [placeholder]="c.components.forms.placeholder" />
+            <p class="ds-field__state">{{ c.components.forms.states[0] }}</p>
+          </div>
+          <div class="ds-field">
+            <label for="ds-f2">{{ c.components.forms.field }}</label>
+            <input id="ds-f2" type="email" class="ds-field__focus-demo" [placeholder]="c.components.forms.placeholder" />
+            <p class="ds-field__state">{{ c.components.forms.states[1] }}</p>
+          </div>
+          <div class="ds-field">
+            <label for="ds-f3">{{ c.components.forms.field }}</label>
+            <input id="ds-f3" type="email" aria-invalid="true" aria-describedby="ds-f3-err" value="nom@" />
+            <p id="ds-f3-err" class="ds-field__error">{{ c.components.forms.error }}</p>
+          </div>
+          <div class="ds-field">
+            <label for="ds-f4">{{ c.components.forms.field }}</label>
+            <input id="ds-f4" type="email" disabled [placeholder]="c.components.forms.placeholder" />
+            <p class="ds-field__state">{{ c.components.forms.states[3] }}</p>
+          </div>
+        </div>
+        <p class="ds-switch-row">
+          <button
+            type="button"
+            role="switch"
+            class="ds-switch"
+            [attr.aria-checked]="switchOn()"
+            [attr.aria-label]="c.components.forms.switchLabel"
+            (click)="switchOn.set(!switchOn())"
+          ><span class="ds-switch__thumb" aria-hidden="true"></span></button>
+          <span aria-hidden="true">{{ c.components.forms.switchLabel }}</span>
+        </p>
+      </section>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.components.navigation.label }}</p>
+        <h2 class="ds-box__title">{{ c.components.navigation.title }}</h2>
+        <div class="ds-tabs">
+          <div role="tablist" [attr.aria-label]="c.components.navigation.title" (keydown)="onTabKey($event, c.components.navigation.tabs.length)">
+            @for (tab of c.components.navigation.tabs; track tab; let i = $index) {
+              <button
+                type="button"
+                role="tab"
+                class="ds-tab"
+                [id]="'ds-tab-' + i"
+                [attr.aria-selected]="activeTab() === i"
+                [attr.aria-controls]="'ds-panel-' + i"
+                [attr.tabindex]="activeTab() === i ? 0 : -1"
+                (click)="activeTab.set(i)"
+              >{{ tab }}</button>
+            }
+          </div>
+          @for (panel of c.components.navigation.tabPanels; track panel; let i = $index) {
+            <div role="tabpanel" class="ds-tabpanel" [id]="'ds-panel-' + i" [attr.aria-labelledby]="'ds-tab-' + i" [hidden]="activeTab() !== i" tabindex="0">
+              {{ panel }}
+            </div>
+          }
+        </div>
+        <details class="ds-accordion">
+          <summary>{{ c.components.navigation.accordion }}</summary>
+          <p>{{ c.components.navigation.accordionBody }}</p>
+        </details>
+      </section>
+    }
+
+    @case ('patterns') {
+      <header class="ds-head" sn8wSpotlight>
+        <p class="kicker">{{ c.patterns.kicker }}</p>
+        <h1 class="section-title">{{ c.patterns.title }}</h1>
+        <p class="section-lede">{{ c.patterns.lede }}</p>
+      </header>
+
+      <div class="ds-header-specimen">
+        <p class="ds-brand"><span class="ds-brand__mark" aria-hidden="true">S8</span> SN8W</p>
+        <p class="ds-header-specimen__links">
+          @for (l of c.patterns.header; track l) {
+            <span>{{ l }}</span>
+          }
+        </p>
+      </div>
+
+      <section>
+        <h2 class="ds-label">{{ c.patterns.cardsLabel }}</h2>
+        <ul class="ds-grid ds-grid--3">
+          @for (card of c.patterns.cards; track card.n) {
+            <li class="ds-card">
+              <p class="ds-card__meta"><span class="ds-num">{{ card.n }}</span> <span class="ds-label">{{ card.s }}</span></p>
+              <div class="ds-card__visual" aria-hidden="true">{{ '{ UI }' }}</div>
+              <h3 class="ds-box__title">{{ card.t }}</h3>
+              <p class="ds-muted">{{ c.patterns.cardText }}</p>
+              <p class="ds-link">{{ c.patterns.cardLink }} →</p>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.patterns.docLabel }}</p>
+        <h2 class="ds-box__title">{{ c.patterns.docTitle }}</h2>
+        <ol class="ds-grid ds-grid--5">
+          @for (step of c.patterns.docSteps; track step; let i = $index) {
+            <li class="ds-step">
+              <p class="ds-num">0{{ i + 1 }}</p>
+              <p class="ds-step__title">{{ step }}</p>
+            </li>
+          }
+        </ol>
+      </section>
+    }
+
+    @case ('accessibility') {
+      <header class="ds-head" sn8wSpotlight>
+        <p class="kicker">{{ c.accessibility.kicker }}</p>
+        <h1 class="section-title">{{ c.accessibility.title }}</h1>
+        <p class="section-lede">{{ c.accessibility.lede }}</p>
+      </header>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.accessibility.standardLabel }}</p>
+        <h2 class="ds-big">{{ c.accessibility.standard }}</h2>
+        <p class="ds-muted">{{ c.accessibility.standardText }}</p>
+      </section>
+
+      <ul class="ds-grid ds-grid--4">
+        @for (check of c.accessibility.checks; track check.t) {
+          <li class="ds-box">
+            <h2 class="ds-box__title">{{ check.t }}</h2>
+            <p class="ds-value">{{ check.v }}</p>
+            <p class="ds-ref">{{ check.r }}</p>
+            <p class="ds-muted">{{ check.d }}</p>
+          </li>
+        }
+      </ul>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.accessibility.methodLabel }}</p>
+        <h2 class="ds-box__title">{{ c.accessibility.methodTitle }}</h2>
+        <ol class="ds-list">
+          @for (s of c.accessibility.steps; track s.n) {
+            <li><span class="ds-num">{{ s.n }}</span> <strong>{{ s.t }}</strong> <span class="ds-muted">{{ s.d }}</span></li>
+          }
+        </ol>
+      </section>
+    }
+
+    @case ('governance') {
+      <header class="ds-head" sn8wSpotlight>
+        <p class="kicker">{{ c.governance.kicker }}</p>
+        <h1 class="section-title">{{ c.governance.title }}</h1>
+        <p class="section-lede">{{ c.governance.lede }}</p>
+      </header>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.governance.flowLabel }}</p>
+        <h2 class="ds-box__title">{{ c.governance.flowTitle }}</h2>
+        <ol class="ds-grid ds-grid--4">
+          @for (s of c.governance.flow; track s.n) {
+            <li class="ds-step">
+              <p class="ds-num">{{ s.n }}</p>
+              <h3 class="ds-step__title">{{ s.t }}</h3>
+              <p class="ds-muted">{{ s.d }}</p>
+            </li>
+          }
+        </ol>
+      </section>
+
+      <div class="ds-grid ds-grid--2">
+        <section class="ds-box">
+          <p class="ds-label">{{ c.governance.maturityLabel }}</p>
+          <h2 class="ds-box__title">{{ c.governance.maturityTitle }}</h2>
+          <dl class="ds-defs">
+            @for (m of c.governance.maturity; track m.t) {
+              <div><dt>{{ m.t }}</dt><dd class="ds-muted">{{ m.d }}</dd></div>
+            }
+          </dl>
+        </section>
+        <section class="ds-box">
+          <p class="ds-label">{{ c.governance.doneLabel }}</p>
+          <h2 class="ds-box__title">{{ c.governance.doneTitle }}</h2>
+          <ul class="ds-checks">
+            @for (item of c.governance.done; track item) {
+              <li><span aria-hidden="true">✓</span> {{ item }}</li>
+            }
+          </ul>
+        </section>
+      </div>
+
+      <section class="ds-box">
+        <p class="ds-label">{{ c.governance.releaseLabel }}</p>
+        <h2 class="ds-box__title">{{ c.governance.releaseTitle }}</h2>
+        <dl class="ds-grid ds-grid--3 ds-defs ds-defs--stack">
+          @for (r of c.governance.release; track r.t) {
+            <div><dt>{{ r.t }}</dt><dd class="ds-muted">{{ r.d }}</dd></div>
+          }
+        </dl>
+      </section>
+    }
+  }
+</div>

@@ -5,6 +5,21 @@
     <p class="section-lede">{{ i18n.dict().workshop.lede }}</p>
   </header>
 
+  <section class="workshop__ds" aria-labelledby="workshop-ds-title">
+    <h2 id="workshop-ds-title" class="workshop__ds-title">{{ ds().workshopEntry.title }}</h2>
+    <p class="workshop__ds-text">{{ ds().workshopEntry.text }}</p>
+    <p>
+      <a class="btn btn--primary" routerLink="/design-system">{{ ds().workshopEntry.cta }}</a>
+    </p>
+    <nav [attr.aria-label]="ds().workshopEntry.pages">
+      <ul class="workshop__ds-pages">
+        @for (page of dsPages; track page.key) {
+          <li><a [routerLink]="page.path">{{ ds().nav[page.key] }}</a></li>
+        }
+      </ul>
+    </nav>
+  </section>
+
   <p class="workshop__back">
     <a class="btn btn--secondary" routerLink="/">{{ i18n.dict().behindTheScenes.backHome }}</a>
   </p>

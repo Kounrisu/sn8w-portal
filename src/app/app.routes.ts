@@ -81,6 +81,20 @@ export const routes: Routes = [
     data: { titleKey: 'workshop' },
   },
   {
+    // The SN8W design system (linked from the Workshop): introduction at
+    // /design-system, then /design-system/:section for the five other pages.
+    path: 'design-system',
+    loadComponent: () =>
+      import('./pages/design-system-page/design-system-page').then((m) => m.DesignSystemPage),
+    data: { titleKey: 'designSystem' },
+  },
+  {
+    path: 'design-system/:section',
+    loadComponent: () =>
+      import('./pages/design-system-page/design-system-page').then((m) => m.DesignSystemPage),
+    data: { titleKey: 'designSystem' },
+  },
+  {
     path: 'parametres-accessibilite',
     loadComponent: () =>
       import('./pages/preferences-page/preferences-page').then((m) => m.PreferencesPage),

@@ -21,6 +21,7 @@ import { PreferencesService } from './core/preferences.service';
 import { AnalyticsService } from './core/analytics.service';
 import { I18nService } from './core/i18n/i18n.service';
 import type { Dict } from './core/i18n/dictionary';
+import { DESIGN_SYSTEM_COPY } from './core/i18n/design-system-copy';
 import { createParticles, drawFrame, type Particle, type StarfieldMode } from './starfield';
 
 // The tab title otherwise never changes between routes in this SPA — a
@@ -40,6 +41,7 @@ type TitleKey =
   | 'analytics'
   | 'sitemap'
   | 'workshop'
+  | 'designSystem'
   | 'preferences'
   | 'accessibilityStatement';
 
@@ -58,6 +60,7 @@ const TITLE_RESOLVERS: Record<TitleKey, (dict: Dict) => string> = {
   analytics: (d) => d.nav.analytics,
   sitemap: (d) => d.sitemap.title,
   workshop: (d) => d.workshop.navLabel,
+  designSystem: () => 'Design system SN8W',
   preferences: (d) => d.preferences.navLabel,
   accessibilityStatement: () => "Déclaration d'accessibilité",
 };
@@ -83,6 +86,8 @@ export class App implements AfterViewInit, OnDestroy {
   protected readonly i18n = inject(I18nService);
 
   private readonly currentTitleKey = signal<TitleKey | undefined>(undefined);
+  /** `:section` of the current route, used to title the design-system pages. */
+  private readonly currentSection = signal<string | undefined>(undefined);
   // Announced through a visually-hidden aria-live region on every in-app
   // navigation — an SPA's route changes are otherwise silent to screen
   // reader users, who get no equivalent of a real page load's announcement.
@@ -119,7 +124,12 @@ export class App implements AfterViewInit, OnDestroy {
     effect(() => {
       const dict = this.i18n.dict();
       const key = this.currentTitleKey();
-      const label = key ? TITLE_RESOLVERS[key](dict) : undefined;
+      let label = key ? TITLE_RESOLVERS[key](dict) : undefined;
+      if (key === 'designSystem' && label) {
+        const nav: Record<string, string> = DESIGN_SYSTEM_COPY[this.i18n.lang()].nav;
+        const section = this.currentSection();
+        if (section && section !== 'intro' && nav[section]) label = `${nav[section]} · ${label}`;
+      }
       this.titleService.setTitle(label && key !== 'home' ? `${label} — Sn8w` : BASE_TITLE);
       if (label) this.routeAnnouncement.set(label);
     });
@@ -127,6 +137,7 @@ export class App implements AfterViewInit, OnDestroy {
     const router = inject(Router);
     this.analytics.trackPageview(router.url);
     this.currentTitleKey.set(router.routerState.snapshot.root.firstChild?.data['titleKey']);
+    this.currentSection.set(router.routerState.snapshot.root.firstChild?.params['section']);
     let isFirstNavigation = true;
     router.events
       .pipe(
@@ -136,6 +147,7 @@ export class App implements AfterViewInit, OnDestroy {
       .subscribe((event) => {
         this.analytics.trackPageview(event.urlAfterRedirects);
         this.currentTitleKey.set(router.routerState.snapshot.root.firstChild?.data['titleKey']);
+        this.currentSection.set(router.routerState.snapshot.root.firstChild?.params['section']);
 
         // A real page load already puts focus at the top and announces
         // itself; only virtual (in-app) navigations need this simulated —
