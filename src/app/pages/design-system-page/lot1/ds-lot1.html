@@ -1,0 +1,199 @@
+@let c = copy();
+<header class="ds-lot">
+  <h2 class="ds-lot__title">{{ c.lot1.title }}</h2>
+  <p class="ds-muted">{{ c.lot1.lede }}</p>
+</header>
+
+<section class="ds-box">
+  <p class="ds-label">{{ c.lot1.forms.label }}</p>
+  <h2 class="ds-box__title">{{ c.lot1.forms.title }}</h2>
+
+  <h3 class="ds-sub">{{ c.lot1.forms.select.label }}</h3>
+  <div class="ds-grid ds-grid--3">
+    <div class="ds-field">
+      <label for="ds-sel1">{{ c.lot1.forms.select.label }}</label>
+      <div class="ds-select"><select id="ds-sel1"><option value="">{{ c.lot1.forms.select.placeholder }}</option>@for (o of c.lot1.forms.select.options; track o) {<option>{{ o }}</option>}</select></div>
+      <p class="ds-field__state">{{ c.lot1.forms.select.states[0] }}</p>
+    </div>
+    <div class="ds-field">
+      <label for="ds-sel2">{{ c.lot1.forms.select.label }}</label>
+      <div class="ds-select"><select id="ds-sel2" aria-invalid="true" aria-describedby="ds-sel2-err"><option value="">{{ c.lot1.forms.select.placeholder }}</option>@for (o of c.lot1.forms.select.options; track o) {<option>{{ o }}</option>}</select></div>
+      <p id="ds-sel2-err" class="ds-field__error">{{ c.lot1.forms.select.error }}</p>
+    </div>
+    <div class="ds-field">
+      <label for="ds-sel3">{{ c.lot1.forms.select.label }}</label>
+      <div class="ds-select"><select id="ds-sel3" disabled><option value="">{{ c.lot1.forms.select.placeholder }}</option></select></div>
+      <p class="ds-field__state">{{ c.lot1.forms.select.states[2] }}</p>
+    </div>
+  </div>
+  <p class="ds-muted ds-note">{{ c.lot1.forms.select.note }}</p>
+
+  <h3 class="ds-sub">{{ c.lot1.forms.checkbox.legend }}</h3>
+  <div class="ds-row">
+    <label class="ds-check"><input type="checkbox" /><span>{{ c.lot1.forms.checkbox.label }}</span></label>
+    <label class="ds-check"><input type="checkbox" checked /><span>{{ c.lot1.forms.checkbox.label }}</span></label>
+    <label class="ds-check"><input type="checkbox" disabled /><span>{{ c.lot1.forms.checkbox.label }}</span></label>
+    <label class="ds-check"><input type="checkbox" disabled checked /><span>{{ c.lot1.forms.checkbox.label }}</span></label>
+  </div>
+
+  <fieldset class="ds-radios">
+    <legend class="ds-sub">{{ c.lot1.forms.radio.legend }}</legend>
+    <div class="ds-row">
+      @for (o of c.lot1.forms.radio.options; track o; let i = $index) {
+        <label class="ds-check ds-check--radio"><input type="radio" name="ds-radio" [checked]="i === 0" /><span>{{ o }}</span></label>
+      }
+    </div>
+  </fieldset>
+
+  <h3 class="ds-sub">{{ c.lot1.forms.search.label }}</h3>
+  <form class="ds-search" role="search" [attr.aria-label]="c.lot1.forms.search.aria" (submit)="$event.preventDefault()">
+    <label for="ds-q" class="ds-visually-hidden">{{ c.lot1.forms.search.label }}</label>
+    <input id="ds-q" type="search" [placeholder]="c.lot1.forms.search.placeholder" />
+    <button type="submit" class="btn btn--primary">{{ c.lot1.forms.search.button }}</button>
+  </form>
+</section>
+
+<section class="ds-box">
+  <p class="ds-label">{{ c.lot1.navigation.label }}</p>
+  <h2 class="ds-box__title">{{ c.lot1.navigation.title }}</h2>
+
+  <h3 class="ds-sub">Breadcrumb</h3>
+  <nav [attr.aria-label]="c.lot1.navigation.breadcrumb.aria">
+    <ol class="ds-breadcrumb">
+      <li><a routerLink="/">{{ c.lot1.navigation.breadcrumb.home }}</a></li>
+      <li><a routerLink="/design-system">{{ c.lot1.navigation.breadcrumb.ds }}</a></li>
+      <li aria-current="page">{{ c.lot1.navigation.breadcrumb.current }}</li>
+    </ol>
+  </nav>
+
+  <h3 class="ds-sub">Pagination</h3>
+  <nav [attr.aria-label]="c.lot1.navigation.pagination.aria">
+    <ul class="ds-pagination">
+      <li><button type="button" class="ds-page-btn ds-page-btn--text" [disabled]="pageNo() === 1" (click)="goToPage(pageNo() - 1)">{{ c.lot1.navigation.pagination.prev }}</button></li>
+      @for (it of pageItems(); track $index) {
+        <li>
+          @if (it === '…') {
+            <span class="ds-page-dots" aria-hidden="true">…</span>
+          } @else {
+            <button type="button" class="ds-page-btn" [attr.aria-current]="it === pageNo() ? 'page' : null" [attr.aria-label]="c.lot1.navigation.pagination.page + ' ' + it" (click)="goToPage(+it)">{{ it }}</button>
+          }
+        </li>
+      }
+      <li><button type="button" class="ds-page-btn ds-page-btn--text" [disabled]="pageNo() === totalPages" (click)="goToPage(pageNo() + 1)">{{ c.lot1.navigation.pagination.next }}</button></li>
+    </ul>
+  </nav>
+
+  <h3 class="ds-sub">Stepper</h3>
+  <div class="ds-stepper">
+    <div aria-live="polite">
+      <p class="ds-stepper__counter">{{ c.lot1.navigation.stepper.counter.replace('{n}', '' + stepNo()) }}</p>
+      <p class="ds-stepper__title">{{ c.lot1.navigation.stepper.titles[stepNo() - 1] }}</p>
+    </div>
+    <div class="ds-stepper__bar" aria-hidden="true">
+      @for (i of [1, 2, 3, 4]; track i) {
+        <span [class.is-on]="i <= stepNo()"></span>
+      }
+    </div>
+    <p class="ds-muted">{{ stepNo() < 4 ? c.lot1.navigation.stepper.next + c.lot1.navigation.stepper.titles[stepNo()] : c.lot1.navigation.stepper.last }}</p>
+    <div class="ds-row">
+      <button type="button" class="btn btn--secondary" [disabled]="stepNo() === 1" (click)="goToStep(stepNo() - 1)">{{ c.lot1.navigation.stepper.back }}</button>
+      <button type="button" class="btn btn--primary" [disabled]="stepNo() === 4" (click)="goToStep(stepNo() + 1)">{{ c.lot1.navigation.stepper.advance }}</button>
+    </div>
+  </div>
+</section>
+
+<section class="ds-box">
+  <p class="ds-label">{{ c.lot1.feedback.label }}</p>
+  <h2 class="ds-box__title">{{ c.lot1.feedback.title }}</h2>
+
+  <h3 class="ds-sub">Tooltip</h3>
+  <div class="ds-tip" (mouseenter)="tipOpen.set(true)" (mouseleave)="tipOpen.set(false)">
+    <button type="button" class="btn btn--secondary" aria-describedby="ds-tip" (focus)="tipOpen.set(true)" (blur)="tipOpen.set(false)" (keydown.escape)="tipOpen.set(false)">{{ c.lot1.feedback.tooltip.trigger }}</button>
+    <span id="ds-tip" role="tooltip" class="ds-tip__bubble" [hidden]="!tipOpen()">{{ c.lot1.feedback.tooltip.text }}</span>
+  </div>
+
+  <h3 class="ds-sub">Modal</h3>
+  <div class="ds-row">
+    <button type="button" class="btn btn--primary" (click)="dlgDefault.showModal()">{{ c.lot1.feedback.modal.open }}</button>
+    <button type="button" class="btn btn--secondary" (click)="dlgDanger.showModal()">{{ c.lot1.feedback.modal.openDanger }}</button>
+  </div>
+  <dialog #dlgDefault class="ds-modal" aria-labelledby="ds-dlg-default" (click)="closeOnBackdrop($event, dlgDefault)">
+    <div class="ds-modal__head">
+      <h3 id="ds-dlg-default" class="ds-modal__title">{{ c.lot1.feedback.modal.titleDefault }}</h3>
+      <button type="button" class="ds-modal__close" [attr.aria-label]="c.lot1.feedback.modal.close" (click)="dlgDefault.close()"><span aria-hidden="true">×</span></button>
+    </div>
+    <p class="ds-muted">{{ c.lot1.feedback.modal.bodyDefault }}</p>
+    <div class="ds-modal__foot">
+      <button type="button" class="btn btn--secondary" (click)="dlgDefault.close()">{{ c.lot1.feedback.modal.cancel }}</button>
+      <button type="button" class="btn btn--primary" (click)="dlgDefault.close()">{{ c.lot1.feedback.modal.confirm }}</button>
+    </div>
+  </dialog>
+  <dialog #dlgDanger class="ds-modal" aria-labelledby="ds-dlg-danger" (click)="closeOnBackdrop($event, dlgDanger)">
+    <div class="ds-modal__head">
+      <h3 id="ds-dlg-danger" class="ds-modal__title">{{ c.lot1.feedback.modal.titleDanger }}</h3>
+      <button type="button" class="ds-modal__close" [attr.aria-label]="c.lot1.feedback.modal.close" (click)="dlgDanger.close()"><span aria-hidden="true">×</span></button>
+    </div>
+    <p class="ds-muted">{{ c.lot1.feedback.modal.bodyDanger }}</p>
+    <div class="ds-modal__foot">
+      <button type="button" class="btn btn--secondary" (click)="dlgDanger.close()">{{ c.lot1.feedback.modal.cancel }}</button>
+      <button type="button" class="btn ds-danger" (click)="dlgDanger.close()">{{ c.lot1.feedback.modal.uninstall }}</button>
+    </div>
+  </dialog>
+
+  <h3 class="ds-sub">Callout</h3>
+  <div class="ds-grid ds-grid--2">
+    <div class="ds-callout">
+      <h4 class="ds-callout__title">{{ c.lot1.feedback.callout.infoTitle }}</h4>
+      <p>{{ c.lot1.feedback.callout.infoText }}</p>
+      <a class="ds-callout__cta" routerLink="/design-system/governance">{{ c.lot1.feedback.callout.cta }}</a>
+    </div>
+    <div class="ds-callout ds-callout--success">
+      <h4 class="ds-callout__title">{{ c.lot1.feedback.callout.okTitle }}</h4>
+      <p>{{ c.lot1.feedback.callout.okText }}</p>
+      <a class="ds-callout__cta" routerLink="/design-system/accessibility">{{ c.lot1.feedback.callout.cta }}</a>
+    </div>
+  </div>
+</section>
+
+<section class="ds-box">
+  <p class="ds-label">{{ c.lot1.content.label }}</p>
+  <h2 class="ds-box__title">{{ c.lot1.content.title }}</h2>
+
+  <h3 class="ds-sub">Card</h3>
+  <ul class="ds-grid ds-grid--2 ds-cards">
+    @for (layout of ['vertical', 'horizontal']; track layout) {
+      <li class="ds-ccard" [class.ds-ccard--horizontal]="layout === 'horizontal'">
+        <div class="ds-ccard__visual" aria-hidden="true">{{ '{ UI }' }}</div>
+        <div class="ds-ccard__body">
+          <p class="ds-label ds-label--tight">{{ c.lot1.content.card.status }}</p>
+          <h4 class="ds-ccard__title"><a class="ds-ccard__link" routerLink="/design-system/components">{{ c.lot1.content.card.title }}</a></h4>
+          <p class="ds-muted">{{ c.lot1.content.card.text }}</p>
+          <p class="ds-link" aria-hidden="true">{{ c.lot1.content.card.link }} →</p>
+        </div>
+      </li>
+    }
+  </ul>
+
+  <h3 class="ds-sub">Table</h3>
+  <div class="ds-table-wrap" role="region" tabindex="0" [attr.aria-label]="c.lot1.content.table.caption">
+    <table class="ds-table">
+      <caption>{{ c.lot1.content.table.caption }}</caption>
+      <thead>
+        <tr>
+          @for (h of c.lot1.content.table.head; track h) {
+            <th scope="col">{{ h }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of c.lot1.content.table.rows; track row[0]; let i = $index) {
+          <tr>
+            <th scope="row">{{ row[0] }}</th>
+            <td><span class="ds-status" [class.ds-status--ok]="i < 2">{{ row[1] }}</span></td>
+            <td>{{ row[2] }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
