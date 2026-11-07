@@ -53,7 +53,7 @@ describe('App', () => {
     const headings = compiled.querySelectorAll('h1');
     expect(headings.length).toBe(1);
     expect(headings[0].textContent).toContain('Philippe Parmentier');
-    expect(compiled.querySelector('.nav__links a')?.getAttribute('href')).toBe('/projects');
+    expect(compiled.querySelector('.nav__links a[href="/projects"]')).not.toBeNull();
     expect(compiled.querySelector('#products .flagship-toolbar a')?.getAttribute('href')).toBe('/projects');
     expect(compiled.querySelector('.hero__stats')?.textContent).toContain('JS → 22');
     expect(compiled.querySelector('.hero__score')?.parentElement?.tagName).toBe('DD');

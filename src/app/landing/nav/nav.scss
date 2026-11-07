@@ -262,6 +262,32 @@
   border-color: var(--ice);
 }
 
+// Desktop: one row for brand, public links and preferences; the signed-in
+// workspace links sit on their own quieter row underneath instead of pushing
+// the brand onto a line of its own.
+@media (min-width: 700px) {
+  .nav__actions {
+    display: contents;
+  }
+
+  .nav__links {
+    order: 1;
+    margin-left: auto;
+  }
+
+  .nav__icons {
+    order: 2;
+  }
+
+  .nav__tools {
+    order: 3;
+    flex: 1 0 100%;
+    padding: 0.5rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
 @media (max-width: 699px) {
   .nav__links .nav__portfolio-link {
     display: none;
