@@ -569,8 +569,8 @@ export const en: Dict = {
     ],
   },
   ctaSection: {
-    title: 'An Angular role to discuss?',
-    lede: "Open to opportunities across France and Switzerland. Tell me about your team and your applications, and let's discuss where my development and accessibility experience could help.",
+    title: 'Get in touch.',
+    lede: 'A question or a proposal? Write to me through the form below.',
   },
   behindTheScenes: {
     kicker: 'Behind the scenes',

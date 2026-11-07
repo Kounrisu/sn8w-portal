@@ -231,8 +231,8 @@ export const fr: Dict = {
     ],
   },
   ctaSection: {
-    title: 'Un poste Angular à pourvoir ?',
-    lede: "Ouvert aux opportunités partout en France et en Suisse. Parlons de votre équipe, de vos applications et de ce que mon expérience du développement et de l'accessibilité peut vous apporter.",
+    title: 'Écrivez-moi.',
+    lede: 'Une question, une proposition ? Écrivez-moi avec le formulaire ci-dessous.',
   },
   behindTheScenes: {
     kicker: 'Dans les coulisses',
