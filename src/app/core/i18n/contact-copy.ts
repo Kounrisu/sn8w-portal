@@ -20,6 +20,8 @@ const en = {
     sending: 'Sending…',
     sent: 'Thank you, your message has been sent. I will answer as soon as possible.',
     errorsTitle: 'The message was not sent. Please correct the highlighted fields.',
+    summaryTitle: 'There are errors in the form',
+    requiredNote: 'All fields are required.',
     orEmail: 'Or write directly:',
     errors: {
       'name.required': 'Enter your name.',
@@ -74,6 +76,8 @@ const fr: ContactCopy = {
     sending: 'Envoi en cours…',
     sent: 'Merci, votre message a bien été envoyé. Je vous répondrai dès que possible.',
     errorsTitle: 'Le message n’a pas été envoyé. Corrigez les champs signalés.',
+    summaryTitle: 'Le formulaire contient des erreurs',
+    requiredNote: 'Tous les champs sont obligatoires.',
     orEmail: 'Ou écrivez directement :',
     errors: {
       'name.required': 'Indiquez votre nom.',

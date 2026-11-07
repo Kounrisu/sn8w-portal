@@ -8,10 +8,21 @@
       <p class="cf__success">{{ t.sent }}</p>
     } @else if (serverError()) {
       <p class="cf__fail">{{ serverError() }}</p>
-    } @else if (hasErrors()) {
-      <p class="cf__fail">{{ t.errorsTitle }}</p>
     }
   </div>
+
+  @if (hasErrors()) {
+    <div id="cf-summary" class="cf__summary" role="group" tabindex="-1" aria-labelledby="cf-summary-title">
+      <h4 id="cf-summary-title" class="cf__summary-title">{{ t.summaryTitle }}</h4>
+      <ul>
+        @for (f of invalidFields(); track f) {
+          <li><a [href]="'#cf-' + f" (click)="goToField($event, f)">{{ errorText(f) }}</a></li>
+        }
+      </ul>
+    </div>
+  }
+
+  <p class="field-hint cf__required">{{ t.requiredNote }}</p>
 
   <div class="field">
     <label class="field-label" for="cf-name">{{ t.name }}</label>
@@ -39,6 +50,9 @@
       type="email"
       name="email"
       autocomplete="email"
+      inputmode="email"
+      autocapitalize="none"
+      spellcheck="false"
       maxlength="254"
       aria-required="true"
       [value]="email()"

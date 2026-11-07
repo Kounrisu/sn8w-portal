@@ -100,3 +100,37 @@
   height: 1px;
   overflow: hidden;
 }
+
+/* Error summary: a boxed list of links to the invalid fields, with a status icon. */
+.cf__summary {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--danger);
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface-raised));
+  outline: none;
+}
+
+.cf__summary:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 2px;
+}
+
+.cf__summary-title {
+  margin: 0 0 0.4rem;
+  font-size: var(--text-base);
+}
+
+.cf__summary ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.cf__summary a {
+  color: var(--ink);
+  text-underline-offset: 0.2em;
+}
+
+.cf__required {
+  margin: 0;
+}
