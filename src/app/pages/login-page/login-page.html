@@ -30,7 +30,7 @@
       </label>
 
       @if (error()) {
-        <p class="login-error" role="alert">{{ i18n.dict().auth.error }}</p>
+        <p class="alert alert--error" role="alert">{{ i18n.dict().auth.error }}</p>
       }
 
       <button type="submit" class="btn btn--primary" [disabled]="submitting()">

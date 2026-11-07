@@ -446,6 +446,33 @@ html[data-theme='contrast'] .btn--primary {
   cursor: not-allowed;
 }
 
+// Design-system Alert (see /design-system/components): a boxed message with a
+// colored edge. The meaning is always carried by the text (and role="alert" when
+// it must be announced), never by the color alone.
+.alert {
+  --tone: var(--ice);
+
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--tone);
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: var(--surface-sunken);
+  color: var(--ink);
+  font-size: var(--text-sm);
+}
+
+.alert > :first-child {
+  margin-top: 0;
+}
+
+.alert > :last-child {
+  margin-bottom: 0;
+}
+
+.alert--success { --tone: var(--success); }
+.alert--warning { --tone: var(--warning); }
+.alert--error { --tone: var(--danger); }
+
 .visually-hidden {
   position: absolute;
   width: 1px;

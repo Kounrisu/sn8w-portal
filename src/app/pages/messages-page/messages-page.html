@@ -11,7 +11,7 @@
 
   <div role="status">
     @if (failed()) {
-      <p class="messages__error">{{ t.loadError }}</p>
+      <p class="alert alert--error">{{ t.loadError }}</p>
     } @else if (!loading() && messages().length === 0) {
       <p class="messages__empty">{{ t.empty }}</p>
     }
