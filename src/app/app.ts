@@ -42,6 +42,7 @@ type TitleKey =
   | 'sitemap'
   | 'workshop'
   | 'designSystem'
+  | 'messages'
   | 'preferences'
   | 'accessibilityStatement';
 
@@ -61,6 +62,7 @@ const TITLE_RESOLVERS: Record<TitleKey, (dict: Dict) => string> = {
   sitemap: (d) => d.sitemap.title,
   workshop: (d) => d.workshop.navLabel,
   designSystem: () => 'Design system SN8W',
+  messages: () => 'Messages',
   preferences: (d) => d.preferences.navLabel,
   accessibilityStatement: () => "Déclaration d'accessibilité",
 };

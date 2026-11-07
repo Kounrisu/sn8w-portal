@@ -1,0 +1,102 @@
+@let t = copy();
+<form class="cf" novalidate (submit)="submit($event)" aria-labelledby="cf-title">
+  <h3 id="cf-title" class="cf__title">{{ t.title }}</h3>
+  <p class="cf__lede">{{ t.lede }}</p>
+
+  <div id="cf-status" class="cf__status" role="status" tabindex="-1">
+    @if (state() === 'sent') {
+      <p class="cf__success">{{ t.sent }}</p>
+    } @else if (serverError()) {
+      <p class="cf__fail">{{ serverError() }}</p>
+    } @else if (hasErrors()) {
+      <p class="cf__fail">{{ t.errorsTitle }}</p>
+    }
+  </div>
+
+  <div class="field">
+    <label class="field-label" for="cf-name">{{ t.name }}</label>
+    <input
+      id="cf-name"
+      type="text"
+      name="name"
+      autocomplete="name"
+      maxlength="100"
+      aria-required="true"
+      [value]="name()"
+      (input)="name.set(value($event)); clear('name')"
+      [attr.aria-invalid]="errorText('name') ? 'true' : null"
+      [attr.aria-describedby]="errorText('name') ? 'cf-name-err' : null"
+    />
+    @if (errorText('name')) {
+      <p id="cf-name-err" class="field-error">{{ errorText('name') }}</p>
+    }
+  </div>
+
+  <div class="field">
+    <label class="field-label" for="cf-email">{{ t.email }}</label>
+    <input
+      id="cf-email"
+      type="email"
+      name="email"
+      autocomplete="email"
+      maxlength="254"
+      aria-required="true"
+      [value]="email()"
+      (input)="email.set(value($event)); clear('email')"
+      [attr.aria-invalid]="errorText('email') ? 'true' : null"
+      [attr.aria-describedby]="errorText('email') ? 'cf-email-hint cf-email-err' : 'cf-email-hint'"
+    />
+    <p id="cf-email-hint" class="field-hint">{{ t.emailHint }}</p>
+    @if (errorText('email')) {
+      <p id="cf-email-err" class="field-error">{{ errorText('email') }}</p>
+    }
+  </div>
+
+  <div class="field">
+    <label class="field-label" for="cf-message">{{ t.message }}</label>
+    <textarea
+      id="cf-message"
+      name="message"
+      rows="6"
+      maxlength="5000"
+      aria-required="true"
+      [value]="message()"
+      (input)="message.set(value($event)); clear('message')"
+      [attr.aria-invalid]="errorText('message') ? 'true' : null"
+      [attr.aria-describedby]="errorText('message') ? 'cf-message-hint cf-message-err' : 'cf-message-hint'"
+    ></textarea>
+    <p id="cf-message-hint" class="field-hint">{{ t.messageHint }}</p>
+    @if (errorText('message')) {
+      <p id="cf-message-err" class="field-error">{{ errorText('message') }}</p>
+    }
+  </div>
+
+  <div class="field">
+    <label class="cf__check">
+      <input
+        id="cf-consent"
+        type="checkbox"
+        name="consent"
+        [checked]="consent()"
+        (change)="consent.set($any($event.target).checked); clear('consent')"
+        [attr.aria-invalid]="errorText('consent') ? 'true' : null"
+        [attr.aria-describedby]="errorText('consent') ? 'cf-consent-err' : null"
+      />
+      <span>{{ t.consent }}</span>
+    </label>
+    @if (errorText('consent')) {
+      <p id="cf-consent-err" class="field-error">{{ errorText('consent') }}</p>
+    }
+  </div>
+
+  <!-- Honeypot: invisible and inert for people; bots that fill every field give themselves away. -->
+  <div class="cf__hp" inert>
+    <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" [value]="website()" (input)="website.set(value($event))" /></label>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn--primary" [disabled]="state() === 'sending'">
+      {{ state() === 'sending' ? t.sending : t.send }}
+    </button>
+  </div>
+</form>

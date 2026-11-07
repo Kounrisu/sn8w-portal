@@ -19,7 +19,7 @@
   <div class="hero__introduction">
     <p class="hero__lede">{{ i18n.dict().hero.lede }}</p>
     <div class="hero__actions">
-      <a class="btn btn--primary" [href]="'mailto:' + profiles.email">
+      <a class="btn btn--primary" routerLink="/" fragment="contact">
         {{ i18n.dict().nav.contact }}
         <mat-icon aria-hidden="true">arrow_outward</mat-icon>
       </a>

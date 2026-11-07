@@ -58,6 +58,12 @@ export const routes: Routes = [
     data: { titleKey: 'diary' },
   },
   {
+    path: 'messages',
+    loadComponent: () => import('./pages/messages-page/messages-page').then((m) => m.MessagesPage),
+    canActivate: [authGuard],
+    data: { titleKey: 'messages' },
+  },
+  {
     path: 'analytics',
     loadComponent: () =>
       import('./pages/analytics-page/analytics-page').then((m) => m.AnalyticsPage),

@@ -1,0 +1,114 @@
+@use '../../../panel';
+
+:host {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-block: var(--space-xl);
+  max-width: 52rem;
+}
+
+.messages__head {
+  @include panel.glass;
+
+  padding: var(--space-lg);
+}
+
+.messages__head h1:focus {
+  outline: none;
+}
+
+.messages__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-sm) 0 0;
+  color: var(--mist);
+}
+
+.messages__error {
+  margin: 0;
+  color: var(--danger);
+}
+
+.messages__empty {
+  margin: 0;
+  color: var(--mist);
+}
+
+.messages__list {
+  display: grid;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.msg {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 12px;
+  background: var(--surface-raised);
+}
+
+.msg--unread {
+  border-left-color: var(--ice);
+}
+
+.msg__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.msg__badge {
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--ice);
+  border-radius: 999px;
+  color: var(--ice);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.msg__meta {
+  margin: 0;
+  color: var(--mist);
+  font-size: var(--text-sm);
+}
+
+.msg__meta a {
+  color: var(--ink);
+}
+
+.msg__body {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.msg__warn {
+  margin: 0;
+  color: var(--warning);
+  font-size: var(--text-sm);
+}
+
+.msg__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
