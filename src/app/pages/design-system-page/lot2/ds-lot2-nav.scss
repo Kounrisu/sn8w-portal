@@ -7,7 +7,6 @@
 }
 
 .ds-a:focus-visible,
-.ds-burger:focus-visible,
 .ds-mainnav a:focus-visible,
 .ds-side a:focus-visible,
 .ds-summary a:focus-visible,
@@ -40,7 +39,6 @@
 .ds-side ul,
 .ds-summary ol,
 .ds-mainnav,
-.ds-hdr__menu,
 .ds-ftr ul {
   list-style: none;
   margin: 0;
@@ -68,96 +66,16 @@
   max-width: 23.5rem;
 }
 
-.ds-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0;
-  font-weight: 700;
-}
 
-.ds-brand__mark {
-  display: inline-grid;
-  place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 0.5rem;
-  color: var(--ice);
-  font-size: 0.75rem;
-}
 
-.ds-hdr__links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-sm);
-  margin: 0;
-  color: var(--mist);
-  font-size: 0.9rem;
-}
 
-.ds-pill {
-  padding: 0.3rem 0.8rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  color: var(--ink);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
 
-.ds-burger {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 1px solid var(--line-strong);
-  border-radius: 0.5rem;
-  background: transparent;
-  cursor: pointer;
-}
 
-.ds-burger span {
-  width: 18px;
-  height: 2px;
-  background: var(--ink);
-}
 
-.ds-hdr__menu {
-  flex-basis: 100%;
-  display: grid;
-  gap: 0.4rem;
-  padding-top: var(--space-xs);
-  border-top: 1px solid var(--line);
-  color: var(--mist);
-}
 
-.ds-hdr__menu[hidden] {
-  display: none;
-}
 
-.ds-mainnav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
 
-.ds-mainnav a {
-  display: block;
-  padding: 0.6rem 0.9rem;
-  border-bottom: 2px solid transparent;
-  color: var(--mist);
-  text-decoration: none;
-}
 
-.ds-mainnav a[aria-current='page'] {
-  border-bottom-color: var(--ice);
-  color: var(--ink);
-  font-weight: 700;
-}
 
 .ds-twocol {
   margin-top: var(--space-xs);
@@ -285,4 +203,113 @@
   padding-top: var(--space-sm);
   border-top: 1px solid var(--line);
   font-size: 0.8rem;
+}
+
+/* Wordmark, link pills and round icon buttons: the same look as the real site navigation. */
+.ds-wordmark {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.ds-wordmark span {
+  color: var(--ice);
+}
+
+.ds-hdr__right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.ds-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+}
+
+.ds-pill-link,
+.ds-mainnav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.45em 0.85em;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  color: var(--mist);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.ds-pill-link.is-current,
+.ds-mainnav a[aria-current='page'] {
+  border-color: var(--ice);
+  background: color-mix(in srgb, var(--ice) 16%, transparent);
+  color: var(--ice);
+  font-weight: 700;
+}
+
+.ds-pill-link.is-current::before,
+.ds-mainnav a[aria-current='page']::before {
+  content: '';
+  flex-shrink: 0;
+  width: 0.4em;
+  height: 0.4em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ds-mainnav a:hover {
+  background: color-mix(in srgb, var(--ice) 12%, transparent);
+  color: var(--ice);
+}
+
+.ds-iconbtns {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.ds-iconbtns span {
+  display: inline-grid;
+  place-items: center;
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--mist);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.ds-icon-person::before {
+  content: '';
+  position: absolute;
+  top: 0.8rem;
+  left: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: -0.25rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.ds-icon-person::after {
+  content: '';
+  position: absolute;
+  top: 1.4rem;
+  left: 50%;
+  width: 0.85rem;
+  height: 0.45rem;
+  margin-left: -0.425rem;
+  border: 1.5px solid currentColor;
+  border-bottom: 0;
+  border-radius: 0.45rem 0.45rem 0 0;
 }
