@@ -1,11 +1,8 @@
 import {
-  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
-  ElementRef,
   inject,
-  Injector,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -14,7 +11,6 @@ import { I18nService } from '../../core/i18n/i18n.service';
 import { ProjectsService } from '../../core/projects.service';
 import {
   CATALOG_COPY,
-  PROJECT_BATCH_SIZE,
   PROJECT_THEMES,
   projectTheme,
 } from '../../core/project-catalog';
@@ -32,8 +28,6 @@ import { ProjectCount } from '../../landing/project-count/project-count';
 export class ProjectsPage {
   protected readonly i18n = inject(I18nService);
   protected readonly projects = inject(ProjectsService);
-  private readonly host: ElementRef<HTMLElement> = inject(ElementRef);
-  private readonly injector = inject(Injector);
   protected readonly copy = computed(() => CATALOG_COPY[this.i18n.lang()]);
   protected readonly themes = computed(() =>
     PROJECT_THEMES.filter((theme) => this.count(theme) > 0),
@@ -46,7 +40,6 @@ export class ProjectsPage {
   protected readonly hasFilters = computed(
     () => this.query().length > 0 || this.activeTheme() !== 'all',
   );
-  protected readonly limit = signal(PROJECT_BATCH_SIZE);
   protected readonly filtered = computed(() => {
     const terms = normalizeSearch(this.query()).split(/\s+/).filter(Boolean);
     return this.projects.visible().filter((p) => {
@@ -55,14 +48,13 @@ export class ProjectsPage {
       return terms.every((term) => text.includes(term));
     });
   });
-  protected readonly shown = computed(() => this.filtered().slice(0, this.limit()));
+  /** The whole catalogue: the page scrolls, and the search / domain filter narrow it down. */
+  protected readonly shown = this.filtered;
   protected select(theme: ProjectTheme | 'all'): void {
     this.selected.set(theme);
-    this.limit.set(PROJECT_BATCH_SIZE);
   }
   protected search(value: string): void {
     this.query.set(value);
-    this.limit.set(PROJECT_BATCH_SIZE);
   }
   protected clear(searchInput: HTMLInputElement): void {
     this.query.set('');
@@ -71,18 +63,6 @@ export class ProjectsPage {
   }
   protected count(theme: ProjectTheme): number {
     return this.projects.visible().filter((p) => projectTheme(p) === theme).length;
-  }
-  protected showMore(): void {
-    const firstNew = this.shown().length;
-    this.limit.update((value) => value + PROJECT_BATCH_SIZE);
-    afterNextRender(
-      () => {
-        this.host.nativeElement
-          .querySelectorAll<HTMLElement>('[data-project-heading]')
-          [firstNew]?.focus();
-      },
-      { injector: this.injector },
-    );
   }
 }
 

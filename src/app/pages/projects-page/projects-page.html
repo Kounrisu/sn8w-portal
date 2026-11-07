@@ -88,18 +88,4 @@
       }
     }
   </div>
-  @if (shown().length < filtered().length) {
-    <div class="load-more">
-      <button
-        type="button"
-        class="btn btn--primary"
-        aria-controls="project-results"
-        (click)="showMore()"
-      >
-        {{ copy().more }} (+{{
-          filtered().length - shown().length > 6 ? 6 : filtered().length - shown().length
-        }})
-      </button>
-    </div>
-  }
 </div>
