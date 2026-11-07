@@ -305,6 +305,26 @@
   .nav__icons {
     gap: 0.2rem;
   }
+  .nav__pref-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  // Signed-in workspace links: their own full-width row that wraps, so nothing
+  // is pushed past the edge of a narrow screen.
+  .nav__actions {
+    max-width: 100%;
+  }
+  .nav__tools {
+    flex: 1 0 100%;
+    flex-wrap: wrap;
+    padding: 0.4rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+  .nav__tools a {
+    padding: 0.4em 0.65em;
+  }
 }
 
 .nav__session-btn--logged-in {
