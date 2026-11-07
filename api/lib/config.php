@@ -34,3 +34,18 @@ function db_config(string $key): string
 
     return $value;
 }
+
+/** VPS deploy-agent settings (env var or config.local.php constant). */
+function vps_config(string $key): string
+{
+    $env = getenv('VPS_AGENT_' . $key);
+    if ($env !== false && $env !== '') {
+        return $env;
+    }
+    $const = 'SN8W_VPS_AGENT_' . $key;
+    if (defined($const) && constant($const) !== '') {
+        return (string) constant($const);
+    }
+    error_log("Missing VPS agent configuration: $key");
+    json_error('VPS agent is not configured', 503);
+}

@@ -1,0 +1,14 @@
+[Unit]
+Description=sn8w VPS deploy agent
+After=docker.service network.target
+
+[Service]
+User=debian
+Group=docker
+ExecStart=/usr/bin/python3 /opt/sn8w-agent/agent.py
+Restart=on-failure
+Environment=SN8W_AGENT_BIND=172.18.0.1
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

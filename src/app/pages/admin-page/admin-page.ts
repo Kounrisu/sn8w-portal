@@ -23,6 +23,7 @@ import type {
   ProductStatus,
   ProductTier,
 } from '../../core/models';
+import { VpsPanel } from './vps-panel/vps-panel';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { ExternalLinkDirective } from '../../shared/external-link.directive';
 import { GALLERY_COPY } from '../../landing/project-gallery/project-gallery';
@@ -51,7 +52,7 @@ const EMPTY_FORM: ProjectInput = {
 
 @Component({
   selector: 'sn8w-admin-page',
-  imports: [FormsModule, MatIconModule, DragDropModule, SpotlightDirective, ExternalLinkDirective],
+  imports: [FormsModule, MatIconModule, DragDropModule, VpsPanel, SpotlightDirective, ExternalLinkDirective],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
