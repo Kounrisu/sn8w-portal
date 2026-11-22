@@ -275,8 +275,8 @@ export const fr: Dict = {
   },
   workshop: {
     kicker: 'Atelier',
-    title: "Bienvenue dans l'Atelier",
-    lede: "Travail en cours. C'est ici que les composants accessibles seront testés et affinés, et où je garderai des notes au fil de l'avancement.",
+    title: 'Bienvenue dans l’Atelier',
+    lede: 'Je partage ici mes projets, les outils que j’utilise et des aperçus de mes travaux privés. J’y écris aussi des articles sur les sujets qui m’intéressent.',
     navLabel: 'Atelier',
   },
   preferences: {

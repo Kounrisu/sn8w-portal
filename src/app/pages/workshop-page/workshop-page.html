@@ -1,26 +1,117 @@
-<div class="workshop container">
-  <header class="workshop__head" sn8wSpotlight>
-    <p class="kicker">{{ i18n.dict().workshop.kicker }}</p>
-    <h1 class="section-title">{{ i18n.dict().workshop.title }}</h1>
-    <p class="section-lede">{{ i18n.dict().workshop.lede }}</p>
+<ng-template #cardTags let-entry>
+  <ul class="sn-tag-group" role="list">
+    @for (category of entry.categories.slice(0, 2); track category) {
+      <li><span class="sn-tag" [attr.data-tone]="category">{{ tagLabel(category) }}</span></li>
+    }
+  </ul>
+</ng-template>
+<ng-template #favoriteHeart let-hearts>
+  @let label = hearts === 2 ? labels().topFavorite : labels().favorite;
+  <span class="workshop__heart" role="img" [attr.aria-label]="label" [title]="label">
+    <svg viewBox="0 -10 97 86" aria-hidden="true" focusable="false">
+      @for (offset of (hearts === 2 ? ['translate(17 -10)', 'translate(0 0)'] : ['translate(0 0)']); track offset) {
+        <g [attr.transform]="offset" stroke="#341321" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="#341321" stroke-width="6" d="M38 65C29 59 6 45 8 28c2-16 21-20 31-6C55 3 74 14 70 31c-4 15-19 27-32 34Z"/>
+        <path fill="#ff304e" stroke-width="3" d="M36 61C26 55 4 41 7 25c3-15 21-18 31-4C53 2 72 11 68 28c-3 14-19 27-32 33Z"/>
+        <path fill="none" stroke="#fff5ec" stroke-width="4" d="M14 27q1-9 10-10"/>
+        <path fill="none" stroke="#ef334f" stroke-width="3" d="m60 7 2-5m7 10 6-4M7 49l-4 3"/>
+        </g>
+      }
+    </svg>
+  </span>
+</ng-template>
+<ng-template #cardIntro let-entry let-title="title" let-summary="summary" let-status="status">
+  <header class="workshop__card-head">
+    @if (status) { <p class="workshop__system-status">{{ status }}</p> }
+    <div class="workshop__title-row">
+      <h2 class="workshop__ds-title" [id]="entry.slug + '-title'">{{ title }}</h2>
+      @if (entry.hearts) {
+        <ng-container *ngTemplateOutlet="favoriteHeart; context: { $implicit: entry.hearts }" />
+      }
+    </div>
   </header>
-
-  <section class="workshop__ds" aria-labelledby="workshop-ds-title">
-    <h2 id="workshop-ds-title" class="workshop__ds-title">{{ ds().workshopEntry.title }}</h2>
-    <p class="workshop__ds-text">{{ ds().workshopEntry.text }}</p>
-    <p>
-      <a class="btn btn--primary" routerLink="/design-system">{{ ds().workshopEntry.cta }}</a>
-    </p>
-    <nav [attr.aria-label]="ds().workshopEntry.pages">
-      <ul class="workshop__ds-pages">
-        @for (page of dsPages; track page.key) {
-          <li><a [routerLink]="page.path">{{ ds().nav[page.key] }}</a></li>
-        }
-      </ul>
-    </nav>
-  </section>
-
-  <p class="workshop__back">
-    <a class="btn btn--secondary" routerLink="/">{{ i18n.dict().behindTheScenes.backHome }}</a>
+  <p class="workshop__meta workshop__dateline">
+    <time [attr.datetime]="entry.localTime ? entry.date + 'T' + entry.localTime : entry.date">{{ formatDate(entry.date) }}@if (entry.localTime) { · {{ entry.localTime }} }</time>
+    <span>{{ entry.location }}</span>
+    @if (entry.weather || entry.temperatureC != null) {
+      <span>{{ entry.weather?.[lang()] }} @if (entry.temperatureC != null) { {{ entry.temperatureC.toLocaleString(lang()) }} °C }</span>
+    }
   </p>
+  <p class="workshop__ds-text">{{ summary }}</p>
+</ng-template>
+<div class="workshop container">
+  @if (slug()) {
+    <a class="workshop__resource-link" routerLink="/workshop" queryParamsHandling="preserve">{{ labels().back }}</a>
+    @if (post(); as article) {
+      <article class="workshop__story">
+        <p class="kicker">{{ i18n.dict().workshop.kicker }}</p>
+        <h1 class="section-title">{{ article[lang()][0] }}</h1>
+        <p class="section-lede">{{ article[lang()][1] }}</p>
+        <p class="workshop__meta"><time [attr.datetime]="article.localTime ? article.date + 'T' + article.localTime : article.date">{{ formatDate(article.date) }}@if (article.localTime) { · {{ article.localTime }} }</time> · {{ article.location }}@if (article.weather) { · {{ article.weather[lang()] }} }@if (article.temperatureC != null) { · {{ article.temperatureC }} °C } @if (article.preview) { · {{ labels().private }} }</p>
+        @if (!article.preview) { @for (paragraph of article[lang()].slice(2); track paragraph) { <p>{{ paragraph }}</p> } }
+        @switch (article.slug) {
+          @case ('rgaa-testbed') {
+            <a class="workshop__resource-link" href="https://rgaa-test.sn8w.com">RGAA Testbed</a>
+          }
+          @case ('rgaa-assistant') {
+            <a class="workshop__resource-link" href="https://github.com/Kounrisu/rgaa-assistant">RGAA Assistant · GitHub</a>
+          }
+        }
+      </article>
+    } @else { <h1>{{ labels().missing }}</h1> }
+  } @else {
+    <header class="workshop__head" sn8wSpotlight>
+      <h1 class="section-title">{{ i18n.dict().workshop.title }}</h1>
+      <p class="section-lede">{{ i18n.dict().workshop.lede }}</p>
+    </header>
+    <nav class="workshop__filters" [attr.aria-label]="labels().filter">
+      @for (category of categories; track category) {
+        <a class="sn-tag" [attr.data-tone]="category" routerLink="/workshop" [queryParams]="{ type: category === 'all' ? null : category }"
+           [attr.aria-current]="filter() === category ? 'true' : null">{{ labels()[category] }}</a>
+      }
+    </nav>
+    @if (filter() === 'article' && !feed().length) { <p role="status">{{ labels().empty }}</p> }
+    <div class="workshop__systems-grid">
+      @for (entry of systems(); track entry.slug) {
+        @let current = entry.slug === 'design-system-sn8w';
+        @let copy = current ? ds().workshopEntry.current : ds().workshopEntry.archive;
+        <article [id]="entry.slug" [attr.aria-labelledby]="entry.slug + '-title'" class="workshop__system-card" [class.workshop__system-card--favorite]="entry.hearts">
+          <ng-container *ngTemplateOutlet="cardIntro; context: { $implicit: entry, title: copy.title, summary: copy.text, status: copy.status }" />
+          @switch (entry.slug) {
+          @case ('design-system-sn8w') {
+            <a class="workshop__resource-link" href="https://design.sn8w.com" target="_blank" rel="noopener">design.sn8w.com</a>
+            <section class="workshop__planned" aria-labelledby="workshop-development-title">
+          <div>
+            <p class="workshop__system-status">{{ ds().workshopEntry.current.development.status }}</p>
+            <h3 id="workshop-development-title">{{ ds().workshopEntry.current.development.title }}</h3>
+          </div>
+          <p class="workshop__ds-text">{{ ds().workshopEntry.current.development.text }}</p>
+          <p class="workshop__system-address">{{ ds().workshopEntry.current.development.address }}</p>
+        </section>
+          }
+          @case ('premiers-composants') {
+            <a class="workshop__resource-link" routerLink="/design-system">{{ ds().workshopEntry.archive.cta }}</a>
+            <nav [attr.aria-label]="ds().workshopEntry.archive.pages">
+          <ul class="workshop__ds-pages">
+            @for (page of dsPages; track page.key) {
+              <li><a [routerLink]="page.path">{{ ds().nav[page.key] }}</a></li>
+            }
+          </ul>
+        </nav>
+          }
+          }
+          <ng-container *ngTemplateOutlet="cardTags; context: { $implicit: entry }" />
+        </article>
+      }
+      @for (entry of feed(); track entry.slug) {
+        <article [id]="entry.slug" [attr.aria-labelledby]="entry.slug + '-title'" class="workshop__system-card" [class.workshop__system-card--favorite]="entry.hearts">
+          <ng-container *ngTemplateOutlet="cardIntro; context: { $implicit: entry, title: entry[lang()][0], summary: entry[lang()][1], status: entry.preview ? labels().private : null }" />
+          @if (entry.categories.includes('article') && !entry.preview) { <a class="workshop__resource-link" [routerLink]="['/workshop', entry.slug]" queryParamsHandling="preserve">{{ labels().read }}<span class="visually-hidden"> — {{ entry[lang()][0] }}</span></a> } @else if (entry.publicUrl && !entry.preview) { <a class="workshop__resource-link" [href]="entry.publicUrl">{{ labels().visit }}<span class="visually-hidden"> — {{ entry[lang()][0] }}</span></a> }
+          <ng-container *ngTemplateOutlet="cardTags; context: { $implicit: entry }" />
+        </article>
+      }
+    </div>
+    <small class="workshop__meta">{{ lang() === 'fr' ? 'Heures de Paris · Météo horaire estimée par' : 'Paris time · Hourly weather estimates from' }} <a href="https://open-meteo.com/en/docs/historical-weather-api">Open-Meteo</a></small>
+    <p><a routerLink="/">{{ i18n.dict().behindTheScenes.backHome }}</a></p>
+  }
 </div>

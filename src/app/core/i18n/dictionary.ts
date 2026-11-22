@@ -614,7 +614,7 @@ export const en: Dict = {
   workshop: {
     kicker: 'Workshop',
     title: 'Welcome to the Workshop',
-    lede: "Work in progress. This is where accessible components get tested and refined, and where I'll keep notes as it comes together.",
+    lede: 'I share my projects, the tools I use and glimpses of my private work. I also write articles about topics that interest me.',
     navLabel: 'Workshop',
   },
   preferences: {
