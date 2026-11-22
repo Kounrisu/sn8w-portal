@@ -67,7 +67,7 @@
 .hero__actions .btn {
   min-height: 3rem;
 }
-.hero__actions mat-icon {
+.hero__actions sn8w-icon {
   width: 1.1rem;
   height: 1.1rem;
   font-size: 1.1rem;
@@ -280,10 +280,10 @@
     transform-origin: left;
     animation: score-arrive 700ms 350ms ease-out both;
   }
-  .hero__actions mat-icon {
+  .hero__actions sn8w-icon {
     transition: transform 180ms ease;
   }
-  .hero__actions .btn:is(:hover, :focus-visible) mat-icon {
+  .hero__actions .btn:is(:hover, :focus-visible) sn8w-icon {
     transform: translate(2px, -2px);
   }
 }

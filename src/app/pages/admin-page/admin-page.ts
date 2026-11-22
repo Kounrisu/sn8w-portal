@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
+import { Icon } from '../../shared/icon/icon';
 import {
   DragDropModule,
   moveItemInArray,
@@ -52,7 +52,7 @@ const EMPTY_FORM: ProjectInput = {
 
 @Component({
   selector: 'sn8w-admin-page',
-  imports: [FormsModule, MatIconModule, DragDropModule, VpsPanel, SpotlightDirective, ExternalLinkDirective],
+  imports: [FormsModule, Icon, DragDropModule, VpsPanel, SpotlightDirective, ExternalLinkDirective],
   templateUrl: './admin-page.html',
   styleUrl: './admin-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

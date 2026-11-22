@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { MatIconModule } from '@angular/material/icon';
+import { Icon } from '../../shared/icon/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { I18nService } from '../../core/i18n/i18n.service';
@@ -12,7 +12,7 @@ import { ExternalLinkDirective } from '../../shared/external-link.directive';
 
 @Component({
   selector: 'sn8w-site-footer',
-  imports: [RouterLink, RouterLinkActive, MatIconModule, MatTooltipModule, ExternalLinkDirective],
+  imports: [RouterLink, RouterLinkActive, Icon, MatTooltipModule, ExternalLinkDirective],
   templateUrl: './site-footer.html',
   styleUrl: './site-footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

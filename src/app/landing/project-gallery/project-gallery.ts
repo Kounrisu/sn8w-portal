@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, signal } f
 import type { Project } from '../../core/models';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { defaultCaption } from '../../core/project-captions';
+import { Icon } from '../../shared/icon/icon';
 
 export const GALLERY_COPY = {
   en: {
@@ -38,6 +39,7 @@ export const GALLERY_COPY = {
 
 @Component({
   selector: 'sn8w-project-gallery',
+  imports: [Icon],
   templateUrl: './project-gallery.html',
   styleUrl: './project-gallery.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

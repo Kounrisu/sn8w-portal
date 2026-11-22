@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, a
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatIconModule } from '@angular/material/icon';
+import { Icon } from '../../shared/icon/icon';
 import { Flag } from '../flag/flag';
 import { SpotlightDirective } from '../../shared/spotlight.directive';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -22,7 +22,7 @@ import type { Lang } from '../../core/i18n/dictionary';
  */
 @Component({
   selector: 'sn8w-nav',
-  imports: [RouterLink, RouterLinkActive, MatIconModule, MatMenuModule, MatTooltipModule, Flag, SpotlightDirective],
+  imports: [RouterLink, RouterLinkActive, Icon, MatMenuModule, MatTooltipModule, Flag, SpotlightDirective],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

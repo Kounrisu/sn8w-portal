@@ -314,7 +314,7 @@
           <tr cdkDrag [cdkDragData]="project" cdkDragPreviewContainer="parent">
             <td class="admin-table__reorder">
               <span class="admin-table__drag-handle" cdkDragHandle aria-hidden="true">
-                <mat-icon>drag_indicator</mat-icon>
+                <sn8w-icon name="drag-handle" />
               </span>
               <span class="admin-table__reorder-btns">
                 <button
@@ -323,7 +323,7 @@
                   [attr.aria-label]="i18n.dict().admin.moveUp"
                   (click)="moveUp(project)"
                 >
-                  <mat-icon aria-hidden="true">keyboard_arrow_up</mat-icon>
+                  <sn8w-icon name="chevron-up" />
                 </button>
                 <button
                   type="button"
@@ -331,7 +331,7 @@
                   [attr.aria-label]="i18n.dict().admin.moveDown"
                   (click)="moveDown(project)"
                 >
-                  <mat-icon aria-hidden="true">keyboard_arrow_down</mat-icon>
+                  <sn8w-icon name="chevron-down" />
                 </button>
               </span>
             </td>

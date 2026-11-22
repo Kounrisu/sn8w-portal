@@ -20,7 +20,7 @@
   font-size: var(--text-sm);
   color: var(--ember);
 }
-.expertise__training mat-icon {
+.expertise__training sn8w-icon {
   flex-shrink: 0;
 }
 .expertise__practices {
@@ -49,7 +49,7 @@
 .practice summary:hover {
   color: var(--ice);
 }
-.practice summary > mat-icon:first-child {
+.practice summary > sn8w-icon:first-child {
   color: var(--ice);
   flex-shrink: 0;
 }

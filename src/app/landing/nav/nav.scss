@@ -214,7 +214,7 @@
   border: 1.5px solid var(--bg);
 }
 
-.nav__pref-btn mat-icon {
+.nav__pref-btn sn8w-icon {
   font-size: 1.15rem;
   width: 1.15rem;
   height: 1.15rem;
@@ -230,13 +230,10 @@
   gap: 0.6rem;
 }
 
-// Bootstrap Icons (person-dash / person-check-fill), inlined rather than
-// pulling in a whole second icon font for two glyphs — sized to match the
-// mat-icon glyphs used everywhere else in this row.
+// SN8W user-minus / user-check (PORTAL-24), sized like the other icons of this row.
 .nav__session-icon {
   width: 1.15rem;
   height: 1.15rem;
-  fill: currentColor;
 }
 
 // Red while signed out (person-dash), green once signed in

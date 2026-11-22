@@ -24,7 +24,7 @@
   min-height: 3.25rem;
   font-size: var(--text-base);
 }
-.contact__actions mat-icon {
+.contact__actions sn8w-icon {
   font-size: 1.25rem;
   width: 1.25rem;
   height: 1.25rem;
@@ -57,10 +57,10 @@
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .contact mat-icon {
+  .contact sn8w-icon {
     transition: transform 180ms ease;
   }
-  .contact .btn:is(:hover, :focus-visible) mat-icon {
+  .contact .btn:is(:hover, :focus-visible) sn8w-icon {
     transform: translate(3px, -3px);
   }
 }

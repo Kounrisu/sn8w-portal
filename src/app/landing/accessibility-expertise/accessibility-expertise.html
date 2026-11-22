@@ -7,16 +7,16 @@
       </h2>
       <p class="section-lede">{{ i18n.dict().accessibilityExpertise.lede }}</p>
       <p class="expertise__training">
-        <mat-icon aria-hidden="true">school</mat-icon>
+        <sn8w-icon name="school" />
         {{ i18n.dict().accessibilityExpertise.training }}
       </p>
       <div class="expertise__practices">
         @for (practice of i18n.dict().accessibilityExpertise.practices; track $index) {
           <details class="practice">
             <summary>
-              <mat-icon aria-hidden="true">{{ icons[$index] }}</mat-icon>
+              <sn8w-icon [name]="icons[$index]" />
               <span>{{ practice.title }}</span>
-              <mat-icon class="practice__chevron" aria-hidden="true">expand_more</mat-icon>
+              <sn8w-icon class="practice__chevron" name="chevron-down" />
             </summary>
             <p>{{ practice.description }}</p>
           </details>

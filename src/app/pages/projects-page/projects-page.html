@@ -13,10 +13,7 @@
     <div class="filter-field search-field">
       <label for="project-search">{{ copy().search }}</label>
       <div class="field-control">
-        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="10.5" cy="10.5" r="6.5" />
-          <path d="m16 16 4 4" />
-        </svg>
+        <sn8w-icon class="search-icon" name="search" />
         <input
           #projectSearch
           id="project-search"
@@ -48,9 +45,7 @@
             <option [value]="theme">{{ copy().themes[theme] }} ({{ count(theme) }})</option>
           }
         </select>
-        <svg class="select-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="m7 10 5 5 5-5" />
-        </svg>
+        <sn8w-icon class="select-icon" name="chevron-down" />
       </div>
     </div>
   </form>

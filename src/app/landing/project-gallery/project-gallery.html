@@ -26,7 +26,7 @@
         />
       }
       <span class="expand-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7" /></svg>
+        <sn8w-icon name="expand" />
       </span>
     </button>
     <div class="gallery-footer">
@@ -38,7 +38,7 @@
             (click)="move(-1)"
             [attr.aria-label]="copy().previous + ' : ' + project().name"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6M8 12h12" /></svg>
+            <sn8w-icon name="arrow-left" />
           </button>
         }
         <span class="position" aria-hidden="true">{{ position() }}</span>
@@ -49,7 +49,7 @@
             (click)="move(1)"
             [attr.aria-label]="copy().next + ' : ' + project().name"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6M16 12H4" /></svg>
+            <sn8w-icon name="arrow-right" />
           </button>
         }
       </div>
@@ -90,7 +90,7 @@
       </div>
       <button type="button" class="close-button" autofocus (click)="viewer.close()">
         {{ copy().close
-        }}<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        }}<sn8w-icon name="x" />
       </button>
     </div>
     @if (opened()) {
@@ -119,7 +119,7 @@
             (click)="move(-1)"
             [attr.aria-label]="copy().previous"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6M8 12h12" /></svg>
+            <sn8w-icon name="arrow-left" />
           </button>
         }
         <span class="position" aria-hidden="true">{{ position() }}</span>
@@ -130,7 +130,7 @@
             (click)="move(1)"
             [attr.aria-label]="copy().next"
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6M16 12H4" /></svg>
+            <sn8w-icon name="arrow-right" />
           </button>
         }
       </div>

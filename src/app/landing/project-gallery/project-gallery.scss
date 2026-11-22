@@ -11,15 +11,10 @@ button:focus-visible {
   outline: 3px solid var(--ice);
   outline-offset: 4px;
 }
-svg {
+sn8w-icon {
   width: 20px;
   height: 20px;
   flex: 0 0 auto;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 .cover {
   position: relative;

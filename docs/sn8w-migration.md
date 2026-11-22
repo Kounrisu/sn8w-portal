@@ -89,15 +89,17 @@ The portal also draws 9 SVGs by hand (gallery expand, previous, next, close; sea
 arrow; sign in and out; the Atelier logo). The first six have SN8W or Aksel equivalents; the logo
 stays the portal's.
 
-**Why icons can go first:** they are drawings under the MIT licence, not SN8W's private code, so
-they can be copied into the public portal without settling PORTAL-20. Plan (not done yet):
-1. SN8W adds the 15 icons (SN8W-271).
-2. The portal gets a small icon component rendering those SVGs; the 18 `mat-icon` and 6 hand-drawn
-   SVGs are replaced; `MatIconModule` and the Google font link are removed.
-3. Check every icon in light, dark and high contrast, at 200 % text size.
-
-Visible change: the drawings change style (Aksel stroke instead of Material filled), lighter
-on the page. Risk: low; one page at a time.
+**Done on 2026-11-22 (PORTAL-24), without changing SN8W:**
+`scripts/sync-sn8w-icons.mjs` reads the SN8W design system (its named icons, and the Aksel set it
+holds for the others) and writes `src/app/shared/icon/icons.generated.ts` with the Aksel licence in
+`licenses/aksel-icons.txt`. `<sn8w-icon name="…">` (`src/app/shared/icon/icon.ts`) has the same
+inputs as SN8W's `sn-icon`, so moving to the SN8W package later only changes the tag.
+30 icons: 11 SN8W icons (moon, sun, arrow-right, chevron-down/left/right, accessibility, search,
+x, user-check, user-minus) and 19 from its Aksel set (the 17 above, plus Expand and ArrowLeft for
+the gallery). All 18 `mat-icon`, the 6 hand-drawn gallery, search and select SVGs and the 2
+sign-in SVGs are replaced; the Material Icons font link is gone (`MatIconModule` no longer used).
+The hero's Contact button now shows an arrow right, not an outward arrow: it is a link in the page.
+Run the script again after SN8W icons change.
 
 ## Summary of what to do
 

@@ -6,6 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Icon } from '../../shared/icon/icon';
 import { FormsModule } from '@angular/forms';
 import { I18nService } from '../../core/i18n/i18n.service';
 import { ProjectsService } from '../../core/projects.service';
@@ -20,7 +21,7 @@ import { ProjectCount } from '../../landing/project-count/project-count';
 
 @Component({
   selector: 'sn8w-projects-page',
-  imports: [RouterLink, FormsModule, ProjectCard, ProjectCount],
+  imports: [RouterLink, FormsModule, ProjectCard, ProjectCount, Icon],
   templateUrl: './projects-page.html',
   styleUrl: './projects-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

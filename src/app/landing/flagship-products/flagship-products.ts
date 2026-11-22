@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { MatIconModule } from '@angular/material/icon';
+import { Icon } from '../../shared/icon/icon';
 import { ProjectCard } from '../project-card/project-card';
 import { ProjectCount } from '../project-count/project-count';
 import { CATALOG_COPY } from '../../core/project-catalog';
@@ -9,7 +9,7 @@ import { I18nService } from '../../core/i18n/i18n.service';
 
 @Component({
   selector: 'sn8w-flagship-products',
-  imports: [ProjectCard, ProjectCount, RouterLink, MatIconModule],
+  imports: [ProjectCard, ProjectCount, RouterLink, Icon],
   templateUrl: './flagship-products.html',
   styleUrl: './flagship-products.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
